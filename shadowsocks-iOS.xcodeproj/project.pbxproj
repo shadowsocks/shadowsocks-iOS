@@ -18,6 +18,10 @@
 		62F3C301168C35C9006D77BC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F3C300168C35C9006D77BC /* Default-568h@2x.png */; };
 		62F3C304168C35C9006D77BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C303168C35C9006D77BC /* ViewController.m */; };
 		62F3C307168C35C9006D77BC /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F3C305168C35C9006D77BC /* ViewController.xib */; };
+		62F3C461168C411F006D77BC /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C45C168C411F006D77BC /* encrypt.c */; };
+		62F3C462168C411F006D77BC /* local.c in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C45E168C411F006D77BC /* local.c */; };
+		62F3C474168C471E006D77BC /* openssl in Resources */ = {isa = PBXBuildFile; fileRef = 62F3C473168C471E006D77BC /* openssl */; };
+		62F3C48C168C488B006D77BC /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C48A168C488B006D77BC /* ev.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,13 @@
 		62F3C302168C35C9006D77BC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		62F3C303168C35C9006D77BC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		62F3C306168C35C9006D77BC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		62F3C45C168C411F006D77BC /* encrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encrypt.c; sourceTree = "<group>"; };
+		62F3C45D168C411F006D77BC /* encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encrypt.h; sourceTree = "<group>"; };
+		62F3C45E168C411F006D77BC /* local.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = local.c; sourceTree = "<group>"; };
+		62F3C45F168C411F006D77BC /* local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = local.h; sourceTree = "<group>"; };
+		62F3C460168C411F006D77BC /* socks5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socks5.h; sourceTree = "<group>"; };
+		62F3C473168C471E006D77BC /* openssl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = openssl; path = "shadowsocks-iOS/openssl"; sourceTree = "<group>"; };
+		62F3C48A168C488B006D77BC /* ev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ev.c; path = "shadowsocks-iOS/libev/ev.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,8 @@
 		62F3C2DB168C35C9006D77BC = {
 			isa = PBXGroup;
 			children = (
+				62F3C475168C47AD006D77BC /* libev */,
+				62F3C473168C471E006D77BC /* openssl */,
 				62F3C2F0168C35C9006D77BC /* shadowsocks-iOS */,
 				62F3C2E9168C35C9006D77BC /* Frameworks */,
 				62F3C2E7168C35C9006D77BC /* Products */,
@@ -83,6 +96,11 @@
 		62F3C2F0168C35C9006D77BC /* shadowsocks-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				62F3C45C168C411F006D77BC /* encrypt.c */,
+				62F3C45D168C411F006D77BC /* encrypt.h */,
+				62F3C45E168C411F006D77BC /* local.c */,
+				62F3C45F168C411F006D77BC /* local.h */,
+				62F3C460168C411F006D77BC /* socks5.h */,
 				62F3C2F9168C35C9006D77BC /* AppDelegate.h */,
 				62F3C2FA168C35C9006D77BC /* AppDelegate.m */,
 				62F3C302168C35C9006D77BC /* ViewController.h */,
@@ -105,6 +123,14 @@
 				62F3C300168C35C9006D77BC /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		62F3C475168C47AD006D77BC /* libev */ = {
+			isa = PBXGroup;
+			children = (
+				62F3C48A168C488B006D77BC /* ev.c */,
+			);
+			name = libev;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +189,7 @@
 				62F3C2FF168C35C9006D77BC /* Default@2x.png in Resources */,
 				62F3C301168C35C9006D77BC /* Default-568h@2x.png in Resources */,
 				62F3C307168C35C9006D77BC /* ViewController.xib in Resources */,
+				62F3C474168C471E006D77BC /* openssl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +203,9 @@
 				62F3C2F7168C35C9006D77BC /* main.m in Sources */,
 				62F3C2FB168C35C9006D77BC /* AppDelegate.m in Sources */,
 				62F3C304168C35C9006D77BC /* ViewController.m in Sources */,
+				62F3C461168C411F006D77BC /* encrypt.c in Sources */,
+				62F3C462168C411F006D77BC /* local.c in Sources */,
+				62F3C48C168C488B006D77BC /* ev.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +284,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "shadowsocks-iOS/shadowsocks-iOS-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "shadowsocks-iOS/shadowsocks-iOS-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/libev-4.11/.libs\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -265,7 +300,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "shadowsocks-iOS/shadowsocks-iOS-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "shadowsocks-iOS/shadowsocks-iOS-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/libev-4.11/.libs\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
