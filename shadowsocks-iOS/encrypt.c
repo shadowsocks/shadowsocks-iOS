@@ -1,6 +1,6 @@
 #include "encrypt.h"
 
-#include "openssl/md5.h"
+#import <CommonCrypto/CommonDigest.h>
 
 void encrypt(char *buf, int len) {
     char *end = buf + len;
@@ -43,8 +43,9 @@ static int random_compare(const void *_x, const void *_y) {
 
 void get_table(const char* key) {
     unsigned char *table = encrypt_table;
-    unsigned char *tmp_hash;
-    tmp_hash = MD5((const unsigned char*)key, strlen(key), NULL);
+    unsigned char tmp_hash[16];
+//    tmp_hash = MD5((const unsigned char*)key, strlen(key), NULL);
+    CC_MD5(key, strlen(key), tmp_hash);
     _a = *(unsigned long long *)tmp_hash;
     unsigned int i;
 

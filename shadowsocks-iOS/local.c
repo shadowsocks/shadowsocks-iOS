@@ -78,7 +78,7 @@ int create_and_bind(const char *port) {
     }
 
     if (rp == NULL) {
-        LOGE("Could not bind");
+//        LOGE("Could not bind");
         return -1;
     }
 
