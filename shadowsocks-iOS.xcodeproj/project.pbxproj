@@ -1,0 +1,297 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		62F3C2EB168C35C9006D77BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3C2EA168C35C9006D77BC /* UIKit.framework */; };
+		62F3C2ED168C35C9006D77BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3C2EC168C35C9006D77BC /* Foundation.framework */; };
+		62F3C2EF168C35C9006D77BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3C2EE168C35C9006D77BC /* CoreGraphics.framework */; };
+		62F3C2F5168C35C9006D77BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62F3C2F3168C35C9006D77BC /* InfoPlist.strings */; };
+		62F3C2F7168C35C9006D77BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C2F6168C35C9006D77BC /* main.m */; };
+		62F3C2FB168C35C9006D77BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C2FA168C35C9006D77BC /* AppDelegate.m */; };
+		62F3C2FD168C35C9006D77BC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F3C2FC168C35C9006D77BC /* Default.png */; };
+		62F3C2FF168C35C9006D77BC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F3C2FE168C35C9006D77BC /* Default@2x.png */; };
+		62F3C301168C35C9006D77BC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F3C300168C35C9006D77BC /* Default-568h@2x.png */; };
+		62F3C304168C35C9006D77BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C303168C35C9006D77BC /* ViewController.m */; };
+		62F3C307168C35C9006D77BC /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F3C305168C35C9006D77BC /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		62F3C2E6168C35C9006D77BC /* shadowsocks-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shadowsocks-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		62F3C2EA168C35C9006D77BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		62F3C2EC168C35C9006D77BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		62F3C2EE168C35C9006D77BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		62F3C2F2168C35C9006D77BC /* shadowsocks-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "shadowsocks-iOS-Info.plist"; sourceTree = "<group>"; };
+		62F3C2F4168C35C9006D77BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		62F3C2F6168C35C9006D77BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		62F3C2F8168C35C9006D77BC /* shadowsocks-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shadowsocks-iOS-Prefix.pch"; sourceTree = "<group>"; };
+		62F3C2F9168C35C9006D77BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		62F3C2FA168C35C9006D77BC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		62F3C2FC168C35C9006D77BC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		62F3C2FE168C35C9006D77BC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		62F3C300168C35C9006D77BC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		62F3C302168C35C9006D77BC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		62F3C303168C35C9006D77BC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		62F3C306168C35C9006D77BC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		62F3C2E3168C35C9006D77BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62F3C2EB168C35C9006D77BC /* UIKit.framework in Frameworks */,
+				62F3C2ED168C35C9006D77BC /* Foundation.framework in Frameworks */,
+				62F3C2EF168C35C9006D77BC /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		62F3C2DB168C35C9006D77BC = {
+			isa = PBXGroup;
+			children = (
+				62F3C2F0168C35C9006D77BC /* shadowsocks-iOS */,
+				62F3C2E9168C35C9006D77BC /* Frameworks */,
+				62F3C2E7168C35C9006D77BC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		62F3C2E7168C35C9006D77BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				62F3C2E6168C35C9006D77BC /* shadowsocks-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		62F3C2E9168C35C9006D77BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62F3C2EA168C35C9006D77BC /* UIKit.framework */,
+				62F3C2EC168C35C9006D77BC /* Foundation.framework */,
+				62F3C2EE168C35C9006D77BC /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		62F3C2F0168C35C9006D77BC /* shadowsocks-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				62F3C2F9168C35C9006D77BC /* AppDelegate.h */,
+				62F3C2FA168C35C9006D77BC /* AppDelegate.m */,
+				62F3C302168C35C9006D77BC /* ViewController.h */,
+				62F3C303168C35C9006D77BC /* ViewController.m */,
+				62F3C305168C35C9006D77BC /* ViewController.xib */,
+				62F3C2F1168C35C9006D77BC /* Supporting Files */,
+			);
+			path = "shadowsocks-iOS";
+			sourceTree = "<group>";
+		};
+		62F3C2F1168C35C9006D77BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				62F3C2F2168C35C9006D77BC /* shadowsocks-iOS-Info.plist */,
+				62F3C2F3168C35C9006D77BC /* InfoPlist.strings */,
+				62F3C2F6168C35C9006D77BC /* main.m */,
+				62F3C2F8168C35C9006D77BC /* shadowsocks-iOS-Prefix.pch */,
+				62F3C2FC168C35C9006D77BC /* Default.png */,
+				62F3C2FE168C35C9006D77BC /* Default@2x.png */,
+				62F3C300168C35C9006D77BC /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		62F3C2E5168C35C9006D77BC /* shadowsocks-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62F3C30A168C35C9006D77BC /* Build configuration list for PBXNativeTarget "shadowsocks-iOS" */;
+			buildPhases = (
+				62F3C2E2168C35C9006D77BC /* Sources */,
+				62F3C2E3168C35C9006D77BC /* Frameworks */,
+				62F3C2E4168C35C9006D77BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "shadowsocks-iOS";
+			productName = "shadowsocks-iOS";
+			productReference = 62F3C2E6168C35C9006D77BC /* shadowsocks-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		62F3C2DD168C35C9006D77BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = clowwindy;
+			};
+			buildConfigurationList = 62F3C2E0168C35C9006D77BC /* Build configuration list for PBXProject "shadowsocks-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 62F3C2DB168C35C9006D77BC;
+			productRefGroup = 62F3C2E7168C35C9006D77BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				62F3C2E5168C35C9006D77BC /* shadowsocks-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		62F3C2E4168C35C9006D77BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62F3C2F5168C35C9006D77BC /* InfoPlist.strings in Resources */,
+				62F3C2FD168C35C9006D77BC /* Default.png in Resources */,
+				62F3C2FF168C35C9006D77BC /* Default@2x.png in Resources */,
+				62F3C301168C35C9006D77BC /* Default-568h@2x.png in Resources */,
+				62F3C307168C35C9006D77BC /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		62F3C2E2168C35C9006D77BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62F3C2F7168C35C9006D77BC /* main.m in Sources */,
+				62F3C2FB168C35C9006D77BC /* AppDelegate.m in Sources */,
+				62F3C304168C35C9006D77BC /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		62F3C2F3168C35C9006D77BC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62F3C2F4168C35C9006D77BC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		62F3C305168C35C9006D77BC /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62F3C306168C35C9006D77BC /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		62F3C308168C35C9006D77BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		62F3C309168C35C9006D77BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		62F3C30B168C35C9006D77BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "shadowsocks-iOS/shadowsocks-iOS-Prefix.pch";
+				INFOPLIST_FILE = "shadowsocks-iOS/shadowsocks-iOS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		62F3C30C168C35C9006D77BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "shadowsocks-iOS/shadowsocks-iOS-Prefix.pch";
+				INFOPLIST_FILE = "shadowsocks-iOS/shadowsocks-iOS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		62F3C2E0168C35C9006D77BC /* Build configuration list for PBXProject "shadowsocks-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62F3C308168C35C9006D77BC /* Debug */,
+				62F3C309168C35C9006D77BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		62F3C30A168C35C9006D77BC /* Build configuration list for PBXNativeTarget "shadowsocks-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62F3C30B168C35C9006D77BC /* Debug */,
+				62F3C30C168C35C9006D77BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 62F3C2DD168C35C9006D77BC /* Project object */;
+}
