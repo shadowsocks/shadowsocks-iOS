@@ -17,6 +17,8 @@
 #include <time.h>
 #include <unistd.h>
 
+#import <Foundation/Foundation.h>
+
 #include "local.h"
 #include "socks5.h"
 #include "encrypt.h"
@@ -55,7 +57,7 @@ int create_and_bind(const char *port) {
 
     s = getaddrinfo("0.0.0.0", port, &hints, &result);
     if (s != 0) {
-//        LOGD("getaddrinfo: %s", gai_strerror(s));
+        NSLog(@"getaddrinfo: %s", gai_strerror(s));
         return -1;
     }
 
@@ -78,7 +80,7 @@ int create_and_bind(const char *port) {
     }
 
     if (rp == NULL) {
-//        LOGE("Could not bind");
+        NSLog(@"Could not bind");
         return -1;
     }
 
@@ -168,7 +170,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 			struct socks5_request *request = (struct socks5_request *)server->buf;
 
 			if (request->cmd != 1) {
-				LOGE("unsupported cmd: %d\n", request->cmd);
+				NSLog(@"unsupported cmd: %d\n", request->cmd);
 				struct socks5_response response;
 				response.ver = VERSION;
 				response.rep = CMD_NOT_SUPPORTED;
@@ -213,7 +215,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 addr_to_send[addr_len++] = *(unsigned char *)(server->buf + 4 + 1 + name_len + 1); 
                 addr_to_send[addr_len] = 0;
 			} else {
-				LOGE("unsupported addrtype: %d\n", request->atyp);
+				NSLog(@"unsupported addrtype: %d\n", request->atyp);
 				close_and_free_server(EV_A_ server);
                 close_and_free_remote(EV_A_ remote);
 				return;
@@ -239,7 +241,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
             int reply_size = 4 + sizeof(struct in_addr) + sizeof(unsigned short);
 			int r = send(server->fd, server->buf, reply_size, 0);
 			if (r < reply_size) {
-				LOGE("header not complete sent\n");
+				NSLog(@"header not complete sent\n");
 				close_and_free_remote(EV_A_ remote);
 				close_and_free_server(EV_A_ server);
                 return;
@@ -529,104 +531,29 @@ static void accept_cb (EV_P_ ev_io *w, int revents)
 	}
 }
 
-int local_main (int argc, char **argv)
+int local_main ()
 {
-
-    char *server = NULL;
-    char *remote_port = NULL;
-    char *port = NULL;
-    char *key = NULL;
-    int c;
-    int f_flags = 0;
 
     opterr = 0;
 
-    while ((c = getopt (argc, argv, "fs:p:l:k:")) != -1) {
-        switch (c) {
-            case 's':
-                server = optarg;
-                break;
-            case 'p':
-                remote_port = optarg;
-                break;
-            case 'l':
-                port = optarg;
-                break;
-            case 'k':
-                key = optarg;
-                break;
-            case 'f':
-                f_flags = 1;
-                break;
-        }
-    }
+    _server = "127.0.0.1";
+    _remote_port = "8387";
+    char key[] = "foobar!";
 
-    if (server == NULL || remote_port == NULL ||
-            port == NULL || key == NULL) {
-        exit(EXIT_FAILURE);
-    }
-
-    if (f_flags) {
-
-        /* Our process ID and Session ID */
-        pid_t pid, sid;
-
-        /* Fork off the parent process */
-        pid = fork();
-        if (pid < 0) {
-            exit(EXIT_FAILURE);
-        }
-        /* If we got a good PID, then
-           we can exit the parent process. */
-        if (pid > 0) {
-            FILE *file = fopen("/data/data/com.github.shadowsocks/shadowsocks.pid", "w");
-            fprintf(file, "%d", pid);
-            fclose(file);
-            exit(EXIT_SUCCESS);
-        }
-
-        /* Change the file mode mask */
-        umask(0);
-
-        /* Open any logs here */        
-
-        /* Create a new SID for the child process */
-        sid = setsid();
-        if (sid < 0) {
-            /* Log the failure */
-            exit(EXIT_FAILURE);
-        }
-
-
-        /* Change the current working directory */
-        if ((chdir("/")) < 0) {
-            /* Log the failure */
-            exit(EXIT_FAILURE);
-        }
-
-        /* Close out the standard file descriptors */
-        close(STDIN_FILENO);
-        close(STDOUT_FILENO);
-        close(STDERR_FILENO);
-    }
-
-    _server = strdup(server);
-    _remote_port = strdup(remote_port);
-
-    LOGD("calculating ciphers");
+    NSLog(@"calculating ciphers");
     get_table(key);
 
     int listenfd;
-    listenfd = create_and_bind(port);
+    listenfd = create_and_bind("1080");
     if (listenfd < 0) {
-        LOGE("bind() error..");
+        NSLog(@"bind() error..");
         return 1;
     }
     if (listen(listenfd, SOMAXCONN) == -1) {
-        LOGE("listen() error.");
+        NSLog(@"listen() error.");
         return 1;
     }
-    LOGD("server listening at port %s\n", port);
+    NSLog(@"server listening at port %s\n", "1080");
 
     setnonblocking(listenfd);
     struct listen_ctx listen_ctx;

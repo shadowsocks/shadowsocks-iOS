@@ -19,7 +19,7 @@
 		62F3C304168C35C9006D77BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C303168C35C9006D77BC /* ViewController.m */; };
 		62F3C307168C35C9006D77BC /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F3C305168C35C9006D77BC /* ViewController.xib */; };
 		62F3C461168C411F006D77BC /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C45C168C411F006D77BC /* encrypt.c */; };
-		62F3C462168C411F006D77BC /* local.c in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C45E168C411F006D77BC /* local.c */; };
+		62F3C462168C411F006D77BC /* local.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C45E168C411F006D77BC /* local.m */; };
 		62F3C48C168C488B006D77BC /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 62F3C48A168C488B006D77BC /* ev.c */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +42,7 @@
 		62F3C306168C35C9006D77BC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		62F3C45C168C411F006D77BC /* encrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encrypt.c; sourceTree = "<group>"; };
 		62F3C45D168C411F006D77BC /* encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encrypt.h; sourceTree = "<group>"; };
-		62F3C45E168C411F006D77BC /* local.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = local.c; sourceTree = "<group>"; };
+		62F3C45E168C411F006D77BC /* local.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = local.m; sourceTree = "<group>"; };
 		62F3C45F168C411F006D77BC /* local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = local.h; sourceTree = "<group>"; };
 		62F3C460168C411F006D77BC /* socks5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socks5.h; sourceTree = "<group>"; };
 		62F3C48A168C488B006D77BC /* ev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ev.c; path = "shadowsocks-iOS/libev/ev.c"; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 			children = (
 				62F3C45C168C411F006D77BC /* encrypt.c */,
 				62F3C45D168C411F006D77BC /* encrypt.h */,
-				62F3C45E168C411F006D77BC /* local.c */,
+				62F3C45E168C411F006D77BC /* local.m */,
 				62F3C45F168C411F006D77BC /* local.h */,
 				62F3C460168C411F006D77BC /* socks5.h */,
 				62F3C2F9168C35C9006D77BC /* AppDelegate.h */,
@@ -200,7 +200,7 @@
 				62F3C2FB168C35C9006D77BC /* AppDelegate.m in Sources */,
 				62F3C304168C35C9006D77BC /* ViewController.m in Sources */,
 				62F3C461168C411F006D77BC /* encrypt.c in Sources */,
-				62F3C462168C411F006D77BC /* local.c in Sources */,
+				62F3C462168C411F006D77BC /* local.m in Sources */,
 				62F3C48C168C488B006D77BC /* ev.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

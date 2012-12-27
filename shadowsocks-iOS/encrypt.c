@@ -33,13 +33,10 @@ int recv_decrypt(int sock, char *buf, int len, int flags) {
     return result;
 }
 
-static int random_compare(const void *_x, const void *_y) {
-    unsigned int i = _i;
-    unsigned long long a = _a;
-    unsigned char x = *((unsigned char*) _x);
-    unsigned char y = *((unsigned char*) _y);
+int random_compare(unsigned char x, unsigned char y, unsigned int i, unsigned long long a) {
     return (a % (x + i) - a % (y + i));
 }
+
 
 void get_table(const char* key) {
     unsigned char *table = encrypt_table;
@@ -53,8 +50,21 @@ void get_table(const char* key) {
         table[i] = i;
     }
     for(i = 1; i < 1024; ++i) {
-        _i = i;
-        qsort(table, 256, sizeof(unsigned char), random_compare);
+        // use bubble sort in order to keep the array stable as in Python
+        int k,j;
+        unsigned char t;
+        for(k = 256 - 2; k >= 0; --k)
+        {
+            for(j = 0;j <= k; ++j)
+            {
+                if(random_compare(table[j], table[j + 1], i, _a) > 0)
+                {
+                    t=table[j];
+                    table[j]=table[j + 1];
+                    table[j + 1]=t;
+                }
+            }
+        }
     }
     for(i = 0; i < 256; ++i) {
         // gen decrypt table from encrypt table
