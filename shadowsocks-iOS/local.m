@@ -27,6 +27,8 @@
 
 #define min(a,b) (((a)<(b))?(a):(b))
 
+#define ADDR_STR_LEN 256
+
 // every watcher type has its own typedef'd struct
 // with the name ev_TYPE
 ev_io stdin_watcher;
@@ -187,6 +189,8 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
             unsigned char addr_len = 0;
             addr_to_send[addr_len++] = request->atyp;
 
+            
+            char addr_str[ADDR_STR_LEN];
 			// get remote addr and port
 			if (request->atyp == 1) {
 
@@ -195,12 +199,17 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 memcpy(addr_to_send + addr_len, server->buf + 4, in_addr_len + 2);
                 addr_len += in_addr_len + 2;
                 addr_to_send[addr_len] = 0;
+                
+                // now get it back and print it
+                inet_ntop(AF_INET, server->buf + 4, addr_str, ADDR_STR_LEN);
 
 			} else if (request->atyp == 3) {
                 // Domain name
 				unsigned char name_len = *(unsigned char *)(server->buf + 4);
                 addr_to_send[addr_len++] = name_len;
 				memcpy(addr_to_send + addr_len, server->buf + 4 + 1, name_len);
+				memcpy(addr_str, server->buf + 4 + 1, name_len);
+                addr_str[name_len] = '\0';
                 addr_len += name_len;
 
 				// get port
@@ -213,6 +222,8 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 close_and_free_remote(EV_A_ remote);
 				return;
 			}
+            
+            NSLog(@"connecting %s", addr_str);
 
             send_encrypt(remote->fd, addr_to_send, addr_len, 0);
 
@@ -531,7 +542,7 @@ int local_main ()
 
     _server = "127.0.0.1";
     _remote_port = "8387";
-    char key[] = "foobar!";
+    char key[] = "onebox!";
 
     NSLog(@"calculating ciphers");
     get_table(key);
