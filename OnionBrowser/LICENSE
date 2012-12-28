@@ -1,0 +1,233 @@
+"Onion Browser" is a trademark of Mike Tigas. Forks of this project *must not*
+use the "Onion Browser" name when distributing binary forms of
+this application.
+
+The "Onion Browser" icon is a trademark of Mike Tigas. Icon image[1] under the
+Creative Commons CC-BY-SA 3.0 license[2].
+
+    [1] https://github.com/mtigas/iOS-OnionBrowser/tree/master/OnionBrowser/icon
+    [2] https://creativecommons.org/licenses/by-sa/3.0/
+
+Forks of this project *should not* use the "Onion Browser" icon when
+distributing binary forms of this application.
+
+Mike Tigas and OnionBrowser are not affiliated with nor endorsed by the Tor
+Project. Onion Browser carries no guarantee from The Tor Project about quality,
+suitability or anything else. ("Tor" is a registered trademark of The Tor
+Project, Inc.)
+
+###########################################################################
+
+OnionBrowser
+Copyright (c) 2012 Mike Tigas <mike@tig.as>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+###########################################################################
+ENCRYPTION NOTICE / APP DISTRIBUTION NOTES
+
+This software uses strong cryptography and may it fall under certain
+export/import and/or use restrictions in some other parts of the world.
+BEFORE using any encryption software, please check your country's laws,
+regulations and policies concerning the import, possession, or use,
+and re-export of encryption software, to see if this is permitted.
+See http://www.wassenaar.org/ for more information.
+
+This source package does not directly contain encryption software. Please see
+the OpenSSL and Tor Project license portions for links to the encryption-containing
+portions of this application.. Distributions of this source package
+(and only this source package, without external dependencies) may not be
+considered encryption software depending on the regulations of your jurisdiction.
+
+Distribution of binary versions of this application may be subject to
+further export/import and/or use restrictions. (iOS developers: see the
+"My application uses a public domain library (openssh)..." question in the
+"World Wide Trade Compliance for the App Store" page on the Apple iTunes Connect
+FAQs[3] site. Also note the "I intend to distribute my app only in the United
+States and Canada..." question on that FAQ page.)
+
+    [3]: https://itunesconnect.apple.com/WebObjects/iTunesConnect.woa/wa/jumpTo?page=faqs
+
+###########################################################################
+App icon derived from the following photographs on Flickr:
+
+"Compass - Baltimore National Aquarium" by voobie
+    https://secure.flickr.com/photos/84421355@N00/4468611274/
+    Photo under the Creative Commons CC-BY-SA 2.0 License
+    https://creativecommons.org/licenses/by-sa/2.0/
+
+"black leather texture" by kitkatscrapper
+    https://secure.flickr.com/photos/kitkatscrapper/6484685303/
+    Photo under the Creative Commons CC-BY 2.0 License
+    https://creativecommons.org/licenses/by/2.0/
+
+"Webtreats Tileable Metal Textures 4-1024px" by webtreats
+    https://secure.flickr.com/photos/webtreatsetc/4724731217/
+    Photo under the Creative Commons CC-BY 2.0 License
+    https://creativecommons.org/licenses/by/2.0/
+
+"free concrete texture, seamless libeskind judische museum" by seier+seier
+    https://secure.flickr.com/photos/seier/4338268272/
+    Photo under the Creative Commons CC-BY 2.0 License
+    https://creativecommons.org/licenses/by/2.0/
+
+###########################################################################
+Contains code based on portions of ConnectionKit (2.0 branch), available
+under the Modified BSD License at:
+
+http://www.opensource.utr-software.com/
+
+Copyright 2009 Karelia Software. All rights reserved.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the <organization> nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+###########################################################################
+Build scripts based on `build-libssl.sh` work in `OpenSSL-for-iPhone`,
+originally licensed under the Apache License 2.0:
+
+Copyright 2010 Felix Schulze. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+###########################################################################
+Contains ARC-compatbile port of Reachability by Tony Million:
+https://github.com/tonymillion/Reachability/
+
+
+Copyright (c) 2011, Tony Million.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+###########################################################################
+Contains ULINetSocket: https://github.com/uliwitness/ULINetSocket
+
+Copyright (c) 2001 Dustin Mierau.
+With modifications by Uli Kusterer.
+
+This software is provided 'as-is', without any express or implied
+warranty. In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+   1. The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software
+   in a product, an acknowledgment in the product documentation would be
+   appreciated but is not required.
+
+   2. Altered source versions must be plainly marked as such, and must not be
+   misrepresented as being the original software.
+
+   3. This notice may not be removed or altered from any source
+   distribution.
+
+###########################################################################
+OpenSSL is not bundled in the source tree of this application, but is required
+to compile the application. NOTE: Binary forms of this application are subject
+to the license and must reproduce the copyright notices and disclaimers
+located in the full license (link below).
+
+OpenSSL is available under a dual license of the (BSD-like) OpenSSL License
+and the (Apache-like) SSLeay License:
+
+Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+Copyright (c) 1998-2011 The OpenSSL Project.  All rights reserved.
+
+Full license available at:
+
+http://www.openssl.org/source/license.html
+
+###########################################################################
+libevent is not bundled in the source tree of this application, but is required
+to compile the application. NOTE: Binary forms of this application are subject
+to the license and must reproduce the copyright notices and disclaimers
+located in the full license (link below).
+
+libevent is available under the Modified (3-clause) BSD License:
+
+Copyright (c) 2000-2007 Niels Provos <provos@citi.umich.edu>
+Copyright (c) 2007-2010 Niels Provos and Nick Mathewson
+
+Full license available at:
+
+http://libevent.org/LICENSE.txt
+
+###########################################################################
+Tor is not bundled in the source tree of this application, but is required
+to compile the application. NOTE: Binary forms of this application are subject
+to the license and must reproduce the copyright notices and disclaimers
+located in the full license (link below).
+
+Tor is available under the BSD License:
+
+Copyright (c) 2001-2004, Roger Dingledine
+Copyright (c) 2004-2006, Roger Dingledine, Nick Mathewson
+Copyright (c) 2007-2011, The Tor Project, Inc.
+
+Full license available at:
+
+https://gitweb.torproject.org/tor.git?a=blob_plain;hb=HEAD;f=LICENSE

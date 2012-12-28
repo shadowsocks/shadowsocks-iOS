@@ -1,0 +1,55 @@
+//
+// Prefix header for all source files of the 'OnionBrowser' target in the 'OnionBrowser' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This app was primarily developed for iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
+
+/** String: Identifier **/
+#define DEVICE_IDENTIFIER ( ( IS_IPAD ) ? DEVICE_IPAD : ( IS_IPHONE ) ? DEVICE_IPHONE , DEVICE_SIMULATOR )
+
+/** String: iPhone **/
+#define DEVICE_IPHONE @"iPhone"
+
+/** String: iPad **/
+#define DEVICE_IPAD @"iPad"
+
+/** String: Device Model **/
+#define DEVICE_MODEL ( [[UIDevice currentDevice ] model ] )
+
+/** String: Localized Device Model **/
+#define DEVICE_MODEL_LOCALIZED ( [[UIDevice currentDevice ] localizedModel ] )
+
+/** String: Device Name **/
+#define DEVICE_NAME ( [[UIDevice currentDevice ] name ] )
+
+/** Double: Device Orientation **/
+#define DEVICE_ORIENTATION ( [[UIDevice currentDevice ] orientation ] )
+
+/** String: Simulator **/
+#define DEVICE_SIMULATOR @"Simulator"
+
+/** String: Device Type **/
+/** Import UIDevice+Extended.h **/
+#define DEVICE_TYPE ( [[UIDevice currentDevice ] deviceType ] )
+
+/** BOOL: Detect if device is an iPad **/
+#define IS_IPAD ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+
+/** BOOL: Detect if device is an iPhone or iPod **/
+#define IS_IPHONE ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
+
+/** BOOL: IS_RETINA **/
+#define IS_RETINA ( [[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2 )
+
+/** BOOL: Detect if device is the Simulator **/
+#define IS_SIMULATOR ( TARGET_IPHONE_SIMULATOR )
