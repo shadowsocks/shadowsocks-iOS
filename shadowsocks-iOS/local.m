@@ -27,7 +27,7 @@
 
 #define min(a,b) (((a)<(b))?(a):(b))
 
-#define ADDR_STR_LEN 256
+#define ADDR_STR_LEN 512
 
 // every watcher type has its own typedef'd struct
 // with the name ev_TYPE
@@ -67,6 +67,7 @@ int create_and_bind(const char *port) {
         listen_sock = socket(rp->ai_family, rp->ai_socktype, rp->ai_protocol);
         int opt = 1;
         setsockopt(listen_sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+        setsockopt(listen_sock, IPPROTO_TCP, TCP_NODELAY, &opt, sizeof(opt));
         if (listen_sock == -1)
             continue;
 
@@ -185,7 +186,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 				return;
 			}
 
-            char addr_to_send[256];
+            char addr_to_send[ADDR_STR_LEN];
             unsigned char addr_len = 0;
             addr_to_send[addr_len++] = request->atyp;
 
@@ -509,6 +510,8 @@ static void accept_cb (EV_P_ ev_io *w, int revents)
 			break;
 		}
 		setnonblocking(serverfd);
+        int opt = 1;
+        setsockopt(serverfd, IPPROTO_TCP, TCP_NODELAY, &opt, sizeof(opt));
 		struct server *server = new_server(serverfd);
 		struct addrinfo hints, *res;
 		int sockfd;
@@ -517,6 +520,7 @@ static void accept_cb (EV_P_ ev_io *w, int revents)
 		hints.ai_socktype = SOCK_STREAM;
 		getaddrinfo(_server, _remote_port, &hints, &res);
 		sockfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
+        setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY, &opt, sizeof(opt));
 		if (sockfd < 0) {
 			perror("socket");
 			close(sockfd);
