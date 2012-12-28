@@ -162,7 +162,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
             }
 		} else if (server->stage == 0) {
 			struct method_select_response response;
-			response.ver = VERSION;
+			response.ver = SOCKS_VERSION;
 			response.method = 0;
 			char *send_buf = (char *)&response;
 			send(server->fd, send_buf, sizeof(response), 0);
@@ -171,13 +171,13 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 		} else if (server->stage == 1) {
 			struct socks5_request *request = (struct socks5_request *)server->buf;
 
-			if (request->cmd != 1) {
+			if (request->cmd != SOCKS_CMD_CONNECT) {
 				NSLog(@"unsupported cmd: %d\n", request->cmd);
 				struct socks5_response response;
-				response.ver = VERSION;
-				response.rep = CMD_NOT_SUPPORTED;
+				response.ver = SOCKS_VERSION;
+				response.rep = SOCKS_CMD_NOT_SUPPORTED;
 				response.rsv = 0;
-				response.atyp = 1;
+				response.atyp = SOCKS_IPV4;
 				char *send_buf = (char *)&response;
 				send(server->fd, send_buf, 4, 0);
 				close_and_free_server(EV_A_ server);
@@ -192,7 +192,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
             
             char addr_str[ADDR_STR_LEN];
 			// get remote addr and port
-			if (request->atyp == 1) {
+			if (request->atyp == SOCKS_IPV4) {
 
 				// IP V4
                 size_t in_addr_len = sizeof(struct in_addr);
@@ -203,7 +203,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 // now get it back and print it
                 inet_ntop(AF_INET, server->buf + 4, addr_str, ADDR_STR_LEN);
 
-			} else if (request->atyp == 3) {
+			} else if (request->atyp == SOCKS_DOMAIN) {
                 // Domain name
 				unsigned char name_len = *(unsigned char *)(server->buf + 4);
                 addr_to_send[addr_len++] = name_len;
@@ -229,10 +229,10 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 
 			// Fake reply
 			struct socks5_response response;
-			response.ver = VERSION;
+			response.ver = SOCKS_VERSION;
 			response.rep = 0;
 			response.rsv = 0;
-			response.atyp = 1;
+			response.atyp = SOCKS_IPV4;
 
             struct in_addr sin_addr;
             inet_aton("0.0.0.0", &sin_addr);
