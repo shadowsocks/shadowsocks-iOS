@@ -137,8 +137,16 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 
         // local socks5 server
 		if (server->stage == 5) {
+            char temp[4096];
+            memcpy(temp, remote->buf, r);
+            temp[r] = 'E';
+            temp[r + 1] = 0;
+            NSLog(@"sending: %s", temp);
             encrypt(remote->buf, r);
-            NSLog(@"send length: %d", remote->buf_len);
+            NSLog(@"send length: %d", r);
+            if (r <= 0) {
+                NSLog(@"warn: sending but remote_buf_len<=0 and stage==%d", server->stage);
+            }
 			int w = send(remote->fd, remote->buf, r, 0);
 			if(w == -1) {
 				if (errno == EAGAIN) {
@@ -206,6 +214,8 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 
                 // now get it back and print it
                 inet_ntop(AF_INET, server->buf + 4, addr_str, ADDR_STR_LEN);
+                
+                assert(r == 10);
 
 			} else if (request->atyp == SOCKS_DOMAIN) {
                 // Domain name
@@ -230,7 +240,17 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
             NSLog(@"connecting %s", addr_str);
 
             NSLog(@"addr_len: %d", addr_len);
-            send_encrypt(remote->fd, addr_to_send, addr_len, 0);
+            
+            char temp[4096];
+            memcpy(temp, addr_to_send, addr_len);
+            temp[addr_len] = 'E';
+            temp[addr_len + 1] = 0;
+            NSLog(@"sending: %s", temp);
+            
+            int n = send_encrypt(remote->fd, addr_to_send, addr_len, 0);
+            if (n != addr_len) {
+                NSLog(@"n != addr_len: n==%d, addr_len==%d", n, addr_len);
+            }
 
 			// Fake reply
 			struct socks5_response response;
@@ -405,6 +425,9 @@ static void remote_send_cb (EV_P_ ev_io *w, int revents) {
 		} else {
 			// has data to send
             NSLog(@"send length: %d", remote->buf_len);
+            if (remote->buf_len <= 0) {
+                NSLog(@"warn: sending but remote_buf_len<=0 and stage==%d", server->stage);
+            }
 			ssize_t r = send(remote->fd, remote->buf,
 					remote->buf_len, 0);
 			if (r < 0) {
@@ -447,6 +470,7 @@ struct remote* new_remote(int fd) {
 	struct remote *remote;
 	remote = malloc(sizeof(struct remote));
 	remote->fd = fd;
+    remote->buf_len = 0;
 	remote->recv_ctx = malloc(sizeof(struct remote_ctx));
 	remote->send_ctx = malloc(sizeof(struct remote_ctx));
 	ev_io_init(&remote->recv_ctx->io, remote_recv_cb, fd, EV_READ);
@@ -479,6 +503,7 @@ struct server* new_server(int fd) {
 	struct server *server;
 	server = malloc(sizeof(struct server));
 	server->fd = fd;
+    server->buf_len = 0;
 	server->recv_ctx = malloc(sizeof(struct server_ctx));
 	server->send_ctx = malloc(sizeof(struct server_ctx));
 	ev_io_init(&server->recv_ctx->io, server_recv_cb, fd, EV_READ);

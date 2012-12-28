@@ -368,6 +368,11 @@
                                          (__bridge CFStringRef)aHTTPHeaderField,
                                          (__bridge CFStringRef)[HTTPHeaderFields objectForKey:aHTTPHeaderField]);
     }
+    
+    CFHTTPMessageSetHeaderFieldValue(result,
+                                     (__bridge CFStringRef)@"Accept-Language",
+                                     (__bridge CFStringRef)@"zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
+    
     /* Do not track (DNT) header */
     Byte dntHeader = appDelegate.dntHeader;
     if (dntHeader != DNT_HEADER_UNSET) {

@@ -29,10 +29,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.proxyThread = [[NSThread alloc] initWithTarget:self
-                                                 selector:@selector(runProxy)
-                                                   object:nil];
-    [proxyThread start];  
+//    self.proxyThread = [[NSThread alloc] initWithTarget:self
+//                                                 selector:@selector(runProxy)
+//                                                   object:nil];
+//    [proxyThread start];
+    [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        
+    }];
+    
+    dispatch_queue_t dis = dispatch_queue_create("background", NULL);
+    dispatch_async(dis, ^{
+        [self runProxy];
+    });
     
     // Detect
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
