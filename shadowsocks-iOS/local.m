@@ -68,6 +68,7 @@ int create_and_bind(const char *port) {
         int opt = 1;
         setsockopt(listen_sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
         setsockopt(listen_sock, IPPROTO_TCP, TCP_NODELAY, &opt, sizeof(opt));
+        setsockopt(listen_sock, SOL_SOCKET, SO_NOSIGPIPE, &opt, sizeof(opt));
         if (listen_sock == -1)
             continue;
 
@@ -96,6 +97,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 	struct server_ctx *server_recv_ctx = (struct server_ctx *)w;
 	struct server *server = server_recv_ctx->server;
 	struct remote *remote = server->remote;
+    NSLog(@"server_recv_cb %d", server?server->stage:-1);
 
     if (remote == NULL) {
         close_and_free_server(EV_A_ server);
@@ -136,6 +138,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
         // local socks5 server
 		if (server->stage == 5) {
             encrypt(remote->buf, r);
+            NSLog(@"send length: %d", remote->buf_len);
 			int w = send(remote->fd, remote->buf, r, 0);
 			if(w == -1) {
 				if (errno == EAGAIN) {
@@ -199,7 +202,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 size_t in_addr_len = sizeof(struct in_addr);
                 memcpy(addr_to_send + addr_len, server->buf + 4, in_addr_len + 2);
                 addr_len += in_addr_len + 2;
-                addr_to_send[addr_len] = 0;
+//                addr_to_send[addr_len] = 0;
                 
                 // now get it back and print it
                 inet_ntop(AF_INET, server->buf + 4, addr_str, ADDR_STR_LEN);
@@ -216,7 +219,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 				// get port
                 addr_to_send[addr_len++] = *(unsigned char *)(server->buf + 4 + 1 + name_len); 
                 addr_to_send[addr_len++] = *(unsigned char *)(server->buf + 4 + 1 + name_len + 1); 
-                addr_to_send[addr_len] = 0;
+//                addr_to_send[addr_len] = 0;
 			} else {
 				NSLog(@"unsupported addrtype: %d\n", request->atyp);
 				close_and_free_server(EV_A_ server);
@@ -226,6 +229,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
             
             NSLog(@"connecting %s", addr_str);
 
+            NSLog(@"addr_len: %d", addr_len);
             send_encrypt(remote->fd, addr_to_send, addr_len, 0);
 
 			// Fake reply
@@ -251,7 +255,9 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 				close_and_free_server(EV_A_ server);
                 return;
 			}
-
+            
+			ev_io_start(EV_A_ &remote->recv_ctx->io);
+            
 			server->stage = 5;
 
         }
@@ -262,6 +268,7 @@ static void server_send_cb (EV_P_ ev_io *w, int revents) {
 	struct server_ctx *server_send_ctx = (struct server_ctx *)w;
 	struct server *server = server_send_ctx->server;
 	struct remote *remote = server->remote;
+    NSLog(@"server_send_cb %d", server?server->stage:-1);
 	if (server->buf_len == 0) {
 		// close and free
 		close_and_free_server(EV_A_ server);
@@ -309,6 +316,7 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 	struct remote_ctx *remote_recv_ctx = (struct remote_ctx *)w;
 	struct remote *remote = remote_recv_ctx->remote;
 	struct server *server = remote->server;
+    NSLog(@"remote_recv_cb %d", server?server->stage:-1);
 	if (server == NULL) {
 		close_and_free_remote(EV_A_ remote);
 		return;
@@ -369,6 +377,7 @@ static void remote_send_cb (EV_P_ ev_io *w, int revents) {
 	struct remote_ctx *remote_send_ctx = (struct remote_ctx *)w;
 	struct remote *remote = remote_send_ctx->remote;
 	struct server *server = remote->server;
+    NSLog(@"remote_send_cb %d", server?server->stage:-1);
 
 	if (!remote_send_ctx->connected) {
 
@@ -380,7 +389,6 @@ static void remote_send_cb (EV_P_ ev_io *w, int revents) {
 			remote_send_ctx->connected = 1;
 			ev_io_stop(EV_A_ &remote_send_ctx->io);
 			ev_io_start(EV_A_ &server->recv_ctx->io);
-			ev_io_start(EV_A_ &remote->recv_ctx->io);
 		} else {
 			perror("getpeername");
 			// not connected
@@ -396,6 +404,7 @@ static void remote_send_cb (EV_P_ ev_io *w, int revents) {
 			return;
 		} else {
 			// has data to send
+            NSLog(@"send length: %d", remote->buf_len);
 			ssize_t r = send(remote->fd, remote->buf,
 					remote->buf_len, 0);
 			if (r < 0) {
@@ -512,6 +521,7 @@ static void accept_cb (EV_P_ ev_io *w, int revents)
 		setnonblocking(serverfd);
         int opt = 1;
         setsockopt(serverfd, IPPROTO_TCP, TCP_NODELAY, &opt, sizeof(opt));
+        setsockopt(serverfd, SOL_SOCKET, SO_NOSIGPIPE, &opt, sizeof(opt));
 		struct server *server = new_server(serverfd);
 		struct addrinfo hints, *res;
 		int sockfd;
@@ -521,6 +531,7 @@ static void accept_cb (EV_P_ ev_io *w, int revents)
 		getaddrinfo(_server, _remote_port, &hints, &res);
 		sockfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
         setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY, &opt, sizeof(opt));
+        setsockopt(sockfd, SOL_SOCKET, SO_NOSIGPIPE, &opt, sizeof(opt));
 		if (sockfd < 0) {
 			perror("socket");
 			close(sockfd);
