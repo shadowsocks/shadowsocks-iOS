@@ -104,15 +104,25 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
         return;
     }
 
-    char *buf = remote->buf;
-    int *buf_len = &remote->buf_len;
-    if (server->stage != 5) {
-        buf = server->buf;
-        buf_len = &server->buf_len;
-    }
 
 	while (1) {
+        char *buf = remote->buf;
+        int *buf_len = &remote->buf_len;
+        if (server->stage != 5) {
+            buf = server->buf;
+            buf_len = &server->buf_len;
+        }
+        
 		ssize_t r = recv(server->fd, buf, BUF_SIZE, 0);
+        
+        if (r > 0) {
+            char temp[4096];
+            memcpy(temp, buf, r);
+            temp[r] = '0';
+            NSLog(@"stage %d", server->stage);
+            NSLog(@"received: %s", temp);
+        }
+
 
 		if (r == 0) {
 			// connection closed
@@ -143,7 +153,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
             temp[r + 1] = 0;
             NSLog(@"sending: %s", temp);
             encrypt(remote->buf, r);
-            NSLog(@"send length: %d", r);
+            NSLog(@"send length: %zd", r);
             if (r <= 0) {
                 NSLog(@"warn: sending but remote_buf_len<=0 and stage==%d", server->stage);
             }
