@@ -97,7 +97,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 	struct server_ctx *server_recv_ctx = (struct server_ctx *)w;
 	struct server *server = server_recv_ctx->server;
 	struct remote *remote = server->remote;
-    NSLog(@"server_recv_cb %d", server?server->stage:-1);
+//    NSLog(@"server_recv_cb %d", server?server->stage:-1);
 
     if (remote == NULL) {
         close_and_free_server(EV_A_ server);
@@ -115,13 +115,13 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
         
 		ssize_t r = recv(server->fd, buf, BUF_SIZE, 0);
         
-        if (r > 0) {
-            char temp[4096];
-            memcpy(temp, buf, r);
-            temp[r] = '0';
-            NSLog(@"stage %d", server->stage);
-            NSLog(@"received: %s", temp);
-        }
+//        if (r > 0) {
+//            char temp[4096];
+//            memcpy(temp, buf, r);
+//            temp[r] = '0';
+//            NSLog(@"stage %d", server->stage);
+//            NSLog(@"received: %s", temp);
+//        }
 
 
 		if (r == 0) {
@@ -147,16 +147,16 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 
         // local socks5 server
 		if (server->stage == 5) {
-            char temp[4096];
-            memcpy(temp, remote->buf, r);
-            temp[r] = 'E';
-            temp[r + 1] = 0;
-            NSLog(@"sending: %s", temp);
+//            char temp[4096];
+//            memcpy(temp, remote->buf, r);
+//            temp[r] = 'E';
+//            temp[r + 1] = 0;
+//            NSLog(@"sending: %s", temp);
             encrypt(remote->buf, r);
-            NSLog(@"send length: %zd", r);
-            if (r <= 0) {
-                NSLog(@"warn: sending but remote_buf_len<=0 and stage==%d", server->stage);
-            }
+//            NSLog(@"send length: %zd", r);
+//            if (r <= 0) {
+//                NSLog(@"warn: sending but remote_buf_len<=0 and stage==%d", server->stage);
+//            }
 			int w = send(remote->fd, remote->buf, r, 0);
 			if(w == -1) {
 				if (errno == EAGAIN) {
@@ -247,19 +247,22 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 				return;
 			}
             
-            NSLog(@"connecting %s", addr_str);
+//            NSLog(@"connecting %s", addr_str);
 
-            NSLog(@"addr_len: %d", addr_len);
+//            NSLog(@"addr_len: %d", addr_len);
             
-            char temp[4096];
-            memcpy(temp, addr_to_send, addr_len);
-            temp[addr_len] = 'E';
-            temp[addr_len + 1] = 0;
-            NSLog(@"sending: %s", temp);
+//            char temp[4096];
+//            memcpy(temp, addr_to_send, addr_len);
+//            temp[addr_len] = 'E';
+//            temp[addr_len + 1] = 0;
+//            NSLog(@"sending: %s", temp);
             
             int n = send_encrypt(remote->fd, addr_to_send, addr_len, 0);
             if (n != addr_len) {
-                NSLog(@"n != addr_len: n==%d, addr_len==%d", n, addr_len);
+                NSLog(@"header not completely sent: n != addr_len: n==%d, addr_len==%d", n, addr_len);
+				close_and_free_remote(EV_A_ remote);
+				close_and_free_server(EV_A_ server);
+                return;
             }
 
 			// Fake reply
@@ -298,7 +301,7 @@ static void server_send_cb (EV_P_ ev_io *w, int revents) {
 	struct server_ctx *server_send_ctx = (struct server_ctx *)w;
 	struct server *server = server_send_ctx->server;
 	struct remote *remote = server->remote;
-    NSLog(@"server_send_cb %d", server?server->stage:-1);
+//    NSLog(@"server_send_cb %d", server?server->stage:-1);
 	if (server->buf_len == 0) {
 		// close and free
 		close_and_free_server(EV_A_ server);
@@ -346,7 +349,7 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 	struct remote_ctx *remote_recv_ctx = (struct remote_ctx *)w;
 	struct remote *remote = remote_recv_ctx->remote;
 	struct server *server = remote->server;
-    NSLog(@"remote_recv_cb %d", server?server->stage:-1);
+//    NSLog(@"remote_recv_cb %d", server?server->stage:-1);
 	if (server == NULL) {
 		close_and_free_remote(EV_A_ remote);
 		return;
@@ -407,7 +410,7 @@ static void remote_send_cb (EV_P_ ev_io *w, int revents) {
 	struct remote_ctx *remote_send_ctx = (struct remote_ctx *)w;
 	struct remote *remote = remote_send_ctx->remote;
 	struct server *server = remote->server;
-    NSLog(@"remote_send_cb %d", server?server->stage:-1);
+//    NSLog(@"remote_send_cb %d", server?server->stage:-1);
 
 	if (!remote_send_ctx->connected) {
 
@@ -434,10 +437,10 @@ static void remote_send_cb (EV_P_ ev_io *w, int revents) {
 			return;
 		} else {
 			// has data to send
-            NSLog(@"send length: %d", remote->buf_len);
-            if (remote->buf_len <= 0) {
-                NSLog(@"warn: sending but remote_buf_len<=0 and stage==%d", server->stage);
-            }
+//            NSLog(@"send length: %d", remote->buf_len);
+//            if (remote->buf_len <= 0) {
+//                NSLog(@"warn: sending but remote_buf_len<=0 and stage==%d", server->stage);
+//            }
 			ssize_t r = send(remote->fd, remote->buf,
 					remote->buf_len, 0);
 			if (r < 0) {
