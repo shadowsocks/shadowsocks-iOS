@@ -48,12 +48,13 @@ static const Boolean kBackwardButton = NO;
             addressField = _addressField,
             currentURL = _currentURL,
             torStatus = _torStatus;
+@synthesize addrItemsActive, addrItemsInactive, cancelButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        dontLoadURLNow = NO;
     }
     return self;
 }
@@ -230,7 +231,7 @@ static const Boolean kBackwardButton = NO;
     // Set up navbar
     CGRect navBarFrame = self.view.bounds;
     navBarFrame.size.height = kNavBarHeight;
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:navBarFrame];
+    UIToolbar *navBar = [[UIToolbar alloc] initWithFrame:navBarFrame];
     navBar.tag = kNavBarTag;
     navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
@@ -265,10 +266,19 @@ static const Boolean kBackwardButton = NO;
     address.clearButtonMode = UITextFieldViewModeNever;
     address.delegate = self;
     address.tag = kAddressFieldTag;
-    [address addTarget:self 
-                action:@selector(loadAddress:event:) 
-      forControlEvents:UIControlEventEditingDidEndOnExit|UIControlEventEditingDidEnd];
-    [navBar addSubview:address];
+//    [address addTarget:self 
+//                action:@selector(loadAddress:event:) 
+//      forControlEvents:UIControlEventEditingDidEndOnExit|UIControlEventEditingDidEnd];
+    
+    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(addressBarCancel) ];
+        
+    self.addrItemsInactive = [NSMutableArray arrayWithObjects:[[UIBarButtonItem alloc] initWithCustomView:address], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], nil];
+    self.addrItemsActive = [NSMutableArray arrayWithArray:addrItemsInactive];
+    [addrItemsActive addObject:cancelButton];
+    
+    [navBar setItems:addrItemsInactive];
+    [navBar setBarStyle:UIBarStyleBlack];
+    
     _addressField = address;
     _addressField.enabled = YES;
     [self.view addSubview:navBar];
@@ -410,7 +420,9 @@ static const Boolean kBackwardButton = NO;
 
 - (void)addressBarCancel {
     _addressField.text = _currentURL;
+    dontLoadURLNow = YES;
     [_addressField resignFirstResponder];
+    dontLoadURLNow = NO;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
@@ -422,91 +434,37 @@ static const Boolean kBackwardButton = NO;
     [_myWebView stopLoading];
     
     // Move a "cancel" button into the nav bar a la Safari.
-    UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+    UIToolbar *navBar = (UIToolbar *)[self.view viewWithTag:kNavBarTag];
         
-    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
-    [cancelButton setTitle:@"Cancel" forState:UIControlStateHighlighted];
-    [cancelButton setFrame:CGRectMake(navBar.bounds.size.width,
-                                      kSpacer*2.0 + kLabelHeight,
-                                      75 - 2*kMargin,
-                                      kAddressHeight)];
-    [cancelButton setHidden:NO];
-    [cancelButton setEnabled:YES];
-    [cancelButton addTarget:self action:@selector(addressBarCancel) forControlEvents:UIControlEventTouchUpInside];
-    cancelButton.tag = kAddressCancelButtonTag;
-
+    [navBar setItems:addrItemsActive animated:YES];
     
     
-    [UIView setAnimationsEnabled:YES];
-    [UIView animateWithDuration:0.2
-                          delay:0.0
-                        options:UIViewAnimationCurveEaseInOut
-                     animations:^{
-                         _addressField.frame = CGRectMake(kMargin,
-                                                          kSpacer*2.0 + kLabelHeight,
-                                                          navBar.bounds.size.width - 2*kMargin - 75,
-                                                          kAddressHeight);
-                         
-                         [cancelButton setFrame:CGRectMake(navBar.bounds.size.width - 75,
-                                                           kSpacer*2.0 + kLabelHeight,
-                                                           75 - kMargin,
-                                                           kAddressHeight)];
-                         [navBar addSubview:cancelButton];
-
-                     }
-                     completion:^(BOOL finished) {
-                         _addressField.clearButtonMode = UITextFieldViewModeAlways;
-                     }]; 
+    [UIView beginAnimations:nil context:NULL];
+    [_addressField setFrame:CGRectMake(kMargin, kSpacer*2.0 + kLabelHeight,
+                                       navBar.bounds.size.width - 2*kMargin - 70, kAddressHeight)];
+    [UIView commitAnimations];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
-    UIButton *cancelButton = (UIButton *)[self.view viewWithTag:kAddressCancelButtonTag];
-
-    _addressField.clearButtonMode = UITextFieldViewModeNever;
+    if (!dontLoadURLNow) {
+        [self loadAddress:nil event:nil];
+    }
     
-    [UIView setAnimationsEnabled:YES];
-    [UIView animateWithDuration:0.2
-                          delay:0.0
-                        options:UIViewAnimationCurveEaseInOut
-                     animations:^{
-                         _addressField.frame = CGRectMake(kMargin,
-                                                          kSpacer*2.0 + kLabelHeight,
-                                                          navBar.bounds.size.width - 2*kMargin,
-                                                          kAddressHeight);
-                         [cancelButton setFrame:CGRectMake(navBar.bounds.size.width,
-                                                           kSpacer*2.0 + kLabelHeight,
-                                                           75 - kMargin,
-                                                           kAddressHeight)];
-                     }
-                     completion:^(BOOL finished) {
-                         [cancelButton removeFromSuperview];
-                     }]; 
+    UIToolbar *navBar = (UIToolbar *)[self.view viewWithTag:kNavBarTag];
+    
+    
+    [navBar setItems:addrItemsInactive animated:YES];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [_addressField setFrame:CGRectMake(kMargin, kSpacer*2.0 + kLabelHeight,
+                                       navBar.bounds.size.width - 2*kMargin, kAddressHeight)];
+    [UIView commitAnimations];
 }
 
 # pragma mark -
 # pragma mark Options Menu action sheet
 
 - (void)openOptionsMenu {
-//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//    if (![appDelegate.tor didFirstConnect]) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Opening Bridge Configuration"
-//                                                        message:@"This configuration is for advanced Tor users. It *may* help if you are having trouble getting past the initial \"Connecting...\" step.\n\nPlease visit the following link in another browser for instructions:\n\nhttp://onionbrowser.com/help/"
-//                                                       delegate:nil
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil];
-//        [alert show];
-//        
-//        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//        
-//        BridgeTableViewController *bridgesVC = [[BridgeTableViewController alloc] initWithStyle:UITableViewStylePlain];
-//        [bridgesVC setManagedObjectContext:[appDelegate managedObjectContext]];
-//        
-//        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
-//        navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-//        [self presentModalViewController:navController animated:YES];
-//    } else {
         [_optionsMenu showFromToolbar:_toolbar];
 //    }
 }

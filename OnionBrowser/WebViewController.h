@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface WebViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIAlertViewDelegate> {
+    BOOL dontLoadURLNow;
 }
+
+@property (strong, nonatomic) NSMutableArray *addrItemsActive;
+@property (strong, nonatomic) NSMutableArray *addrItemsInactive;
+@property (strong, nonatomic) UIBarButtonItem *cancelButton;
 
 @property (strong, nonatomic) UIWebView *myWebView;
 @property (nonatomic) UIToolbar* toolbar;
