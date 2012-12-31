@@ -29,12 +29,14 @@
 
 #define ADDR_STR_LEN 512
 
+#define SAVED_STR_LEN 512
+
 // every watcher type has its own typedef'd struct
 // with the name ev_TYPE
 ev_io stdin_watcher;
 
-static char *_server;
-static char *_remote_port;
+char _server[SAVED_STR_LEN];
+char _remote_port[SAVED_STR_LEN];
 
 struct client_ctx {
     ev_io io;
@@ -206,8 +208,6 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 
                 // now get it back and print it
                 inet_ntop(AF_INET, server->buf + 4, addr_str, ADDR_STR_LEN);
-                
-                assert(r == 10);
 
 			} else if (request->atyp == SOCKS_DOMAIN) {
                 // Domain name
@@ -457,6 +457,7 @@ struct remote* new_remote(int fd) {
 	remote->recv_ctx->connected = 0;
 	remote->send_ctx->remote = remote;
 	remote->send_ctx->connected = 0;
+    remote->server = NULL;
 	return remote;
 }
 void free_remote(struct remote *remote) {
@@ -491,6 +492,7 @@ struct server* new_server(int fd) {
 	server->send_ctx->server = server;
 	server->send_ctx->connected = 0;
     server->stage = 0;
+    server->remote = NULL;
 	return server;
 }
 void free_server(struct server *server) {
@@ -518,7 +520,9 @@ static void accept_cb (EV_P_ ev_io *w, int revents)
 	while (1) {
 		serverfd = accept(listener->fd, NULL, NULL);
 		if (serverfd == -1) {
-			perror("accept");
+            if (errno != EAGAIN) {
+                perror("accept");
+            }
 			break;
 		}
 		setnonblocking(serverfd);
@@ -531,7 +535,12 @@ static void accept_cb (EV_P_ ev_io *w, int revents)
 		memset(&hints, 0, sizeof hints);
 		hints.ai_family = AF_UNSPEC;
 		hints.ai_socktype = SOCK_STREAM;
-		getaddrinfo(_server, _remote_port, &hints, &res);
+		int r = getaddrinfo(_server, _remote_port, &hints, &res);
+        if (r) {
+            fprintf(stderr, "getaddrinfo: %s", gai_strerror(r));
+			free_server(server);
+			continue;
+        }
 		sockfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
         setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY, &opt, sizeof(opt));
         setsockopt(sockfd, SOL_SOCKET, SO_NOSIGPIPE, &opt, sizeof(opt));
@@ -553,29 +562,34 @@ static void accept_cb (EV_P_ ev_io *w, int revents)
 	}
 }
 
+void set_config(const char *server, const char *remote_port, const char* password) {
+    assert(strlen(server) < SAVED_STR_LEN);
+    assert(strlen(remote_port) < SAVED_STR_LEN);
+    strcpy(_server, server);
+    strcpy(_remote_port, remote_port);
+#ifdef DEBUG
+    NSLog(@"calculating ciphers");
+#endif
+    get_table(password);
+}
+
 int local_main ()
 {
-
-    opterr = 0;
-
-    _server = "127.0.0.1";
-    _remote_port = "8387";
-    char key[] = "onebox!";
-
-    NSLog(@"calculating ciphers");
-    get_table(key);
-
     int listenfd;
     listenfd = create_and_bind("1080");
     if (listenfd < 0) {
+#ifdef DEBUG
         NSLog(@"bind() error..");
+#endif
         return 1;
     }
     if (listen(listenfd, SOMAXCONN) == -1) {
         NSLog(@"listen() error.");
         return 1;
     }
+#ifdef DEBUG
     NSLog(@"server listening at port %s\n", "1080");
+#endif
 
     setnonblocking(listenfd);
     struct listen_ctx listen_ctx;

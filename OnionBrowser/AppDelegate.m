@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 //#include <Openssl/sha.h>
 #import "Bridge.h"
-#import "local.h"
+#import "ProxySettingsTableViewController.h"
 
 @implementation AppDelegate
 
@@ -181,9 +181,13 @@
 #pragma mark - Run proxy
 
 -(void)runProxy {
+    [ProxySettingsTableViewController reloadConfig];
     for(;;) {
-        local_main();
-        sleep(1);
+        if ([ProxySettingsTableViewController runProxy]) {
+            sleep(1);
+        } else {
+            sleep(2);
+        }
     }
 }
 

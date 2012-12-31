@@ -12,6 +12,7 @@
 #import "SettingsViewController.h"
 #import "Bookmark.h"
 #import "BridgeTableViewController.h"
+#import "ProxySettingsTableViewController.h"
 
 static const CGFloat kNavBarHeight = 52.0f;
 static const CGFloat kToolBarHeight = 44.0f;
@@ -221,8 +222,8 @@ static const Boolean kBackwardButton = NO;
     _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
                                                delegate:self
                                       cancelButtonTitle:@"Close"
-                                 destructiveButtonTitle:@"New Identity"
-                                      otherButtonTitles:@"Bookmark Current Page", @"Browser Settings", @"Open Start Page", @"About Onion Browser", nil];
+                                 destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Bookmark Current Page", @"Proxy Settings", nil];
     // (/actionsheets)
     
     
@@ -269,26 +270,9 @@ static const Boolean kBackwardButton = NO;
       forControlEvents:UIControlEventEditingDidEndOnExit|UIControlEventEditingDidEnd];
     [navBar addSubview:address];
     _addressField = address;
-    _addressField.enabled = NO;
+    _addressField.enabled = YES;
     [self.view addSubview:navBar];
     // (/navbar)
-    
-    // Since this is first load: set up the overlay "loading..." bit that
-    // will display tor initialization status.
-    CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
-    UILabel *loadingStatus = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                       kNavBarHeight,
-                                                                       screenFrame.size.width,
-                                                                       screenFrame.size.height-kNavBarHeight*2)];
-    [loadingStatus setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleRightMargin];
-
-    loadingStatus.tag = kLoadingStatusTag;
-    loadingStatus.numberOfLines = 0;
-    loadingStatus.font = [UIFont fontWithName:@"Helvetica" size:(18.0)];
-    loadingStatus.lineBreakMode = UILineBreakModeWordWrap;
-    loadingStatus.textAlignment =  UITextAlignmentLeft;
-    loadingStatus.text = @"Connecting...\n\n\n\n\n";
-    [self.view addSubview:loadingStatus];
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     if (appDelegate.doPrepopulateBookmarks){
@@ -296,54 +280,16 @@ static const Boolean kBackwardButton = NO;
     }
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    if ([ProxySettingsTableViewController settingsAreNotComplete]) {
+        [self showSettings];
+    }
+}
+
 -(void) prePopulateBookmarks {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-
-    NSUInteger i = 0;
-    
-    Bookmark *bookmark;
-    
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"The Tor Project (.onion)"];
-    [bookmark setUrl:@"http://idnxcnkne4qt76tg.onion/"];
-    [bookmark setOrder:i++];
-    
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"Tor Project News (HTTPS)"];
-    [bookmark setUrl:@"https://blog.torproject.org/"];
-    [bookmark setOrder:i++];
-    
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"The Cleaned Hidden Wiki (.onion)"];
-    [bookmark setUrl:@"http://3suaolltfj2xjksb.onion/hiddenwiki/index.php/Main_Page"];
-    [bookmark setOrder:i++];
-    
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"The Tor Library (.onion)"];
-    [bookmark setUrl:@"http://am4wuhz3zifexz5u.onion/"];
-    [bookmark setOrder:i++];
-
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"Reddit /r/onions"];
-    [bookmark setUrl:@"http://www.reddit.com/r/onions"];
-    [bookmark setOrder:i++];
-    
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"Reddit /r/netsec"];
-    [bookmark setUrl:@"http://www.reddit.com/r/netsec"];
-    [bookmark setOrder:i++];
-    
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"Tor Mail (.onion)"];
-    [bookmark setUrl:@"http://jhiwjjlqpyawmpjx.onion/"];
-    [bookmark setOrder:i++];
-    
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"RedditTor (.onion)"];
-    [bookmark setUrl:@"http://gmyzy5exjw4pimvf.onion/"];
-    [bookmark setOrder:i++];
     
     NSError *error = nil;
     if (![context save:&error]) {
@@ -543,7 +489,7 @@ static const Boolean kBackwardButton = NO;
 # pragma mark Options Menu action sheet
 
 - (void)openOptionsMenu {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 //    if (![appDelegate.tor didFirstConnect]) {
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Opening Bridge Configuration"
 //                                                        message:@"This configuration is for advanced Tor users. It *may* help if you are having trouble getting past the initial \"Connecting...\" step.\n\nPlease visit the following link in another browser for instructions:\n\nhttp://onionbrowser.com/help/"
@@ -568,70 +514,21 @@ static const Boolean kBackwardButton = NO;
     if (actionSheet == _optionsMenu) {
         if (buttonIndex == 0) {
             ////////////////////////////////////////////////////////
-            // New Identity
-            ////////////////////////////////////////////////////////
-            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//            [appDelegate.tor requestNewTorIdentity];
-            
-            NSHTTPCookie *cookie;
-            NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-            for (cookie in [storage cookies]) {
-                [storage deleteCookie:cookie];
-            }
-            [[NSURLCache sharedURLCache] removeAllCachedResponses];
-            
-            // Initialize a new UIWebView (to clear the history of the previous one)
-            CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
-            webViewFrame.origin.y = kNavBarHeight;
-            webViewFrame.origin.x = 0;
-            webViewFrame.size.height = webViewFrame.size.height - kToolBarHeight - kNavBarHeight;
-            UIWebView *newWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
-            newWebView.backgroundColor = [UIColor whiteColor];
-            newWebView.scalesPageToFit = YES;
-            newWebView.contentScaleFactor = 3;
-            newWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-            newWebView.delegate = self;
-            [_myWebView removeFromSuperview];
-            _myWebView = newWebView;
-            [self.view addSubview: _myWebView];
-            
-            // Reset forward/back buttons.
-            [self updateButtons];
-            
-            // Reset the address field
-            _addressField.text = @"";
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                            message:@"Requesting a new IP address from Tor. Cache, cookies, and browser history cleared.\n\nDue to an iOS limitation, visisted links will still get the ':visited' CSS highlight state. iOS is resistant to script-based access to this information, but if you are still concerned about leaking history, please force-quit this app and re-launch. Please visit http://yu8.in/M5 for more detailed information."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK" 
-                                                  otherButtonTitles:nil];
-            [alert show];
-        } else if (buttonIndex == 1) {
-            ////////////////////////////////////////////////////////
             // Add To Bookmarks
             ////////////////////////////////////////////////////////
             [self addCurrentAsBookmark];
-        } else if (buttonIndex == 2) {
-            ////////////////////////////////////////////////////////
-            // Settings Menu
-            ////////////////////////////////////////////////////////
-            SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-            [self presentModalViewController:settingsController animated:YES];
-        }
-        
-        if ((buttonIndex == 0) || (buttonIndex == 3)) {
-            ////////////////////////////////////////////////////////
-            // New Identity OR Return To Home
-            ////////////////////////////////////////////////////////
-            [self loadURL:[NSURL URLWithString:@"onionbrowser:start"]];
-        } else if (buttonIndex == 4) {
-            ////////////////////////////////////////////////////////
-            // About Page
-            ////////////////////////////////////////////////////////
-            [self loadURL:[NSURL URLWithString:@"onionbrowser:about"]];
+        } else if (buttonIndex == 1) {
+            [self showSettings];
         }
     }
+}
+
+-(void) showSettings {
+    ProxySettingsTableViewController *settingsController = [[ProxySettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settingsController];
+//    nav.navigationBar.tintColor = [UIColor blackColor];
+    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [self presentModalViewController:nav animated:YES];
 }
 
 # pragma mark -

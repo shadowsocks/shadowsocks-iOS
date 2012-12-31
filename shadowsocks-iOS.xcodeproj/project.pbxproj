@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		621996F2169191FC00AC3B57 /* ProxySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 621996F1169191FC00AC3B57 /* ProxySettingsTableViewController.m */; };
+		621996F916919EA900AC3B57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 621996FB16919EA900AC3B57 /* Localizable.strings */; };
 		62C7EC63168D84B900C7DED7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4B168D847D00C7DED7 /* AppDelegate.m */; };
 		62C7EC64168D84B900C7DED7 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4D168D847D00C7DED7 /* Bookmark.m */; };
 		62C7EC65168D84B900C7DED7 /* BookmarkEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4F168D847D00C7DED7 /* BookmarkEditViewController.m */; };
@@ -27,7 +29,6 @@
 		62C7EC7A168D850600C7DED7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C7EC74168D850600C7DED7 /* SystemConfiguration.framework */; };
 		62C7EC80168D86B700C7DED7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC7D168D86B700C7DED7 /* Reachability.m */; };
 		62C7EC81168D86B700C7DED7 /* ULINetSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC7F168D86B700C7DED7 /* ULINetSocket.m */; };
-		62C7EC82168D86FF00C7DED7 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C7EC60168D847D00C7DED7 /* SettingsViewController.xib */; };
 		62C7EC85168D872100C7DED7 /* ProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC84168D872100C7DED7 /* ProxyURLProtocol.m */; };
 		62C7EC88168D875000C7DED7 /* CKHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC87168D875000C7DED7 /* CKHTTPConnection.m */; };
 		62F3C2EB168C35C9006D77BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3C2EA168C35C9006D77BC /* UIKit.framework */; };
@@ -43,6 +44,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		621996F0169191FC00AC3B57 /* ProxySettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxySettingsTableViewController.h; sourceTree = "<group>"; };
+		621996F1169191FC00AC3B57 /* ProxySettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxySettingsTableViewController.m; sourceTree = "<group>"; };
+		621996F616919E3F00AC3B57 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		621996FA16919EA900AC3B57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		621996FC16919EAB00AC3B57 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		62C7EC4A168D847D00C7DED7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OnionBrowser/AppDelegate.h; sourceTree = "<group>"; };
 		62C7EC4B168D847D00C7DED7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = OnionBrowser/AppDelegate.m; sourceTree = "<group>"; };
 		62C7EC4C168D847D00C7DED7 /* Bookmark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bookmark.h; path = OnionBrowser/Bookmark.h; sourceTree = "<group>"; };
@@ -64,7 +70,6 @@
 		62C7EC5D168D847D00C7DED7 /* SettingsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SettingsTableViewController.m; path = OnionBrowser/SettingsTableViewController.m; sourceTree = "<group>"; };
 		62C7EC5E168D847D00C7DED7 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = OnionBrowser/SettingsViewController.h; sourceTree = "<group>"; };
 		62C7EC5F168D847D00C7DED7 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = OnionBrowser/SettingsViewController.m; sourceTree = "<group>"; };
-		62C7EC60168D847D00C7DED7 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = OnionBrowser/SettingsViewController.xib; sourceTree = "<group>"; };
 		62C7EC61168D847D00C7DED7 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = OnionBrowser/WebViewController.h; sourceTree = "<group>"; };
 		62C7EC62168D847D00C7DED7 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = OnionBrowser/WebViewController.m; sourceTree = "<group>"; };
 		62C7EC6F168D850600C7DED7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -145,7 +150,6 @@
 				62C7EC5D168D847D00C7DED7 /* SettingsTableViewController.m */,
 				62C7EC5E168D847D00C7DED7 /* SettingsViewController.h */,
 				62C7EC5F168D847D00C7DED7 /* SettingsViewController.m */,
-				62C7EC60168D847D00C7DED7 /* SettingsViewController.xib */,
 				62C7EC61168D847D00C7DED7 /* WebViewController.h */,
 				62C7EC62168D847D00C7DED7 /* WebViewController.m */,
 			);
@@ -220,6 +224,8 @@
 				62F3C45E168C411F006D77BC /* local.m */,
 				62F3C45F168C411F006D77BC /* local.h */,
 				62F3C460168C411F006D77BC /* socks5.h */,
+				621996F0169191FC00AC3B57 /* ProxySettingsTableViewController.h */,
+				621996F1169191FC00AC3B57 /* ProxySettingsTableViewController.m */,
 			);
 			path = "shadowsocks-iOS";
 			sourceTree = "<group>";
@@ -232,6 +238,7 @@
 				62F3C2FC168C35C9006D77BC /* Default.png */,
 				62F3C2FE168C35C9006D77BC /* Default@2x.png */,
 				62F3C300168C35C9006D77BC /* Default-568h@2x.png */,
+				621996FB16919EA900AC3B57 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			path = "shadowsocks-iOS";
@@ -280,6 +287,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 62F3C2DB168C35C9006D77BC;
 			productRefGroup = 62F3C2E7168C35C9006D77BC /* Products */;
@@ -296,11 +304,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62C7EC82168D86FF00C7DED7 /* SettingsViewController.xib in Resources */,
 				62F3C2F5168C35C9006D77BC /* InfoPlist.strings in Resources */,
 				62F3C2FD168C35C9006D77BC /* Default.png in Resources */,
 				62F3C2FF168C35C9006D77BC /* Default@2x.png in Resources */,
 				62F3C301168C35C9006D77BC /* Default-568h@2x.png in Resources */,
+				621996F916919EA900AC3B57 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,16 +338,27 @@
 				62C7EC81168D86B700C7DED7 /* ULINetSocket.m in Sources */,
 				62C7EC85168D872100C7DED7 /* ProxyURLProtocol.m in Sources */,
 				62C7EC88168D875000C7DED7 /* CKHTTPConnection.m in Sources */,
+				621996F2169191FC00AC3B57 /* ProxySettingsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		621996FB16919EA900AC3B57 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				621996FA16919EA900AC3B57 /* en */,
+				621996FC16919EAB00AC3B57 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		62F3C2F3168C35C9006D77BC /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				62F3C2F4168C35C9006D77BC /* en */,
+				621996F616919E3F00AC3B57 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
