@@ -265,7 +265,7 @@ static const Boolean kBackwardButton = NO;
     address.returnKeyType = UIReturnKeyGo;
     address.autocorrectionType = UITextAutocorrectionTypeNo;
     address.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    address.clearButtonMode = UITextFieldViewModeNever;
+    address.clearButtonMode = UITextFieldViewModeWhileEditing;
     address.delegate = self;
     address.tag = kAddressFieldTag;
 //    [address addTarget:self 
