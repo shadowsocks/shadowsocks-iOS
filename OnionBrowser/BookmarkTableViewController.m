@@ -49,6 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     [self.tableView setAllowsSelectionDuringEditing:YES];
 
     self.title = @"Bookmarks";

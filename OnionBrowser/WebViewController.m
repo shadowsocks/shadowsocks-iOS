@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#include "err.h"
+
 #import "WebViewController.h"
 #import "AppDelegate.h"
 #import "BookmarkTableViewController.h"
@@ -224,7 +226,7 @@ static const Boolean kBackwardButton = NO;
                                                delegate:self
                                       cancelButtonTitle:@"Close"
                                  destructiveButtonTitle:nil
-                                      otherButtonTitles:@"Bookmark Current Page", @"Proxy Settings", nil];
+                                      otherButtonTitles:@"Bookmark Current Page", @"Proxy Settings", @"About", nil];
     // (/actionsheets)
     
     
@@ -477,6 +479,10 @@ static const Boolean kBackwardButton = NO;
             [self addCurrentAsBookmark];
         } else if (buttonIndex == 1) {
             [self showSettings];
+        } else if (buttonIndex == 2) {
+            [self loadURL:[NSURL URLWithString:@"https://github.com/shadowsocks/shadowsocks-iOS/blob/master/LICENSE"]];
+        } else {
+            errx(1, "buttonIndex out of range");
         }
     }
 }
@@ -484,7 +490,7 @@ static const Boolean kBackwardButton = NO;
 -(void) showSettings {
     ProxySettingsTableViewController *settingsController = [[ProxySettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settingsController];
-//    nav.navigationBar.tintColor = [UIColor blackColor];
+    nav.navigationBar.tintColor = [UIColor blackColor];
     nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
     [self presentModalViewController:nav animated:YES];
 }
