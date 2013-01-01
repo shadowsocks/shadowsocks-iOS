@@ -482,7 +482,7 @@ static const Boolean kBackwardButton = NO;
         } else if (buttonIndex == 2) {
             [self loadURL:[NSURL URLWithString:@"https://github.com/shadowsocks/shadowsocks-iOS/blob/master/LICENSE"]];
         } else {
-            errx(1, "buttonIndex out of range");
+            // close
         }
     }
 }
