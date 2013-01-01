@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		621996F2169191FC00AC3B57 /* ProxySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 621996F1169191FC00AC3B57 /* ProxySettingsTableViewController.m */; };
 		621996F916919EA900AC3B57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 621996FB16919EA900AC3B57 /* Localizable.strings */; };
+		6219970216930C1700AC3B57 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6219970116930C1700AC3B57 /* icon57.png */; };
+		6219970416930C1A00AC3B57 /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 6219970316930C1A00AC3B57 /* icon114.png */; };
+		6219970616930C1E00AC3B57 /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6219970516930C1E00AC3B57 /* icon72.png */; };
+		6219970816930C2100AC3B57 /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 6219970716930C2100AC3B57 /* icon144.png */; };
 		62C7EC63168D84B900C7DED7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4B168D847D00C7DED7 /* AppDelegate.m */; };
 		62C7EC64168D84B900C7DED7 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4D168D847D00C7DED7 /* Bookmark.m */; };
 		62C7EC65168D84B900C7DED7 /* BookmarkEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4F168D847D00C7DED7 /* BookmarkEditViewController.m */; };
@@ -49,6 +53,10 @@
 		621996F616919E3F00AC3B57 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		621996FA16919EA900AC3B57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		621996FC16919EAB00AC3B57 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		6219970116930C1700AC3B57 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		6219970316930C1A00AC3B57 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		6219970516930C1E00AC3B57 /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
+		6219970716930C2100AC3B57 /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		62C7EC4A168D847D00C7DED7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OnionBrowser/AppDelegate.h; sourceTree = "<group>"; };
 		62C7EC4B168D847D00C7DED7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = OnionBrowser/AppDelegate.m; sourceTree = "<group>"; };
 		62C7EC4C168D847D00C7DED7 /* Bookmark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bookmark.h; path = OnionBrowser/Bookmark.h; sourceTree = "<group>"; };
@@ -182,6 +190,10 @@
 		62F3C2DB168C35C9006D77BC = {
 			isa = PBXGroup;
 			children = (
+				6219970716930C2100AC3B57 /* icon144.png */,
+				6219970516930C1E00AC3B57 /* icon72.png */,
+				6219970316930C1A00AC3B57 /* icon114.png */,
+				6219970116930C1700AC3B57 /* icon57.png */,
 				62C7EC89168D881900C7DED7 /* App */,
 				62C7EC7B168D869500C7DED7 /* ThirdParty */,
 				62C7EC48168D845900C7DED7 /* OnionBrowser */,
@@ -309,6 +321,10 @@
 				62F3C2FF168C35C9006D77BC /* Default@2x.png in Resources */,
 				62F3C301168C35C9006D77BC /* Default-568h@2x.png in Resources */,
 				621996F916919EA900AC3B57 /* Localizable.strings in Resources */,
+				6219970216930C1700AC3B57 /* icon57.png in Resources */,
+				6219970416930C1A00AC3B57 /* icon114.png in Resources */,
+				6219970616930C1E00AC3B57 /* icon72.png in Resources */,
+				6219970816930C2100AC3B57 /* icon144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
