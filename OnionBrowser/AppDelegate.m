@@ -63,18 +63,6 @@
     dntHeader = DNT_HEADER_UNSET;
     usePipelining = YES;
     
-    // Start the spinner for the "connecting..." phase
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
-    /*******************/
-    // Clear any previous caches/cookies
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [storage cookies]) {
-        [storage deleteCookie:cookie];
-    }
-    
     return YES;
 }
 
