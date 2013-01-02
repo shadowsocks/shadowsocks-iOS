@@ -53,10 +53,10 @@
 		621996F616919E3F00AC3B57 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		621996FA16919EA900AC3B57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		621996FC16919EAB00AC3B57 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		6219970116930C1700AC3B57 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
-		6219970316930C1A00AC3B57 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
-		6219970516930C1E00AC3B57 /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
-		6219970716930C2100AC3B57 /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
+		6219970116930C1700AC3B57 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon57.png; path = ../icon57.png; sourceTree = "<group>"; };
+		6219970316930C1A00AC3B57 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon114.png; path = ../icon114.png; sourceTree = "<group>"; };
+		6219970516930C1E00AC3B57 /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon72.png; path = ../icon72.png; sourceTree = "<group>"; };
+		6219970716930C2100AC3B57 /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon144.png; path = ../icon144.png; sourceTree = "<group>"; };
 		62C7EC4A168D847D00C7DED7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OnionBrowser/AppDelegate.h; sourceTree = "<group>"; };
 		62C7EC4B168D847D00C7DED7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = OnionBrowser/AppDelegate.m; sourceTree = "<group>"; };
 		62C7EC4C168D847D00C7DED7 /* Bookmark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bookmark.h; path = OnionBrowser/Bookmark.h; sourceTree = "<group>"; };
@@ -190,10 +190,6 @@
 		62F3C2DB168C35C9006D77BC = {
 			isa = PBXGroup;
 			children = (
-				6219970716930C2100AC3B57 /* icon144.png */,
-				6219970516930C1E00AC3B57 /* icon72.png */,
-				6219970316930C1A00AC3B57 /* icon114.png */,
-				6219970116930C1700AC3B57 /* icon57.png */,
 				62C7EC89168D881900C7DED7 /* App */,
 				62C7EC7B168D869500C7DED7 /* ThirdParty */,
 				62C7EC48168D845900C7DED7 /* OnionBrowser */,
@@ -245,6 +241,10 @@
 		62F3C2F1168C35C9006D77BC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6219970716930C2100AC3B57 /* icon144.png */,
+				6219970516930C1E00AC3B57 /* icon72.png */,
+				6219970316930C1A00AC3B57 /* icon114.png */,
+				6219970116930C1700AC3B57 /* icon57.png */,
 				62F3C2F2168C35C9006D77BC /* shadowsocks-iOS-Info.plist */,
 				62F3C2F3168C35C9006D77BC /* InfoPlist.strings */,
 				62F3C2FC168C35C9006D77BC /* Default.png */,
