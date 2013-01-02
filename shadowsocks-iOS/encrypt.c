@@ -1,6 +1,6 @@
+#import <CommonCrypto/CommonDigest.h>
 #include "encrypt.h"
 
-#import <CommonCrypto/CommonDigest.h>
 
 static int random_compare(const void *_x, const void *_y) {
     uint32_t i = _i;

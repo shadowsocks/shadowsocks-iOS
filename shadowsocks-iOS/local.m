@@ -23,17 +23,9 @@
 #include "socks5.h"
 #include "encrypt.h"
 
-#define REPLY "HTTP/1.1 200 OK\n\nhello"
-
-#define min(a,b) (((a)<(b))?(a):(b))
-
 #define ADDR_STR_LEN 512
 
 #define SAVED_STR_LEN 512
-
-// every watcher type has its own typedef'd struct
-// with the name ev_TYPE
-ev_io stdin_watcher;
 
 char _server[SAVED_STR_LEN];
 char _remote_port[SAVED_STR_LEN];
@@ -156,8 +148,8 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 				}
 			} else if(w < r) {
                 char *pt = remote->buf;
-                char *et = pt + min(w, BUF_SIZE);
-                while (pt < et) {
+                char *et = pt + r;
+                while (pt + w < et) {
                     *pt = *(pt + w);
                     pt++;
                 }
@@ -294,8 +286,8 @@ static void server_send_cb (EV_P_ ev_io *w, int revents) {
 		if (r < server->buf_len) {
 			// partly sent, move memory, wait for the next time to send
 			char *pt = server->buf;
-            char *et = pt + min(r, BUF_SIZE);
-            while (pt < et) {
+            char *et = pt + server->buf_len;
+            while (pt + r < et) {
 				*pt = *(pt + r);
                 pt++;
 			}
@@ -363,8 +355,8 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 			}
 		} else if(w < r) {
 			char *pt = server->buf;
-            char *et = pt + min(w, BUF_SIZE);
-            while (pt < et) {
+            char *et = pt + r;
+            while (pt + w < et) {
 				*pt = *(pt + w);
                 pt++;
 			}
@@ -421,8 +413,8 @@ static void remote_send_cb (EV_P_ ev_io *w, int revents) {
 			if (r < remote->buf_len) {
 				// partly sent, move memory, wait for the next time to send
                 char *pt = remote->buf;
-                char *et = pt + min(r, BUF_SIZE);
-                while (pt < et) {
+                char *et = pt + remote->buf_len;
+                while (pt + r < et) {
                     *pt = *(pt + r);
                     pt++;
                 }
