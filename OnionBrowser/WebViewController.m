@@ -204,7 +204,7 @@ static const Boolean kBackwardButton = NO;
     _backButton.enabled = NO;
     _stopRefreshButton.enabled = NO;
     _toolButton.enabled = YES;
-    _bookmarkButton.enabled = NO;
+    _bookmarkButton.enabled = YES;
 
     NSMutableArray *items = [[NSMutableArray alloc] init];
     [items addObject:_backButton];
@@ -490,7 +490,7 @@ static const Boolean kBackwardButton = NO;
 -(void) showSettings {
     ProxySettingsTableViewController *settingsController = [[ProxySettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settingsController];
-    nav.navigationBar.tintColor = [UIColor blackColor];
+//    nav.navigationBar.tintColor = [UIColor blackColor];
     nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
     [self presentModalViewController:nav animated:YES];
 }

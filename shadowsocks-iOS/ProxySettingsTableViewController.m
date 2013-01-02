@@ -75,6 +75,8 @@
     
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
+    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+    self.navigationItem.leftBarButtonItem = cancel;
     self.navigationItem.title = NSLocalizedString(@"Proxy Settings", nil);;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -84,6 +86,10 @@
 }
 
 #pragma mark - navigation
+
+-(void)cancel {
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 -(void)done {
     if (ipField.text == nil) {
