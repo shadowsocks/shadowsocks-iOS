@@ -16,3 +16,9 @@ install
 -----------
 
 You can build and install this App using XCode 4.5 or later.
+
+known issues
+-------------
+
+* Can not play Youtube video. Seems like proxy settings are ignored by video streams. 
+If you know any solutions, please file a issue.
