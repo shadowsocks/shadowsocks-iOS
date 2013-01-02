@@ -1,7 +1,7 @@
 shadowsocks-iOS
 ===========
 
-Current version: 0.1
+Current version: 0.2
 
 [shadowsocks](https://github.com/clowwindy/shadowsocks) is a lightweight tunnel proxy which can help you get through
  firewalls. This is an iPhone/iPad client.

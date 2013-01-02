@@ -7,13 +7,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "AppProxyCap.h"
 #import "AppDelegate.h"
-
-#import "ProxyURLProtocol.h"
 
 int main(int argc, char *argv[]) {
     @autoreleasepool {
-        [NSURLProtocol registerClass:[ProxyURLProtocol class]];
+		[AppProxyCap activate];
+		[AppProxyCap setProxy:AppProxy_SOCKS Host:@"127.0.0.1" Port:1080];
+//        [NSURLProtocol registerClass:[ProxyURLProtocol class]];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }

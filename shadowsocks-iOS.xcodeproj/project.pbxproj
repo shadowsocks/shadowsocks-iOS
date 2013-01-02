@@ -13,8 +13,6 @@
 		6219970416930C1A00AC3B57 /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 6219970316930C1A00AC3B57 /* icon114.png */; };
 		6219970616930C1E00AC3B57 /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6219970516930C1E00AC3B57 /* icon72.png */; };
 		6219970816930C2100AC3B57 /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 6219970716930C2100AC3B57 /* icon144.png */; };
-		622C11391693F1BA00421169 /* NSData+CocoaDevUsersAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C11361693F1BA00421169 /* NSData+CocoaDevUsersAdditions.m */; };
-		622C113A1693F1BA00421169 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C11381693F1BA00421169 /* NSData+Conversion.m */; };
 		62C7EC63168D84B900C7DED7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4B168D847D00C7DED7 /* AppDelegate.m */; };
 		62C7EC64168D84B900C7DED7 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4D168D847D00C7DED7 /* Bookmark.m */; };
 		62C7EC65168D84B900C7DED7 /* BookmarkEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4F168D847D00C7DED7 /* BookmarkEditViewController.m */; };
@@ -33,10 +31,8 @@
 		62C7EC78168D850600C7DED7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C7EC72168D850600C7DED7 /* libz.dylib */; };
 		62C7EC79168D850600C7DED7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C7EC73168D850600C7DED7 /* MobileCoreServices.framework */; };
 		62C7EC7A168D850600C7DED7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C7EC74168D850600C7DED7 /* SystemConfiguration.framework */; };
-		62C7EC80168D86B700C7DED7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC7D168D86B700C7DED7 /* Reachability.m */; };
-		62C7EC81168D86B700C7DED7 /* ULINetSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC7F168D86B700C7DED7 /* ULINetSocket.m */; };
-		62C7EC85168D872100C7DED7 /* ProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC84168D872100C7DED7 /* ProxyURLProtocol.m */; };
-		62C7EC88168D875000C7DED7 /* CKHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC87168D875000C7DED7 /* CKHTTPConnection.m */; };
+		62CB6F3416942E7000C15CAC /* AppProxyCap.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CB6F2F16942E7000C15CAC /* AppProxyCap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		62CB6F3916942EBF00C15CAC /* interpose.c in Sources */ = {isa = PBXBuildFile; fileRef = 62CB6F3716942EBF00C15CAC /* interpose.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62F3C2EB168C35C9006D77BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3C2EA168C35C9006D77BC /* UIKit.framework */; };
 		62F3C2ED168C35C9006D77BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3C2EC168C35C9006D77BC /* Foundation.framework */; };
 		62F3C2EF168C35C9006D77BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3C2EE168C35C9006D77BC /* CoreGraphics.framework */; };
@@ -59,10 +55,6 @@
 		6219970316930C1A00AC3B57 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon114.png; path = ../icon114.png; sourceTree = "<group>"; };
 		6219970516930C1E00AC3B57 /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon72.png; path = ../icon72.png; sourceTree = "<group>"; };
 		6219970716930C2100AC3B57 /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon144.png; path = ../icon144.png; sourceTree = "<group>"; };
-		622C11351693F1BA00421169 /* NSData+CocoaDevUsersAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CocoaDevUsersAdditions.h"; sourceTree = "<group>"; };
-		622C11361693F1BA00421169 /* NSData+CocoaDevUsersAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CocoaDevUsersAdditions.m"; sourceTree = "<group>"; };
-		622C11371693F1BA00421169 /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Conversion.h"; sourceTree = "<group>"; };
-		622C11381693F1BA00421169 /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Conversion.m"; sourceTree = "<group>"; };
 		62C7EC4A168D847D00C7DED7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OnionBrowser/AppDelegate.h; sourceTree = "<group>"; };
 		62C7EC4B168D847D00C7DED7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = OnionBrowser/AppDelegate.m; sourceTree = "<group>"; };
 		62C7EC4C168D847D00C7DED7 /* Bookmark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bookmark.h; path = OnionBrowser/Bookmark.h; sourceTree = "<group>"; };
@@ -92,15 +84,12 @@
 		62C7EC72168D850600C7DED7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		62C7EC73168D850600C7DED7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		62C7EC74168D850600C7DED7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		62C7EC7C168D86B700C7DED7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		62C7EC7D168D86B700C7DED7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		62C7EC7E168D86B700C7DED7 /* ULINetSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULINetSocket.h; sourceTree = "<group>"; };
-		62C7EC7F168D86B700C7DED7 /* ULINetSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULINetSocket.m; sourceTree = "<group>"; };
-		62C7EC83168D872100C7DED7 /* ProxyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxyURLProtocol.h; sourceTree = "<group>"; };
-		62C7EC84168D872100C7DED7 /* ProxyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxyURLProtocol.m; sourceTree = "<group>"; };
-		62C7EC86168D875000C7DED7 /* CKHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKHTTPConnection.h; path = ConnectionKit/CKHTTPConnection.h; sourceTree = "<group>"; };
-		62C7EC87168D875000C7DED7 /* CKHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKHTTPConnection.m; path = ConnectionKit/CKHTTPConnection.m; sourceTree = "<group>"; };
 		62C7EC8A168D889100C7DED7 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		62CB6F2E16942E7000C15CAC /* AppProxyCap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppProxyCap.h; path = AppProxyCap/lib/AppProxyCap.h; sourceTree = "<group>"; };
+		62CB6F2F16942E7000C15CAC /* AppProxyCap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppProxyCap.m; path = AppProxyCap/lib/AppProxyCap.m; sourceTree = "<group>"; };
+		62CB6F3716942EBF00C15CAC /* interpose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = interpose.c; path = AppProxyCap/lib/inject_and_interpose/interpose.c; sourceTree = "<group>"; };
+		62CB6F3816942EBF00C15CAC /* interpose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = interpose.h; path = AppProxyCap/lib/inject_and_interpose/interpose.h; sourceTree = "<group>"; };
+		62CB6F44169431A600C15CAC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		62F3C2E6168C35C9006D77BC /* shadowsocks-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shadowsocks-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F3C2EA168C35C9006D77BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		62F3C2EC168C35C9006D77BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -154,11 +143,7 @@
 				62C7EC55168D847D00C7DED7 /* BridgeEditViewController.m */,
 				62C7EC56168D847D00C7DED7 /* BridgeTableViewController.h */,
 				62C7EC57168D847D00C7DED7 /* BridgeTableViewController.m */,
-				62C7EC86168D875000C7DED7 /* CKHTTPConnection.h */,
-				62C7EC87168D875000C7DED7 /* CKHTTPConnection.m */,
 				62C7EC59168D847D00C7DED7 /* OnionBrowser-Prefix.pch */,
-				62C7EC83168D872100C7DED7 /* ProxyURLProtocol.h */,
-				62C7EC84168D872100C7DED7 /* ProxyURLProtocol.m */,
 				62C7EC5A168D847D00C7DED7 /* Settings.xcdatamodeld */,
 				62C7EC5C168D847D00C7DED7 /* SettingsTableViewController.h */,
 				62C7EC5D168D847D00C7DED7 /* SettingsTableViewController.m */,
@@ -168,21 +153,6 @@
 				62C7EC62168D847D00C7DED7 /* WebViewController.m */,
 			);
 			name = OnionBrowser;
-			sourceTree = "<group>";
-		};
-		62C7EC7B168D869500C7DED7 /* ThirdParty */ = {
-			isa = PBXGroup;
-			children = (
-				622C11351693F1BA00421169 /* NSData+CocoaDevUsersAdditions.h */,
-				622C11361693F1BA00421169 /* NSData+CocoaDevUsersAdditions.m */,
-				622C11371693F1BA00421169 /* NSData+Conversion.h */,
-				622C11381693F1BA00421169 /* NSData+Conversion.m */,
-				62C7EC7C168D86B700C7DED7 /* Reachability.h */,
-				62C7EC7D168D86B700C7DED7 /* Reachability.m */,
-				62C7EC7E168D86B700C7DED7 /* ULINetSocket.h */,
-				62C7EC7F168D86B700C7DED7 /* ULINetSocket.m */,
-			);
-			name = ThirdParty;
 			sourceTree = "<group>";
 		};
 		62C7EC89168D881900C7DED7 /* App */ = {
@@ -197,11 +167,22 @@
 			name = App;
 			sourceTree = "<group>";
 		};
+		62CB6F2D16942CCB00C15CAC /* AppProxyCap */ = {
+			isa = PBXGroup;
+			children = (
+				62CB6F2E16942E7000C15CAC /* AppProxyCap.h */,
+				62CB6F2F16942E7000C15CAC /* AppProxyCap.m */,
+				62CB6F3716942EBF00C15CAC /* interpose.c */,
+				62CB6F3816942EBF00C15CAC /* interpose.h */,
+			);
+			name = AppProxyCap;
+			sourceTree = "<group>";
+		};
 		62F3C2DB168C35C9006D77BC = {
 			isa = PBXGroup;
 			children = (
+				62CB6F2D16942CCB00C15CAC /* AppProxyCap */,
 				62C7EC89168D881900C7DED7 /* App */,
-				62C7EC7B168D869500C7DED7 /* ThirdParty */,
 				62C7EC48168D845900C7DED7 /* OnionBrowser */,
 				62F3C475168C47AD006D77BC /* libev */,
 				62F3C2F0168C35C9006D77BC /* shadowsocks-iOS */,
@@ -251,6 +232,7 @@
 		62F3C2F1168C35C9006D77BC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				62CB6F44169431A600C15CAC /* README.md */,
 				6219970716930C2100AC3B57 /* icon144.png */,
 				6219970516930C1E00AC3B57 /* icon72.png */,
 				6219970316930C1A00AC3B57 /* icon114.png */,
@@ -360,13 +342,9 @@
 				62F3C461168C411F006D77BC /* encrypt.c in Sources */,
 				62F3C462168C411F006D77BC /* local.m in Sources */,
 				62F3C48C168C488B006D77BC /* ev.c in Sources */,
-				62C7EC80168D86B700C7DED7 /* Reachability.m in Sources */,
-				62C7EC81168D86B700C7DED7 /* ULINetSocket.m in Sources */,
-				62C7EC85168D872100C7DED7 /* ProxyURLProtocol.m in Sources */,
-				62C7EC88168D875000C7DED7 /* CKHTTPConnection.m in Sources */,
 				621996F2169191FC00AC3B57 /* ProxySettingsTableViewController.m in Sources */,
-				622C11391693F1BA00421169 /* NSData+CocoaDevUsersAdditions.m in Sources */,
-				622C113A1693F1BA00421169 /* NSData+Conversion.m in Sources */,
+				62CB6F3416942E7000C15CAC /* AppProxyCap.m in Sources */,
+				62CB6F3916942EBF00C15CAC /* interpose.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
