@@ -1,4 +1,4 @@
-shadowsocks-nodejs
+shadowsocks-iOS
 ===========
 
 Current version: 0.1
