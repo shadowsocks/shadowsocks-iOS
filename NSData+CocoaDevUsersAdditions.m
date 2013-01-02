@@ -3,10 +3,11 @@
  * http://cocoadev.com/wiki/NSDataCategory
  */
 #import "NSData+CocoaDevUsersAdditions.h"
+#import <CommonCrypto/CommonCrypto.h>
 #include <zlib.h>
-#include <openssl/md5.h>
-#include <openssl/sha.h>
-#include <openssl/ripemd.h>
+//#include <openssl/md5.h>
+//#include <openssl/sha.h>
+//#include <openssl/ripemd.h>
 
 
 @implementation NSData (NSDataExtension)
@@ -473,29 +474,29 @@ static const unsigned long crc32table[] =
 // Hash function, by DamienBob
 
 #define HEComputeDigest(method)						\
-method##_CTX ctx;								\
-unsigned char digest[method##_DIGEST_LENGTH];		\
-method##_Init(&ctx);							\
-method##_Update(&ctx, [self bytes], [self length]);		\
-method##_Final(digest, &ctx);
+CC_##method##_CTX ctx;								\
+unsigned char digest[CC_##method##_DIGEST_LENGTH];		\
+CC_##method##_Init(&ctx);							\
+CC_##method##_Update(&ctx, [self bytes], [self length]);		\
+CC_##method##_Final(digest, &ctx);
 
 #define HEComputeDigestNSData(method)				\
 HEComputeDigest(method)						\
-return [NSData dataWithBytes:digest length:method##_DIGEST_LENGTH];
+return [NSData dataWithBytes:digest length:CC_##method##_DIGEST_LENGTH];
 
 #define HEComputeDigestNSString(method)				\
 static char __HEHexDigits[] = "0123456789abcdef";		\
-unsigned char digestString[2*method##_DIGEST_LENGTH];\
+unsigned char digestString[2*CC_##method##_DIGEST_LENGTH];\
 unsigned int i;									\
 HEComputeDigest(method)						\
-for(i=0; i<method##_DIGEST_LENGTH; i++) {				\
+for(i=0; i<CC_##method##_DIGEST_LENGTH; i++) {				\
     digestString[2*i]   = __HEHexDigits[digest[i] >> 4];	\
     digestString[2*i+1] = __HEHexDigits[digest[i] & 0x0f];\
 }											\
 return [NSString stringWithUTF8String:(char *)digestString];
 
-#define SHA1_CTX				SHA_CTX
-#define SHA1_DIGEST_LENGTH		SHA_DIGEST_LENGTH
+#define SHA1_CTX				CC_SHA_CTX
+#define SHA1_DIGEST_LENGTH		CC_SHA_DIGEST_LENGTH
 
 - (NSData*) md5Digest
 {
@@ -507,24 +508,24 @@ return [NSString stringWithUTF8String:(char *)digestString];
 	HEComputeDigestNSString(MD5);
 }
 
-- (NSData*) sha1Digest
-{
-	HEComputeDigestNSData(SHA1);
-}
-
-- (NSString*) sha1DigestString
-{
-	HEComputeDigestNSString(SHA1);
-}
-
-- (NSData*) ripemd160Digest
-{
-	HEComputeDigestNSData(RIPEMD160);
-}
-
-- (NSString*) ripemd160DigestString
-{
-	HEComputeDigestNSString(RIPEMD160);
-}
+//- (NSData*) sha1Digest
+//{
+//	HEComputeDigestNSData(SHA1);
+//}
+//
+//- (NSString*) sha1DigestString
+//{
+//	HEComputeDigestNSString(SHA1);
+//}
+//
+//- (NSData*) ripemd160Digest
+//{
+//	HEComputeDigestNSData(RIPEMD160);
+//}
+//
+//- (NSString*) ripemd160DigestString
+//{
+//	HEComputeDigestNSString(RIPEMD160);
+//}
 
 @end

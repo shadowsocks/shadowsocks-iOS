@@ -13,6 +13,8 @@
 		6219970416930C1A00AC3B57 /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 6219970316930C1A00AC3B57 /* icon114.png */; };
 		6219970616930C1E00AC3B57 /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6219970516930C1E00AC3B57 /* icon72.png */; };
 		6219970816930C2100AC3B57 /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 6219970716930C2100AC3B57 /* icon144.png */; };
+		622C11391693F1BA00421169 /* NSData+CocoaDevUsersAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C11361693F1BA00421169 /* NSData+CocoaDevUsersAdditions.m */; };
+		622C113A1693F1BA00421169 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C11381693F1BA00421169 /* NSData+Conversion.m */; };
 		62C7EC63168D84B900C7DED7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4B168D847D00C7DED7 /* AppDelegate.m */; };
 		62C7EC64168D84B900C7DED7 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4D168D847D00C7DED7 /* Bookmark.m */; };
 		62C7EC65168D84B900C7DED7 /* BookmarkEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C7EC4F168D847D00C7DED7 /* BookmarkEditViewController.m */; };
@@ -57,6 +59,10 @@
 		6219970316930C1A00AC3B57 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon114.png; path = ../icon114.png; sourceTree = "<group>"; };
 		6219970516930C1E00AC3B57 /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon72.png; path = ../icon72.png; sourceTree = "<group>"; };
 		6219970716930C2100AC3B57 /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon144.png; path = ../icon144.png; sourceTree = "<group>"; };
+		622C11351693F1BA00421169 /* NSData+CocoaDevUsersAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CocoaDevUsersAdditions.h"; sourceTree = "<group>"; };
+		622C11361693F1BA00421169 /* NSData+CocoaDevUsersAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CocoaDevUsersAdditions.m"; sourceTree = "<group>"; };
+		622C11371693F1BA00421169 /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Conversion.h"; sourceTree = "<group>"; };
+		622C11381693F1BA00421169 /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Conversion.m"; sourceTree = "<group>"; };
 		62C7EC4A168D847D00C7DED7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OnionBrowser/AppDelegate.h; sourceTree = "<group>"; };
 		62C7EC4B168D847D00C7DED7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = OnionBrowser/AppDelegate.m; sourceTree = "<group>"; };
 		62C7EC4C168D847D00C7DED7 /* Bookmark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bookmark.h; path = OnionBrowser/Bookmark.h; sourceTree = "<group>"; };
@@ -167,6 +173,10 @@
 		62C7EC7B168D869500C7DED7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				622C11351693F1BA00421169 /* NSData+CocoaDevUsersAdditions.h */,
+				622C11361693F1BA00421169 /* NSData+CocoaDevUsersAdditions.m */,
+				622C11371693F1BA00421169 /* NSData+Conversion.h */,
+				622C11381693F1BA00421169 /* NSData+Conversion.m */,
 				62C7EC7C168D86B700C7DED7 /* Reachability.h */,
 				62C7EC7D168D86B700C7DED7 /* Reachability.m */,
 				62C7EC7E168D86B700C7DED7 /* ULINetSocket.h */,
@@ -355,6 +365,8 @@
 				62C7EC85168D872100C7DED7 /* ProxyURLProtocol.m in Sources */,
 				62C7EC88168D875000C7DED7 /* CKHTTPConnection.m in Sources */,
 				621996F2169191FC00AC3B57 /* ProxySettingsTableViewController.m in Sources */,
+				622C11391693F1BA00421169 /* NSData+CocoaDevUsersAdditions.m in Sources */,
+				622C113A1693F1BA00421169 /* NSData+Conversion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
