@@ -15,7 +15,11 @@ If you've jailbroken your iPhone, you can use [Python](https://github.com/clowwi
 install
 -----------
 
-You can build and install this App using XCode 4.5 or later.
+First, clone the code:
+
+    git clone --recurse-submodules git://github.com/shadowsocks/shadowsocks-iOS.git
+
+Then you can build and install this App using XCode 4.5 or later.
 
 known issues
 -------------
