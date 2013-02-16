@@ -11,14 +11,18 @@
 		621571AB16CF6BCB003D96B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		621571AD16CF6BCB003D96B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AC16CF6BCB003D96B4 /* CoreGraphics.framework */; };
 		621571B316CF6BCB003D96B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 621571B116CF6BCB003D96B4 /* InfoPlist.strings */; };
-		621571B516CF6BCB003D96B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571B416CF6BCB003D96B4 /* main.m */; };
-		621571B916CF6BCB003D96B4 /* SWBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571B816CF6BCB003D96B4 /* SWBAppDelegate.m */; };
+		621571B516CF6BCB003D96B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571B416CF6BCB003D96B4 /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		621571B916CF6BCB003D96B4 /* SWBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571B816CF6BCB003D96B4 /* SWBAppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		621571BB16CF6BCB003D96B4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 621571BA16CF6BCB003D96B4 /* Default.png */; };
 		621571BD16CF6BCB003D96B4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 621571BC16CF6BCB003D96B4 /* Default@2x.png */; };
 		621571BF16CF6BCB003D96B4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 621571BE16CF6BCB003D96B4 /* Default-568h@2x.png */; };
-		621571C216CF6BCB003D96B4 /* SWBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571C116CF6BCB003D96B4 /* SWBViewController.m */; };
-		621571C516CF6BCB003D96B4 /* SWBViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 621571C316CF6BCB003D96B4 /* SWBViewController_iPhone.xib */; };
-		621571C816CF6BCB003D96B4 /* SWBViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 621571C616CF6BCB003D96B4 /* SWBViewController_iPad.xib */; };
+		621571C216CF6BCB003D96B4 /* SWBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571C116CF6BCB003D96B4 /* SWBViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		621571DC16CF6D50003D96B4 /* SWBTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571D116CF6D50003D96B4 /* SWBTabView.m */; };
+		621571DD16CF6D50003D96B4 /* SWBTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571D316CF6D50003D96B4 /* SWBTab.m */; };
+		621571DE16CF6D50003D96B4 /* SWBTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571D516CF6D50003D96B4 /* SWBTabBarView.m */; };
+		621571DF16CF6D50003D96B4 /* SWBNewTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571D716CF6D50003D96B4 /* SWBNewTabButton.m */; };
+		621571E016CF6D50003D96B4 /* SWBSmallCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571D916CF6D50003D96B4 /* SWBSmallCloseButton.m */; };
+		621571E116CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571DB16CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +41,18 @@
 		621571BE16CF6BCB003D96B4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		621571C016CF6BCB003D96B4 /* SWBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWBViewController.h; sourceTree = "<group>"; };
 		621571C116CF6BCB003D96B4 /* SWBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWBViewController.m; sourceTree = "<group>"; };
-		621571C416CF6BCB003D96B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SWBViewController_iPhone.xib; sourceTree = "<group>"; };
-		621571C716CF6BCB003D96B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SWBViewController_iPad.xib; sourceTree = "<group>"; };
+		621571D016CF6D50003D96B4 /* SWBTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWBTabView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		621571D116CF6D50003D96B4 /* SWBTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBTabView.m; sourceTree = "<group>"; };
+		621571D216CF6D50003D96B4 /* SWBTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWBTab.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		621571D316CF6D50003D96B4 /* SWBTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWBTab.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		621571D416CF6D50003D96B4 /* SWBTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWBTabBarView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		621571D516CF6D50003D96B4 /* SWBTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWBTabBarView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		621571D616CF6D50003D96B4 /* SWBNewTabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWBNewTabButton.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		621571D716CF6D50003D96B4 /* SWBNewTabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWBNewTabButton.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		621571D816CF6D50003D96B4 /* SWBSmallCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWBSmallCloseButton.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		621571D916CF6D50003D96B4 /* SWBSmallCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWBSmallCloseButton.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		621571DA16CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWBSmallCloseButtonHighlightView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		621571DB16CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWBSmallCloseButtonHighlightView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,12 +99,12 @@
 		621571AE16CF6BCB003D96B4 /* ShadowWeb */ = {
 			isa = PBXGroup;
 			children = (
+				621571CF16CF6D1F003D96B4 /* ToolBar */,
+				621571CE16CF6D19003D96B4 /* TabBar */,
 				621571B716CF6BCB003D96B4 /* SWBAppDelegate.h */,
 				621571B816CF6BCB003D96B4 /* SWBAppDelegate.m */,
 				621571C016CF6BCB003D96B4 /* SWBViewController.h */,
 				621571C116CF6BCB003D96B4 /* SWBViewController.m */,
-				621571C316CF6BCB003D96B4 /* SWBViewController_iPhone.xib */,
-				621571C616CF6BCB003D96B4 /* SWBViewController_iPad.xib */,
 				621571AF16CF6BCB003D96B4 /* Supporting Files */,
 			);
 			path = ShadowWeb;
@@ -108,6 +122,32 @@
 				621571BE16CF6BCB003D96B4 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		621571CE16CF6D19003D96B4 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				621571D016CF6D50003D96B4 /* SWBTabView.h */,
+				621571D116CF6D50003D96B4 /* SWBTabView.m */,
+				621571D216CF6D50003D96B4 /* SWBTab.h */,
+				621571D316CF6D50003D96B4 /* SWBTab.m */,
+				621571D416CF6D50003D96B4 /* SWBTabBarView.h */,
+				621571D516CF6D50003D96B4 /* SWBTabBarView.m */,
+				621571D616CF6D50003D96B4 /* SWBNewTabButton.h */,
+				621571D716CF6D50003D96B4 /* SWBNewTabButton.m */,
+				621571D816CF6D50003D96B4 /* SWBSmallCloseButton.h */,
+				621571D916CF6D50003D96B4 /* SWBSmallCloseButton.m */,
+				621571DA16CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.h */,
+				621571DB16CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.m */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		621571CF16CF6D1F003D96B4 /* ToolBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ToolBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,8 +206,6 @@
 				621571BB16CF6BCB003D96B4 /* Default.png in Resources */,
 				621571BD16CF6BCB003D96B4 /* Default@2x.png in Resources */,
 				621571BF16CF6BCB003D96B4 /* Default-568h@2x.png in Resources */,
-				621571C516CF6BCB003D96B4 /* SWBViewController_iPhone.xib in Resources */,
-				621571C816CF6BCB003D96B4 /* SWBViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +219,12 @@
 				621571B516CF6BCB003D96B4 /* main.m in Sources */,
 				621571B916CF6BCB003D96B4 /* SWBAppDelegate.m in Sources */,
 				621571C216CF6BCB003D96B4 /* SWBViewController.m in Sources */,
+				621571DC16CF6D50003D96B4 /* SWBTabView.m in Sources */,
+				621571DD16CF6D50003D96B4 /* SWBTab.m in Sources */,
+				621571DE16CF6D50003D96B4 /* SWBTabBarView.m in Sources */,
+				621571DF16CF6D50003D96B4 /* SWBNewTabButton.m in Sources */,
+				621571E016CF6D50003D96B4 /* SWBSmallCloseButton.m in Sources */,
+				621571E116CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,22 +237,6 @@
 				621571B216CF6BCB003D96B4 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		621571C316CF6BCB003D96B4 /* SWBViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				621571C416CF6BCB003D96B4 /* en */,
-			);
-			name = SWBViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		621571C616CF6BCB003D96B4 /* SWBViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				621571C716CF6BCB003D96B4 /* en */,
-			);
-			name = SWBViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -275,6 +303,7 @@
 		621571CC16CF6BCB003D96B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShadowWeb/ShadowWeb-Prefix.pch";
 				INFOPLIST_FILE = "ShadowWeb/ShadowWeb-Info.plist";
@@ -286,6 +315,7 @@
 		621571CD16CF6BCB003D96B4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShadowWeb/ShadowWeb-Prefix.pch";
 				INFOPLIST_FILE = "ShadowWeb/ShadowWeb-Info.plist";
