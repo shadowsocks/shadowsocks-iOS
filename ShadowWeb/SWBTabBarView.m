@@ -466,7 +466,7 @@
     
     [self layoutTabsWithAction:SWBTabBarActionClose animated:YES];
     
-    [delegate SWBTabBarViewTabDidClose:tab];
+    [delegate tabBarViewTabDidClose:tab];
     
     
 }
@@ -503,7 +503,7 @@
     
     [self reorderTabViews];
     if (newCurrentTab) {
-        [delegate SWBTabBarViewTabDidSelect:currentTab];
+        [delegate tabBarViewTabDidSelect:currentTab];
     }
 }
 
@@ -512,7 +512,7 @@
 }
 
 -(void)newTabButtonClicked {
-    [delegate SWBTabBarViewNewTabButtonDidClick];
+    [delegate tabBarViewNewTabButtonDidClick];
 }
 
 -(void)tabClicked:(id)sender {
@@ -520,7 +520,7 @@
     self.currentTab = [self tabByTag:tabView.tag];
 }
 
--(void)SWBTabViewDidClickCloseButton:(id)sender {
+-(void)tabViewDidClickCloseButton:(id)sender {
     SWBTabView *tabView = sender;
     SWBTab *tab = [self tabByTag:tabView.tag];
     [self closeTab:tab animated:YES];
@@ -581,7 +581,7 @@
             
             [tabViews removeObject:tabView];
             [tabViews insertObject:tabView atIndex:newIndex];
-            [delegate SWBTabBarViewTabDidMove:currentDraggingTab toIndex:newIndex];
+            [delegate tabBarViewTabDidMove:currentDraggingTab toIndex:newIndex];
         }
         [self layoutTabsWithAction:SWBTabBarActionDraggingTab animated:YES];
     } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
@@ -602,11 +602,6 @@
 -(void)setTitleForTab:(NSInteger)tag title:(NSString *)theTitle{
     [self tabViewByTag:tag].title = theTitle;
 }
-
-//-(void)setPercentForTab:(NSInteger)tag percentage:(float)percentage {
-//    [self tabViewByTag:tag].percentage = percentage;
-//    
-//}
 
 -(void)setLoadingForTab:(NSInteger)tag loading:(BOOL)loading {
     [self tabViewByTag:tag].loading = loading;

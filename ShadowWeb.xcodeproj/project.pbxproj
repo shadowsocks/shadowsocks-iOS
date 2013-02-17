@@ -11,18 +11,24 @@
 		621571AB16CF6BCB003D96B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		621571AD16CF6BCB003D96B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AC16CF6BCB003D96B4 /* CoreGraphics.framework */; };
 		621571B316CF6BCB003D96B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 621571B116CF6BCB003D96B4 /* InfoPlist.strings */; };
-		621571B516CF6BCB003D96B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571B416CF6BCB003D96B4 /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		621571B916CF6BCB003D96B4 /* SWBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571B816CF6BCB003D96B4 /* SWBAppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		621571B516CF6BCB003D96B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571B416CF6BCB003D96B4 /* main.m */; };
+		621571B916CF6BCB003D96B4 /* SWBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571B816CF6BCB003D96B4 /* SWBAppDelegate.m */; };
 		621571BB16CF6BCB003D96B4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 621571BA16CF6BCB003D96B4 /* Default.png */; };
 		621571BD16CF6BCB003D96B4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 621571BC16CF6BCB003D96B4 /* Default@2x.png */; };
 		621571BF16CF6BCB003D96B4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 621571BE16CF6BCB003D96B4 /* Default-568h@2x.png */; };
-		621571C216CF6BCB003D96B4 /* SWBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571C116CF6BCB003D96B4 /* SWBViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		621571C216CF6BCB003D96B4 /* SWBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571C116CF6BCB003D96B4 /* SWBViewController.m */; };
 		621571DC16CF6D50003D96B4 /* SWBTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571D116CF6D50003D96B4 /* SWBTabView.m */; };
 		621571DD16CF6D50003D96B4 /* SWBTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571D316CF6D50003D96B4 /* SWBTab.m */; };
 		621571DE16CF6D50003D96B4 /* SWBTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571D516CF6D50003D96B4 /* SWBTabBarView.m */; };
 		621571DF16CF6D50003D96B4 /* SWBNewTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571D716CF6D50003D96B4 /* SWBNewTabButton.m */; };
 		621571E016CF6D50003D96B4 /* SWBSmallCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571D916CF6D50003D96B4 /* SWBSmallCloseButton.m */; };
 		621571E116CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571DB16CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.m */; };
+		621571EA16CF74CC003D96B4 /* SWBWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571E616CF74CC003D96B4 /* SWBWebView.m */; };
+		621571EB16CF74CC003D96B4 /* SWBWebViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571E816CF74CC003D96B4 /* SWBWebViewContainer.m */; };
+		621571EF16CF782C003D96B4 /* SWBNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571EE16CF782C003D96B4 /* SWBNetworkActivityIndicatorManager.m */; };
+		621571F616CF7FA7003D96B4 /* SWBPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571F116CF7FA6003D96B4 /* SWBPage.m */; };
+		621571F716CF7FA7003D96B4 /* SWBPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571F316CF7FA6003D96B4 /* SWBPageManager.m */; };
+		621571FC16CF7FE6003D96B4 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571FB16CF7FE6003D96B4 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +59,18 @@
 		621571D916CF6D50003D96B4 /* SWBSmallCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWBSmallCloseButton.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		621571DA16CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWBSmallCloseButtonHighlightView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		621571DB16CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWBSmallCloseButtonHighlightView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		621571E516CF74CC003D96B4 /* SWBWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWBWebView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		621571E616CF74CC003D96B4 /* SWBWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWBWebView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		621571E716CF74CC003D96B4 /* SWBWebViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWBWebViewContainer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		621571E816CF74CC003D96B4 /* SWBWebViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWBWebViewContainer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		621571ED16CF782C003D96B4 /* SWBNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWBNetworkActivityIndicatorManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		621571EE16CF782C003D96B4 /* SWBNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWBNetworkActivityIndicatorManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		621571F016CF7FA6003D96B4 /* SWBPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWBPage.h; sourceTree = "<group>"; };
+		621571F116CF7FA6003D96B4 /* SWBPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBPage.m; sourceTree = "<group>"; };
+		621571F216CF7FA6003D96B4 /* SWBPageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWBPageManager.h; sourceTree = "<group>"; };
+		621571F316CF7FA6003D96B4 /* SWBPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBPageManager.m; sourceTree = "<group>"; };
+		621571FA16CF7FE6003D96B4 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		621571FB16CF7FE6003D96B4 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +117,9 @@
 		621571AE16CF6BCB003D96B4 /* ShadowWeb */ = {
 			isa = PBXGroup;
 			children = (
+				621571F916CF7FDB003D96B4 /* JSONKit */,
+				621571EC16CF7810003D96B4 /* Others */,
+				621571E216CF74BC003D96B4 /* WebView */,
 				621571CF16CF6D1F003D96B4 /* ToolBar */,
 				621571CE16CF6D19003D96B4 /* TabBar */,
 				621571B716CF6BCB003D96B4 /* SWBAppDelegate.h */,
@@ -148,6 +169,39 @@
 			children = (
 			);
 			name = ToolBar;
+			sourceTree = "<group>";
+		};
+		621571E216CF74BC003D96B4 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				621571E516CF74CC003D96B4 /* SWBWebView.h */,
+				621571E616CF74CC003D96B4 /* SWBWebView.m */,
+				621571E716CF74CC003D96B4 /* SWBWebViewContainer.h */,
+				621571E816CF74CC003D96B4 /* SWBWebViewContainer.m */,
+			);
+			name = WebView;
+			sourceTree = "<group>";
+		};
+		621571EC16CF7810003D96B4 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				621571F016CF7FA6003D96B4 /* SWBPage.h */,
+				621571F116CF7FA6003D96B4 /* SWBPage.m */,
+				621571F216CF7FA6003D96B4 /* SWBPageManager.h */,
+				621571F316CF7FA6003D96B4 /* SWBPageManager.m */,
+				621571ED16CF782C003D96B4 /* SWBNetworkActivityIndicatorManager.h */,
+				621571EE16CF782C003D96B4 /* SWBNetworkActivityIndicatorManager.m */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		621571F916CF7FDB003D96B4 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				621571FA16CF7FE6003D96B4 /* JSONKit.h */,
+				621571FB16CF7FE6003D96B4 /* JSONKit.m */,
+			);
+			name = JSONKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +279,12 @@
 				621571DF16CF6D50003D96B4 /* SWBNewTabButton.m in Sources */,
 				621571E016CF6D50003D96B4 /* SWBSmallCloseButton.m in Sources */,
 				621571E116CF6D50003D96B4 /* SWBSmallCloseButtonHighlightView.m in Sources */,
+				621571EA16CF74CC003D96B4 /* SWBWebView.m in Sources */,
+				621571EB16CF74CC003D96B4 /* SWBWebViewContainer.m in Sources */,
+				621571EF16CF782C003D96B4 /* SWBNetworkActivityIndicatorManager.m in Sources */,
+				621571F616CF7FA7003D96B4 /* SWBPage.m in Sources */,
+				621571F716CF7FA7003D96B4 /* SWBPageManager.m in Sources */,
+				621571FC16CF7FE6003D96B4 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +367,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShadowWeb/ShadowWeb-Prefix.pch";
 				INFOPLIST_FILE = "ShadowWeb/ShadowWeb-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -319,6 +380,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShadowWeb/ShadowWeb-Prefix.pch";
 				INFOPLIST_FILE = "ShadowWeb/ShadowWeb-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

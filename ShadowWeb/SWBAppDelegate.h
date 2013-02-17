@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SWBNetworkActivityIndicatorManager.h"
+
+#define appNetworkActivityIndicatorManager [(SWBAppDelegate *)[UIApplication sharedApplication].delegate networkActivityIndicatorManager]
+
 @class SWBViewController;
 
 @interface SWBAppDelegate : UIResponder <UIApplicationDelegate>
@@ -15,5 +19,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) SWBViewController *viewController;
+
+@property (nonatomic, strong) SWBNetworkActivityIndicatorManager *networkActivityIndicatorManager;
 
 @end

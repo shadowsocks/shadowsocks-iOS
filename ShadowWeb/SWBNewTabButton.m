@@ -76,15 +76,7 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    if (self.highlighted) {
-//        radiusToDraw = radius * 1.0;
-    } else {
-//        radiusToDraw = radius;
-    }
-    
     //draw circle
-    
-//    CGContextAddArc(context, width / 2, height / 2, radiusToDraw, 0, 2 * M_PI, 0);
     
     CGFloat fillColor = self.highlighted ? kCrossPressedFillColor : kCrossFillColor;
     CGFloat fillColorComponents[4] = {

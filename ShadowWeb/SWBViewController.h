@@ -8,6 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SWBViewController : UIViewController
+#import "SWBTabBarView.h"
+#import "SWBWebViewContainer.h"
+#import "SWBPageManager.h"
+
+@interface SWBViewController : UIViewController <SWBTabBarDelegate, SWBWebViewContainerDelegate> {
+    NSInteger lastTag;
+    NSInteger currentTabTag;
+}
+
+@property (nonatomic, strong) SWBTabBarView *tabBar;
+@property (nonatomic, strong) SWBWebViewContainer *webViewContainer;
+@property (nonatomic, retain) UIToolbar *toolBar;
+@property (nonatomic, retain) UIActionSheet *actionSheet;
+@property (nonatomic, retain) SWBPageManager *pageManager;
+
+-(void)openLinkInNewTab:(NSString *)urlString;
+-(void)savePageIndex;
+-(void)saveData;
 
 @end

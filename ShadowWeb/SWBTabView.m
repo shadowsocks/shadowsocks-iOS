@@ -18,7 +18,7 @@
 @synthesize loading;
 
 -(void)closeButtonDidClick {
-    [self.delegate SWBTabViewDidClickCloseButton:self];
+    [self.delegate tabViewDidClickCloseButton:self];
 }
 
 -(void) loadDefaults {
@@ -35,54 +35,25 @@
     
     // title label
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 8, self.bounds.size.width - 70, 21)];
-    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight
-//        |UIViewAutoresizingFlexibleBottomMargin 
-//        | UIViewAutoresizingFlexibleLeftMargin
-//        | UIViewAutoresizingFlexibleRightMargin 
-//        | UIViewAutoresizingFlexibleTopMargin 
-        | UIViewAutoresizingFlexibleWidth;
+    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     titleLabel.font = [UIFont fontWithName:@"Helvetica" size:13];
 //    titleLabel.minimumFontSize = 12;
     titleLabel.minimumScaleFactor = 0.9;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.backgroundColor = [UIColor clearColor];
-//    titleLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
     // TODO add a setting to do this
     titleLabel.shadowOffset = CGSizeMake(0, 1);
     titleLabel.shadowColor = [UIColor whiteColor];
     titleLabel.text = NSLocalizedString(@"New Tab", @"New Tab");
     [self addSubview:titleLabel];
     
-    // progess
-    
-//    progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(29, 27, self.bounds.size.width - 60, 10)];
-//    [progressView setProgressViewStyle:UIProgressViewStyleBar];
-//    progressView.progress = 0.0;
-//    progressView.transform = CGAffineTransformMakeScale(1, 0.75);
-//    progressView.alpha = 0.5;
-//    progressView.autoresizingMask = UIViewAutoresizingFlexibleHeight
-//    //        |UIViewAutoresizingFlexibleBottomMargin 
-//    //        | UIViewAutoresizingFlexibleLeftMargin
-//    //        | UIViewAutoresizingFlexibleRightMargin 
-//    //        | UIViewAutoresizingFlexibleTopMargin 
-//    | UIViewAutoresizingFlexibleWidth;
-//    progressView.contentMode = UIViewContentModeRedraw;
-//    [self addSubview: progressView];
-    
     // activity
     
     indicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.bounds.size.width - 40, 8, 21, 21)];
     indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     [indicatorView startAnimating];
-    indicatorView.autoresizingMask = UIViewAutoresizingFlexibleHeight
-    //        |UIViewAutoresizingFlexibleBottomMargin 
-    | UIViewAutoresizingFlexibleLeftMargin;
-    //        | UIViewAutoresizingFlexibleRightMargin 
-    //        | UIViewAutoresizingFlexibleTopMargin 
-//    | UIViewAutoresizingFlexibleWidth;
+    indicatorView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
     [self addSubview:indicatorView];
-    
-//    [progressView release];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -272,11 +243,6 @@
     titleLabel.text = title;
     closeButton.accessibilityValue = title;
 }
-
-//-(void)setPercentage:(float)newPercentage {
-//    percentage = newPercentage;
-//    progressView.progress = newPercentage;
-//}
 
 -(void)setLoading:(BOOL)newLoading {
     loading = newLoading;

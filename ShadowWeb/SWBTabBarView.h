@@ -18,10 +18,10 @@
 
 @required
 
--(void)SWBTabBarViewNewTabButtonDidClick;
--(void)SWBTabBarViewTabDidClose:(SWBTab *)tab;
--(void)SWBTabBarViewTabDidMove:(SWBTab *)tab toIndex:(NSInteger)index;
--(void)SWBTabBarViewTabDidSelect:(SWBTab *)tab;
+-(void)tabBarViewNewTabButtonDidClick;
+-(void)tabBarViewTabDidClose:(SWBTab *)tab;
+-(void)tabBarViewTabDidMove:(SWBTab *)tab toIndex:(NSInteger)index;
+-(void)tabBarViewTabDidSelect:(SWBTab *)tab;
 
 @end
 

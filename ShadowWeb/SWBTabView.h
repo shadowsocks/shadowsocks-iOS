@@ -13,23 +13,19 @@
 
 @required
 
--(void) SWBTabViewDidClickCloseButton:(id)sender;
+-(void) tabViewDidClickCloseButton:(id)sender;
 
 @end
 
 @interface SWBTabView : UIControl {
-//    CGFloat gradTopColor;
-//    CGFloat gradBottomColor;
     SWBSmallCloseButton *closeButton;
     UILabel *titleLabel;
-//    UIProgressView *progressView;
     UIActivityIndicatorView *indicatorView;
 }
 
 @property (nonatomic, assign) BOOL focused;
 @property (nonatomic, weak) id<SWBTabViewDelegate> delegate;
 @property (nonatomic, strong) IBOutlet NSString *title;
-//@property (nonatomic, assign) float percentage;
 @property (nonatomic, assign) BOOL loading;
 @property (weak, nonatomic, readonly) UILabel *titleLabel;
 

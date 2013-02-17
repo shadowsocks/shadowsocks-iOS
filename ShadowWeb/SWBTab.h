@@ -16,7 +16,6 @@
 - (id)initWithTag:(NSInteger)aTag;
 
 @property (nonatomic, strong) NSString *title;
-//@property (nonatomic, retain) NSURL *url;
 @property (nonatomic, readonly) int tag;
 
 @end
