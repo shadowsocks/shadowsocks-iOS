@@ -35,6 +35,39 @@
     self.webViewContainer.delegate = self;
     [self initPageManager];
     [self initPagesAndTabs];
+    
+    
+    // init address bar
+    self.addrbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, kToolBarHeight)];
+    
+    // init bar buttons
+    
+    self.urlField = [[UITextField alloc] initWithFrame:CGRectMake(12, 7, 260, 31)];
+    [_urlField setBorderStyle:UITextBorderStyleRoundedRect];
+    [_urlField setKeyboardType:UIKeyboardTypeURL];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:_urlField];
+    [item setStyle:UIBarButtonItemStylePlain];
+    [_urlField setReturnKeyType:UIReturnKeyGo];
+    [_urlField setDelegate:self];
+    [_urlField addTarget:self action:@selector(textFieldDidEndEditing) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [_urlField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    [_urlField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    [_urlField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [_urlField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [_urlField setPlaceholder:@"URL"];
+    
+    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel) ];
+    
+    self.addrItemsInactive = [NSMutableArray arrayWithObjects:[[UIBarButtonItem alloc] initWithCustomView:_urlField], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], nil];
+    self.addrItemsActive = [NSMutableArray arrayWithArray:_addrItemsInactive];
+    [_addrItemsActive addObject:_cancelButton];
+    
+    [_addrbar setItems:_addrItemsInactive];
+    [_addrbar setBarStyle:UIBarStyleBlack];
+    
+    // add subviews
+    [self.view addSubview:_addrbar];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +83,24 @@
 
 
 #pragma mark - webview
+
+-(void)updateWebViewTitle:(UIWebView *)webView {
+    NSString *title = [_webViewContainer titleForWebView:(SWBWebView *)webView];
+    
+    SWBPage *page = [_pageManager pageByTag:webView.tag];
+    if (title) {
+        page.title = title;
+//        [visitRecordManager setTitleForURL:[(AQWebView *)webView aqLocationHref] title:title];
+    }
+    if (title == nil || [title isEqualToString:@""]) {
+        if (webView.loading) {
+            title = NSLocalizedString(@"Loading", "Loading");
+        } else {
+            title = NSLocalizedString(@"Untitled", "Untitled");
+        }
+    }
+    [_tabBar setTitleForTab:webView.tag title: title];
+}
 
 -(void)openURL:(NSString *)urlString {
     NSURL *url = [NSURL URLWithString:urlString];
@@ -101,10 +152,15 @@
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
-    if ([[[[webView request] URL] absoluteString] caseInsensitiveCompare: [(SWBWebView *)webView aqLocationHref]] == NSOrderedSame) {
+    [self resetTabBarButtonsStatus];
+    [self updateWebViewTitle:webView];
+    
+    [_tabBar setLoadingForTab:webView.tag loading:NO];
+
+    if ([[[[webView request] URL] absoluteString] caseInsensitiveCompare: [(SWBWebView *)webView locationHref]] == NSOrderedSame) {
         NSString *url = [[[webView request] URL] absoluteString];
         NSString *title = [((SWBWebView *)webView) pageTitle];
-        
+        _urlField.text = url;
         SWBPage *page = [_pageManager pageByTag:webView.tag];
         page.url = url;
         page.title = title;
@@ -145,11 +201,13 @@
 
 -(void)tabBarViewNewTabButtonDidClick {
     [self openLinkInNewTab:kNewTabAddress];
+    _urlField.text = @"";
+    [NSTimer scheduledTimerWithTimeInterval:0.25 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];
 }
 
 -(void)tabBarViewTabDidClose:(SWBTab *)tab {
-    NSString *title = [[_webViewContainer webViewByTag:tab.tag] pageTitle];
-    NSString *urlString =[[_pageManager pageByTag:tab.tag] url];
+//    NSString *title = [[_webViewContainer webViewByTag:tab.tag] pageTitle];
+//    NSString *urlString =[[_pageManager pageByTag:tab.tag] url];
 //    if (urlString) {
 //        NSURL *url = [[NSURL alloc] initWithString:urlString];
 //        if (AQ_is_nonlocal_http([url scheme])) {
@@ -271,6 +329,7 @@
 -(void)webViewContainerWebViewDidSwitchToWebView:(SWBWebView *)webView {
     [self resetTabBarButtonsStatus];
     [self syncPageManagerSelectionStatusWithSelectedTag:webView.tag];
+    _urlField.text = webView.locationHref;
 }
 
 -(void)webViewContainerWebViewNeedToReload:(SWBWebView *)webView tag:(NSInteger)tag {
@@ -283,5 +342,39 @@
     }
 }
 
+
+
+#pragma mark - Text Field
+
+-(void) hideKeyboard {
+    [_addrbar setItems:_addrItemsInactive animated:YES];
+    [_urlField resignFirstResponder];
+    
+    [UIView beginAnimations:nil context:NULL];
+    // TODO: calculate this numbers
+    [_urlField setFrame:CGRectMake(12, 7, 260, 31)];
+    [UIView commitAnimations];
+}
+
+-(void)cancel {
+    [self hideKeyboard];
+}
+
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    [_addrbar setItems:_addrItemsActive animated:YES];
+    
+    [UIView beginAnimations:nil context:NULL];
+    // TODO: calculate this numbers
+    [_urlField setFrame:CGRectMake(12, 7, 230, 31)];
+    [UIView commitAnimations];
+}
+-(void)textFieldDidEndEditing {
+    [self hideKeyboard];
+    [self openURL:_urlField.text];
+}
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    return YES;
+}
 
 @end

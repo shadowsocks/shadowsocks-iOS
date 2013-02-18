@@ -14,7 +14,7 @@
 }
 
 - (NSString *)pageTitle;
-- (NSString *)aqLocationHref;
+- (NSString *)locationHref;
 - (CGSize)windowSize;
 - (CGPoint)scrollOffset;
 - (NSString *)lastClickedLink;

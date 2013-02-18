@@ -89,7 +89,7 @@
     [self stringByEvaluatingJavaScriptFromString:@"AquaWebOpenLastLink()"];
 }
 
--(NSString *)aqLocationHref {
+-(NSString *)locationHref {
     NSString *urlString = [self stringByEvaluatingJavaScriptFromString:@"window.location.href"];
     if ([NSURL URLWithString:urlString] == nil) {
         return [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

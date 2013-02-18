@@ -13,6 +13,7 @@
 
 #define kMaxWidth 1024.0
 #define kTabBarHeight 40
+#define kToolBarHeight 44
 
 @protocol SWBTabBarDelegate <NSObject>
 
