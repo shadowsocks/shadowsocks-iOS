@@ -187,10 +187,17 @@
     UIScrollView *scrollView = webView.scrollView;
     scrollView.delegate = self;
     [scrollView setContentInset:UIEdgeInsetsMake(kToolBarHeight, 0, 0, 0)];
+    [scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(kToolBarHeight, 0, 0, 0)];
+    [scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
     [self scrollViewDidScroll:scrollView];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.y < 0) {
+        [scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)];
+    } else {
+        [scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    }
     _addrbar.frame = CGRectMake(0, -kToolBarHeight - scrollView.contentOffset.y, _addrbar.frame.size.width, kToolBarHeight);
 }
 

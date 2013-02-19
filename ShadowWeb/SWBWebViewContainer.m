@@ -78,7 +78,7 @@
 //}
 
 - (void)initAWebView:(SWBWebView *)webView {
-//    webView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    webView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
 //    cause crash on double-tap
     
     @try {
