@@ -23,4 +23,6 @@
 - (void)openLastClickedLink;
 - (NSString *)selection;
 
+@property (nonatomic, readonly) UIScrollView *scrollView;
+
 @end

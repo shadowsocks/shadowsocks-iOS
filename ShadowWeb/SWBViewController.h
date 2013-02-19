@@ -12,7 +12,9 @@
 #import "SWBWebViewContainer.h"
 #import "SWBPageManager.h"
 
-@interface SWBViewController : UIViewController <UITextFieldDelegate, SWBTabBarDelegate, SWBWebViewContainerDelegate> {
+#define kToolBarHeight 44
+
+@interface SWBViewController : UIViewController <UITextFieldDelegate, SWBTabBarDelegate, SWBWebViewContainerDelegate, UIScrollViewDelegate> {
     NSInteger lastTag;
     NSInteger currentTabTag;
 }

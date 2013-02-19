@@ -68,6 +68,13 @@
     // add subviews
     [self.view addSubview:_addrbar];
 
+    // Keyboard hide notification
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(keyboardHiden:)
+     name:UIKeyboardWillHideNotification
+     object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -173,6 +180,17 @@
     
 }
 
+#pragma mark - WebView Scrolling
+
+-(void)initWebViewScrolling:(SWBWebView *)webView {
+    UIScrollView *scrollView = webView.scrollView;
+    scrollView.delegate = self;
+    [scrollView setContentInset:UIEdgeInsetsMake(kToolBarHeight, 0, 0, 0)];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    _addrbar.frame = CGRectMake(0, -kToolBarHeight - scrollView.contentOffset.y, _addrbar.frame.size.width, kToolBarHeight);
+}
 
 #pragma mark - TabBar
 
@@ -323,6 +341,8 @@
     
     [webView loadRequest:request];
     
+    [self initWebViewScrolling:webView];
+    
     [self resetTabBarButtonsStatus];
     [self syncPageManagerSelectionStatusWithSelectedTag:webView.tag];
 }
@@ -331,6 +351,7 @@
     [self resetTabBarButtonsStatus];
     [self syncPageManagerSelectionStatusWithSelectedTag:webView.tag];
     _urlField.text = webView.locationHref;
+    [self scrollViewDidScroll:webView.scrollView];
 }
 
 -(void)webViewContainerWebViewNeedToReload:(SWBWebView *)webView tag:(NSInteger)tag {
@@ -347,14 +368,19 @@
 
 #pragma mark - Text Field
 
--(void) hideKeyboard {
-    [_addrbar setItems:_addrItemsInactive animated:YES];
+-(void)hideKeyboard {
     [_urlField resignFirstResponder];
+    [self hideCancelButton];
+}
+
+-(void)hideCancelButton {
+    [_addrbar setItems:_addrItemsInactive animated:YES];
     
     [UIView beginAnimations:nil context:NULL];
     // TODO: calculate this numbers
     [_urlField setFrame:CGRectMake(12, 7, 260, 31)];
     [UIView commitAnimations];
+    
 }
 
 -(void)cancel {
@@ -376,6 +402,9 @@
 }
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     return YES;
+}
+-(void)keyboardHiden:(NSNotification *)notification {
+    [self hideCancelButton];
 }
 
 @end

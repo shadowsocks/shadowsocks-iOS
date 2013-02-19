@@ -107,9 +107,15 @@
     return selection;
 }
 
-//- (void)dealloc {
-//    
-//    [super dealloc];
-//}
+-(UIScrollView *)scrollView {
+    for (UIView *view in self.subviews) {
+        if ([view isKindOfClass:[UIScrollView class]]) {
+            UIScrollView *scrollView = (UIScrollView *)view;
+            return scrollView;
+        }
+    }
+    NSLog(@"scrollView not found in webView");
+    return nil;
+}
 
 @end
