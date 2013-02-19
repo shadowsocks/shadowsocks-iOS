@@ -63,7 +63,8 @@
     [_addrItemsActive addObject:_cancelButton];
     
     [_addrbar setItems:_addrItemsInactive];
-    [_addrbar setBarStyle:UIBarStyleBlack];
+    [_addrbar setBarStyle:UIBarStyleBlackOpaque];
+    [_addrbar setTintColor:[UIColor colorWithWhite:0.6f alpha:1.0f]];
     
     // add subviews
     [self.view addSubview:_addrbar];
@@ -186,6 +187,7 @@
     UIScrollView *scrollView = webView.scrollView;
     scrollView.delegate = self;
     [scrollView setContentInset:UIEdgeInsetsMake(kToolBarHeight, 0, 0, 0)];
+    [self scrollViewDidScroll:scrollView];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
