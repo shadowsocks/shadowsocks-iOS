@@ -207,7 +207,7 @@
     
     // TODO
 //    BOOL showEnd = [appSettingsManager showEndOfTheTitle];
-    BOOL showEnd = YES;
+    BOOL showEnd = NO;
     tabView.titleLabel.lineBreakMode = showEnd? NSLineBreakByTruncatingMiddle:NSLineBreakByTruncatingTail;
 }
 
@@ -613,7 +613,7 @@
 -(void)settingsChanged {
     // TODO
     //    BOOL showEnd = [appSettingsManager showEndOfTheTitle];
-    BOOL showEnd = YES;
+    BOOL showEnd = NO;
     for (SWBTabView *tabView in tabViews) {
         tabView.titleLabel.lineBreakMode = showEnd? NSLineBreakByTruncatingMiddle:NSLineBreakByTruncatingTail;
     }

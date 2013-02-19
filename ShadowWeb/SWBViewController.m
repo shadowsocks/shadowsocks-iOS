@@ -22,14 +22,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    // If don't do this, you'll see some white edge when doing the rotation
+    self.view.clipsToBounds = YES;
+    
     currentTabTag = 0;
     CGRect bounds = self.view.bounds;
     self.tabBar = [[SWBTabBarView alloc] initWithFrame:CGRectMake(0, bounds.size.height - kTabBarHeight, bounds.size.width, kTabBarHeight)];
-    [self.view addSubview:self.tabBar];
     self.webViewContainer = [[SWBWebViewContainer alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, bounds.size.height - kTabBarHeight)];
-    _webViewContainer.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.view addSubview:_webViewContainer];
+//    _webViewContainer.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _webViewContainer.delegate = self;
     self.tabBar.delegate = self;
     self.webViewContainer.delegate = self;
@@ -42,7 +43,7 @@
     
     // init bar buttons
     
-    self.urlField = [[UITextField alloc] initWithFrame:CGRectMake(12, 7, 260, 31)];
+    self.urlField = [[UITextField alloc] initWithFrame:CGRectInset(_addrbar.bounds, 12, 7)];
     [_urlField setBorderStyle:UITextBorderStyleRoundedRect];
     [_urlField setKeyboardType:UIKeyboardTypeURL];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:_urlField];
@@ -55,8 +56,10 @@
     [_urlField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [_urlField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [_urlField setPlaceholder:@"URL"];
+    [_urlField setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
     self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel) ];
+    _cancelButton.width = kCancelButtonWidth;
     
     self.addrItemsInactive = [NSMutableArray arrayWithObjects:[[UIBarButtonItem alloc] initWithCustomView:_urlField], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], nil];
     self.addrItemsActive = [NSMutableArray arrayWithArray:_addrItemsInactive];
@@ -67,7 +70,11 @@
     [_addrbar setTintColor:[UIColor colorWithWhite:0.6f alpha:1.0f]];
     
     // add subviews
+    [self.view addSubview:_webViewContainer];
     [self.view addSubview:_addrbar];
+    [self.view addSubview:_tabBar];
+    
+    [self relayout:bounds];
 
     // Keyboard hide notification
     [[NSNotificationCenter defaultCenter]
@@ -88,6 +95,23 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self scrollViewDidScroll:[self currentWebView].scrollView];
+}
+
+-(void)viewWillLayoutSubviews {
+    [self relayout:self.view.bounds];
+}
+
+- (void)relayout:(CGRect)bounds {
+    CGRect addrBarRect = CGRectMake(0, _addrbar.frame.origin.y, bounds.size.width, kToolBarHeight);
+    CGRect webViewContainerRect = CGRectMake(0, 0, bounds.size.width, bounds.size.height - kTabBarHeight);
+    CGRect tabBarRect = CGRectMake(0, bounds.size.height - kTabBarHeight, bounds.size.width, kTabBarHeight);
+    _addrbar.frame = addrBarRect;
+    _webViewContainer.frame = webViewContainerRect;
+    _tabBar.frame = tabBarRect;
 }
 
 
@@ -193,12 +217,14 @@
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView.contentOffset.y < 0) {
-        [scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)];
-    } else {
-        [scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    if ([self currentWebView].scrollView == scrollView) {
+        if (scrollView.contentOffset.y < 0) {
+            [scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)];
+        } else {
+            [scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        }
+        _addrbar.frame = CGRectMake(0, -kToolBarHeight - scrollView.contentOffset.y, _addrbar.frame.size.width, kToolBarHeight);
     }
-    _addrbar.frame = CGRectMake(0, -kToolBarHeight - scrollView.contentOffset.y, _addrbar.frame.size.width, kToolBarHeight);
 }
 
 #pragma mark - TabBar
@@ -230,7 +256,7 @@
 -(void)tabBarViewNewTabButtonDidClick {
     [self openLinkInNewTab:kNewTabAddress];
     _urlField.text = @"";
-    [NSTimer scheduledTimerWithTimeInterval:0.25 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.20 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];
 }
 
 -(void)tabBarViewTabDidClose:(SWBTab *)tab {
@@ -341,13 +367,6 @@
 -(void)webViewContainerWebViewDidCreateNew:(SWBWebView *)webView {
     SWBPage *page = [_pageManager pageByTag:webView.tag];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:page.url]];
-    NSRange range = [page.url rangeOfString:@"file:"];
-    if (range.length > 0 && range.location == 0) {
-        if ([page.url rangeOfString:@"home.min.htm"].length > 0) {
-            request = [NSURLRequest requestWithURL:[NSURL URLWithString:kAboutBlank]];
-        }
-    }
-    
     [webView loadRequest:request];
     
     [self initWebViewScrolling:webView];
@@ -387,7 +406,9 @@
     
     [UIView beginAnimations:nil context:NULL];
     // TODO: calculate this numbers
-    [_urlField setFrame:CGRectMake(12, 7, 260, 31)];
+    CGRect bounds = [_addrbar bounds];
+    bounds = CGRectInset(bounds, 12, 7);
+    [_urlField setFrame:bounds];
     [UIView commitAnimations];
     
 }
@@ -402,7 +423,10 @@
     
     [UIView beginAnimations:nil context:NULL];
     // TODO: calculate this numbers
-    [_urlField setFrame:CGRectMake(12, 7, 230, 31)];
+    CGRect bounds = [_addrbar bounds];
+    bounds = CGRectInset(bounds, 12 + kCancelButtonWidth * 0.5f , 7);
+    bounds = CGRectOffset(bounds, -kCancelButtonWidth * 0.5f, 0);
+    [_urlField setFrame:bounds];
     [UIView commitAnimations];
 }
 -(void)textFieldDidEndEditing {
@@ -413,7 +437,7 @@
     return YES;
 }
 -(void)keyboardHiden:(NSNotification *)notification {
-    [self hideCancelButton];
+//    [self hideCancelButton];
 }
 
 @end

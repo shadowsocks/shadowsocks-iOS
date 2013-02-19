@@ -13,6 +13,7 @@
 #import "SWBPageManager.h"
 
 #define kToolBarHeight 44
+#define kCancelButtonWidth 70
 
 @interface SWBViewController : UIViewController <UITextFieldDelegate, SWBTabBarDelegate, SWBWebViewContainerDelegate, UIScrollViewDelegate> {
     NSInteger lastTag;
