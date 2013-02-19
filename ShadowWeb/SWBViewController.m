@@ -202,7 +202,7 @@
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView {
-    
+    [_tabBar setLoadingForTab:webView.tag loading:YES];
 }
 
 #pragma mark - WebView Scrolling
