@@ -239,7 +239,7 @@
 #pragma mark - ActionSheet
 
 -(void)initActionSheet {
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"New Tab", @"Back", @"Forward", @"Settings", nil];
+    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"New Tab", @"Back", @"Forward", @"Reload", @"Settings", nil];
     [_actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
 }
 
@@ -257,6 +257,9 @@
             [[self currentWebView] goForward];
             break;
         case 3:
+            [[self currentWebView] reload];
+            break;
+        case 4:
             [self showSettings];
             break;
         default:
