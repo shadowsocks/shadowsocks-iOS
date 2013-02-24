@@ -7,6 +7,7 @@
 //
 
 #import "SWBViewController.h"
+#import "ProxySettingsTableViewController.h"
 
 #define kNewTabAddress @"shadowweb:newtab"
 #define kAboutBlank @"shadowweb:blank"
@@ -117,6 +118,11 @@
     _tabBar.frame = tabBarRect;
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    if ([ProxySettingsTableViewController settingsAreNotComplete]) {
+        [self showSettings];
+    }
+}
 
 #pragma mark - webview
 
@@ -251,11 +257,20 @@
             [[self currentWebView] goForward];
             break;
         case 3:
-            // TODO: implement this
+            [self showSettings];
             break;
         default:
             break;
     }
+}
+
+
+-(void) showSettings {
+    ProxySettingsTableViewController *settingsController = [[ProxySettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settingsController];
+    //    nav.navigationBar.tintColor = [UIColor blackColor];
+    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [self presentModalViewController:nav animated:YES];
 }
 
 #pragma mark - TabBar

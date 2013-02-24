@@ -29,6 +29,13 @@
 		621571F616CF7FA7003D96B4 /* SWBPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571F116CF7FA6003D96B4 /* SWBPage.m */; };
 		621571F716CF7FA7003D96B4 /* SWBPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571F316CF7FA6003D96B4 /* SWBPageManager.m */; };
 		621571FC16CF7FE6003D96B4 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571FB16CF7FE6003D96B4 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		628693E116DA2578008B1A26 /* AppProxyCap.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693E016DA2578008B1A26 /* AppProxyCap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		628693E716DA2584008B1A26 /* interpose.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693E416DA2584008B1A26 /* interpose.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */; };
+		628693F616DA2817008B1A26 /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693EE16DA2815008B1A26 /* encrypt.c */; };
+		628693F716DA2817008B1A26 /* local.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F016DA2816008B1A26 /* local.m */; };
+		628693F816DA2817008B1A26 /* ProxySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */; };
+		628693FE16DA2983008B1A26 /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +78,19 @@
 		621571F316CF7FA6003D96B4 /* SWBPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBPageManager.m; sourceTree = "<group>"; };
 		621571FA16CF7FE6003D96B4 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		621571FB16CF7FE6003D96B4 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		628693DF16DA2578008B1A26 /* AppProxyCap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppProxyCap.h; path = AppProxyCap/lib/AppProxyCap.h; sourceTree = SOURCE_ROOT; };
+		628693E016DA2578008B1A26 /* AppProxyCap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppProxyCap.m; path = AppProxyCap/lib/AppProxyCap.m; sourceTree = SOURCE_ROOT; };
+		628693E416DA2584008B1A26 /* interpose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = interpose.c; path = AppProxyCap/lib/inject_and_interpose/interpose.c; sourceTree = SOURCE_ROOT; };
+		628693E516DA2584008B1A26 /* interpose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = interpose.h; path = AppProxyCap/lib/inject_and_interpose/interpose.h; sourceTree = SOURCE_ROOT; };
+		628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		628693EE16DA2815008B1A26 /* encrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encrypt.c; sourceTree = "<group>"; };
+		628693EF16DA2816008B1A26 /* encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encrypt.h; sourceTree = "<group>"; };
+		628693F016DA2816008B1A26 /* local.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = local.m; sourceTree = "<group>"; };
+		628693F116DA2816008B1A26 /* local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = local.h; sourceTree = "<group>"; };
+		628693F216DA2816008B1A26 /* socks5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socks5.h; sourceTree = "<group>"; };
+		628693F316DA2817008B1A26 /* ProxySettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxySettingsTableViewController.h; sourceTree = "<group>"; };
+		628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxySettingsTableViewController.m; sourceTree = "<group>"; };
+		628693FD16DA2983008B1A26 /* ev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ev.c; path = libev/ev.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */,
 				621571A916CF6BCB003D96B4 /* UIKit.framework in Frameworks */,
 				621571AB16CF6BCB003D96B4 /* Foundation.framework in Frameworks */,
 				621571AD16CF6BCB003D96B4 /* CoreGraphics.framework in Frameworks */,
@@ -107,6 +128,7 @@
 		621571A716CF6BCB003D96B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */,
 				621571A816CF6BCB003D96B4 /* UIKit.framework */,
 				621571AA16CF6BCB003D96B4 /* Foundation.framework */,
 				621571AC16CF6BCB003D96B4 /* CoreGraphics.framework */,
@@ -117,6 +139,9 @@
 		621571AE16CF6BCB003D96B4 /* ShadowWeb */ = {
 			isa = PBXGroup;
 			children = (
+				628693FA16DA2823008B1A26 /* Shadowsocks */,
+				628693F916DA281C008B1A26 /* libev */,
+				628693DE16DA2564008B1A26 /* AppProxyCap */,
 				621571F916CF7FDB003D96B4 /* JSONKit */,
 				621571EC16CF7810003D96B4 /* Others */,
 				621571E216CF74BC003D96B4 /* WebView */,
@@ -204,6 +229,39 @@
 			name = JSONKit;
 			sourceTree = "<group>";
 		};
+		628693DE16DA2564008B1A26 /* AppProxyCap */ = {
+			isa = PBXGroup;
+			children = (
+				628693DF16DA2578008B1A26 /* AppProxyCap.h */,
+				628693E016DA2578008B1A26 /* AppProxyCap.m */,
+				628693E416DA2584008B1A26 /* interpose.c */,
+				628693E516DA2584008B1A26 /* interpose.h */,
+			);
+			name = AppProxyCap;
+			sourceTree = "<group>";
+		};
+		628693F916DA281C008B1A26 /* libev */ = {
+			isa = PBXGroup;
+			children = (
+				628693FD16DA2983008B1A26 /* ev.c */,
+			);
+			name = libev;
+			sourceTree = "<group>";
+		};
+		628693FA16DA2823008B1A26 /* Shadowsocks */ = {
+			isa = PBXGroup;
+			children = (
+				628693EE16DA2815008B1A26 /* encrypt.c */,
+				628693EF16DA2816008B1A26 /* encrypt.h */,
+				628693F016DA2816008B1A26 /* local.m */,
+				628693F116DA2816008B1A26 /* local.h */,
+				628693F216DA2816008B1A26 /* socks5.h */,
+				628693F316DA2817008B1A26 /* ProxySettingsTableViewController.h */,
+				628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */,
+			);
+			name = Shadowsocks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,6 +343,12 @@
 				621571F616CF7FA7003D96B4 /* SWBPage.m in Sources */,
 				621571F716CF7FA7003D96B4 /* SWBPageManager.m in Sources */,
 				621571FC16CF7FE6003D96B4 /* JSONKit.m in Sources */,
+				628693E116DA2578008B1A26 /* AppProxyCap.m in Sources */,
+				628693E716DA2584008B1A26 /* interpose.c in Sources */,
+				628693F616DA2817008B1A26 /* encrypt.c in Sources */,
+				628693F716DA2817008B1A26 /* local.m in Sources */,
+				628693F816DA2817008B1A26 /* ProxySettingsTableViewController.m in Sources */,
+				628693FE16DA2983008B1A26 /* ev.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +391,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -352,7 +416,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

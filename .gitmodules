@@ -1,0 +1,3 @@
+[submodule "AppProxyCap"]
+	path = AppProxyCap
+	url = https://github.com/clowwindy/AppProxyCap

@@ -9,11 +9,21 @@
 #import "SWBAppDelegate.h"
 
 #import "SWBViewController.h"
+#import "ProxySettingsTableViewController.h"
 
 @implementation SWBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        
+    }];
+    dispatch_queue_t dis = dispatch_queue_create("background", NULL);
+    dispatch_async(dis, ^{
+        [self runProxy];
+    });
+    
     self.networkActivityIndicatorManager = [[SWBNetworkActivityIndicatorManager alloc] init];
     
     
@@ -53,4 +63,16 @@
     [((SWBViewController *) self.window.rootViewController) saveData];
 }
 
+#pragma mark - Run proxy
+
+-(void)runProxy {
+    [ProxySettingsTableViewController reloadConfig];
+    for(;;) {
+        if ([ProxySettingsTableViewController runProxy]) {
+            sleep(1);
+        } else {
+            sleep(2);
+        }
+    }
+}
 @end
