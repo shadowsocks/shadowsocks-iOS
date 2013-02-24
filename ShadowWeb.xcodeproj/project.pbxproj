@@ -405,6 +405,7 @@
 				621571CD16CF6BCB003D96B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

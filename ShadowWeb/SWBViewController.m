@@ -234,6 +234,7 @@
 
 -(void)initActionSheet {
     self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"New Tab", @"Back", @"Forward", @"Settings", nil];
+    [_actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -449,7 +450,6 @@
     [_addrbar setItems:_addrItemsActive animated:YES];
     
     [UIView beginAnimations:nil context:NULL];
-    // TODO: calculate this numbers
     CGRect bounds = [_addrbar bounds];
     bounds = CGRectInset(bounds, 12 + kCancelButtonWidth * 0.5f , 7);
     bounds = CGRectOffset(bounds, -kCancelButtonWidth * 0.5f, 0);
