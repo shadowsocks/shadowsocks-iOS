@@ -82,6 +82,9 @@
      selector:@selector(keyboardHiden:)
      name:UIKeyboardWillHideNotification
      object:nil];
+    
+    // ActionSheet
+    [self initActionSheet];
 
 }
 
@@ -227,6 +230,33 @@
     }
 }
 
+#pragma mark - ActionSheet
+
+-(void)initActionSheet {
+    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"New Tab", @"Back", @"Forward", @"Settings", nil];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            [self openLinkInNewTab:kNewTabAddress];
+            _urlField.text = @"";
+            [NSTimer scheduledTimerWithTimeInterval:0.20 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];
+            break;
+        case 1:
+            [[self currentWebView] goBack];
+            break;
+        case 2:
+            [[self currentWebView] goForward];
+            break;
+        case 3:
+            // TODO: implement this
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark - TabBar
 
 
@@ -254,9 +284,7 @@
 
 
 -(void)tabBarViewNewTabButtonDidClick {
-    [self openLinkInNewTab:kNewTabAddress];
-    _urlField.text = @"";
-    [NSTimer scheduledTimerWithTimeInterval:0.20 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];
+    [self.actionSheet showInView:self.view];
 }
 
 -(void)tabBarViewTabDidClose:(SWBTab *)tab {
@@ -405,7 +433,6 @@
     [_addrbar setItems:_addrItemsInactive animated:YES];
     
     [UIView beginAnimations:nil context:NULL];
-    // TODO: calculate this numbers
     CGRect bounds = [_addrbar bounds];
     bounds = CGRectInset(bounds, 12, 7);
     [_urlField setFrame:bounds];
