@@ -78,7 +78,7 @@
 
 
 // don't touch this!! it's magic!!
-#define kPaddingTop 1.0
+#define kPaddingTop 0.0
 #define kPaddingBottom 2.5
 #define kCtlX 5
 #define kCtlY 0
@@ -102,12 +102,9 @@
 -(void)addOutline:(CGContextRef)context width:(CGFloat)width height:(CGFloat)height close:(BOOL)close
 {
 	CGContextMoveToPoint(context, 0, kPaddingTop);
-//	CGContextAddLineToPoint(context, 4, height-8);
-//    CGContextAddArcToPoint(context, 4, height-8, 4 * 2, height - 4, 4);
     
     // draw left half
     CGContextAddQuadCurveToPoint(context, kCtlX, kPaddingTop + kCtlY, kTargetX, kTargetY + kPaddingTop);
-//	CGContextAddLineToPoint(context, kTotalXDelta - kTargetX, height - kTargetY - kPaddingBottom);
     CGContextAddQuadCurveToPoint(context, kTotalXDelta - kCtlX, height - kPaddingBottom - kCtlY, kTotalXDelta, height - kPaddingBottom);
     
     // draw bottom
@@ -115,11 +112,8 @@
     
     //draw right half
 	CGContextAddQuadCurveToPoint(context, width - (kTotalXDelta - kCtlX), height - kPaddingBottom - kCtlY, width - (kTotalXDelta - kTargetX), height - kTargetY - kPaddingBottom);
-//	CGContextAddLineToPoint(context, width - (kTotalXDelta - kTargetX), height - kTargetY - kPaddingBottom);
 	CGContextAddQuadCurveToPoint(context, width - kCtlX, kPaddingTop + kCtlY, width, kPaddingTop);
     
-//	CGContextAddLineToPoint(context, width, 2);
-//	CGContextAddLineToPoint(context, 10, 2);
 	
     // And close the subpath.
     if (close) {
@@ -133,13 +127,11 @@
 {
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGContextClipToRect(context, rect);
     
     CGColorSpaceRef myColorspace = CGColorSpaceCreateDeviceRGB();
     
 	CGFloat height = self.bounds.size.height;
     CGFloat width = self.bounds.size.width;
-//	CGContextClip(context);
     
     // draw shadow
     
@@ -197,11 +189,7 @@
     myStartPoint.x = 0;
     myStartPoint.y = 0;
     myEndPoint.x = 0;
-    myEndPoint.y = height;//    CGContextSetRGBFillColor(context, 1, 0, 0, 1);
-//    CGContextFillRect(context, rect);
-    
-    
-
+    myEndPoint.y = height;
     
 	[self addOutline:context width:width height:height close:YES];
 
@@ -222,17 +210,17 @@
 	[self addOutline:context width:width height:height close:NO];
     CGContextDrawPath(context, kCGPathStroke);
     
-    // draw top line
+    // draw top white line
     
-    CGContextSetLineWidth(context, 2);
+    CGContextSetLineWidth(context, 1);
     if (self.focused) {
         CGContextSetRGBStrokeColor(context, 0.99, 0.99, 0.99, 1);
     } else {
         CGContextSetRGBStrokeColor(context, 0.6, 0.6, 0.6, 1);
     }
     
-    CGContextMoveToPoint(context, 1, 0);
-    CGContextAddLineToPoint(context, width - 1, 0);
+    CGContextMoveToPoint(context, 3, 0);
+    CGContextAddLineToPoint(context, width - 3, 0);
     CGContextStrokePath(context);
     
     CGColorSpaceRelease(myColorspace);

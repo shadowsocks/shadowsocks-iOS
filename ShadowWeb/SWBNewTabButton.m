@@ -38,7 +38,7 @@
 
 #define kCrossFillColor 0.65
 #define kCrossPressedFillColor 0.5
-#define kCrossStrokeColor 0.4
+#define kCrossStrokeColor 0.5
 #define kCrossPressedShadowColor 0.0
 #define kCrossShadowColor 1.0
 #define kCrossPadding 10.5
