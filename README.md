@@ -11,6 +11,7 @@ In other words, you can't let other apps go through this proxy.
 
 If you've jailbroken your iPhone, you can use [Python](https://github.com/clowwindy/shadowsocks) /
 [Go](https://github.com/shadowsocks/shadowsocks-go) version of shadowsocks directly on your iPhone.
+Or you can use jailbroken version [MobileShadowSocks](https://github.com/linusyang/MobileShadowSocks)
 
 install
 -----------
