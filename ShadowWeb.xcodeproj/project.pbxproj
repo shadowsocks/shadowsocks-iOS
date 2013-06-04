@@ -32,7 +32,7 @@
 		628693E116DA2578008B1A26 /* AppProxyCap.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693E016DA2578008B1A26 /* AppProxyCap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		628693E716DA2584008B1A26 /* interpose.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693E416DA2584008B1A26 /* interpose.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */; };
-		628693F616DA2817008B1A26 /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693EE16DA2815008B1A26 /* encrypt.c */; };
+		628693F616DA2817008B1A26 /* encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693EE16DA2815008B1A26 /* encrypt.m */; };
 		628693F716DA2817008B1A26 /* local.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F016DA2816008B1A26 /* local.m */; };
 		628693F816DA2817008B1A26 /* ProxySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */; };
 		628693FE16DA2983008B1A26 /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
@@ -84,7 +84,7 @@
 		628693E416DA2584008B1A26 /* interpose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = interpose.c; path = AppProxyCap/lib/inject_and_interpose/interpose.c; sourceTree = SOURCE_ROOT; };
 		628693E516DA2584008B1A26 /* interpose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = interpose.h; path = AppProxyCap/lib/inject_and_interpose/interpose.h; sourceTree = SOURCE_ROOT; };
 		628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		628693EE16DA2815008B1A26 /* encrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encrypt.c; sourceTree = "<group>"; };
+		628693EE16DA2815008B1A26 /* encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = encrypt.m; sourceTree = "<group>"; };
 		628693EF16DA2816008B1A26 /* encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encrypt.h; sourceTree = "<group>"; };
 		628693F016DA2816008B1A26 /* local.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = local.m; sourceTree = "<group>"; };
 		628693F116DA2816008B1A26 /* local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = local.h; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 		628693FA16DA2823008B1A26 /* Shadowsocks */ = {
 			isa = PBXGroup;
 			children = (
-				628693EE16DA2815008B1A26 /* encrypt.c */,
+				628693EE16DA2815008B1A26 /* encrypt.m */,
 				628693EF16DA2816008B1A26 /* encrypt.h */,
 				628693F016DA2816008B1A26 /* local.m */,
 				628693F116DA2816008B1A26 /* local.h */,
@@ -349,7 +349,7 @@
 				621571FC16CF7FE6003D96B4 /* JSONKit.m in Sources */,
 				628693E116DA2578008B1A26 /* AppProxyCap.m in Sources */,
 				628693E716DA2584008B1A26 /* interpose.c in Sources */,
-				628693F616DA2817008B1A26 /* encrypt.c in Sources */,
+				628693F616DA2817008B1A26 /* encrypt.m in Sources */,
 				628693F716DA2817008B1A26 /* local.m in Sources */,
 				628693F816DA2817008B1A26 /* ProxySettingsTableViewController.m in Sources */,
 				628693FE16DA2983008B1A26 /* ev.c in Sources */,
