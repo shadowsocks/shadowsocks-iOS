@@ -37,6 +37,7 @@
 		628693F816DA2817008B1A26 /* ProxySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */; };
 		628693FE16DA2983008B1A26 /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
 		62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
+		62CD119C175E3E17008C4D0C /* table.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CD119B175E3E17008C4D0C /* table.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,8 @@
 		628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxySettingsTableViewController.m; sourceTree = "<group>"; };
 		628693FD16DA2983008B1A26 /* ev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ev.c; path = libev/ev.c; sourceTree = "<group>"; };
 		62CD1199175E3BD7008C4D0C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "OpenSSL-for-iPhone/lib/libcrypto.a"; sourceTree = "<group>"; };
+		62CD119B175E3E17008C4D0C /* table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = table.m; sourceTree = "<group>"; };
+		62CD119D175E3E23008C4D0C /* table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = table.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,10 +258,12 @@
 		628693FA16DA2823008B1A26 /* Shadowsocks */ = {
 			isa = PBXGroup;
 			children = (
-				628693EE16DA2815008B1A26 /* encrypt.m */,
 				628693EF16DA2816008B1A26 /* encrypt.h */,
-				628693F016DA2816008B1A26 /* local.m */,
+				628693EE16DA2815008B1A26 /* encrypt.m */,
+				62CD119D175E3E23008C4D0C /* table.h */,
+				62CD119B175E3E17008C4D0C /* table.m */,
 				628693F116DA2816008B1A26 /* local.h */,
+				628693F016DA2816008B1A26 /* local.m */,
 				628693F216DA2816008B1A26 /* socks5.h */,
 				628693F316DA2817008B1A26 /* ProxySettingsTableViewController.h */,
 				628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */,
@@ -353,6 +358,7 @@
 				628693F716DA2817008B1A26 /* local.m in Sources */,
 				628693F816DA2817008B1A26 /* ProxySettingsTableViewController.m in Sources */,
 				628693FE16DA2983008B1A26 /* ev.c in Sources */,
+				62CD119C175E3E17008C4D0C /* table.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
