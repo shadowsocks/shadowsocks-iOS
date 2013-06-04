@@ -117,7 +117,6 @@
 		6215719C16CF6BCA003D96B4 = {
 			isa = PBXGroup;
 			children = (
-				62CD1199175E3BD7008C4D0C /* libcrypto.a */,
 				621571AE16CF6BCB003D96B4 /* ShadowWeb */,
 				621571A716CF6BCB003D96B4 /* Frameworks */,
 				621571A616CF6BCB003D96B4 /* Products */,
@@ -135,6 +134,7 @@
 		621571A716CF6BCB003D96B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				62CD1199175E3BD7008C4D0C /* libcrypto.a */,
 				628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */,
 				621571A816CF6BCB003D96B4 /* UIKit.framework */,
 				621571AA16CF6BCB003D96B4 /* Foundation.framework */,
