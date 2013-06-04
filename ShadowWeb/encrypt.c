@@ -1,4 +1,6 @@
-#import <CommonCrypto/CommonDigest.h>
+#import <stdint.h>
+#import <openssl/md5.h>
+#import <openssl/evp.h>
 #include "encrypt.h"
 
 
@@ -147,7 +149,7 @@ void get_table(const char* key) {
     unsigned char *table = encrypt_table;
     unsigned char tmp_hash[16];
 //    tmp_hash = MD5((const unsigned char*)key, strlen(key), NULL);
-    CC_MD5(key, strlen(key), tmp_hash);
+    MD5(key, strlen(key), tmp_hash);
     _a = *(unsigned long long *)tmp_hash;
     _a = *(uint64_t *)tmp_hash;
     uint32_t i;

@@ -36,6 +36,7 @@
 		628693F716DA2817008B1A26 /* local.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F016DA2816008B1A26 /* local.m */; };
 		628693F816DA2817008B1A26 /* ProxySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */; };
 		628693FE16DA2983008B1A26 /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
+		62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		628693F316DA2817008B1A26 /* ProxySettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxySettingsTableViewController.h; sourceTree = "<group>"; };
 		628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxySettingsTableViewController.m; sourceTree = "<group>"; };
 		628693FD16DA2983008B1A26 /* ev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ev.c; path = libev/ev.c; sourceTree = "<group>"; };
+		62CD1199175E3BD7008C4D0C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "OpenSSL-for-iPhone/lib/libcrypto.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */,
 				628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */,
 				621571A916CF6BCB003D96B4 /* UIKit.framework in Frameworks */,
 				621571AB16CF6BCB003D96B4 /* Foundation.framework in Frameworks */,
@@ -111,6 +114,7 @@
 		6215719C16CF6BCA003D96B4 = {
 			isa = PBXGroup;
 			children = (
+				62CD1199175E3BD7008C4D0C /* libcrypto.a */,
 				621571AE16CF6BCB003D96B4 /* ShadowWeb */,
 				621571A716CF6BCB003D96B4 /* Frameworks */,
 				621571A616CF6BCB003D96B4 /* Products */,
@@ -391,6 +395,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "OpenSSL-for-iPhone/include/";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -416,6 +421,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "OpenSSL-for-iPhone/include/";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
@@ -432,6 +438,10 @@
 				GCC_PREFIX_HEADER = "ShadowWeb/ShadowWeb-Prefix.pch";
 				INFOPLIST_FILE = "ShadowWeb/ShadowWeb-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OpenSSL-for-iPhone/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -445,6 +455,10 @@
 				GCC_PREFIX_HEADER = "ShadowWeb/ShadowWeb-Prefix.pch";
 				INFOPLIST_FILE = "ShadowWeb/ShadowWeb-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OpenSSL-for-iPhone/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -7,7 +7,8 @@
 
 unsigned char encrypt_table[256];
 unsigned char decrypt_table[256];
-void get_table(const char* key);
+__deprecated void get_table(const char* key);
+void init_encryption(const char* password, const char*method);
 void encrypt(char *buf, int len);
 void decrypt(char *buf, int len);
 int send_encrypt(int sock, char *buf, int len, int flags);
