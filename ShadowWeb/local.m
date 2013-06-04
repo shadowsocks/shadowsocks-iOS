@@ -1,26 +1,11 @@
 #include <sys/socket.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 #include <arpa/inet.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <locale.h>
 #include <netdb.h>
-#include <netinet/in.h>
 #include <netinet/tcp.h>
-#include <pthread.h>
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <strings.h>
-#include <time.h>
-#include <unistd.h>
-
-#import <Foundation/Foundation.h>
 
 #include "local.h"
 #include "socks5.h"
+#include "table.h"
 #include "encrypt.h"
 
 #define ADDR_STR_LEN 512
