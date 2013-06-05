@@ -47,15 +47,15 @@ void encrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
             int out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
             unsigned char *cipher_text = malloc(out_len);
             EVP_CipherUpdate(ctx->ctx, cipher_text, &out_len, buf, *len);
-            strncpy(buf, iv, iv_len);
-            strncpy(buf + iv_len, cipher_text, out_len);
+            memcpy(buf, iv, iv_len);
+            memcpy(buf + iv_len, cipher_text, out_len);
             *len = iv_len + out_len;
             free(cipher_text);
         } else {
             int out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
             unsigned char *cipher_text = malloc(out_len);
             EVP_CipherUpdate(ctx->ctx, cipher_text, &out_len, buf, *len);
-            strncpy(buf, cipher_text, out_len);
+            memcpy(buf, cipher_text, out_len);
             *len = out_len;
             free(cipher_text);
         }
@@ -73,14 +73,14 @@ void decrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
             out_len -= iv_len;
             unsigned char *cipher_text = malloc(out_len);
             EVP_CipherUpdate(ctx->ctx, cipher_text, &out_len, buf + iv_len, *len - iv_len);
-            strncpy(buf, cipher_text, out_len);
+            memcpy(buf, cipher_text, out_len);
             *len = out_len - iv_len;
             free(cipher_text);
         } else {
             int out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
             unsigned char *cipher_text = malloc(out_len);
             EVP_CipherUpdate(ctx->ctx, cipher_text, &out_len, buf, *len);
-            strncpy(buf, cipher_text, out_len);
+            memcpy(buf, cipher_text, out_len);
             *len = out_len;
             free(cipher_text);
         }
@@ -124,10 +124,11 @@ void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len
             // TODO free memory and report error
             return;
         }
+        EVP_CIPHER_CTX_set_padding(ctx->ctx, 1);
+
         EVP_CipherInit_ex(ctx->ctx, NULL, NULL, key, iv, is_cipher);
         ctx->status = STATUS_INIT;
 
-        EVP_CIPHER_CTX_set_padding(ctx->ctx, 1);
     }
 }
 
