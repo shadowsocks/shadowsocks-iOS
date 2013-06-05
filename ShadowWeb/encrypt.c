@@ -74,7 +74,7 @@ void decrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
             unsigned char *cipher_text = malloc(out_len);
             EVP_CipherUpdate(ctx->ctx, cipher_text, &out_len, buf + iv_len, *len - iv_len);
             memcpy(buf, cipher_text, out_len);
-            *len = out_len - iv_len;
+            *len = out_len;
             free(cipher_text);
         } else {
             int out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);

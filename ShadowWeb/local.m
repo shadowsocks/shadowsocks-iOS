@@ -6,7 +6,6 @@
 #include "local.h"
 #include "socks5.h"
 #include "table.h"
-#include "encrypt.h"
 
 #define ADDR_STR_LEN 512
 
@@ -304,7 +303,7 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 		return;
 	}
 	while (1) {
-		ssize_t r = recv(remote->fd, server->buf, BUF_SIZE, 0);
+		int r = recv(remote->fd, server->buf, BUF_SIZE, 0);
 
 		if (r == 0) {
 			// connection closed
@@ -327,6 +326,7 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 			}
 		}
 		decrypt_buf(&(remote->recv_encryption_ctx), server->buf, &r);
+        NSLog(@"%@", [NSString stringWithCString:server->buf length:r]);
 		int w = send(server->fd, server->buf, r, 0);
 		if(w == -1) {
 			if (errno == EAGAIN) {
