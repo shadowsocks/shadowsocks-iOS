@@ -14,6 +14,8 @@
 
 char _server[SAVED_STR_LEN];
 char _remote_port[SAVED_STR_LEN];
+char _method[SAVED_STR_LEN];
+char _password[SAVED_STR_LEN];
 
 struct client_ctx {
     ev_io io;
@@ -92,7 +94,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
             buf_len = &server->buf_len;
         }
         
-		ssize_t r = recv(server->fd, buf, BUF_SIZE, 0);
+		int r = recv(server->fd, buf, BUF_SIZE, 0);
 
 		if (r == 0) {
 			// connection closed
@@ -117,7 +119,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 
         // local socks5 server
 		if (server->stage == 5) {
-            encrypt(remote->buf, r);
+            encrypt_buf(&(remote->send_encryption_ctx), remote->buf, &r);
 			int w = send(remote->fd, remote->buf, r, 0);
 			if(w == -1) {
 				if (errno == EAGAIN) {
@@ -169,7 +171,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 			}
 
             char addr_to_send[ADDR_STR_LEN];
-            unsigned char addr_len = 0;
+            int addr_len = 0;
             addr_to_send[addr_len++] = request->atyp;
 
             
@@ -206,7 +208,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 				return;
 			}
             
-            int n = send_encrypt(remote->fd, addr_to_send, addr_len, 0);
+            int n = send_encrypt(&(remote->send_encryption_ctx), remote->fd, addr_to_send, &addr_len, 0);
             if (n != addr_len) {
                 NSLog(@"header not completely sent: n != addr_len: n==%d, addr_len==%d", n, addr_len);
 				close_and_free_remote(EV_A_ remote);
@@ -324,7 +326,7 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 				return;
 			}
 		}
-		decrypt(server->buf, r);
+		decrypt_buf(&(remote->recv_encryption_ctx), server->buf, &r);
 		int w = send(server->fd, server->buf, r, 0);
 		if(w == -1) {
 			if (errno == EAGAIN) {
@@ -435,6 +437,8 @@ struct remote* new_remote(int fd) {
 	remote->send_ctx->remote = remote;
 	remote->send_ctx->connected = 0;
     remote->server = NULL;
+    init_encryption(&(remote->recv_encryption_ctx), _password, _method);
+    init_encryption(&(remote->send_encryption_ctx), _password, _method);
 	return remote;
 }
 void free_remote(struct remote *remote) {
@@ -539,14 +543,19 @@ static void accept_cb (EV_P_ ev_io *w, int revents)
 	}
 }
 
-void set_config(const char *server, const char *remote_port, const char* password) {
+void set_config(const char *server, const char *remote_port, const char* password, const char* method) {
     assert(strlen(server) < SAVED_STR_LEN);
     assert(strlen(remote_port) < SAVED_STR_LEN);
+    assert(strlen(password) < SAVED_STR_LEN);
+    assert(strlen(method) < SAVED_STR_LEN);
     strcpy(_server, server);
     strcpy(_remote_port, remote_port);
+    strcpy(_password, password);
+    strcpy(_method, method);
 #ifdef DEBUG
     NSLog(@"calculating ciphers");
 #endif
+    // TODO move to encrypt.m
     get_table(password);
 }
 
