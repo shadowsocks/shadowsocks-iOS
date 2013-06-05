@@ -562,7 +562,27 @@ void set_config(const char *server, const char *remote_port, const char* passwor
 #ifdef DEBUG
     NSLog(@"calculating ciphers");
 #endif
-    get_table(password);
+    NSString *cache_key_encrypt = [NSString stringWithFormat:@"EncryptTable_%s", password];
+    NSString *cache_key_decrypt = [NSString stringWithFormat:@"DecryptTable_%s", password];
+    NSData *cached_encrypt_table = [[NSUserDefaults standardUserDefaults] objectForKey:cache_key_encrypt];
+    NSData *cached_decrypt_table = [[NSUserDefaults standardUserDefaults] objectForKey:cache_key_decrypt];
+    if (cached_encrypt_table && cached_decrypt_table) {
+#ifdef DEBUG
+        NSLog(@"load ciphers from cache");
+#endif
+        [cached_encrypt_table getBytes:encrypt_table length:sizeof(encrypt_table)];
+        [cached_decrypt_table getBytes:decrypt_table length:sizeof(decrypt_table)];
+    }
+    else {
+#ifdef DEBUG
+        NSLog(@"calculating ciphers from scratch");
+#endif
+        get_table(password);
+        NSData *to_cache_encrypt_table = [NSData dataWithBytes:encrypt_table length:sizeof(encrypt_table)];
+        NSData *to_cache_decrypt_table = [NSData dataWithBytes:decrypt_table length:sizeof(decrypt_table)];
+        [[NSUserDefaults standardUserDefaults] setObject:to_cache_encrypt_table forKey:cache_key_encrypt];
+        [[NSUserDefaults standardUserDefaults] setObject:to_cache_decrypt_table forKey:cache_key_decrypt];
+    }
 }
 
 int local_main ()
