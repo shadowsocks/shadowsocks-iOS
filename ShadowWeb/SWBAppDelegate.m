@@ -27,23 +27,16 @@
     NSData *pacData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac"]];
     GCDWebServer *webServer = [[GCDWebServer alloc] init];
     [webServer addHandlerForMethod:@"GET" path:@"/proxy.pac" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
-        return nil;
-    }];
-    [webServer addDefaultHandlerForMethod:@"GET"
-                             requestClass:[GCDWebServerRequest class]
-                             processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
-                                 return [GCDWebServerDataResponse responseWithData:pacData contentType:@"application/x-ns-proxy-autoconfig"];
+             return [GCDWebServerDataResponse responseWithData:pacData contentType:@"application/x-ns-proxy-autoconfig"];
 
-                             }
+         }
     ];
 
     NSData *mobileconfig = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"shadowsocks" withExtension:@"mobileconfig"]];
-    [webServer addDefaultHandlerForMethod:@"GET"
-                             requestClass:[GCDWebServerRequest class]
-                             processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
-                                 return [GCDWebServerDataResponse responseWithData:mobileconfig contentType:@"application/x-apple-aspen-config"];
+    [webServer addHandlerForMethod:@"GET" path:@"/apn" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
+             return [GCDWebServerDataResponse responseWithData:mobileconfig contentType:@"application/x-apple-aspen-config"];
 
-                             }
+         }
     ];
 
 

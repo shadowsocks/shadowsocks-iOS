@@ -45,6 +45,7 @@
 		628693FE16DA2983008B1A26 /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
 		62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
 		62CD119C175E3E17008C4D0C /* table.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CD119B175E3E17008C4D0C /* table.m */; };
+		EB1891FD5CE9480608918422 /* SimpleTableViewSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1897832237B71EF50B3DF4 /* SimpleTableViewSource.m */; };
 		EB189A01F66776EC1714F32D /* shadowsocks.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897A8F80969EC7477F89D /* shadowsocks.mobileconfig */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,8 @@
 		62CD1199175E3BD7008C4D0C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "OpenSSL-for-iPhone/lib/libcrypto.a"; sourceTree = "<group>"; };
 		62CD119B175E3E17008C4D0C /* table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = table.m; sourceTree = "<group>"; };
 		62CD119D175E3E23008C4D0C /* table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = table.h; sourceTree = "<group>"; };
+		EB18942F05960F64CC059413 /* SimpleTableViewSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableViewSource.h; sourceTree = "<group>"; };
+		EB1897832237B71EF50B3DF4 /* SimpleTableViewSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableViewSource.m; sourceTree = "<group>"; };
 		EB1897A8F80969EC7477F89D /* shadowsocks.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file.mobileconfig; path = shadowsocks.mobileconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -313,6 +316,8 @@
 				628693F216DA2816008B1A26 /* socks5.h */,
 				628693F316DA2817008B1A26 /* ProxySettingsTableViewController.h */,
 				628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */,
+				EB1897832237B71EF50B3DF4 /* SimpleTableViewSource.m */,
+				EB18942F05960F64CC059413 /* SimpleTableViewSource.h */,
 			);
 			name = Shadowsocks;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				621FCC0317603FFA00411E5F /* GCDWebServerConnection.m in Sources */,
 				621FCC0417603FFA00411E5F /* GCDWebServerRequest.m in Sources */,
 				621FCC0517603FFA00411E5F /* GCDWebServerResponse.m in Sources */,
+				EB1891FD5CE9480608918422 /* SimpleTableViewSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
