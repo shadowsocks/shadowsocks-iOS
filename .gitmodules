@@ -4,3 +4,6 @@
 [submodule "OpenSSL-for-iPhone"]
 	path = OpenSSL-for-iPhone
 	url = git://github.com/x2on/OpenSSL-for-iPhone.git
+[submodule "GCDWebServer"]
+	path = GCDWebServer
+	url = https://github.com/swisspol/GCDWebServer

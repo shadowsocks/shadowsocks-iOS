@@ -326,7 +326,6 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 			}
 		}
 		decrypt_buf(&(remote->recv_encryption_ctx), server->buf, &r);
-        NSLog(@"%@", [NSString stringWithCString:server->buf length:r]);
 		int w = send(server->fd, server->buf, r, 0);
 		if(w == -1) {
 			if (errno == EAGAIN) {

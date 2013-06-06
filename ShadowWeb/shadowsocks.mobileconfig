@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadContent</key>
+			<array>
+				<dict>
+					<key>DefaultsData</key>
+					<dict>
+						<key>apns</key>
+						<array>
+							<dict>
+								<key>apn</key>
+								<string>3GNET</string>
+								<key>proxy</key>
+								<string>127.0.0.1</string>
+								<key>proxyPort</key>
+								<integer>8080</integer>
+							</dict>
+						</array>
+					</dict>
+					<key>DefaultsDomainName</key>
+					<string>com.apple.managedCarrier</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>Provides customization of carrier Access Point Name.</string>
+			<key>PayloadDisplayName</key>
+			<string>APN</string>
+			<key>PayloadIdentifier</key>
+			<string>shadowsocks.</string>
+			<key>PayloadOrganization</key>
+			<string></string>
+			<key>PayloadType</key>
+			<string>com.apple.apn.managed</string>
+			<key>PayloadUUID</key>
+			<string>A12D2F19-60E2-42EC-8A34-E0AD051358D5</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Profile description.</string>
+	<key>PayloadDisplayName</key>
+	<string>shadowsocks</string>
+	<key>PayloadIdentifier</key>
+	<string>shadowsocks</string>
+	<key>PayloadOrganization</key>
+	<string></string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>82A1355E-926F-477D-BEAC-2CB5E919A68B</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
