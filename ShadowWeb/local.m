@@ -447,6 +447,8 @@ void free_remote(struct remote *remote) {
 		}
 		free(remote->recv_ctx);
 		free(remote->send_ctx);
+        cleanup_encryption(&(remote->recv_encryption_ctx));
+        cleanup_encryption(&(remote->send_encryption_ctx));
 		free(remote);
 	}
 }
@@ -455,8 +457,6 @@ void close_and_free_remote(EV_P_ struct remote *remote) {
 		ev_io_stop(EV_A_ &remote->send_ctx->io);
 		ev_io_stop(EV_A_ &remote->recv_ctx->io);
 		close(remote->fd);
-        cleanup_encryption(&(remote->recv_encryption_ctx));
-        cleanup_encryption(&(remote->send_encryption_ctx));
 		free_remote(remote);
 	}
 }
