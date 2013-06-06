@@ -8,25 +8,40 @@
 
 #import "SWBAppDelegate.h"
 
+#import "GCDWebServer.h"
 #import "SWBViewController.h"
 #import "ProxySettingsTableViewController.h"
 
 @implementation SWBAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
     [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        
+
     }];
-    dispatch_queue_t dis = dispatch_queue_create("background", NULL);
-    dispatch_async(dis, ^{
+    dispatch_queue_t proxy = dispatch_queue_create("proxy", NULL);
+    dispatch_async(proxy, ^{
         [self runProxy];
     });
-    
+
+    NSData *pacData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac"]];
+    GCDWebServer *webServer = [[GCDWebServer alloc] init];
+    [webServer addDefaultHandlerForMethod:@"GET"
+                             requestClass:[GCDWebServerRequest class]
+                             processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
+                                 return [GCDWebServerDataResponse responseWithData:pacData contentType:@"application/x-ns-proxy-autoconfig"];
+
+                             }
+    ];
+
+
+    dispatch_queue_t web = dispatch_queue_create("web", NULL);
+    dispatch_async(web, ^{
+        [webServer runWithPort:8080];
+    });
+
     self.networkActivityIndicatorManager = [[SWBNetworkActivityIndicatorManager alloc] init];
-    
-    
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[SWBViewController alloc] init];
     self.window.rootViewController = self.viewController;
@@ -34,40 +49,35 @@
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
+- (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
+- (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     [((SWBViewController *) self.window.rootViewController) saveData];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
+- (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
+- (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
+- (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [((SWBViewController *) self.window.rootViewController) saveData];
 }
 
 #pragma mark - Run proxy
 
--(void)runProxy {
+- (void)runProxy {
     [ProxySettingsTableViewController reloadConfig];
-    for(;;) {
+    for (; ;) {
         if ([ProxySettingsTableViewController runProxy]) {
             sleep(1);
         } else {
