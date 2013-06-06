@@ -103,6 +103,7 @@ int recv_decrypt(struct encryption_ctx *ctx, int sock, char *buf, int *len, int 
 }
 
 void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len, int is_cipher) {
+    ctx->status = STATUS_INIT;
     if (ctx->method != EncryptionTable) {
 //        assert(ctx->status == STATUS_EMPTY);
         const char* name = encryption_names[ctx->method];
@@ -118,7 +119,7 @@ void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len
         EVP_CIPHER_CTX_init(ctx->ctx);
         EVP_CipherInit_ex(ctx->ctx, cipher, NULL, NULL, NULL, is_cipher);
         if (!EVP_CIPHER_CTX_set_key_length(ctx->ctx, key_len)) {
-            EVP_CIPHER_CTX_cleanup(ctx->ctx);
+            cleanup_encryption(ctx);
 //            NSLog(@"Invalid key length");
 //            assert(0);
             // TODO free memory and report error
@@ -127,7 +128,6 @@ void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len
         EVP_CIPHER_CTX_set_padding(ctx->ctx, 1);
 
         EVP_CipherInit_ex(ctx->ctx, NULL, NULL, key, iv, is_cipher);
-        ctx->status = STATUS_INIT;
 
     }
 }
@@ -138,4 +138,11 @@ void init_encryption(struct encryption_ctx *ctx, const char *password, const cha
     ctx->password = password;
     ctx->method = encryption_method_from_string(method);
     ctx->ctx = EVP_CIPHER_CTX_new();
+}
+
+void cleanup_encryption(struct encryption_ctx* ctx) {
+    if (ctx->status == STATUS_INIT) {
+        EVP_CIPHER_CTX_cleanup(ctx->ctx);
+        ctx->status = STATUS_DESTORYED;
+    }
 }

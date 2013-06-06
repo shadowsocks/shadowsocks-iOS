@@ -32,3 +32,4 @@ int send_encrypt(struct encryption_ctx* ctx, int sock, char *buf, int *len, int 
 int recv_decrypt(struct encryption_ctx* ctx, int sock, char *buf, int *len, int flags);
 
 void init_encryption(struct encryption_ctx* ctx, const char *password, const char *method);
+void cleanup_encryption(struct encryption_ctx* ctx);
