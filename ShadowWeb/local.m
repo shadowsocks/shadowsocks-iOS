@@ -436,8 +436,8 @@ struct remote* new_remote(int fd) {
 	remote->send_ctx->remote = remote;
 	remote->send_ctx->connected = 0;
     remote->server = NULL;
-    init_encryption(&(remote->recv_encryption_ctx), _password, _method);
-    init_encryption(&(remote->send_encryption_ctx), _password, _method);
+    init_encryption(&(remote->recv_encryption_ctx));
+    init_encryption(&(remote->send_encryption_ctx));
 	return remote;
 }
 void free_remote(struct remote *remote) {
@@ -557,7 +557,7 @@ void set_config(const char *server, const char *remote_port, const char* passwor
     NSLog(@"calculating ciphers");
 #endif
     // TODO move to encrypt.m
-    get_table(password);
+    config_encryption(password, method);
 }
 
 int local_main ()

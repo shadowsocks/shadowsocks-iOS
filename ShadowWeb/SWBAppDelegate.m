@@ -49,7 +49,11 @@
 
     dispatch_queue_t web = dispatch_queue_create("web", NULL);
     dispatch_async(web, ^{
-        [webServer runWithPort:8080];
+        @try {
+            [webServer runWithPort:8080];
+        } @catch (NSException *e) {
+            NSLog(@"webserver quit with error: %@", e);
+        }
     });
 
     self.networkActivityIndicatorManager = [[SWBNetworkActivityIndicatorManager alloc] init];

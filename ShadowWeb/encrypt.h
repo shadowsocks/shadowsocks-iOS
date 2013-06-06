@@ -14,8 +14,6 @@ typedef enum {
 
 struct encryption_ctx {
     EVP_CIPHER_CTX* ctx;
-    EncryptionMethod method;
-    const char* password;
     uint8_t status;
 };
 
@@ -31,5 +29,7 @@ void decrypt_buf(struct encryption_ctx* ctx, char *buf, int *len);
 int send_encrypt(struct encryption_ctx* ctx, int sock, char *buf, int *len, int flags);
 int recv_decrypt(struct encryption_ctx* ctx, int sock, char *buf, int *len, int flags);
 
-void init_encryption(struct encryption_ctx* ctx, const char *password, const char *method);
+void init_encryption(struct encryption_ctx* ctx);
 void cleanup_encryption(struct encryption_ctx* ctx);
+
+void config_encryption(const char *password, const char *method);

@@ -22,6 +22,11 @@ static const char *encryption_names[] = {
         "bf-cfb"
 };
 
+static EncryptionMethod _method;
+static int _key_len;
+static const EVP_CIPHER *_cipher;
+static char _key[EVP_MAX_KEY_LENGTH];
+
 void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len, int is_cipher);
 
 EncryptionMethod encryption_method_from_string(const char *name) {
@@ -35,11 +40,11 @@ EncryptionMethod encryption_method_from_string(const char *name) {
 }
 
 void encrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
-    if (ctx->method == EncryptionTable) {
+    if (_method == EncryptionTable) {
         table_encrypt(buf, *len);
     } else {
         if (ctx->status == STATUS_EMPTY) {
-            int iv_len = encryption_iv_len[ctx->method];
+            int iv_len = encryption_iv_len[_method];
             unsigned char iv[EVP_MAX_IV_LENGTH];
             memset(iv, 0, iv_len);
             RAND_bytes(iv, iv_len);
@@ -63,11 +68,11 @@ void encrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
 }
 
 void decrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
-    if (ctx->method == EncryptionTable) {
+    if (_method == EncryptionTable) {
         table_decrypt(buf, *len);
     } else {
         if (ctx->status == STATUS_EMPTY) {
-            int iv_len = encryption_iv_len[ctx->method];
+            int iv_len = encryption_iv_len[_method];
             init_cipher(ctx, buf, iv_len, 0);
             int out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
             out_len -= iv_len;
@@ -104,21 +109,10 @@ int recv_decrypt(struct encryption_ctx *ctx, int sock, char *buf, int *len, int 
 
 void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len, int is_cipher) {
     ctx->status = STATUS_INIT;
-    if (ctx->method != EncryptionTable) {
-//        assert(ctx->status == STATUS_EMPTY);
-        const char* name = encryption_names[ctx->method];
-        const EVP_CIPHER *cipher = EVP_get_cipherbyname(name);
-        if (cipher == NULL) {
-//            assert(0);
-            // TODO
-        }
-        unsigned char key[EVP_MAX_KEY_LENGTH];
-        unsigned char tmp[EVP_MAX_IV_LENGTH];
-        int key_len = EVP_BytesToKey(cipher, EVP_md5(), NULL, ctx->password,
-                strlen(ctx->password), 1, key, tmp);
+    if (_method != EncryptionTable) {
         EVP_CIPHER_CTX_init(ctx->ctx);
-        EVP_CipherInit_ex(ctx->ctx, cipher, NULL, NULL, NULL, is_cipher);
-        if (!EVP_CIPHER_CTX_set_key_length(ctx->ctx, key_len)) {
+        EVP_CipherInit_ex(ctx->ctx, _cipher, NULL, NULL, NULL, is_cipher);
+        if (!EVP_CIPHER_CTX_set_key_length(ctx->ctx, _key_len)) {
             cleanup_encryption(ctx);
 //            NSLog(@"Invalid key length");
 //            assert(0);
@@ -127,22 +121,37 @@ void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len
         }
         EVP_CIPHER_CTX_set_padding(ctx->ctx, 1);
 
-        EVP_CipherInit_ex(ctx->ctx, NULL, NULL, key, iv, is_cipher);
+        EVP_CipherInit_ex(ctx->ctx, NULL, NULL, _key, iv, is_cipher);
 
     }
 }
 
-void init_encryption(struct encryption_ctx *ctx, const char *password, const char *method) {
-    SSLeay_add_all_algorithms();
+void init_encryption(struct encryption_ctx *ctx) {
     ctx->status = STATUS_EMPTY;
-    ctx->password = password;
-    ctx->method = encryption_method_from_string(method);
     ctx->ctx = EVP_CIPHER_CTX_new();
 }
 
-void cleanup_encryption(struct encryption_ctx* ctx) {
+void cleanup_encryption(struct encryption_ctx *ctx) {
     if (ctx->status == STATUS_INIT) {
         EVP_CIPHER_CTX_cleanup(ctx->ctx);
         ctx->status = STATUS_DESTORYED;
+    }
+}
+
+void config_encryption(const char *password, const char *method) {
+    SSLeay_add_all_algorithms();
+    _method = encryption_method_from_string(method);
+    if (_method != EncryptionTable) {
+    const char *name = encryption_names[_method];
+    _cipher = EVP_get_cipherbyname(name);
+    if (_cipher == NULL) {
+//            assert(0);
+        // TODO
+    }
+    unsigned char tmp[EVP_MAX_IV_LENGTH];
+    _key_len = EVP_BytesToKey(_cipher, EVP_md5(), NULL, password,
+            strlen(password), 1, _key, tmp);
+    } else {
+        get_table(password);
     }
 }
