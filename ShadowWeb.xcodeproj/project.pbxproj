@@ -47,6 +47,8 @@
 		62CD119C175E3E17008C4D0C /* table.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CD119B175E3E17008C4D0C /* table.m */; };
 		EB1891FD5CE9480608918422 /* SimpleTableViewSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1897832237B71EF50B3DF4 /* SimpleTableViewSource.m */; };
 		EB189A01F66776EC1714F32D /* shadowsocks.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897A8F80969EC7477F89D /* shadowsocks.mobileconfig */; };
+		96D80C03176CE1C4006C8078 /* Good.Time.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 96D80C02176CE1C4006C8078 /* Good.Time.m4r */; };
+		96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D80C04176CE1D7006C8078 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +123,8 @@
 		EB18942F05960F64CC059413 /* SimpleTableViewSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableViewSource.h; sourceTree = "<group>"; };
 		EB1897832237B71EF50B3DF4 /* SimpleTableViewSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableViewSource.m; sourceTree = "<group>"; };
 		EB1897A8F80969EC7477F89D /* shadowsocks.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file.mobileconfig; path = shadowsocks.mobileconfig; sourceTree = "<group>"; };
+		96D80C02176CE1C4006C8078 /* Good.Time.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = Good.Time.m4r; sourceTree = "<group>"; };
+		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 			files = (
 				621FCC091760400800411E5F /* CFNetwork.framework in Frameworks */,
 				621FCC071760400400411E5F /* MobileCoreServices.framework in Frameworks */,
+				96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */,
 				62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */,
 				628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */,
 				621571A916CF6BCB003D96B4 /* UIKit.framework in Frameworks */,
@@ -164,6 +169,7 @@
 				621FCC081760400800411E5F /* CFNetwork.framework */,
 				621FCC061760400400411E5F /* MobileCoreServices.framework */,
 				62597BD2175FA1D00090E8A6 /* libssl.a */,
+				96D80C04176CE1D7006C8078 /* AVFoundation.framework */,
 				62CD1199175E3BD7008C4D0C /* libcrypto.a */,
 				628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */,
 				621571A816CF6BCB003D96B4 /* UIKit.framework */,
@@ -197,6 +203,7 @@
 		621571AF16CF6BCB003D96B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96D80C02176CE1C4006C8078 /* Good.Time.m4r */,
 				621571B016CF6BCB003D96B4 /* ShadowWeb-Info.plist */,
 				621571B116CF6BCB003D96B4 /* InfoPlist.strings */,
 				621571B416CF6BCB003D96B4 /* main.m */,
@@ -380,6 +387,7 @@
 				621571BF16CF6BCB003D96B4 /* Default-568h@2x.png in Resources */,
 				621FCBF717603E5100411E5F /* proxy.pac in Resources */,
 				EB189A01F66776EC1714F32D /* shadowsocks.mobileconfig in Resources */,
+				96D80C03176CE1C4006C8078 /* Good.Time.m4r in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

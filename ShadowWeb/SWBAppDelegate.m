@@ -7,6 +7,7 @@
 //
 
 #import "SWBAppDelegate.h"
+#import <AVFoundation/AVFoundation.h>
 
 #import "GCDWebServer.h"
 #import "SWBViewController.h"
@@ -55,6 +56,22 @@
     self.viewController = [[SWBViewController alloc] init];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+    // Play music, so app can run in the backgound.
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setActive:YES error:nil];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"Good.Time" withExtension:@"m4r"];
+    
+    static AVAudioPlayer *player;
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    [player prepareToPlay];
+    [player setVolume:0];
+    player.numberOfLoops = -1;
+    [player play];
+    
     return YES;
 }
 
