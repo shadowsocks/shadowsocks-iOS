@@ -38,6 +38,8 @@
 		628693FE16DA2983008B1A26 /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
 		62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
 		62CD119C175E3E17008C4D0C /* table.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CD119B175E3E17008C4D0C /* table.m */; };
+		96D80C03176CE1C4006C8078 /* Good.Time.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 96D80C02176CE1C4006C8078 /* Good.Time.m4r */; };
+		96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D80C04176CE1D7006C8078 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,8 @@
 		62CD1199175E3BD7008C4D0C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "OpenSSL-for-iPhone/lib/libcrypto.a"; sourceTree = "<group>"; };
 		62CD119B175E3E17008C4D0C /* table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = table.m; sourceTree = "<group>"; };
 		62CD119D175E3E23008C4D0C /* table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = table.h; sourceTree = "<group>"; };
+		96D80C02176CE1C4006C8078 /* Good.Time.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = Good.Time.m4r; sourceTree = "<group>"; };
+		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */,
 				62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */,
 				628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */,
 				621571A916CF6BCB003D96B4 /* UIKit.framework in Frameworks */,
@@ -134,6 +139,7 @@
 		621571A716CF6BCB003D96B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96D80C04176CE1D7006C8078 /* AVFoundation.framework */,
 				62CD1199175E3BD7008C4D0C /* libcrypto.a */,
 				628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */,
 				621571A816CF6BCB003D96B4 /* UIKit.framework */,
@@ -166,6 +172,7 @@
 		621571AF16CF6BCB003D96B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96D80C02176CE1C4006C8078 /* Good.Time.m4r */,
 				621571B016CF6BCB003D96B4 /* ShadowWeb-Info.plist */,
 				621571B116CF6BCB003D96B4 /* InfoPlist.strings */,
 				621571B416CF6BCB003D96B4 /* main.m */,
@@ -327,6 +334,7 @@
 				621571BB16CF6BCB003D96B4 /* Default.png in Resources */,
 				621571BD16CF6BCB003D96B4 /* Default@2x.png in Resources */,
 				621571BF16CF6BCB003D96B4 /* Default-568h@2x.png in Resources */,
+				96D80C03176CE1C4006C8078 /* Good.Time.m4r in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
