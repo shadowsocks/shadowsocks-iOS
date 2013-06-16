@@ -226,6 +226,7 @@
                     SWBAppDelegate *appDelegate = (SWBAppDelegate *)[UIApplication sharedApplication].delegate;
                     NSString *v = (NSString *)value;
                     [appDelegate setPolipo:[v rangeOfString:@"enable"].length > 0];
+                    // TODO: open after 1s, using a timer
                     [[UIApplication sharedApplication] openURL:
                             [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:8080/apn?id=%@", (NSString *)value]]];
         }];

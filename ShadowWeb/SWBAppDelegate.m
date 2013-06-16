@@ -33,7 +33,7 @@ void polipo_exit();
     });
     
     [self proxyHttpStart];
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatePolipo) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updatePolipo) userInfo:nil repeats:YES];
 
     NSData *pacData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac"]];
     GCDWebServer *webServer = [[GCDWebServer alloc] init];
