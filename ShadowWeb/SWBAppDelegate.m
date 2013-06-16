@@ -13,6 +13,9 @@
 #import "SWBViewController.h"
 #import "ProxySettingsTableViewController.h"
 
+int polipo_main(int argc, char **argv);
+void polipo_exit();
+
 @implementation SWBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -24,6 +27,8 @@
     dispatch_async(proxy, ^{
         [self runProxy];
     });
+    
+    [self proxyHttpStart];
 
     NSData *pacData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac"]];
     GCDWebServer *webServer = [[GCDWebServer alloc] init];
@@ -63,7 +68,7 @@
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"Good.Time" withExtension:@"m4r"];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"silence" withExtension:@"wav"];
     
     static AVAudioPlayer *player;
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
@@ -111,4 +116,45 @@
         }
     }
 }
+
+
+#pragma mark polipo
+
+- (void) proxyHttpStart
+{
+    [NSThread detachNewThreadSelector:@selector(proxyHttpRun) toTarget:self withObject:nil];
+}
+
+- (void) proxyHttpStop
+{
+    polipo_exit();
+}
+
+
+- (void) proxyHttpRun
+{
+//    self.proxyHttpRunning = YES;
+    
+    @autoreleasepool {
+        
+        NSLog(@"http proxy start");
+        
+        NSString *configuration = [[NSBundle mainBundle] pathForResource:@"polipo" ofType:@"config"];
+        
+        char *args[5] = {
+            "test",
+            "-c",
+            (char*)[configuration UTF8String],
+            "proxyAddress=0.0.0.0",
+            (char*)[[NSString stringWithFormat:@"proxyPort=%d", 8081] UTF8String],
+        };
+        
+        polipo_main(5, args);
+        
+        NSLog(@"http proxy stop");
+    }
+//    self.proxyHttpRunning = NO;
+}
+
+
 @end

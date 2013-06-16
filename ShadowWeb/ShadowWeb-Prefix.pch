@@ -12,3 +12,8 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+
+// polipo
+#define HAS_STDINT_H
+

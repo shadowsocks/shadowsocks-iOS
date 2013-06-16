@@ -18,7 +18,7 @@
 								<key>proxy</key>
 								<string>127.0.0.1</string>
 								<key>proxyPort</key>
-								<integer>8080</integer>
+								<integer>8081</integer>
 							</dict>
 						</array>
 					</dict>
