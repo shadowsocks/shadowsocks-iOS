@@ -7,6 +7,7 @@
 //
 
 #import "ProxySettingsTableViewController.h"
+#import "SimpleTableViewSource.h"
 #import "local.h"
 
 // rows
@@ -20,9 +21,12 @@
 #define kIPKey @"proxy ip"
 #define kPortKey @"proxy port"
 #define kPasswordKey @"proxy password"
+#define kEncryptionKey @"proxy encryption"
 
 
-@interface ProxySettingsTableViewController ()
+@interface ProxySettingsTableViewController () {
+    SimpleTableViewSource *source;
+}
 
 @end
 
@@ -52,7 +56,11 @@
 
 +(void)reloadConfig {
     if (![ProxySettingsTableViewController settingsAreNotComplete]) {
-        set_config([[[NSUserDefaults standardUserDefaults] stringForKey:kIPKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kPortKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding], "aes-256-cfb");
+        NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kEncryptionKey];
+        if (!v) {
+            v = @"aes-256-cfb";
+        }
+        set_config([[[NSUserDefaults standardUserDefaults] stringForKey:kIPKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kPortKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding], [v cStringUsingEncoding:NSUTF8StringEncoding]);
     }
 }
 
@@ -72,7 +80,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
     UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
@@ -80,7 +88,7 @@
     self.navigationItem.title = NSLocalizedString(@"Proxy Settings", nil);;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -104,9 +112,9 @@
     [self saveConfigForKey:kIPKey value:ipField.text];
     [self saveConfigForKey:kPortKey value:portField.text];
     [self saveConfigForKey:kPasswordKey value:passwordField.text];
-    
+
     [ProxySettingsTableViewController reloadConfig];
-    
+
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -127,11 +135,17 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 3) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
+        cell.textLabel.text = @"Encryption Method";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"aaaaa"];
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
     textField.adjustsFontSizeToFitWidth = YES;
@@ -165,7 +179,7 @@
     }
     [cell addSubview:textField];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     return cell;
 }
 
@@ -180,6 +194,23 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    if (indexPath.row == 3) {
+        NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kEncryptionKey];
+        if (!v) {
+            v = @"aes-256-cfb";
+        }
+        source = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:@"Table", @"AES-256-CFB", @"AES-192-CFB", @"AES-128-CFB", @"BF-CFB", nil]
+                                                        values:[NSArray arrayWithObjects:@"table", @"aes-256-cfb", @"aes-192-cfb", @"aes-128-cfb", @"bf-cfb", nil]
+                                                  initialValue:v selectionBlock:^(NSObject * value) {
+            [[NSUserDefaults standardUserDefaults] setObject:value forKey:kEncryptionKey];
+        }];
+        UIViewController *controller = [[UIViewController alloc] init];
+        UITableView *tableView1 = [[UITableView alloc] initWithFrame:controller.view.frame style:UITableViewStyleGrouped];
+        tableView1.dataSource = source;
+        tableView1.delegate = source;
+        controller.view = tableView1;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 @end
