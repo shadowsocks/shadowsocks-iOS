@@ -9,4 +9,4 @@
 	url = https://github.com/swisspol/GCDWebServer
 [submodule "iProxy"]
 	path = iProxy
-	url = git@github.com:clowwindy/iProxy.git
+	url = https://github.com/clowwindy/iProxy.git
