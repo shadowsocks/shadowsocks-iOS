@@ -16,19 +16,24 @@
 int polipo_main(int argc, char **argv);
 void polipo_exit();
 
-@implementation SWBAppDelegate
+@implementation SWBAppDelegate {
+    BOOL polipoRunning;
+    BOOL polipoEnabled;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
 
     }];
+    polipoEnabled = YES;
     dispatch_queue_t proxy = dispatch_queue_create("proxy", NULL);
     dispatch_async(proxy, ^{
         [self runProxy];
     });
     
     [self proxyHttpStart];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatePolipo) userInfo:nil repeats:YES];
 
     NSData *pacData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac"]];
     GCDWebServer *webServer = [[GCDWebServer alloc] init];
@@ -38,10 +43,10 @@ void polipo_exit();
          }
     ];
 
-    NSData *mobileconfig = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"shadowsocks" withExtension:@"mobileconfig"]];
     [webServer addHandlerForMethod:@"GET" path:@"/apn" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
-             return [GCDWebServerDataResponse responseWithData:mobileconfig contentType:@"application/x-apple-aspen-config"];
-
+            NSString *apnID = request.query[@"id"];
+            NSData *mobileconfig = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:apnID withExtension:@"mobileconfig"]];
+            return [GCDWebServerDataResponse responseWithData:mobileconfig contentType:@"application/x-apple-aspen-config"];
          }
     ];
 
@@ -117,30 +122,42 @@ void polipo_exit();
     }
 }
 
-
 #pragma mark polipo
+
+-(void) updatePolipo {
+    if (!polipoRunning) {
+        [self proxyHttpStart];
+    }
+}
 
 - (void) proxyHttpStart
 {
-    [NSThread detachNewThreadSelector:@selector(proxyHttpRun) toTarget:self withObject:nil];
+    if (polipoRunning) {
+        NSLog(@"already running");
+        return;
+    }
+    polipoRunning = YES;
+    if (polipoEnabled) {
+        [NSThread detachNewThreadSelector:@selector(proxyHttpRun) toTarget:self withObject:nil];
+    } else{
+        [NSThread detachNewThreadSelector:@selector(proxyHttpRunDisabled) toTarget:self withObject:nil];
+    }
 }
 
 - (void) proxyHttpStop
 {
+    if (!polipoRunning) {
+        NSLog(@"not running");
+        return;
+    }
     polipo_exit();
 }
 
-
-- (void) proxyHttpRun
-{
-//    self.proxyHttpRunning = YES;
-    
-    @autoreleasepool {
-        
+- (void) proxyHttpRunDisabled {
+ @autoreleasepool {
+         polipoRunning = YES;
         NSLog(@"http proxy start");
-        
-        NSString *configuration = [[NSBundle mainBundle] pathForResource:@"polipo" ofType:@"config"];
-        
+        NSString *configuration = [[NSBundle mainBundle] pathForResource:@"polipo_disable" ofType:@"config"];
         char *args[5] = {
             "test",
             "-c",
@@ -148,13 +165,34 @@ void polipo_exit();
             "proxyAddress=0.0.0.0",
             (char*)[[NSString stringWithFormat:@"proxyPort=%d", 8081] UTF8String],
         };
-        
         polipo_main(5, args);
-        
         NSLog(@"http proxy stop");
+        polipoRunning = NO;
+    }}
+
+- (void) proxyHttpRun
+{
+    @autoreleasepool {
+        polipoRunning = YES;
+        NSLog(@"http proxy start");
+        NSString *configuration = [[NSBundle mainBundle] pathForResource:@"polipo" ofType:@"config"];
+        char *args[5] = {
+            "test",
+            "-c",
+            (char*)[configuration UTF8String],
+            "proxyAddress=0.0.0.0",
+            (char*)[[NSString stringWithFormat:@"proxyPort=%d", 8081] UTF8String],
+        };
+        polipo_main(5, args);
+        NSLog(@"http proxy stop");
+        polipoRunning = NO;
     }
-//    self.proxyHttpRunning = NO;
 }
 
+- (void)setPolipo:(BOOL)enabled {
+    polipoEnabled = enabled;
+
+    [self proxyHttpStop];
+}
 
 @end

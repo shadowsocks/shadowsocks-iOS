@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadContent</key>
+			<array>
+				<dict>
+					<key>DefaultsData</key>
+					<dict>
+						<key>apns</key>
+						<array>
+							<dict>
+								<key>apn</key>
+								<string>3GNET</string>
+								<key>proxyPort</key>
+								<integer>0</integer>
+							</dict>
+						</array>
+					</dict>
+					<key>DefaultsDomainName</key>
+					<string>com.apple.managedCarrier</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>提供对营运商“接入点名称”的自定义。</string>
+			<key>PayloadDisplayName</key>
+			<string>APN</string>
+			<key>PayloadIdentifier</key>
+			<string>shadowsocks.</string>
+			<key>PayloadOrganization</key>
+			<string></string>
+			<key>PayloadType</key>
+			<string>com.apple.apn.managed</string>
+			<key>PayloadUUID</key>
+			<string>A76FF343-6067-4F1F-9D25-05B11960560B</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>描述文件描述。</string>
+	<key>PayloadDisplayName</key>
+	<string>Shadowsocks(Disabled)</string>
+	<key>PayloadIdentifier</key>
+	<string>shadowsocks</string>
+	<key>PayloadOrganization</key>
+	<string></string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>7392093F-365D-4F19-A1D3-8A583C832492</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

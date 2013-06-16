@@ -6,9 +6,11 @@
 //  Copyright (c) 2012年 clowwindy. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "ProxySettingsTableViewController.h"
 #import "SimpleTableViewSource.h"
 #import "local.h"
+#import "SWBAppDelegate.h"
 
 // rows
 
@@ -25,7 +27,8 @@
 
 
 @interface ProxySettingsTableViewController () {
-    SimpleTableViewSource *source;
+    SimpleTableViewSource *encryptionSource;
+    SimpleTableViewSource *apnSource;
 }
 
 @end
@@ -135,7 +138,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -143,6 +146,12 @@
     if (indexPath.row == 3) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
         cell.textLabel.text = @"Encryption Method";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }
+    if (indexPath.row == 4) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
+        cell.textLabel.text = @"Enable/Disable APN";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }
@@ -199,15 +208,31 @@
         if (!v) {
             v = @"aes-256-cfb";
         }
-        source = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:@"Table", @"AES-256-CFB", @"AES-192-CFB", @"AES-128-CFB", @"BF-CFB", nil]
+        encryptionSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:@"Table", @"AES-256-CFB", @"AES-192-CFB", @"AES-128-CFB", @"BF-CFB", nil]
                                                         values:[NSArray arrayWithObjects:@"table", @"aes-256-cfb", @"aes-192-cfb", @"aes-128-cfb", @"bf-cfb", nil]
                                                   initialValue:v selectionBlock:^(NSObject * value) {
             [[NSUserDefaults standardUserDefaults] setObject:value forKey:kEncryptionKey];
         }];
         UIViewController *controller = [[UIViewController alloc] init];
         UITableView *tableView1 = [[UITableView alloc] initWithFrame:controller.view.frame style:UITableViewStyleGrouped];
-        tableView1.dataSource = source;
-        tableView1.delegate = source;
+        tableView1.dataSource = encryptionSource;
+        tableView1.delegate = encryptionSource;
+        controller.view = tableView1;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (indexPath.row == 4) {
+        apnSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:@"Enable Unicom", @"Disable Unicom", nil]
+                                                        values:[NSArray arrayWithObjects:@"3gnet_enable", @"3gnet_disable", nil]
+                                                  initialValue:nil selectionBlock:^(NSObject *value) {
+                    SWBAppDelegate *appDelegate = (SWBAppDelegate *)[UIApplication sharedApplication].delegate;
+                    NSString *v = (NSString *)value;
+                    [appDelegate setPolipo:[v rangeOfString:@"enable"].length > 0];
+                    [[UIApplication sharedApplication] openURL:
+                            [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:8080/apn?id=%@", (NSString *)value]]];
+        }];
+        UIViewController *controller = [[UIViewController alloc] init];
+        UITableView *tableView1 = [[UITableView alloc] initWithFrame:controller.view.frame style:UITableViewStyleGrouped];
+        tableView1.dataSource = apnSource;
+        tableView1.delegate = apnSource;
         controller.view = tableView1;
         [self.navigationController pushViewController:controller animated:YES];
     }

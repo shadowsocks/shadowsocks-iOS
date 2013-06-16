@@ -74,8 +74,10 @@
 		62D85AB4176DAA7200FE5575 /* polipo.config in Resources */ = {isa = PBXBuildFile; fileRef = 62D85AB2176DAA7200FE5575 /* polipo.config */; };
 		62D85AB5176DAA7200FE5575 /* silence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 62D85AB3176DAA7200FE5575 /* silence.wav */; };
 		96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D80C04176CE1D7006C8078 /* AVFoundation.framework */; };
+		EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */; };
+		EB1890D6331E61914013309F /* polipo_disable.config in Resources */ = {isa = PBXBuildFile; fileRef = EB189F29205BA2AB998B867D /* polipo_disable.config */; };
 		EB1891FD5CE9480608918422 /* SimpleTableViewSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1897832237B71EF50B3DF4 /* SimpleTableViewSource.m */; };
-		EB189A01F66776EC1714F32D /* shadowsocks.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897A8F80969EC7477F89D /* shadowsocks.mobileconfig */; };
+		EB189A01F66776EC1714F32D /* 3gnet_enable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897A8F80969EC7477F89D /* 3gnet_enable.mobileconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,7 +217,9 @@
 		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB18942F05960F64CC059413 /* SimpleTableViewSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableViewSource.h; sourceTree = "<group>"; };
 		EB1897832237B71EF50B3DF4 /* SimpleTableViewSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableViewSource.m; sourceTree = "<group>"; };
-		EB1897A8F80969EC7477F89D /* shadowsocks.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file.mobileconfig; path = shadowsocks.mobileconfig; sourceTree = "<group>"; };
+		EB1897A8F80969EC7477F89D /* 3gnet_enable.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file.mobileconfig; path = 3gnet_enable.mobileconfig; sourceTree = "<group>"; };
+		EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file.mobileconfig; path = 3gnet_disable.mobileconfig; sourceTree = "<group>"; };
+		EB189F29205BA2AB998B867D /* polipo_disable.config */ = {isa = PBXFileReference; lastKnownFileType = file.config; path = polipo_disable.config; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,7 +309,9 @@
 				621571BC16CF6BCB003D96B4 /* Default@2x.png */,
 				621571BE16CF6BCB003D96B4 /* Default-568h@2x.png */,
 				621FCBF617603E5100411E5F /* proxy.pac */,
-				EB1897A8F80969EC7477F89D /* shadowsocks.mobileconfig */,
+				EB1897A8F80969EC7477F89D /* 3gnet_enable.mobileconfig */,
+				EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */,
+				EB189F29205BA2AB998B867D /* polipo_disable.config */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -558,9 +564,11 @@
 				621571BD16CF6BCB003D96B4 /* Default@2x.png in Resources */,
 				621571BF16CF6BCB003D96B4 /* Default-568h@2x.png in Resources */,
 				621FCBF717603E5100411E5F /* proxy.pac in Resources */,
-				EB189A01F66776EC1714F32D /* shadowsocks.mobileconfig in Resources */,
+				EB189A01F66776EC1714F32D /* 3gnet_enable.mobileconfig in Resources */,
 				62D85AB4176DAA7200FE5575 /* polipo.config in Resources */,
 				62D85AB5176DAA7200FE5575 /* silence.wav in Resources */,
+				EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */,
+				EB1890D6331E61914013309F /* polipo_disable.config in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
