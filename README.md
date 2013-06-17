@@ -5,6 +5,16 @@ A better browser than Shadowsocks-iOS
 
 Not stable yet. Use with caution.
 
+How to Build
+-------------
+
+First, you have to update submodules:
+
+    git submodule update --recursive --init
+    open ShadowWeb.xcodeproj
+
+Then build with XCode.
+
 License
 -------
 GPL
