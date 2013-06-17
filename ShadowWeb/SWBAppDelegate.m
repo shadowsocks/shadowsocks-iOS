@@ -162,7 +162,7 @@ void polipo_exit();
             "test",
             "-c",
             (char*)[configuration UTF8String],
-            "proxyAddress=0.0.0.0",
+            "proxyAddress=127.0.0.1",
             (char*)[[NSString stringWithFormat:@"proxyPort=%d", 8081] UTF8String],
         };
         polipo_main(5, args);

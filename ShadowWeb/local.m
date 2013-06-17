@@ -37,7 +37,7 @@ int create_and_bind(const char *port) {
     hints.ai_family = AF_UNSPEC; /* Return IPv4 and IPv6 choices */
     hints.ai_socktype = SOCK_STREAM; /* We want a TCP socket */
 
-    s = getaddrinfo("0.0.0.0", port, &hints, &result);
+    s = getaddrinfo("127.0.0.1", port, &hints, &result);
     if (s != 0) {
         NSLog(@"getaddrinfo: %s", gai_strerror(s));
         return -1;
