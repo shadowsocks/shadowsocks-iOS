@@ -17,4 +17,10 @@ Then build with XCode.
 
 License
 -------
-GPL
+The project is under the terms of [GPLv3](http://opensource.org/licenses/GPL-3.0),
+except for the following parts:
+
+- proxy.pac is generated from [cow](https://github.com/cyfdecyf/cow).
+- [iProxy](https://github.com/tcurdt/iProxy)
+- [GCDWebServer](https://github.com/swisspol/GCDWebServer)
+- [AppProxyCap](https://github.com/freewizard/AppProxyCap)
