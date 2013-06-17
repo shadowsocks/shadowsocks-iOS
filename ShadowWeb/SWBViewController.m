@@ -62,7 +62,7 @@
     [_urlField setPlaceholder:@"URL"];
     [_urlField setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
-    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel) ];
+    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:_L(Cancel) style:UIBarButtonItemStyleBordered target:self action:@selector(cancel) ];
     _cancelButton.width = kCancelButtonWidth;
     
     self.addrItemsInactive = [NSMutableArray arrayWithObjects:[[UIBarButtonItem alloc] initWithCustomView:_urlField], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], nil];
@@ -160,7 +160,7 @@
             [_webViewContainer.currentSWBWebView loadRequest:request];
         }
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"incorrect URL" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:_L(incorrect URL) delegate:nil cancelButtonTitle:_L(OK) otherButtonTitles:nil];
         [alert show];
     }
 }
@@ -243,7 +243,7 @@
 #pragma mark - ActionSheet
 
 -(void)initActionSheet {
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"New Tab", @"Back", @"Forward", @"Reload", @"Settings", nil];
+    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:_L(Cancel) destructiveButtonTitle:nil otherButtonTitles:_L(New Tab), _L(Back), _L(Forward), _L(Reload), _L(Settings), nil];
     [_actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
 }
 

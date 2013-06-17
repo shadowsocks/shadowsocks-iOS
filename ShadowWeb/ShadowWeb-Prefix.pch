@@ -17,3 +17,4 @@
 // polipo
 #define HAS_STDINT_H
 
+#define _L(s) NSLocalizedString(@#s, nil)

@@ -83,12 +83,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
     UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.leftBarButtonItem = cancel;
-    self.navigationItem.title = NSLocalizedString(@"Proxy Settings", nil);;
+    self.navigationItem.title = _L(Proxy Settings);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
@@ -145,13 +145,13 @@
 {
     if (indexPath.row == 3) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
-        cell.textLabel.text = @"Encryption Method";
+        cell.textLabel.text = _L(Encryption Method);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }
     if (indexPath.row == 4) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
-        cell.textLabel.text = @"Enable/Disable APN";
+        cell.textLabel.text = _L(Enable/Disable APN);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }
@@ -163,21 +163,21 @@
     textField.returnKeyType = UIReturnKeyDone;
     switch (indexPath.row) {
         case kIPRow:
-            cell.textLabel.text =  NSLocalizedString(@"IP", nil);
+            cell.textLabel.text =  _L(IP);
             textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             textField.secureTextEntry = NO;
             textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kIPKey];
             ipField = textField;
             break;
         case kPortRow:
-            cell.textLabel.text =  NSLocalizedString(@"Port", nil);
+            cell.textLabel.text =  _L(Port);
             textField.keyboardType = UIKeyboardTypeNumberPad;
             textField.secureTextEntry = NO;
             textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPortKey];
             portField = textField;
             break;
         case kPasswordRow:
-            cell.textLabel.text =  NSLocalizedString(@"Password", nil);
+            cell.textLabel.text =  _L(Password);
             textField.keyboardType = UIKeyboardTypeDefault;
             textField.secureTextEntry = YES;
             textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey];
@@ -220,7 +220,7 @@
         controller.view = tableView1;
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 4) {
-        apnSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:@"Enable Unicom", @"Disable Unicom", nil]
+        apnSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:_L(Enable Unicom), _L(Disable Unicom), nil]
                                                         values:[NSArray arrayWithObjects:@"3gnet_enable", @"3gnet_disable", nil]
                                                   initialValue:nil selectionBlock:^(NSObject *value) {
                     SWBAppDelegate *appDelegate = (SWBAppDelegate *)[UIApplication sharedApplication].delegate;
