@@ -6,13 +6,16 @@
 //  Copyright (c) 2013 clowwindy. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import "SWBViewController.h"
 #import "ProxySettingsTableViewController.h"
 
 #define kNewTabAddress @"shadowweb:newtab"
 #define kAboutBlank @"shadowweb:blank"
 
-@interface SWBViewController ()
+@interface SWBViewController () {
+    AVAudioPlayer *player;
+}
 
 @end
 
@@ -87,6 +90,7 @@
     // ActionSheet
     [self initActionSheet];
 
+    [self play];
 }
 
 - (void)didReceiveMemoryWarning
@@ -483,6 +487,44 @@
 }
 -(void)keyboardHiden:(NSNotification *)notification {
 //    [self hideCancelButton];
+}
+
+#pragma mark audio
+
+-(BOOL)canBecomeFirstResponder{
+    return YES;
+}
+
+-(void)play {
+    
+    // Play music, so app can run in the backgound.
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setActive:YES error:nil];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"silence" withExtension:@"wav"];
+    
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    [player prepareToPlay];
+    [player setVolume:0];
+    player.numberOfLoops = -1;
+    [player play];
+    [self becomeFirstResponder];
+}
+
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event {
+    switch (event.subtype) {
+        case UIEventSubtypeRemoteControlPlay:
+            [player play];
+            break;
+        case UIEventSubtypeRemoteControlPause:
+            [player pause];
+            break;
+        default:
+            break;
+    }
 }
 
 @end

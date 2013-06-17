@@ -7,7 +7,6 @@
 //
 
 #import "SWBAppDelegate.h"
-#import <AVFoundation/AVFoundation.h>
 
 #import "GCDWebServer.h"
 #import "SWBViewController.h"
@@ -66,22 +65,7 @@ void polipo_exit();
     self.viewController = [[SWBViewController alloc] init];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-    
-    // Play music, so app can run in the backgound.
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setActive:YES error:nil];
-    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
-    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"silence" withExtension:@"wav"];
-    
-    static AVAudioPlayer *player;
-    player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-    [player prepareToPlay];
-    [player setVolume:0];
-    player.numberOfLoops = -1;
-    [player play];
-    
+        
     return YES;
 }
 
