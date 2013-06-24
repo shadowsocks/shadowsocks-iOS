@@ -90,7 +90,7 @@
     // ActionSheet
     [self initActionSheet];
 
-    [self play];
+//    [self play];
 }
 
 - (void)didReceiveMemoryWarning
