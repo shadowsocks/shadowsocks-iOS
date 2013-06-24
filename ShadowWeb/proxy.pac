@@ -29,6 +29,7 @@ var directList = [
 "ra.gg",
 "cc.cocimg.com",
 "i3.itc.cn",
+"ip138.com",
 "static.gtimg.com",
 "www.panabit.com",
 "ecpm.tanx.com",

@@ -53,7 +53,7 @@ void polipo_exit();
     dispatch_queue_t web = dispatch_queue_create("web", NULL);
     dispatch_async(web, ^{
         @try {
-            [webServer runWithPort:8080];
+            [webServer runWithPort:8090];
         } @catch (NSException *e) {
             NSLog(@"webserver quit with error: %@", e);
         }
