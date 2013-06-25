@@ -74,6 +74,10 @@
 		62D85AB1176DA6FC00FE5575 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 62D85A8B176DA6FB00FE5575 /* util.c */; };
 		62D85AB4176DAA7200FE5575 /* polipo.config in Resources */ = {isa = PBXBuildFile; fileRef = 62D85AB2176DAA7200FE5575 /* polipo.config */; };
 		62D85AB5176DAA7200FE5575 /* silence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 62D85AB3176DAA7200FE5575 /* silence.wav */; };
+		62DAB9D41779DAAD003DFFDE /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DAB9D31779DAAD003DFFDE /* icon57.png */; };
+		62DAB9D61779DAAF003DFFDE /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DAB9D51779DAAF003DFFDE /* icon114.png */; };
+		62DAB9D81779DAB5003DFFDE /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DAB9D71779DAB5003DFFDE /* icon72.png */; };
+		62DAB9DA1779DAB8003DFFDE /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DAB9D91779DAB8003DFFDE /* icon144.png */; };
 		96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D80C04176CE1D7006C8078 /* AVFoundation.framework */; };
 		EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */; };
 		EB1890D6331E61914013309F /* polipo_disable.config in Resources */ = {isa = PBXBuildFile; fileRef = EB189F29205BA2AB998B867D /* polipo_disable.config */; };
@@ -82,14 +86,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		621571A516CF6BCB003D96B4 /* ShadowWeb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowWeb.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		621571A516CF6BCB003D96B4 /* shadowsocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shadowsocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		621571A816CF6BCB003D96B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		621571AA16CF6BCB003D96B4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		621571AC16CF6BCB003D96B4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		621571B016CF6BCB003D96B4 /* ShadowWeb-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShadowWeb-Info.plist"; sourceTree = "<group>"; };
+		621571B016CF6BCB003D96B4 /* shadowsocks-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "shadowsocks-Info.plist"; sourceTree = "<group>"; };
 		621571B216CF6BCB003D96B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		621571B416CF6BCB003D96B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		621571B616CF6BCB003D96B4 /* ShadowWeb-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShadowWeb-Prefix.pch"; sourceTree = "<group>"; };
+		621571B616CF6BCB003D96B4 /* shadowsocks-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shadowsocks-Prefix.pch"; sourceTree = "<group>"; };
 		621571B716CF6BCB003D96B4 /* SWBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWBAppDelegate.h; sourceTree = "<group>"; };
 		621571B816CF6BCB003D96B4 /* SWBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWBAppDelegate.m; sourceTree = "<group>"; };
 		621571BA16CF6BCB003D96B4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -217,6 +221,10 @@
 		62D85A8C176DA6FC00FE5575 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		62D85AB2176DAA7200FE5575 /* polipo.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = polipo.config; sourceTree = "<group>"; };
 		62D85AB3176DAA7200FE5575 /* silence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = silence.wav; sourceTree = "<group>"; };
+		62DAB9D31779DAAD003DFFDE /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		62DAB9D51779DAAF003DFFDE /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		62DAB9D71779DAB5003DFFDE /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
+		62DAB9D91779DAB8003DFFDE /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB18942F05960F64CC059413 /* SimpleTableViewSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableViewSource.h; sourceTree = "<group>"; };
 		EB1897832237B71EF50B3DF4 /* SimpleTableViewSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableViewSource.m; sourceTree = "<group>"; };
@@ -247,6 +255,10 @@
 		6215719C16CF6BCA003D96B4 = {
 			isa = PBXGroup;
 			children = (
+				62DAB9D91779DAB8003DFFDE /* icon144.png */,
+				62DAB9D71779DAB5003DFFDE /* icon72.png */,
+				62DAB9D51779DAAF003DFFDE /* icon114.png */,
+				62DAB9D31779DAAD003DFFDE /* icon57.png */,
 				621571AE16CF6BCB003D96B4 /* ShadowWeb */,
 				621571A716CF6BCB003D96B4 /* Frameworks */,
 				621571A616CF6BCB003D96B4 /* Products */,
@@ -256,7 +268,7 @@
 		621571A616CF6BCB003D96B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				621571A516CF6BCB003D96B4 /* ShadowWeb.app */,
+				621571A516CF6BCB003D96B4 /* shadowsocks.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -304,10 +316,10 @@
 			children = (
 				62D85AB2176DAA7200FE5575 /* polipo.config */,
 				62D85AB3176DAA7200FE5575 /* silence.wav */,
-				621571B016CF6BCB003D96B4 /* ShadowWeb-Info.plist */,
+				621571B016CF6BCB003D96B4 /* shadowsocks-Info.plist */,
 				621571B116CF6BCB003D96B4 /* InfoPlist.strings */,
 				621571B416CF6BCB003D96B4 /* main.m */,
-				621571B616CF6BCB003D96B4 /* ShadowWeb-Prefix.pch */,
+				621571B616CF6BCB003D96B4 /* shadowsocks-Prefix.pch */,
 				621571BA16CF6BCB003D96B4 /* Default.png */,
 				621571BC16CF6BCB003D96B4 /* Default@2x.png */,
 				621571BE16CF6BCB003D96B4 /* Default-568h@2x.png */,
@@ -514,9 +526,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		621571A416CF6BCB003D96B4 /* ShadowWeb */ = {
+		621571A416CF6BCB003D96B4 /* shadowsocks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 621571CB16CF6BCB003D96B4 /* Build configuration list for PBXNativeTarget "ShadowWeb" */;
+			buildConfigurationList = 621571CB16CF6BCB003D96B4 /* Build configuration list for PBXNativeTarget "shadowsocks" */;
 			buildPhases = (
 				621571A116CF6BCB003D96B4 /* Sources */,
 				621571A216CF6BCB003D96B4 /* Frameworks */,
@@ -526,9 +538,9 @@
 			);
 			dependencies = (
 			);
-			name = ShadowWeb;
+			name = shadowsocks;
 			productName = ShadowWeb;
-			productReference = 621571A516CF6BCB003D96B4 /* ShadowWeb.app */;
+			productReference = 621571A516CF6BCB003D96B4 /* shadowsocks.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -541,7 +553,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = clowwindy;
 			};
-			buildConfigurationList = 621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "ShadowWeb" */;
+			buildConfigurationList = 621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "shadowsocks" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -554,7 +566,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				621571A416CF6BCB003D96B4 /* ShadowWeb */,
+				621571A416CF6BCB003D96B4 /* shadowsocks */,
 			);
 		};
 /* End PBXProject section */
@@ -575,6 +587,10 @@
 				62D85AB5176DAA7200FE5575 /* silence.wav in Resources */,
 				EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */,
 				EB1890D6331E61914013309F /* polipo_disable.config in Resources */,
+				62DAB9D41779DAAD003DFFDE /* icon57.png in Resources */,
+				62DAB9D61779DAAF003DFFDE /* icon114.png in Resources */,
+				62DAB9D81779DAB5003DFFDE /* icon72.png in Resources */,
+				62DAB9DA1779DAB8003DFFDE /* icon144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,14 +745,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ShadowWeb/ShadowWeb-Prefix.pch";
-				INFOPLIST_FILE = "ShadowWeb/ShadowWeb-Info.plist";
+				GCC_PREFIX_HEADER = "ShadowWeb/shadowsocks-Prefix.pch";
+				INFOPLIST_FILE = "ShadowWeb/shadowsocks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OpenSSL-for-iPhone/lib\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shadowsocks;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -750,14 +766,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ShadowWeb/ShadowWeb-Prefix.pch";
-				INFOPLIST_FILE = "ShadowWeb/ShadowWeb-Info.plist";
+				GCC_PREFIX_HEADER = "ShadowWeb/shadowsocks-Prefix.pch";
+				INFOPLIST_FILE = "ShadowWeb/shadowsocks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OpenSSL-for-iPhone/lib\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shadowsocks;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -767,7 +783,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "ShadowWeb" */ = {
+		621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "shadowsocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				621571C916CF6BCB003D96B4 /* Debug */,
@@ -776,7 +792,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		621571CB16CF6BCB003D96B4 /* Build configuration list for PBXNativeTarget "ShadowWeb" */ = {
+		621571CB16CF6BCB003D96B4 /* Build configuration list for PBXNativeTarget "shadowsocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				621571CC16CF6BCB003D96B4 /* Debug */,
