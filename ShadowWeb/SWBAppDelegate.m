@@ -31,8 +31,8 @@ void polipo_exit();
         [self runProxy];
     });
     
-    [self proxyHttpStart];
-    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updatePolipo) userInfo:nil repeats:YES];
+//    [self proxyHttpStart];
+//    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updatePolipo) userInfo:nil repeats:YES];
 
     NSData *pacData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac"]];
     GCDWebServer *webServer = [[GCDWebServer alloc] init];
@@ -53,7 +53,9 @@ void polipo_exit();
     dispatch_queue_t web = dispatch_queue_create("web", NULL);
     dispatch_async(web, ^{
         @try {
-            [webServer runWithPort:8090];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [webServer startWithPort:8090 bonjourName:@"webserver"];
+            });
         } @catch (NSException *e) {
             NSLog(@"webserver quit with error: %@", e);
         }
