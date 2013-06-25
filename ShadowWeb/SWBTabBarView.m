@@ -27,6 +27,9 @@
 
 @synthesize delegate, tabs, currentTab, firstLeftTab;
 
+-(UIView *)aNewTabButton {
+    return newTabButton;
+}
 
 - (void)loadDefaults {
     self.clipsToBounds = YES;

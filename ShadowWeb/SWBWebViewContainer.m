@@ -17,7 +17,7 @@
 
 -(void)loadDefaults {
     cachedWebViews = [[NSMutableArray alloc] init];
-    s = [[NSString alloc] initWithFormat:@"_%@:", @"setDrawInWebThread"];
+    s = [[NSString alloc] initWithFormat:@"_setDraw%@:", [@"InWebThread" copy]];
 }
 
 - (id)initWithFrame:(CGRect)frame

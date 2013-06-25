@@ -63,6 +63,7 @@ enum SWBTabBarAction {
 @property (nonatomic, strong) SWBTab *currentTab;
 //仅供初始化和读取
 @property (nonatomic, assign) NSInteger firstLeftTab;
+-(UIView *)aNewTabButton;
 
 //按照tabs调整tabViews，也负责新建和关闭，不过算法假设一次要么添加，要么关闭，要么移动，并且只改变了一个标签页的状态；或者初始化
 -(void)layoutTabsWithAction:(enum SWBTabBarAction)action animated:(BOOL)animated;

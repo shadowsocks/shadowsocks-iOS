@@ -15,6 +15,7 @@
 
 @interface SWBViewController () {
     AVAudioPlayer *player;
+    UIPopoverController *settingsPC;
 }
 
 @end
@@ -280,7 +281,16 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settingsController];
     //    nav.navigationBar.tintColor = [UIColor blackColor];
     nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    [self presentModalViewController:nav animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        settingsPC = [[UIPopoverController alloc] initWithContentViewController:nav];
+        settingsController.myPopoverController = settingsPC;
+        CGRect newTabRect = [self.tabBar aNewTabButton].frame;
+        newTabRect.size.width = newTabRect.size.height;
+        CGRect rect = [self.tabBar convertRect:newTabRect toView:self.view];
+        [settingsPC presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else {
+        [self presentModalViewController:nav animated:YES];
+    }
 }
 
 #pragma mark - TabBar
@@ -310,7 +320,14 @@
 
 
 -(void)tabBarViewNewTabButtonDidClick {
-    [self.actionSheet showInView:self.view];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        CGRect newTabRect = [self.tabBar aNewTabButton].frame;
+        newTabRect.size.width = newTabRect.size.height;
+        CGRect rect = [self.tabBar convertRect:newTabRect toView:self.view];
+        [self.actionSheet showFromRect:rect inView:self.view animated:YES];
+    } else {
+        [self.actionSheet showInView:self.view];
+    }
 }
 
 -(void)tabBarViewTabDidClose:(SWBTab *)tab {

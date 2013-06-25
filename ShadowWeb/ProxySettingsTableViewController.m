@@ -89,6 +89,8 @@
     UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.leftBarButtonItem = cancel;
     self.navigationItem.title = _L(Proxy Settings);
+    
+    self.contentSizeForViewInPopover = CGSizeMake(320, 400);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
@@ -100,6 +102,9 @@
 
 -(void)cancel {
     [self dismissModalViewControllerAnimated:YES];
+    if (self->_myPopoverController) {
+        [_myPopoverController dismissPopoverAnimated:YES];
+    }
 }
 
 -(void)done {
@@ -119,6 +124,9 @@
     [ProxySettingsTableViewController reloadConfig];
 
     [self dismissModalViewControllerAnimated:YES];
+    if (self->_myPopoverController) {
+        [_myPopoverController dismissPopoverAnimated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -214,6 +222,8 @@
             [[NSUserDefaults standardUserDefaults] setObject:value forKey:kEncryptionKey];
         }];
         UIViewController *controller = [[UIViewController alloc] init];
+        controller.contentSizeForViewInPopover = self.contentSizeForViewInPopover;
+        controller.navigationItem.title = _L(Encryption);
         UITableView *tableView1 = [[UITableView alloc] initWithFrame:controller.view.frame style:UITableViewStyleGrouped];
         tableView1.dataSource = encryptionSource;
         tableView1.delegate = encryptionSource;
@@ -231,6 +241,7 @@
                             [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:8080/apn?id=%@", (NSString *)value]]];
         }];
         UIViewController *controller = [[UIViewController alloc] init];
+        controller.contentSizeForViewInPopover = CGSizeMake(320, 480);
         UITableView *tableView1 = [[UITableView alloc] initWithFrame:controller.view.frame style:UITableViewStyleGrouped];
         tableView1.dataSource = apnSource;
         tableView1.delegate = apnSource;
