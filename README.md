@@ -1,11 +1,9 @@
 Shadowsocks for iOS
 =========
-A better browser than Shadowsocks-iOS
-[![Build Status](https://travis-ci.org/clowwindy/ShadowWeb.png?branch=master)](https://travis-ci.org/clowwindy/ShadowWeb)
+[![Build Status](https://travis-ci.org/shadowsocks/shadowsocks-iOS.png?branch=master)](https://travis-ci.org/shadowsocks/shadowsocks-iOS)
 
-Not stable yet. Use with caution.
 
-How to Build
+Build
 -------------
 
 First, you have to update submodules:
