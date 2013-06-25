@@ -267,7 +267,7 @@
             [self showSettings];
             break;
         case 5:
-            [UIApplication sharedApplication] openURL:NSURL URLWithString:@"";
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/shadowsocks/shadowsocks-iOS/blob/master/About.md"]];
             break;
         default:
             break;

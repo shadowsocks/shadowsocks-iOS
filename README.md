@@ -11,7 +11,7 @@ How to Build
 First, you have to update submodules:
 
     git submodule update --recursive --init
-    open ShadowWeb.xcodeproj
+    open shadowsocks.xcodeproj
 
 Then build with XCode.
 
