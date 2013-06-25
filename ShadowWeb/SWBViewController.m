@@ -243,7 +243,7 @@
 #pragma mark - ActionSheet
 
 -(void)initActionSheet {
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:_L(Cancel) destructiveButtonTitle:nil otherButtonTitles:_L(New Tab), _L(Back), _L(Forward), _L(Reload), _L(Settings), nil];
+    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:_L(Cancel) destructiveButtonTitle:nil otherButtonTitles:_L(New Tab), _L(Back), _L(Forward), _L(Reload), _L(Settings), _L(About), nil];
     [_actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
 }
 
