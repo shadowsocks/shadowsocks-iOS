@@ -1,4 +1,4 @@
-ShadowWeb
+Shadowsocks for iOS
 =========
 A better browser than Shadowsocks-iOS
 [![Build Status](https://travis-ci.org/clowwindy/ShadowWeb.png?branch=master)](https://travis-ci.org/clowwindy/ShadowWeb)

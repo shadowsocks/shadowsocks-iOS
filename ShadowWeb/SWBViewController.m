@@ -266,6 +266,9 @@
         case 4:
             [self showSettings];
             break;
+        case 5:
+            [UIApplication sharedApplication] openURL:NSURL URLWithString:@"";
+            break;
         default:
             break;
     }
@@ -326,8 +329,9 @@
         [_webViewContainer switchToWebView:_tabBar.currentTab.tag];
     }
     if ([[_pageManager pages] count] == 0) {
-        [self tabBarViewNewTabButtonDidClick];
-    }
+//        [self tabBarViewNewTabButtonDidClick];
+        [self openLinkInNewTab:@"http://www.twitter.com/"];
+        [NSTimer scheduledTimerWithTimeInterval:0.20 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];    }
 }
 
 -(void)tabBarViewTabDidMove:(SWBTab *)tab toIndex:(NSInteger)index {
@@ -365,7 +369,9 @@
         [self addNewTab];
     }
     if ([pages count] == 0) {
-        [self tabBarViewNewTabButtonDidClick];
+//        [self tabBarViewNewTabButtonDidClick];
+        [self openLinkInNewTab:kNewTabAddress];
+        [NSTimer scheduledTimerWithTimeInterval:0.20 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];
     } else {
         [_tabBar setCurrentTabWithTag:currentTabTag];
     }
