@@ -2,6 +2,15 @@ Shadowsocks for iOS
 =========
 [![Build Status](https://travis-ci.org/shadowsocks/shadowsocks-iOS.png?branch=master)](https://travis-ci.org/shadowsocks/shadowsocks-iOS)
 
+Shadowsocks is a cross-platform tunnel proxy which can help you get through firewalls.
+
+This iOS version is for **non-jailbroken devices**. It has two features.
+
+1. As a web browser
+2. As a global PAC proxy, with some limitations
+
+See [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help) for more information.
+
 Usage
 -----
 Please check [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help).
