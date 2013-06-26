@@ -7,11 +7,14 @@
 //
 #import <Crashlytics/Crashlytics.h>
 
+#import "AppProxyCap.h"
 #import "SWBAppDelegate.h"
 
 #import "GCDWebServer.h"
 #import "SWBViewController.h"
 #import "ProxySettingsTableViewController.h"
+
+#define kProxyModeKey @"proxy mode"
 
 int polipo_main(int argc, char **argv);
 void polipo_exit();
@@ -21,9 +24,22 @@ void polipo_exit();
     BOOL polipoEnabled;
 }
 
+- (void)updateProxyMode {
+    NSString *proxyMode = [[NSUserDefaults standardUserDefaults] objectForKey:kProxyModeKey];
+    if (proxyMode == nil || [proxyMode isEqualToString:@"pac"]) {
+        [AppProxyCap setPACURL:@"http://127.0.0.1:8090/proxy.pac"];
+    } else if ([proxyMode isEqualToString:@"global"]) {
+        [AppProxyCap setProxy:AppProxy_SOCKS Host:@"127.0.0.1" Port:1080];
+    } else{
+        [AppProxyCap setNoProxy];
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self updateProxyMode];
+
     [Crashlytics startWithAPIKey:@"fa65e4ab45ef1c9c69682529bee0751cd22d5d80"];
-    
+
     [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
 
     }];
@@ -64,6 +80,7 @@ void polipo_exit();
 //    });
 
     self.networkActivityIndicatorManager = [[SWBNetworkActivityIndicatorManager alloc] init];
+
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[SWBViewController alloc] init];

@@ -24,11 +24,13 @@
 #define kPortKey @"proxy port"
 #define kPasswordKey @"proxy password"
 #define kEncryptionKey @"proxy encryption"
+#define kProxyModeKey @"proxy mode"
 
 
 @interface ProxySettingsTableViewController () {
     SimpleTableViewSource *encryptionSource;
     SimpleTableViewSource *apnSource;
+    SimpleTableViewSource *modeSource;
 }
 
 @end
@@ -146,18 +148,24 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 3) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
-        cell.textLabel.text = _L(Encryption Method);
+        cell.textLabel.text = _L(Method);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }
     if (indexPath.row == 4) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
+        cell.textLabel.text = _L(Proxy Mode);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }
+    if (indexPath.row == 5) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
         cell.textLabel.text = _L(Enable/Disable APN);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -223,13 +231,33 @@
         }];
         UIViewController *controller = [[UIViewController alloc] init];
         controller.contentSizeForViewInPopover = self.contentSizeForViewInPopover;
-        controller.navigationItem.title = _L(Encryption);
+        controller.navigationItem.title = _L(Method);
         UITableView *tableView1 = [[UITableView alloc] initWithFrame:controller.view.frame style:UITableViewStyleGrouped];
         tableView1.dataSource = encryptionSource;
         tableView1.delegate = encryptionSource;
         controller.view = tableView1;
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 4) {
+        NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kProxyModeKey];
+        if (!v) {
+            v = @"pac";
+        }
+        modeSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:_L(PAC), _L(Global), _L(Off), nil]
+                                                values:[NSArray arrayWithObjects:@"pac", @"global", @"off", nil]
+                                          initialValue:v selectionBlock:^(NSObject *value) {
+            [[NSUserDefaults standardUserDefaults] setObject:value forKey:kProxyModeKey];
+            SWBAppDelegate *appDelegate = (SWBAppDelegate *)[UIApplication sharedApplication].delegate;
+            [appDelegate updateProxyMode];
+        }];
+        UIViewController *controller = [[UIViewController alloc] init];
+        controller.contentSizeForViewInPopover = CGSizeMake(320, 480);
+        controller.navigationItem.title = _L(Proxy Mode);
+        UITableView *tableView1 = [[UITableView alloc] initWithFrame:controller.view.frame style:UITableViewStyleGrouped];
+        tableView1.dataSource = modeSource;
+        tableView1.delegate = modeSource;
+        controller.view = tableView1;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (indexPath.row == 5) {
         apnSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:_L(Enable Unicom), _L(Disable Unicom), nil]
                                                         values:[NSArray arrayWithObjects:@"3gnet_enable", @"3gnet_disable", nil]
                                                   initialValue:nil selectionBlock:^(NSObject *value) {

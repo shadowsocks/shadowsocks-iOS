@@ -244,7 +244,7 @@
 #pragma mark - ActionSheet
 
 -(void)initActionSheet {
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:_L(Cancel) destructiveButtonTitle:nil otherButtonTitles:_L(New Tab), _L(Back), _L(Forward), _L(Reload), _L(Settings), _L(About), nil];
+    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:_L(Cancel) destructiveButtonTitle:nil otherButtonTitles:_L(New Tab), _L(Back), _L(Forward), _L(Reload), _L(Settings), _L(Help), _L(About), nil];
     [_actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
 }
 
@@ -268,6 +268,9 @@
             [self showSettings];
             break;
         case 5:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help"]];
+            break;
+        case 6:
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/shadowsocks/shadowsocks-iOS/blob/master/About.md"]];
             break;
         default:

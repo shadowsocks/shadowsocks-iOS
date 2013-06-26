@@ -23,5 +23,6 @@
 @property (nonatomic, strong) SWBNetworkActivityIndicatorManager *networkActivityIndicatorManager;
 
 - (void)setPolipo:(BOOL)enabled;
+- (void)updateProxyMode;
 
 @end
