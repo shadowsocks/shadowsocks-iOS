@@ -31,7 +31,7 @@ Bugs and Issues
 ----------------
 Please check [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help), if you haven't.
 
-Please visit [issue tracker](https://github.com/clowwindy/shadowsocks-nodejs/issues?state=open)
+Please visit [issue tracker](https://github.com/shadowsocks/shadowsocks-iOS/issues?state=open)
 
 Mailing list: http://groups.google.com/group/shadowsocks
 
