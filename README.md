@@ -13,7 +13,7 @@ See [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help) for more in
 
 Usage
 -----
-Please check [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help).
+A complete guide is in the [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help).
 
 Build (For developers)
 ----------------------
@@ -24,6 +24,8 @@ First, you have to update submodules:
     open shadowsocks.xcodeproj
 
 Then build with XCode.
+
+Please check [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help), if you haven't.
 
 License
 -------
