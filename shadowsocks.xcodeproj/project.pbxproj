@@ -228,10 +228,13 @@
 		62DAB9D91779DAB8003DFFDE /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		62DAB9DF177A11D7003DFFDE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EB1891B68FCBD841C5E461B6 /* About.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; path = About.md; sourceTree = SOURCE_ROOT; };
 		EB18942F05960F64CC059413 /* SimpleTableViewSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableViewSource.h; sourceTree = "<group>"; };
+		EB1896EFEA137F75386005D4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		EB1897832237B71EF50B3DF4 /* SimpleTableViewSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableViewSource.m; sourceTree = "<group>"; };
 		EB1897A8F80969EC7477F89D /* 3gnet_enable.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file.mobileconfig; path = 3gnet_enable.mobileconfig; sourceTree = "<group>"; };
 		EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file.mobileconfig; path = 3gnet_disable.mobileconfig; sourceTree = "<group>"; };
+		EB189F12BEB086705288D293 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; path = README.md; sourceTree = SOURCE_ROOT; };
 		EB189F29205BA2AB998B867D /* polipo_disable.config */ = {isa = PBXFileReference; lastKnownFileType = file.config; path = polipo_disable.config; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -332,6 +335,9 @@
 				EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */,
 				EB189F29205BA2AB998B867D /* polipo_disable.config */,
 				62628CB5176EEF1C001F6003 /* Localizable.strings */,
+				EB189F12BEB086705288D293 /* README.md */,
+				EB1891B68FCBD841C5E461B6 /* About.md */,
+				EB1896EFEA137F75386005D4 /* LICENSE */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
