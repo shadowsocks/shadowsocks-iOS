@@ -2,9 +2,12 @@ Shadowsocks for iOS
 =========
 [![Build Status](https://travis-ci.org/shadowsocks/shadowsocks-iOS.png?branch=master)](https://travis-ci.org/shadowsocks/shadowsocks-iOS)
 
+Usage
+-----
+Please check [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help).
 
-Build
--------------
+Build (For developers)
+----------------------
 
 First, you have to update submodules:
 

@@ -1,7 +1,5 @@
-Shadowsocks for iOS
+[Shadowsocks for iOS](https://github.com/shadowsocks/shadowsocks-iOS)
 ===================
-
-[ShadowWeb (Shadowsocks for iOS)](https://github.com/shadowsocks/shadowsocks-iOS)
 
 Copyright (C) 2013  clowwindy <clowwindy42@gmail.com>
 
@@ -23,4 +21,3 @@ community for their great job.
 
 See [LICENSE](https://github.com/shadowsocks/shadowsocks-iOS/blob/master/LICENSE)
 for detailed license information.
-
