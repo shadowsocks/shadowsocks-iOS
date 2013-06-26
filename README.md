@@ -11,6 +11,8 @@ This iOS version is for **non-jailbroken devices**. It has two features.
 
 See [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help) for more information.
 
+If you're looking for the jailbreak version, visit [here](https://github.com/linusyang/MobileShadowSocks/).
+
 Usage
 -----
 A complete guide is in the [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help).
@@ -30,7 +32,7 @@ Please check [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help), i
 License
 -------
 The project is under the terms of [GPLv3](http://opensource.org/licenses/GPL-3.0),
-except for the following parts:
+except for the following third party libraries:
 
 - proxy.pac is generated from [cow](https://github.com/cyfdecyf/cow).
 - [iProxy](https://github.com/tcurdt/iProxy)
