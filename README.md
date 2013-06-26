@@ -17,18 +17,6 @@ Usage
 -----
 A complete guide is in the [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help).
 
-Build (For developers)
-----------------------
-
-First, you have to update submodules:
-
-    git submodule update --recursive --init
-    open shadowsocks.xcodeproj
-
-Then build with XCode.
-
-Please check [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help), if you haven't.
-
 License
 -------
 The project is under the terms of [GPLv3](http://opensource.org/licenses/GPL-3.0),
@@ -38,3 +26,13 @@ except for the following third party libraries:
 - [iProxy](https://github.com/tcurdt/iProxy)
 - [GCDWebServer](https://github.com/swisspol/GCDWebServer)
 - [AppProxyCap](https://github.com/freewizard/AppProxyCap)
+
+Bugs and Issues
+----------------
+Please check [Help](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help), if you haven't.
+
+Please visit [issue tracker](https://github.com/clowwindy/shadowsocks-nodejs/issues?state=open)
+
+Mailing list: http://groups.google.com/group/shadowsocks
+
+Also see [troubleshooting](https://github.com/clowwindy/shadowsocks/wiki/Troubleshooting)
