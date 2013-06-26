@@ -51,17 +51,17 @@ void polipo_exit();
          }
     ];
 
-
-    dispatch_queue_t web = dispatch_queue_create("web", NULL);
-    dispatch_async(web, ^{
-        @try {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [webServer startWithPort:8090 bonjourName:@"webserver"];
-            });
-        } @catch (NSException *e) {
-            NSLog(@"webserver quit with error: %@", e);
-        }
-    });
+    
+    [webServer startWithPort:8090 bonjourName:@"webserver"];
+//    dispatch_queue_t web = dispatch_queue_create("web", NULL);
+//    dispatch_async(web, ^{
+//        @try {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//            });
+//        } @catch (NSException *e) {
+//            NSLog(@"webserver quit with error: %@", e);
+//        }
+//    });
 
     self.networkActivityIndicatorManager = [[SWBNetworkActivityIndicatorManager alloc] init];
 
