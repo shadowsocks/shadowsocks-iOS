@@ -9,6 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "SWBViewController.h"
 #import "ProxySettingsTableViewController.h"
+#import "SWBAboutController.h"
 
 #define kNewTabAddress @"shadowweb:newtab"
 #define kAboutBlank @"shadowweb:blank"
@@ -24,13 +25,12 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // If don't do this, you'll see some white edge when doing the rotation
     self.view.clipsToBounds = YES;
-    
+
     currentTabTag = 0;
     CGRect bounds = self.view.bounds;
     self.tabBar = [[SWBTabBarView alloc] initWithFrame:CGRectMake(0, bounds.size.height - kTabBarHeight, bounds.size.width, kTabBarHeight)];
@@ -41,13 +41,13 @@
     self.webViewContainer.delegate = self;
     [self initPageManager];
     [self initPagesAndTabs];
-    
-    
+
+
     // init address bar
     self.addrbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, kToolBarHeight)];
-    
+
     // init bar buttons
-    
+
     self.urlField = [[UITextField alloc] initWithFrame:CGRectInset(_addrbar.bounds, 12, 7)];
     [_urlField setBorderStyle:UITextBorderStyleRoundedRect];
     [_urlField setKeyboardType:UIKeyboardTypeURL];
@@ -62,55 +62,53 @@
     [_urlField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [_urlField setPlaceholder:@"URL"];
     [_urlField setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    
-    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:_L(Cancel) style:UIBarButtonItemStyleBordered target:self action:@selector(cancel) ];
+
+    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:_L(Cancel) style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
     _cancelButton.width = kCancelButtonWidth;
-    
+
     self.addrItemsInactive = [NSMutableArray arrayWithObjects:[[UIBarButtonItem alloc] initWithCustomView:_urlField], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], nil];
     self.addrItemsActive = [NSMutableArray arrayWithArray:_addrItemsInactive];
     [_addrItemsActive addObject:_cancelButton];
-    
+
     [_addrbar setItems:_addrItemsInactive];
     [_addrbar setBarStyle:UIBarStyleBlackOpaque];
     [_addrbar setTintColor:[UIColor colorWithWhite:0.6f alpha:1.0f]];
-    
+
     // add subviews
     [self.view addSubview:_webViewContainer];
     [self.view addSubview:_addrbar];
     [self.view addSubview:_tabBar];
-    
+
     [self relayout:bounds];
 
     // Keyboard hide notification
     [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(keyboardHiden:)
-     name:UIKeyboardWillHideNotification
-     object:nil];
-    
+            addObserver:self
+               selector:@selector(keyboardHiden:)
+                   name:UIKeyboardWillHideNotification
+                 object:nil];
+
     // ActionSheet
     [self initActionSheet];
 
 //    [self play];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     [_webViewContainer releaseBackgroundWebViews];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return YES;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
 }
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self scrollViewDidScroll:[self currentWebView].scrollView];
 }
 
--(void)viewWillLayoutSubviews {
+- (void)viewWillLayoutSubviews {
     [self relayout:self.view.bounds];
 }
 
@@ -123,7 +121,7 @@
     _tabBar.frame = tabBarRect;
 }
 
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     if ([ProxySettingsTableViewController settingsAreNotComplete]) {
         [self showSettings];
     }
@@ -131,9 +129,9 @@
 
 #pragma mark - webview
 
--(void)updateWebViewTitle:(UIWebView *)webView {
-    NSString *title = [_webViewContainer titleForWebView:(SWBWebView *)webView];
-    
+- (void)updateWebViewTitle:(UIWebView *)webView {
+    NSString *title = [_webViewContainer titleForWebView:(SWBWebView *) webView];
+
     SWBPage *page = [_pageManager pageByTag:webView.tag];
     if (title) {
         page.title = title;
@@ -146,10 +144,10 @@
             title = NSLocalizedString(@"Untitled", "Untitled");
         }
     }
-    [_tabBar setTitleForTab:webView.tag title: title];
+    [_tabBar setTitleForTab:webView.tag title:title];
 }
 
--(void)openURL:(NSString *)urlString {
+- (void)openURL:(NSString *)urlString {
     NSURL *url = [NSURL URLWithString:urlString];
     if (!url || [urlString rangeOfString:@":"].length == 0) {
         urlString = [@"http://" stringByAppendingString:urlString];
@@ -161,35 +159,34 @@
             [_webViewContainer.currentSWBWebView loadRequest:request];
         }
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:_L(incorrect URL) delegate:nil cancelButtonTitle:_L(OK) otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:_L(incorrect
+        URL)                                           delegate:nil cancelButtonTitle:_L(OK) otherButtonTitles:nil];
         [alert show];
     }
 }
 
--(SWBWebView *)currentWebView {
+- (SWBWebView *)currentWebView {
     return [_webViewContainer currentSWBWebView];
 }
 
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+
 }
 
--(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     BOOL result = YES;
-    
+
 #ifdef DEBUG
     //    NSLog(@"shouldStartLoadWithRequest tag:%d navtype:%d %@", webView.tag, navigationType, [request URL]);
 #endif
     //    NSString *scheme = [[request URL] scheme];
-    
-    if ([[[request URL] absoluteString] caseInsensitiveCompare:kNewTabAddress] == NSOrderedSame)
-    {
+
+    if ([[[request URL] absoluteString] caseInsensitiveCompare:kNewTabAddress] == NSOrderedSame) {
 //        [self openLinkInNewTab:[(SWBWebView *)webView lastClickedLink]];
     }
-    else
-    {
+    else {
         if (navigationType == UIWebViewNavigationTypeLinkClicked ||
-            navigationType == UIWebViewNavigationTypeBackForward) {
+                navigationType == UIWebViewNavigationTypeBackForward) {
             SWBPage *page = [_pageManager pageByTag:webView.tag];
             NSString *url = [[request URL] absoluteString];
             page.url = url;
@@ -198,30 +195,30 @@
     return result;
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self resetTabBarButtonsStatus];
     [self updateWebViewTitle:webView];
-    
+
     [_tabBar setLoadingForTab:webView.tag loading:NO];
 
-    if ([[[[webView request] URL] absoluteString] caseInsensitiveCompare: [(SWBWebView *)webView locationHref]] == NSOrderedSame) {
+    if ([[[[webView request] URL] absoluteString] caseInsensitiveCompare:[(SWBWebView *) webView locationHref]] == NSOrderedSame) {
         NSString *url = [[[webView request] URL] absoluteString];
-        NSString *title = [((SWBWebView *)webView) pageTitle];
+        NSString *title = [((SWBWebView *) webView) pageTitle];
         _urlField.text = url;
         SWBPage *page = [_pageManager pageByTag:webView.tag];
         page.url = url;
         page.title = title;
-        
+
     }
 }
 
--(void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webViewDidStartLoad:(UIWebView *)webView {
     [_tabBar setLoadingForTab:webView.tag loading:YES];
 }
 
 #pragma mark - WebView Scrolling
 
--(void)initWebViewScrolling:(SWBWebView *)webView {
+- (void)initWebViewScrolling:(SWBWebView *)webView {
     UIScrollView *scrollView = webView.scrollView;
     scrollView.delegate = self;
     [scrollView setContentInset:UIEdgeInsetsMake(kToolBarHeight, 0, 0, 0)];
@@ -230,7 +227,7 @@
     [self scrollViewDidScroll:scrollView];
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([self currentWebView].scrollView == scrollView) {
         if (scrollView.contentOffset.y < 0) {
             [scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)];
@@ -243,12 +240,13 @@
 
 #pragma mark - ActionSheet
 
--(void)initActionSheet {
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:_L(Cancel) destructiveButtonTitle:nil otherButtonTitles:_L(New Tab), _L(Back), _L(Forward), _L(Reload), _L(Settings), _L(Help), _L(About), nil];
+- (void)initActionSheet {
+    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:_L(Cancel) destructiveButtonTitle:nil otherButtonTitles:_L(New
+    Tab), _L(Back), _L(Forward), _L(Reload), _L(Settings), _L(Help), _L(About), nil];
     [_actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:
             [self openLinkInNewTab:kNewTabAddress];
@@ -271,15 +269,32 @@
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help"]];
             break;
         case 6:
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/shadowsocks/shadowsocks-iOS/blob/master/About.md"]];
+            [self showAbout];
             break;
         default:
             break;
     }
 }
 
+- (void)showAbout {
+    SWBAboutController *settingsController = [[SWBAboutController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settingsController];
+    //    nav.navigationBar.tintColor = [UIColor blackColor];
+    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        settingsPC = [[UIPopoverController alloc] initWithContentViewController:nav];
+        settingsController.myPopoverController = settingsPC;
+        CGRect newTabRect = [self.tabBar aNewTabButton].frame;
+        newTabRect.size.width = newTabRect.size.height;
+        CGRect rect = [self.tabBar convertRect:newTabRect toView:self.view];
+        [settingsPC presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else {
+        [self presentModalViewController:nav animated:YES];
+    }
 
--(void) showSettings {
+}
+
+- (void)showSettings {
     ProxySettingsTableViewController *settingsController = [[ProxySettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settingsController];
     //    nav.navigationBar.tintColor = [UIColor blackColor];
@@ -299,7 +314,7 @@
 #pragma mark - TabBar
 
 
--(void)resetTabBarButtonsStatus {
+- (void)resetTabBarButtonsStatus {
 //    SWBWebView *currentWebView = [self currentWebView];
 //    backButton.enabled = currentWebView.canGoBack;
 //    forwardButton.enabled = currentWebView.canGoForward;
@@ -322,7 +337,7 @@
 }
 
 
--(void)tabBarViewNewTabButtonDidClick {
+- (void)tabBarViewNewTabButtonDidClick {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         CGRect newTabRect = [self.tabBar aNewTabButton].frame;
         newTabRect.size.width = newTabRect.size.height;
@@ -333,7 +348,7 @@
     }
 }
 
--(void)tabBarViewTabDidClose:(SWBTab *)tab {
+- (void)tabBarViewTabDidClose:(SWBTab *)tab {
 //    NSString *title = [[_webViewContainer webViewByTag:tab.tag] pageTitle];
 //    NSString *urlString =[[_pageManager pageByTag:tab.tag] url];
 //    if (urlString) {
@@ -351,31 +366,32 @@
     if ([[_pageManager pages] count] == 0) {
 //        [self tabBarViewNewTabButtonDidClick];
         [self openLinkInNewTab:@"http://www.twitter.com/"];
-        [NSTimer scheduledTimerWithTimeInterval:0.20 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];    }
+        [NSTimer scheduledTimerWithTimeInterval:0.20 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];
+    }
 }
 
--(void)tabBarViewTabDidMove:(SWBTab *)tab toIndex:(NSInteger)index {
+- (void)tabBarViewTabDidMove:(SWBTab *)tab toIndex:(NSInteger)index {
     //    [pageManager reorderPage:tabBar.tabs];
     // 目前没有必要
 }
 
--(void)tabBarViewTabDidSelect:(SWBTab *)tab {
+- (void)tabBarViewTabDidSelect:(SWBTab *)tab {
     [_webViewContainer switchToWebView:tab.tag];
 }
 
 #pragma mark - page manager
 
--(void)initPageManager {
+- (void)initPageManager {
     lastTag = 0;
     self.pageManager = [[SWBPageManager alloc] init];
     [_pageManager load];
 }
 
--(NSInteger)genTag {
-    return lastTag ++;
+- (NSInteger)genTag {
+    return lastTag++;
 }
 
--(void)initPagesAndTabs {
+- (void)initPagesAndTabs {
     [_pageManager initMappingAndTabsByPages];
     NSArray *pages = _pageManager.pages;
 //    NSInteger currentTabTag = 0;
@@ -397,7 +413,7 @@
     }
 }
 
--(void)savePageIndex {
+- (void)savePageIndex {
     // save page index order
     //    NSArray *tabs = [tabBar tabs];
     //    for (int i = 0; i < [tabs count]; i++) {
@@ -416,7 +432,7 @@
     _tabBar.currentTab = newTab;
 }
 
--(void)openLinkInNewTab:(NSString *)urlString {
+- (void)openLinkInNewTab:(NSString *)urlString {
     SWBTab *newTab = [_tabBar newTab];
     SWBPage *page = [_pageManager addPageWithTag:newTab.tag];
     page.url = urlString;
@@ -426,13 +442,13 @@
 }
 
 
--(void)saveData {
+- (void)saveData {
     [_pageManager save];
 }
 
 #pragma mark - WebViewContainer
 
--(void)syncPageManagerSelectionStatusWithSelectedTag:(NSInteger)tag {
+- (void)syncPageManagerSelectionStatusWithSelectedTag:(NSInteger)tag {
     NSNumber *yes = [NSNumber numberWithBool:YES];
     NSNumber *no = [NSNumber numberWithBool:NO];
     for (SWBPage *page in _pageManager.pages) {
@@ -441,28 +457,28 @@
     [_pageManager pageByTag:tag].selected = yes;
 }
 
--(void)webViewContainerWebViewDidCreateNew:(SWBWebView *)webView {
+- (void)webViewContainerWebViewDidCreateNew:(SWBWebView *)webView {
     SWBPage *page = [_pageManager pageByTag:webView.tag];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:page.url]];
     [webView loadRequest:request];
-    
+
     [self initWebViewScrolling:webView];
-    
+
     [self resetTabBarButtonsStatus];
     [self syncPageManagerSelectionStatusWithSelectedTag:webView.tag];
 }
 
--(void)webViewContainerWebViewDidSwitchToWebView:(SWBWebView *)webView {
+- (void)webViewContainerWebViewDidSwitchToWebView:(SWBWebView *)webView {
     [self resetTabBarButtonsStatus];
     [self syncPageManagerSelectionStatusWithSelectedTag:webView.tag];
     _urlField.text = webView.locationHref;
     [self scrollViewDidScroll:webView.scrollView];
 }
 
--(void)webViewContainerWebViewNeedToReload:(SWBWebView *)webView tag:(NSInteger)tag {
+- (void)webViewContainerWebViewNeedToReload:(SWBWebView *)webView tag:(NSInteger)tag {
     SWBPage *page = [_pageManager pageByTag:tag];
     NSURL *url = [NSURL URLWithString:page.url];
-    if (url!=nil) {
+    if (url != nil) {
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
         [self resetTabBarButtonsStatus];
@@ -473,64 +489,67 @@
 
 #pragma mark - Text Field
 
--(void)hideKeyboard {
+- (void)hideKeyboard {
     [_urlField resignFirstResponder];
     [self hideCancelButton];
 }
 
--(void)hideCancelButton {
+- (void)hideCancelButton {
     [_addrbar setItems:_addrItemsInactive animated:YES];
-    
+
     [UIView beginAnimations:nil context:NULL];
     CGRect bounds = [_addrbar bounds];
     bounds = CGRectInset(bounds, 12, 7);
     [_urlField setFrame:bounds];
     [UIView commitAnimations];
-    
+
 }
 
--(void)cancel {
+- (void)cancel {
     [self hideKeyboard];
 }
 
 
--(void)textFieldDidBeginEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     [_addrbar setItems:_addrItemsActive animated:YES];
-    
+
     [UIView beginAnimations:nil context:NULL];
     CGRect bounds = [_addrbar bounds];
-    bounds = CGRectInset(bounds, 12 + kCancelButtonWidth * 0.5f , 7);
+    bounds = CGRectInset(bounds, 12 + kCancelButtonWidth * 0.5f, 7);
     bounds = CGRectOffset(bounds, -kCancelButtonWidth * 0.5f, 0);
     [_urlField setFrame:bounds];
     [UIView commitAnimations];
 }
--(void)textFieldDidEndEditing {
+
+- (void)textFieldDidEndEditing {
     [self hideKeyboard];
     [self openURL:_urlField.text];
 }
--(BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     return YES;
 }
--(void)keyboardHiden:(NSNotification *)notification {
+
+- (void)keyboardHiden:(NSNotification *)notification {
 //    [self hideCancelButton];
 }
 
 #pragma mark audio
 
--(BOOL)canBecomeFirstResponder{
+- (BOOL)canBecomeFirstResponder {
     return YES;
 }
 
--(void)play {
-    
+- (void)play {
+
     // Play music, so app can run in the backgound.
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setActive:YES error:nil];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
+
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"silence" withExtension:@"wav"];
-    
+
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [player prepareToPlay];
     [player setVolume:0];
