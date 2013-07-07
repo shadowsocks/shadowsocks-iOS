@@ -3,15 +3,6 @@
 #import <stdint.h>
 #import <openssl/evp.h>
 
-typedef enum {
-    EncryptionTable = 0,
-    EncryptionRC4 = 1,
-    EncryptionAES256CFB,
-    EncryptionAES192CFB,
-    EncryptionAES128CFB,
-    EncryptionBFCFB
-} EncryptionMethod;
-
 struct encryption_ctx {
     EVP_CIPHER_CTX* ctx;
     uint8_t status;
@@ -21,7 +12,7 @@ struct encryption_ctx {
 #define STATUS_INIT 1
 #define STATUS_DESTORYED 2
 
-#define TOTAL_METHODS 6
+#define TOTAL_METHODS 14
 
 void encrypt_buf(struct encryption_ctx* ctx, char *buf, int *len);
 void decrypt_buf(struct encryption_ctx* ctx, char *buf, int *len);

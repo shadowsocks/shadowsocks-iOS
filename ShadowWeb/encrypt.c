@@ -6,41 +6,59 @@
 
 int encryption_iv_len[] = {
         0,
+        16,
+        16,
+        16,
+        8,
+        16,
+        16,
+        16,
+        8,
+        8,
+        8,
+        8,
         0,
-        16,
-        16,
-        16,
-        8
+        16
 };
 
 static const char *encryption_names[] = {
         "table",
-        "rc4",
         "aes-256-cfb",
         "aes-192-cfb",
         "aes-128-cfb",
-        "bf-cfb"
+        "bf-cfb",
+        "camellia-128-cfb",
+        "camellia-192-cfb",
+        "camellia-256-cfb",
+        "cast5-cfb",
+        "des-cfb",
+        "idea-cfb",
+        "rc2-cfb",
+        "rc4",
+        "seed-cfb"
 };
 
-static EncryptionMethod _method;
+#define ENCRYPTION_TABLE 0
+
+static int _method;
 static int _key_len;
 static const EVP_CIPHER *_cipher;
 static char _key[EVP_MAX_KEY_LENGTH];
 
 void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len, int is_cipher);
 
-EncryptionMethod encryption_method_from_string(const char *name) {
+int encryption_method_from_string(const char *name) {
     // TODO use an O(1) way
     for (int i = 0; i < TOTAL_METHODS; i++) {
         if (strcasecmp(name, encryption_names[i]) == 0) {
-            return (EncryptionMethod) i;
+            return i;
         }
     }
-    return EncryptionTable;
+    return 0;
 }
 
 void encrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
-    if (_method == EncryptionTable) {
+    if (_method == ENCRYPTION_TABLE) {
         table_encrypt(buf, *len);
     } else {
         if (ctx->status == STATUS_EMPTY) {
@@ -68,7 +86,7 @@ void encrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
 }
 
 void decrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
-    if (_method == EncryptionTable) {
+    if (_method == ENCRYPTION_TABLE) {
         table_decrypt(buf, *len);
     } else {
         if (ctx->status == STATUS_EMPTY) {
@@ -109,7 +127,7 @@ int recv_decrypt(struct encryption_ctx *ctx, int sock, char *buf, int *len, int 
 
 void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len, int is_cipher) {
     ctx->status = STATUS_INIT;
-    if (_method != EncryptionTable) {
+    if (_method != ENCRYPTION_TABLE) {
         EVP_CIPHER_CTX_init(ctx->ctx);
         EVP_CipherInit_ex(ctx->ctx, _cipher, NULL, NULL, NULL, is_cipher);
         if (!EVP_CIPHER_CTX_set_key_length(ctx->ctx, _key_len)) {
@@ -141,16 +159,17 @@ void cleanup_encryption(struct encryption_ctx *ctx) {
 void config_encryption(const char *password, const char *method) {
     SSLeay_add_all_algorithms();
     _method = encryption_method_from_string(method);
-    if (_method != EncryptionTable) {
-    const char *name = encryption_names[_method];
-    _cipher = EVP_get_cipherbyname(name);
-    if (_cipher == NULL) {
+    if (_method != ENCRYPTION_TABLE) {
+        const char *name = encryption_names[_method];
+        _cipher = EVP_get_cipherbyname(name);
+        if (_cipher == NULL) {
 //            assert(0);
-        // TODO
-    }
-    unsigned char tmp[EVP_MAX_IV_LENGTH];
-    _key_len = EVP_BytesToKey(_cipher, EVP_md5(), NULL, password,
-            strlen(password), 1, _key, tmp);
+            // TODO
+        }
+        unsigned char tmp[EVP_MAX_IV_LENGTH];
+        _key_len = EVP_BytesToKey(_cipher, EVP_md5(), NULL, password,
+                strlen(password), 1, _key, tmp);
+        printf("%d\n", _key_len);
     } else {
         get_table(password);
     }

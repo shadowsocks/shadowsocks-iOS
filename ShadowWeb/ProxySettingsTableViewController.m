@@ -37,17 +37,17 @@
 
 @implementation ProxySettingsTableViewController
 
-+(BOOL)settingsAreNotComplete {
++ (BOOL)settingsAreNotComplete {
     if ([[NSUserDefaults standardUserDefaults] stringForKey:kIPKey] == nil ||
-         [[NSUserDefaults standardUserDefaults] stringForKey:kPortKey] == nil ||
-          [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey] == nil) {
-             return YES;
-         } else {
-             return NO;
-         }
+            [[NSUserDefaults standardUserDefaults] stringForKey:kPortKey] == nil ||
+            [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey] == nil) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
-+(BOOL)runProxy {
++ (BOOL)runProxy {
     if (![ProxySettingsTableViewController settingsAreNotComplete]) {
         local_main();
         return YES;
@@ -59,7 +59,7 @@
     }
 }
 
-+(void)reloadConfig {
++ (void)reloadConfig {
     if (![ProxySettingsTableViewController settingsAreNotComplete]) {
         NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kEncryptionKey];
         if (!v) {
@@ -69,12 +69,11 @@
     }
 }
 
--(void)saveConfigForKey:(NSString *)key value:(NSString *)value {
+- (void)saveConfigForKey:(NSString *)key value:(NSString *)value {
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -82,16 +81,16 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
     UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.leftBarButtonItem = cancel;
-    self.navigationItem.title = _L(Proxy Settings);
-    
+    self.navigationItem.title = _L(Proxy
+    Settings);
+
     self.contentSizeForViewInPopover = CGSizeMake(320, 400);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -102,14 +101,14 @@
 
 #pragma mark - navigation
 
--(void)cancel {
+- (void)cancel {
     [self dismissModalViewControllerAnimated:YES];
     if (self->_myPopoverController) {
         [_myPopoverController dismissPopoverAnimated:YES];
     }
 }
 
--(void)done {
+- (void)done {
     if (ipField.text == nil) {
         ipField.text = @"";
     }
@@ -131,28 +130,24 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return 5;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 3) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
         cell.textLabel.text = _L(Method);
@@ -161,13 +156,15 @@
     }
     if (indexPath.row == 4) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
-        cell.textLabel.text = _L(Proxy Mode);
+        cell.textLabel.text = _L(Proxy
+        Mode);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }
     if (indexPath.row == 5) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
-        cell.textLabel.text = _L(Enable/Disable APN);
+        cell.textLabel.text = _L(Enable / Disable
+        APN);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }
@@ -179,21 +176,21 @@
     textField.returnKeyType = UIReturnKeyDone;
     switch (indexPath.row) {
         case kIPRow:
-            cell.textLabel.text =  _L(IP);
+            cell.textLabel.text = _L(IP);
             textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             textField.secureTextEntry = NO;
             textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kIPKey];
             ipField = textField;
             break;
         case kPortRow:
-            cell.textLabel.text =  _L(Port);
+            cell.textLabel.text = _L(Port);
             textField.keyboardType = UIKeyboardTypeNumberPad;
             textField.secureTextEntry = NO;
             textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPortKey];
             portField = textField;
             break;
         case kPasswordRow:
-            cell.textLabel.text =  _L(Password);
+            cell.textLabel.text = _L(Password);
             textField.keyboardType = UIKeyboardTypeDefault;
             textField.secureTextEntry = YES;
             textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey];
@@ -210,8 +207,7 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -224,11 +220,39 @@
         if (!v) {
             v = @"aes-256-cfb";
         }
-        encryptionSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:@"Table", @"AES-256-CFB", @"AES-192-CFB", @"AES-128-CFB", @"BF-CFB", nil]
-                                                        values:[NSArray arrayWithObjects:@"table", @"aes-256-cfb", @"aes-192-cfb", @"aes-128-cfb", @"bf-cfb", nil]
-                                                  initialValue:v selectionBlock:^(NSObject * value) {
-            [[NSUserDefaults standardUserDefaults] setObject:value forKey:kEncryptionKey];
-        }];
+        encryptionSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:@"table",
+                                                                                                   @"aes-256-cfb",
+                                                                                                   @"aes-192-cfb",
+                                                                                                   @"aes-128-cfb",
+                                                                                                   @"bf-cfb",
+                                                                                                   @"camellia-128-cfb",
+                                                                                                   @"camellia-192-cfb",
+                                                                                                   @"camellia-256-cfb",
+                                                                                                   @"cast5-cfb",
+                                                                                                   @"des-cfb",
+                                                                                                   @"idea-cfb",
+                                                                                                   @"rc2-cfb",
+                                                                                                   @"rc4",
+                                                                                                   @"seed-cfb",
+                                                                                                   nil]
+                                                                  values:[NSArray arrayWithObjects:@"table",
+                                                                                                   @"aes-256-cfb",
+                                                                                                   @"aes-192-cfb",
+                                                                                                   @"aes-128-cfb",
+                                                                                                   @"bf-cfb",
+                                                                                                   @"camellia-128-cfb",
+                                                                                                   @"camellia-192-cfb",
+                                                                                                   @"camellia-256-cfb",
+                                                                                                   @"cast5-cfb",
+                                                                                                   @"des-cfb",
+                                                                                                   @"idea-cfb",
+                                                                                                   @"rc2-cfb",
+                                                                                                   @"rc4",
+                                                                                                   @"seed-cfb",
+                                                                                                   nil]
+                                                            initialValue:v selectionBlock:^(NSObject *value) {
+                    [[NSUserDefaults standardUserDefaults] setObject:value forKey:kEncryptionKey];
+                }];
         UIViewController *controller = [[UIViewController alloc] init];
         controller.contentSizeForViewInPopover = self.contentSizeForViewInPopover;
         controller.navigationItem.title = _L(Method);
@@ -243,31 +267,34 @@
             v = @"pac";
         }
         modeSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:_L(PAC), _L(Global), _L(Off), nil]
-                                                values:[NSArray arrayWithObjects:@"pac", @"global", @"off", nil]
-                                          initialValue:v selectionBlock:^(NSObject *value) {
-            [[NSUserDefaults standardUserDefaults] setObject:value forKey:kProxyModeKey];
-            SWBAppDelegate *appDelegate = (SWBAppDelegate *)[UIApplication sharedApplication].delegate;
-            [appDelegate updateProxyMode];
-        }];
+                                                            values:[NSArray arrayWithObjects:@"pac", @"global", @"off", nil]
+                                                      initialValue:v selectionBlock:^(NSObject *value) {
+                    [[NSUserDefaults standardUserDefaults] setObject:value forKey:kProxyModeKey];
+                    SWBAppDelegate *appDelegate = (SWBAppDelegate *) [UIApplication sharedApplication].delegate;
+                    [appDelegate updateProxyMode];
+                }];
         UIViewController *controller = [[UIViewController alloc] init];
         controller.contentSizeForViewInPopover = CGSizeMake(320, 480);
-        controller.navigationItem.title = _L(Proxy Mode);
+        controller.navigationItem.title = _L(Proxy
+        Mode);
         UITableView *tableView1 = [[UITableView alloc] initWithFrame:controller.view.frame style:UITableViewStyleGrouped];
         tableView1.dataSource = modeSource;
         tableView1.delegate = modeSource;
         controller.view = tableView1;
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 5) {
-        apnSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:_L(Enable Unicom), _L(Disable Unicom), nil]
-                                                        values:[NSArray arrayWithObjects:@"3gnet_enable", @"3gnet_disable", nil]
-                                                  initialValue:nil selectionBlock:^(NSObject *value) {
-                    SWBAppDelegate *appDelegate = (SWBAppDelegate *)[UIApplication sharedApplication].delegate;
-                    NSString *v = (NSString *)value;
+        apnSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:_L(Enable
+        Unicom), _L(Disable
+        Unicom), nil]
+                                                           values:[NSArray arrayWithObjects:@"3gnet_enable", @"3gnet_disable", nil]
+                                                     initialValue:nil selectionBlock:^(NSObject *value) {
+                    SWBAppDelegate *appDelegate = (SWBAppDelegate *) [UIApplication sharedApplication].delegate;
+                    NSString *v = (NSString *) value;
                     [appDelegate setPolipo:[v rangeOfString:@"enable"].length > 0];
                     // TODO: open after 1s, using a timer
                     [[UIApplication sharedApplication] openURL:
-                            [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:8080/apn?id=%@", (NSString *)value]]];
-        }];
+                            [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:8080/apn?id=%@", (NSString *) value]]];
+                }];
         UIViewController *controller = [[UIViewController alloc] init];
         controller.contentSizeForViewInPopover = CGSizeMake(320, 480);
         UITableView *tableView1 = [[UITableView alloc] initWithFrame:controller.view.frame style:UITableViewStyleGrouped];
