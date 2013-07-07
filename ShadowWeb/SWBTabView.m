@@ -38,7 +38,9 @@
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     titleLabel.font = [UIFont fontWithName:@"Helvetica" size:13];
 //    titleLabel.minimumFontSize = 12;
-    titleLabel.minimumScaleFactor = 0.9;
+    if ([titleLabel respondsToSelector:@selector(minimumScaleFactor)]) {
+        titleLabel.minimumScaleFactor = 0.9;
+    }
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.backgroundColor = [UIColor clearColor];
     // TODO add a setting to do this

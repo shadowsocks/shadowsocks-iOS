@@ -48,7 +48,7 @@ void polipo_exit();
     dispatch_async(proxy, ^{
         [self runProxy];
     });
-    
+
 //    [self proxyHttpStart];
 //    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updatePolipo) userInfo:nil repeats:YES];
 
@@ -67,7 +67,7 @@ void polipo_exit();
          }
     ];
 
-    
+
     [webServer startWithPort:8090 bonjourName:@"webserver"];
 //    dispatch_queue_t web = dispatch_queue_create("web", NULL);
 //    dispatch_async(web, ^{
