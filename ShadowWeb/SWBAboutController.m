@@ -35,7 +35,7 @@
 
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
     //Obtaining the current device orientation
-    [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+//    [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)viewDidLoad
