@@ -107,17 +107,12 @@
     picker.mailComposeDelegate = self;
     [picker setToRecipients:[NSArray arrayWithObject:@"shadowsocks@googlegroups.com"]];
 
-    [picker setSubject:NSLocalizedString(@"Shadowsocks for iOS Support", nil)];
+    [picker setSubject:NSLocalizedString(@"", nil)];
     UIDevice *device = [UIDevice currentDevice];
-    NSString *content = [NSString stringWithFormat:@"%@\n\n\n\n\n\nTechnical Info:\n\n%@ %@\nLanguage: %@\nDevice name: %@\nDevice model: %@\nUser Interface Idiom: %@\nSystem Name: %@\nSystem Version: %@\n",
-                                                   NSLocalizedString(@"Enter your feedback or questions:", nil),
+    NSString *content = [NSString stringWithFormat:@"\n\n\n\n\n\nTechnical Info:\n\n%@ %@\nDevice model: %@\nSystem Version: %@\n",
                                                    NSLocalizedString(@"Shadowsocks for iOS", nil),
                                                    [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey],
-                                                   [[NSLocale preferredLanguages] objectAtIndex:0],
-                                                   [device name],
                                                    [device model],
-                                                   [device userInterfaceIdiom] == UIUserInterfaceIdiomPad?@"iPad":@"iPhone",
-                                                   [device systemName],
                                                    [device systemVersion]
     ];
 
@@ -199,11 +194,7 @@
     if (indexPath.section == 1) {
 
         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-        if (UIDeviceOrientationIsLandscape(orientation)) {
-            return 390;
-        } else {
-            return 640;
-        }
+        return 480 - 300;
     }
     return 40;
 }
