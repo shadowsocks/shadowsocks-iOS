@@ -61,7 +61,10 @@
     self.addrbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, [self statusBarHeight], bounds.size.width, kToolBarHeight)];
     // init bar buttons
 
-    self.urlField = [[UITextField alloc] initWithFrame:CGRectInset(_addrbar.bounds, 12, 7)];
+    
+    CGRect urlFieldFrame = CGRectInset(_addrbar.bounds, 12 + kActionButtonWidth * 0.5f, 7);
+    urlFieldFrame = CGRectOffset(urlFieldFrame, -kActionButtonWidth * 0.5f, 0);
+    self.urlField = [[UITextField alloc] initWithFrame:urlFieldFrame];
     [_urlField setBorderStyle:UITextBorderStyleRoundedRect];
     [_urlField setKeyboardType:UIKeyboardTypeURL];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:_urlField];
@@ -76,12 +79,20 @@
     [_urlField setPlaceholder:@"URL"];
     [_urlField setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
 
-    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:_L(Cancel) style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+    UIBarButtonItem *_cancelButton = [[UIBarButtonItem alloc] initWithTitle:_L(Cancel) style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
     _cancelButton.width = kCancelButtonWidth;
-
-    self.addrItemsInactive = [NSMutableArray arrayWithObjects:[[UIBarButtonItem alloc] initWithCustomView:_urlField], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], nil];
-    self.addrItemsActive = [NSMutableArray arrayWithArray:_addrItemsInactive];
-    [_addrItemsActive addObject:_cancelButton];
+    UIBarButtonItem *_actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(addrBarViewMoreDidClick)];
+    _actionButton.width = kActionButtonWidth;
+    
+    self.addrItemsInactive = [NSMutableArray arrayWithObjects:
+                            [[UIBarButtonItem alloc] initWithCustomView:_urlField],
+                            [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                            _actionButton,
+                            nil];
+    self.addrItemsActive = [NSMutableArray arrayWithObjects:
+                            [self.addrItemsInactive objectAtIndex:0],
+                            _cancelButton,
+                            nil];
 
     [_addrbar setItems:_addrItemsInactive];
     [_addrbar setBarStyle:UIBarStyleBlack];
@@ -351,6 +362,12 @@
 
 
 - (void)tabBarViewNewTabButtonDidClick {
+    [self openLinkInNewTab:kNewTabAddress];
+    _urlField.text = @"";
+    [NSTimer scheduledTimerWithTimeInterval:0.20 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];
+}
+
+- (void)addrBarViewMoreDidClick {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         CGRect newTabRect = [self.tabBar aNewTabButton].frame;
         newTabRect.size.width = newTabRect.size.height;
@@ -509,13 +526,13 @@
 
 - (void)hideCancelButton {
     [_addrbar setItems:_addrItemsInactive animated:YES];
-
+    
     [UIView beginAnimations:nil context:NULL];
     CGRect bounds = [_addrbar bounds];
-    bounds = CGRectInset(bounds, 12, 7);
+    bounds = CGRectInset(bounds, 12 + kActionButtonWidth * 0.5f, 7);
+    bounds = CGRectOffset(bounds, -kActionButtonWidth * 0.5f, 0);
     [_urlField setFrame:bounds];
     [UIView commitAnimations];
-
 }
 
 - (void)cancel {
