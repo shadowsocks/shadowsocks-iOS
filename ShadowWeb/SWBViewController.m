@@ -25,12 +25,26 @@
 
 #pragma mark - View lifecycle
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleDefault;
+}
+
+- (UIRectEdge) edgesForExtendedLayout {
+    return UIRectEdgeNone;
+}
+
+- (CGFloat) statusBarHeight {
+    return ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) ?
+        [[UIApplication sharedApplication] statusBarFrame].size.height : 0;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // If don't do this, you'll see some white edge when doing the rotation
     self.view.clipsToBounds = YES;
-
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     currentTabTag = 0;
     CGRect bounds = self.view.bounds;
     self.tabBar = [[SWBTabBarView alloc] initWithFrame:CGRectMake(0, bounds.size.height - kTabBarHeight, bounds.size.width, kTabBarHeight)];
@@ -44,8 +58,7 @@
 
 
     // init address bar
-    self.addrbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, kToolBarHeight)];
-
+    self.addrbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, [self statusBarHeight], bounds.size.width, kToolBarHeight)];
     // init bar buttons
 
     self.urlField = [[UITextField alloc] initWithFrame:CGRectInset(_addrbar.bounds, 12, 7)];
@@ -71,8 +84,8 @@
     [_addrItemsActive addObject:_cancelButton];
 
     [_addrbar setItems:_addrItemsInactive];
-    [_addrbar setBarStyle:UIBarStyleBlackOpaque];
-    [_addrbar setTintColor:[UIColor colorWithWhite:0.6f alpha:1.0f]];
+    [_addrbar setBarStyle:UIBarStyleBlack];
+    [_addrbar setBarTintColor:[UIColor whiteColor]];
 
     // add subviews
     [self.view addSubview:_webViewContainer];
@@ -109,16 +122,13 @@
 }
 
 - (void)viewWillLayoutSubviews {
+    NSLog(@"viewWillLayoutSubviews");
     [self relayout:self.view.bounds];
 }
 
 - (void)relayout:(CGRect)bounds {
-    CGRect addrBarRect = CGRectMake(0, _addrbar.frame.origin.y, bounds.size.width, kToolBarHeight);
-    CGRect webViewContainerRect = CGRectMake(0, 0, bounds.size.width, bounds.size.height - kTabBarHeight);
-    CGRect tabBarRect = CGRectMake(0, bounds.size.height - kTabBarHeight, bounds.size.width, kTabBarHeight);
-    _addrbar.frame = addrBarRect;
+    CGRect webViewContainerRect = CGRectMake(0, [self statusBarHeight], bounds.size.width, bounds.size.height - kTabBarHeight - [self statusBarHeight]);
     _webViewContainer.frame = webViewContainerRect;
-    _tabBar.frame = tabBarRect;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -234,7 +244,10 @@
         } else {
             [scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         }
-        _addrbar.frame = CGRectMake(0, -kToolBarHeight - scrollView.contentOffset.y, _addrbar.frame.size.width, kToolBarHeight);
+        _addrbar.frame = CGRectMake(0, [self statusBarHeight] - kToolBarHeight - scrollView.contentOffset.y, _addrbar.frame.size.width, kToolBarHeight);
+        
+        CGFloat opacity = ([self statusBarHeight] - _addrbar.frame.origin.y) / kToolBarHeight;
+        _urlField.alpha = 1 - opacity;
     }
 }
 
