@@ -35,7 +35,7 @@
 
 - (CGFloat) statusBarHeight {
     return ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) ?
-        [[UIApplication sharedApplication] statusBarFrame].size.height : 0;
+        20 : 0;
 }
 
 - (void)viewDidLoad {
@@ -133,13 +133,16 @@
 }
 
 - (void)viewWillLayoutSubviews {
-    NSLog(@"viewWillLayoutSubviews");
     [self relayout:self.view.bounds];
 }
 
 - (void)relayout:(CGRect)bounds {
+    CGRect addrBarRect = CGRectMake(0, _addrbar.frame.origin.y, bounds.size.width, kToolBarHeight);
     CGRect webViewContainerRect = CGRectMake(0, [self statusBarHeight], bounds.size.width, bounds.size.height - kTabBarHeight - [self statusBarHeight]);
+    CGRect tabBarRect = CGRectMake(0, bounds.size.height - kTabBarHeight, bounds.size.width, kTabBarHeight);
+    _addrbar.frame = addrBarRect;
     _webViewContainer.frame = webViewContainerRect;
+    _tabBar.frame = tabBarRect;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -258,7 +261,7 @@
         _addrbar.frame = CGRectMake(0, [self statusBarHeight] - kToolBarHeight - scrollView.contentOffset.y, _addrbar.frame.size.width, kToolBarHeight);
         
         CGFloat opacity = ([self statusBarHeight] - _addrbar.frame.origin.y) / kToolBarHeight;
-        _urlField.alpha = 1 - opacity;
+        _urlField.alpha = (1 - opacity)*(1 - opacity);
     }
 }
 
