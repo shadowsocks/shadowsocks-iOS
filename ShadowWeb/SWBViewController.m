@@ -260,8 +260,11 @@
         }
         _addrbar.frame = CGRectMake(0, [self statusBarHeight] - kToolBarHeight - scrollView.contentOffset.y, _addrbar.frame.size.width, kToolBarHeight);
         
-        CGFloat opacity = ([self statusBarHeight] - _addrbar.frame.origin.y) / kToolBarHeight;
+        CGFloat offset = MIN(kToolBarHeight, MAX(0, (kToolBarHeight + scrollView.contentOffset.y)));
+        CGFloat opacity = offset / kToolBarHeight;
         _urlField.alpha = (1 - opacity)*(1 - opacity);
+        // NSLog(@"offset: %f, contentInset top: %f", offset, scrollView.contentInset.top);
+        [scrollView setContentInset:UIEdgeInsetsMake(kToolBarHeight - offset, 0, 0, 0)];
     }
 }
 
