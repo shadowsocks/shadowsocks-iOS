@@ -14,6 +14,7 @@
 
 #define kToolBarHeight 44
 #define kCancelButtonWidth 70
+#define kActionButtonWidth 44
 
 @interface SWBViewController : UIViewController <UITextFieldDelegate, SWBTabBarDelegate, SWBWebViewContainerDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
     NSInteger lastTag;
@@ -29,7 +30,6 @@
 @property (strong, nonatomic) NSMutableArray *addrItemsActive;
 @property (strong, nonatomic) NSMutableArray *addrItemsInactive;
 @property (strong, nonatomic) UITextField *urlField;
-@property (strong, nonatomic) UIBarButtonItem *cancelButton;
 
 
 

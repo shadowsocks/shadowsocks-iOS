@@ -25,12 +25,26 @@
 
 #pragma mark - View lifecycle
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleDefault;
+}
+
+- (UIRectEdge) edgesForExtendedLayout {
+    return UIRectEdgeNone;
+}
+
+- (CGFloat) statusBarHeight {
+    return ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) ?
+        20 : 0;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // If don't do this, you'll see some white edge when doing the rotation
     self.view.clipsToBounds = YES;
-
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     currentTabTag = 0;
     CGRect bounds = self.view.bounds;
     self.tabBar = [[SWBTabBarView alloc] initWithFrame:CGRectMake(0, bounds.size.height - kTabBarHeight, bounds.size.width, kTabBarHeight)];
@@ -44,11 +58,13 @@
 
 
     // init address bar
-    self.addrbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, kToolBarHeight)];
-
+    self.addrbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, [self statusBarHeight], bounds.size.width, kToolBarHeight)];
     // init bar buttons
 
-    self.urlField = [[UITextField alloc] initWithFrame:CGRectInset(_addrbar.bounds, 12, 7)];
+    
+    CGRect urlFieldFrame = CGRectInset(_addrbar.bounds, 12 + kActionButtonWidth * 0.5f, 7);
+    urlFieldFrame = CGRectOffset(urlFieldFrame, -kActionButtonWidth * 0.5f, 0);
+    self.urlField = [[UITextField alloc] initWithFrame:urlFieldFrame];
     [_urlField setBorderStyle:UITextBorderStyleRoundedRect];
     [_urlField setKeyboardType:UIKeyboardTypeURL];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:_urlField];
@@ -63,16 +79,24 @@
     [_urlField setPlaceholder:@"URL"];
     [_urlField setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
 
-    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:_L(Cancel) style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+    UIBarButtonItem *_cancelButton = [[UIBarButtonItem alloc] initWithTitle:_L(Cancel) style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
     _cancelButton.width = kCancelButtonWidth;
-
-    self.addrItemsInactive = [NSMutableArray arrayWithObjects:[[UIBarButtonItem alloc] initWithCustomView:_urlField], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], nil];
-    self.addrItemsActive = [NSMutableArray arrayWithArray:_addrItemsInactive];
-    [_addrItemsActive addObject:_cancelButton];
+    UIBarButtonItem *_actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(addrBarViewMoreDidClick)];
+    _actionButton.width = kActionButtonWidth;
+    
+    self.addrItemsInactive = [NSMutableArray arrayWithObjects:
+                            [[UIBarButtonItem alloc] initWithCustomView:_urlField],
+                            [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                            _actionButton,
+                            nil];
+    self.addrItemsActive = [NSMutableArray arrayWithObjects:
+                            [self.addrItemsInactive objectAtIndex:0],
+                            _cancelButton,
+                            nil];
 
     [_addrbar setItems:_addrItemsInactive];
-    [_addrbar setBarStyle:UIBarStyleBlackOpaque];
-    [_addrbar setTintColor:[UIColor colorWithWhite:0.6f alpha:1.0f]];
+    [_addrbar setBarStyle:UIBarStyleBlack];
+    [_addrbar setBarTintColor:[UIColor whiteColor]];
 
     // add subviews
     [self.view addSubview:_webViewContainer];
@@ -114,7 +138,7 @@
 
 - (void)relayout:(CGRect)bounds {
     CGRect addrBarRect = CGRectMake(0, _addrbar.frame.origin.y, bounds.size.width, kToolBarHeight);
-    CGRect webViewContainerRect = CGRectMake(0, 0, bounds.size.width, bounds.size.height - kTabBarHeight);
+    CGRect webViewContainerRect = CGRectMake(0, [self statusBarHeight], bounds.size.width, bounds.size.height - kTabBarHeight - [self statusBarHeight]);
     CGRect tabBarRect = CGRectMake(0, bounds.size.height - kTabBarHeight, bounds.size.width, kTabBarHeight);
     _addrbar.frame = addrBarRect;
     _webViewContainer.frame = webViewContainerRect;
@@ -234,7 +258,13 @@
         } else {
             [scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         }
-        _addrbar.frame = CGRectMake(0, -kToolBarHeight - scrollView.contentOffset.y, _addrbar.frame.size.width, kToolBarHeight);
+        _addrbar.frame = CGRectMake(0, [self statusBarHeight] - kToolBarHeight - scrollView.contentOffset.y, _addrbar.frame.size.width, kToolBarHeight);
+        
+        CGFloat offset = MIN(kToolBarHeight, MAX(0, (kToolBarHeight + scrollView.contentOffset.y)));
+        CGFloat opacity = offset / kToolBarHeight;
+        _urlField.alpha = (1 - opacity)*(1 - opacity);
+        // NSLog(@"offset: %f, contentInset top: %f", offset, scrollView.contentInset.top);
+        [scrollView setContentInset:UIEdgeInsetsMake(kToolBarHeight - offset, 0, 0, 0)];
     }
 }
 
@@ -338,6 +368,12 @@
 
 
 - (void)tabBarViewNewTabButtonDidClick {
+    [self openLinkInNewTab:kNewTabAddress];
+    _urlField.text = @"";
+    [NSTimer scheduledTimerWithTimeInterval:0.20 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];
+}
+
+- (void)addrBarViewMoreDidClick {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         CGRect newTabRect = [self.tabBar aNewTabButton].frame;
         newTabRect.size.width = newTabRect.size.height;
@@ -496,13 +532,13 @@
 
 - (void)hideCancelButton {
     [_addrbar setItems:_addrItemsInactive animated:YES];
-
+    
     [UIView beginAnimations:nil context:NULL];
     CGRect bounds = [_addrbar bounds];
-    bounds = CGRectInset(bounds, 12, 7);
+    bounds = CGRectInset(bounds, 12 + kActionButtonWidth * 0.5f, 7);
+    bounds = CGRectOffset(bounds, -kActionButtonWidth * 0.5f, 0);
     [_urlField setFrame:bounds];
     [UIView commitAnimations];
-
 }
 
 - (void)cancel {
