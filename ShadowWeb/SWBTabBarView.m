@@ -14,8 +14,8 @@
 #define kTabBarTabInset 20
 #define kTabBarNewTabButtonWidth 40
 
-#define kTabBarTopColor 0.9
-#define kTabBarBottomColor 0.6
+#define kTabBarTopColor 0.85
+#define kTabBarBottomColor 0.85
 
 #define kTabBarOverflowTabAlpha 0.3
 
@@ -112,10 +112,10 @@
     CGContextAddLineToPoint(context, width, 0);
     CGContextDrawPath(context, kCGPathStroke);
     
-    CGContextMoveToPoint(context, 0, 1);
-    CGContextSetRGBStrokeColor(context, 1, 1, 1, 1);
-    CGContextAddLineToPoint(context, width, 1);
-    CGContextDrawPath(context, kCGPathStroke);
+//    CGContextMoveToPoint(context, 0, 1);
+//    CGContextSetRGBStrokeColor(context, 1, 1, 1, 1);
+//    CGContextAddLineToPoint(context, width, 1);
+//    CGContextDrawPath(context, kCGPathStroke);
     
     CGGradientRelease(myGradient);
     CGColorSpaceRelease(myColorspace);

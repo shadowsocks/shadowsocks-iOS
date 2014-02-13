@@ -81,7 +81,7 @@
 
 // don't touch this!! it's magic!!
 #define kPaddingTop 0.0
-#define kPaddingBottom 2.5
+#define kPaddingBottom 2.0
 #define kCtlX 5
 #define kCtlY 0
 #define kTargetX 8
@@ -92,14 +92,14 @@
 #define kShadowColor 0.45
 #define kShadowOffset CGSizeMake(0, 2)
 #define kShadowBlur 4
-#define kTabViewFocusedGradTopColor 0.999
-#define kTabViewFocusedGradBottomColor 0.7
-#define kTabViewGradTopColor 0.9
-#define kTabViewGradBottomColor 0.55
-#define kTabViewHighlightedGradTopColor 0.8
-#define kTabViewHighlightedGradBottomColor 0.5
+#define kTabViewFocusedGradTopColor 1
+#define kTabViewFocusedGradBottomColor 1
+#define kTabViewGradTopColor 0.93
+#define kTabViewGradBottomColor 0.93
+#define kTabViewHighlightedGradTopColor 0.85
+#define kTabViewHighlightedGradBottomColor 0.85
 #define kTabViewFocusedHighlightedGradTopColor 0.95
-#define kTabViewFocusedHighlightedGradBottomColor 0.6
+#define kTabViewFocusedHighlightedGradBottomColor 0.95
 
 -(void)addOutline:(CGContextRef)context width:(CGFloat)width height:(CGFloat)height close:(BOOL)close
 {
@@ -137,17 +137,17 @@
     
     // draw shadow
     
-    CGContextSaveGState(context);
-    
-    CGFloat shadowColorComponents[4] = {
-        kShadowColor,kShadowColor, kShadowColor, 1.0};
-    CGColorRef myColor = CGColorCreate(myColorspace, shadowColorComponents);
-    CGContextSetShadowWithColor(context, kShadowOffset, kShadowBlur, myColor);
-    CGColorRelease(myColor);
-    [self addOutline:context width:width height:height close:YES];
-    CGContextFillPath(context);
-    
-    CGContextRestoreGState(context);
+//    CGContextSaveGState(context);
+//    
+//    CGFloat shadowColorComponents[4] = {
+//        kShadowColor,kShadowColor, kShadowColor, 1.0};
+//    CGColorRef myColor = CGColorCreate(myColorspace, shadowColorComponents);
+//    CGContextSetShadowWithColor(context, kShadowOffset, kShadowBlur, myColor);
+//    CGColorRelease(myColor);
+//    [self addOutline:context width:width height:height close:YES];
+//    CGContextFillPath(context);
+//    
+//    CGContextRestoreGState(context);
     
     // draw gradient
     CGContextSaveGState(context);
@@ -206,8 +206,8 @@
     
     // draw line
     
-    CGContextSetLineWidth(context, 1);
-    CGContextSetRGBStrokeColor(context, 0.3, 0.3, 0.3, 1);
+    CGContextSetLineWidth(context, 0.5);
+    CGContextSetRGBStrokeColor(context, 0.1, 0.1, 0.1, 1);
     CGContextSetLineWidth(context, 0.5);
 	[self addOutline:context width:width height:height close:NO];
     CGContextDrawPath(context, kCGPathStroke);

@@ -95,7 +95,7 @@
                             nil];
 
     [_addrbar setItems:_addrItemsInactive];
-    [_addrbar setBarStyle:UIBarStyleBlack];
+//    [_addrbar setBarStyle:UIBarStyleBlack];
     [_addrbar setBarTintColor:[UIColor whiteColor]];
 
     // add subviews
@@ -310,7 +310,7 @@
     SWBAboutController *settingsController = [[SWBAboutController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settingsController];
     //    nav.navigationBar.tintColor = [UIColor blackColor];
-    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+//    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         settingsPC = [[UIPopoverController alloc] initWithContentViewController:nav];
         settingsController.myPopoverController = settingsPC;
@@ -328,7 +328,7 @@
     ProxySettingsTableViewController *settingsController = [[ProxySettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settingsController];
     //    nav.navigationBar.tintColor = [UIColor blackColor];
-    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+//    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         settingsPC = [[UIPopoverController alloc] initWithContentViewController:nav];
         settingsController.myPopoverController = settingsPC;

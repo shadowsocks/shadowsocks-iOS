@@ -14,7 +14,7 @@
 @synthesize radius;
 
 -(void) loadDefaults {
-    radius = 8;
+    radius = 7;
     highlightView = [[SWBSmallCloseButtonHighlightView alloc] init];
     highlightView.backgroundColor = [UIColor clearColor];
     highlightView.userInteractionEnabled = NO;
@@ -44,9 +44,9 @@
     return self;
 }
 
-#define kButtonBGColor 0.4
-#define kButtonFGColor 0.9
-#define kButtonLineWidth 2
+#define kButtonBGColor 0.5
+#define kButtonFGColor 1
+#define kButtonLineWidth 1.5
 #define kButtonShadowColor 0.0
 #define kButtonHighlightedScale 1.5
 

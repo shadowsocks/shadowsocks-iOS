@@ -36,13 +36,13 @@
     return self;
 }
 
-#define kCrossFillColor 0.65
-#define kCrossPressedFillColor 0.5
-#define kCrossStrokeColor 0.5
+#define kCrossFillColor 0.99
+#define kCrossPressedFillColor 0.7
+#define kCrossStrokeColor 0.1
 #define kCrossPressedShadowColor 0.0
 #define kCrossShadowColor 1.0
-#define kCrossPadding 10.5
-#define kCrossWidth 5
+#define kCrossPadding 10
+#define kCrossWidth 6
 
 -(void)addCross:(CGContextRef)context width:(CGFloat)width height:(CGFloat)height
 {
@@ -85,28 +85,28 @@
             kCrossStrokeColor, kCrossStrokeColor, kCrossStrokeColor, 1.0};
     CGContextSetFillColor(context, fillColorComponents);
     CGContextSetStrokeColor(context, strokeColorComponents);
-    CGContextSetLineWidth(context, 1);
+    CGContextSetLineWidth(context, 0.5);
     CGContextSetLineJoin(context, kCGLineJoinMiter);
     
     CGContextSaveGState(context);
     
-    if (self.highlighted) {
-        CGColorSpaceRef myColorspace = CGColorSpaceCreateDeviceRGB();
-        CGFloat shadowColorComponents[4] = {
-            kCrossPressedShadowColor, kCrossPressedShadowColor, kCrossPressedShadowColor, 1.0};
-        CGColorRef myColor = CGColorCreate(myColorspace, shadowColorComponents);
-        CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 20, myColor);
-        CGColorSpaceRelease(myColorspace);
-        CGColorRelease(myColor);
-    } else {
-        CGColorSpaceRef myColorspace = CGColorSpaceCreateDeviceRGB();
-        CGFloat shadowColorComponents[4] = {
-            kCrossShadowColor, kCrossShadowColor, kCrossShadowColor, 1.0};
-        CGColorRef myColor = CGColorCreate(myColorspace, shadowColorComponents);
-        CGContextSetShadowWithColor(context, CGSizeMake(0, 1.5), 0, myColor);
-        CGColorSpaceRelease(myColorspace);
-        CGColorRelease(myColor);
-    }
+//    if (self.highlighted) {
+//        CGColorSpaceRef myColorspace = CGColorSpaceCreateDeviceRGB();
+//        CGFloat shadowColorComponents[4] = {
+//            kCrossPressedShadowColor, kCrossPressedShadowColor, kCrossPressedShadowColor, 1.0};
+//        CGColorRef myColor = CGColorCreate(myColorspace, shadowColorComponents);
+//        CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 20, myColor);
+//        CGColorSpaceRelease(myColorspace);
+//        CGColorRelease(myColor);
+//    } else {
+//        CGColorSpaceRef myColorspace = CGColorSpaceCreateDeviceRGB();
+//        CGFloat shadowColorComponents[4] = {
+//            kCrossShadowColor, kCrossShadowColor, kCrossShadowColor, 1.0};
+//        CGColorRef myColor = CGColorCreate(myColorspace, shadowColorComponents);
+//        CGContextSetShadowWithColor(context, CGSizeMake(0, 1.5), 0, myColor);
+//        CGColorSpaceRelease(myColorspace);
+//        CGColorRelease(myColor);
+//    }
 
     [self addCross:context width:self.bounds.size.width height:self.bounds.size.height];
     
