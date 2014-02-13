@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  ShadowWeb
+
+  Created by clowwindy on 6/17/13.
+  Copyright (c) 2013 clowwindy. All rights reserved.
+*/
+
+"Saved" = "已保存";
+"Proxy Settings" = "代理设置";
+"Encryption Method" = "加密方式";
+"Enable/Disable APN" = "启动/停止 APN";
+"IP" = "IP";
+"Port" = "端口";
+"Password" = "密码";
+"Enable Unicom" = "打开联通";
+"Disable Unicom" = "禁用联通";
+"incorrect URL" = "错误的 URL";
+"OK" = "确定";
+"Cancel" = "取消";
+"New Tab" = "新标签页";
+"Close" = "关闭";
+"Back" = "后退";
+"Forward" = "前进";
+"Reload" = "刷新";
+"Settings" = "选项";
+"Loading" = "载入中";
+"Untitled" = "无标题";
+"Method" = "加密方法";
+"Proxy Mode" = "代理模式";
+"Help" = "帮助";
+"About" = "关于";
+"Version" = "版本";
+"Visit Website" = "访问主页";
+"Rate This App" = "给我打分";

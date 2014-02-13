@@ -1,22 +1,2 @@
 /* Localized versions of Info.plist keys */
 
-"Proxy Settings" = "代理设置";
-"Encryption Method" = "加密方式";
-"Enable/Disable APN" = "启动/停止 APN";
-"IP" = "IP";
-"Port" = "端口";
-"Password" = "密码";
-"Enable Unicom" = "打开联通";
-"Disable Unicom" = "禁用联通";
-"incorrect URL" = "错误的 URL";
-"OK" = "确定";
-"Cancel" = "取消";
-"New Tab" = "新标签页";
-"Close" = "关闭";
-"Back" = "后退";
-"Forward" = "前进";
-"Reload" = "刷新";
-"Settings" = "选项";
-"Loading" = "载入中";
-"Untitled" = "无标题";
-
