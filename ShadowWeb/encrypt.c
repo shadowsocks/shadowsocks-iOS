@@ -44,6 +44,7 @@ static int _method;
 static int _key_len;
 static const EVP_CIPHER *_cipher;
 static char _key[EVP_MAX_KEY_LENGTH];
+char *shadowsocks_key;
 
 void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len, int is_cipher);
 
@@ -169,7 +170,8 @@ void config_encryption(const char *password, const char *method) {
         unsigned char tmp[EVP_MAX_IV_LENGTH];
         _key_len = EVP_BytesToKey(_cipher, EVP_md5(), NULL, password,
                 strlen(password), 1, _key, tmp);
-        printf("%d\n", _key_len);
+        shadowsocks_key = _key;
+//        printf("%d\n", _key_len);
     } else {
         get_table(password);
     }

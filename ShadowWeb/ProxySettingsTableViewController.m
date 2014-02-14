@@ -25,6 +25,7 @@
 #define kPasswordKey @"proxy password"
 #define kEncryptionKey @"proxy encryption"
 #define kProxyModeKey @"proxy mode"
+#define kUsePublicServer @"public server"
 
 
 @interface ProxySettingsTableViewController () {
@@ -38,9 +39,9 @@
 @implementation ProxySettingsTableViewController
 
 + (BOOL)settingsAreNotComplete {
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:kIPKey] == nil ||
+    if ((![ProxySettingsTableViewController isUsingPublicServer]) && ([[NSUserDefaults standardUserDefaults] stringForKey:kIPKey] == nil ||
             [[NSUserDefaults standardUserDefaults] stringForKey:kPortKey] == nil ||
-            [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey] == nil) {
+            [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey] == nil)) {
         return YES;
     } else {
         return NO;
@@ -61,16 +62,43 @@
 
 + (void)reloadConfig {
     if (![ProxySettingsTableViewController settingsAreNotComplete]) {
-        NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kEncryptionKey];
-        if (!v) {
-            v = @"aes-256-cfb";
+        if ([ProxySettingsTableViewController isUsingPublicServer]) {
+            set_config("106.186.124.182", "8910", "Shadowsocks", "aes-128-cfb");
+            memcpy(shadowsocks_key, "\x45\xd1\xd9\x9e\xbd\xf5\x8c\x85\x34\x55\xdd\x65\x46\xcd\x06\xd3", 16);
+        } else {
+            NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kEncryptionKey];
+            if (!v) {
+                v = @"aes-256-cfb";
+            }
+            set_config([[[NSUserDefaults standardUserDefaults] stringForKey:kIPKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kPortKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding], [v cStringUsingEncoding:NSUTF8StringEncoding]);
         }
-        set_config([[[NSUserDefaults standardUserDefaults] stringForKey:kIPKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kPortKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding], [v cStringUsingEncoding:NSUTF8StringEncoding]);
     }
 }
 
 - (void)saveConfigForKey:(NSString *)key value:(NSString *)value {
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
+}
+
++ (BOOL)isUsingPublicServer {
+    NSNumber *usePublicServer = [[NSUserDefaults standardUserDefaults] objectForKey:kUsePublicServer];
+    if (usePublicServer != nil) {
+        return [usePublicServer boolValue];
+    } else {
+        return YES;
+    }
+}
+
+- (void)changePublicServer:(UISegmentedControl *)segmentedControl {
+    BOOL result = NO;
+    if (segmentedControl.selectedSegmentIndex == 0) {
+        result = YES;
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:result forKey:kUsePublicServer];
+    if ((self.tableView.numberOfSections == 1) && !result) {
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+    } else if ((self.tableView.numberOfSections == 2) && result) {
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -139,70 +167,100 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    if ([ProxySettingsTableViewController isUsingPublicServer]) {
+        return 1;
+    }
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return _L(Server);
+    } else {
+        return nil;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    if (section == 0) {
+        return 1;
+    }
     return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 3) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
-        cell.textLabel.text = _L(Method);
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if(indexPath.section == 0) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"c"];
+        UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_L(Public), _L(Custom)]];
+        [cell.contentView addSubview:segmentedControl];
+        segmentedControl.center = CGPointMake(320 * 0.5f, cell.bounds.size.height * 0.5f);
+        if ([ProxySettingsTableViewController isUsingPublicServer]) {
+            segmentedControl.selectedSegmentIndex = 0;
+        } else {
+            segmentedControl.selectedSegmentIndex = 1;
+        }
+        [segmentedControl addTarget:self action:@selector(changePublicServer:) forControlEvents:UIControlEventValueChanged];
         return cell;
-    }
-    if (indexPath.row == 4) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
-        cell.textLabel.text = _L(Proxy
-        Mode);
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return cell;
-    }
-    if (indexPath.row == 5) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
-        cell.textLabel.text = _L(Enable / Disable
-        APN);
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return cell;
-    }
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"aaaaa"];
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
-    textField.adjustsFontSizeToFitWidth = YES;
-    textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    textField.returnKeyType = UIReturnKeyDone;
-    switch (indexPath.row) {
-        case kIPRow:
-            cell.textLabel.text = _L(IP);
-            textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-            textField.secureTextEntry = NO;
-            textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kIPKey];
-            ipField = textField;
-            break;
-        case kPortRow:
-            cell.textLabel.text = _L(Port);
-            textField.keyboardType = UIKeyboardTypeNumberPad;
-            textField.secureTextEntry = NO;
-            textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPortKey];
-            portField = textField;
-            break;
-        case kPasswordRow:
-            cell.textLabel.text = _L(Password);
-            textField.keyboardType = UIKeyboardTypeDefault;
-            textField.secureTextEntry = YES;
-            textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey];
-            passwordField = textField;
-            break;
-        default:
-            break;
-    }
-    [cell addSubview:textField];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 3) {
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
+            cell.textLabel.text = _L(Method);
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+        if (indexPath.row == 4) {
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
+            cell.textLabel.text = _L(Proxy
+            Mode);
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            return cell;
+        }
+        if (indexPath.row == 5) {
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bb"];
+            cell.textLabel.text = _L(Enable / Disable
+            APN);
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            return cell;
+        }
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"aaaaa"];
+        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+        textField.adjustsFontSizeToFitWidth = YES;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.returnKeyType = UIReturnKeyDone;
+        switch (indexPath.row) {
+            case kIPRow:
+                cell.textLabel.text = _L(IP);
+                textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+                textField.secureTextEntry = NO;
+                textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kIPKey];
+                ipField = textField;
+                break;
+            case kPortRow:
+                cell.textLabel.text = _L(Port);
+                textField.keyboardType = UIKeyboardTypeNumberPad;
+                textField.secureTextEntry = NO;
+                textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPortKey];
+                portField = textField;
+                break;
+            case kPasswordRow:
+                cell.textLabel.text = _L(Password);
+                textField.keyboardType = UIKeyboardTypeDefault;
+                textField.secureTextEntry = YES;
+                textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey];
+                passwordField = textField;
+                break;
+            default:
+                break;
+        }
+        [cell addSubview:textField];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    return cell;
+        return cell;
+    }
+    return nil;
 }
 
 #pragma mark - Table view delegate

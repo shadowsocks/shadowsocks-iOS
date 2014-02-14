@@ -24,3 +24,5 @@ void init_encryption(struct encryption_ctx* ctx);
 void cleanup_encryption(struct encryption_ctx* ctx);
 
 void config_encryption(const char *password, const char *method);
+
+char *shadowsocks_key;

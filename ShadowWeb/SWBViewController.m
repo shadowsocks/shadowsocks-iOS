@@ -96,7 +96,9 @@
 
     [_addrbar setItems:_addrItemsInactive];
 //    [_addrbar setBarStyle:UIBarStyleBlack];
-    [_addrbar setBarTintColor:[UIColor whiteColor]];
+    if ([_addrbar respondsToSelector:@selector(setBarTintColor:)]) {
+        [_addrbar setBarTintColor:[UIColor whiteColor]];
+    }
 
     // add subviews
     [self.view addSubview:_webViewContainer];
