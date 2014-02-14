@@ -444,7 +444,7 @@
     }
     if ([pages count] == 0) {
 //        [self tabBarViewNewTabButtonDidClick];
-        [self openLinkInNewTab:kNewTabAddress];
+        [self openLinkInNewTab:@"http://www.google.com/"];
         [NSTimer scheduledTimerWithTimeInterval:0.20 target:_urlField selector:@selector(becomeFirstResponder) userInfo:nil repeats:NO];
     } else {
         [_tabBar setCurrentTabWithTag:currentTabTag];
