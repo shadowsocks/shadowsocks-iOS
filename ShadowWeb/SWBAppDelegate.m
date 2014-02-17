@@ -22,6 +22,7 @@ void polipo_exit();
 @implementation SWBAppDelegate {
     BOOL polipoRunning;
     BOOL polipoEnabled;
+    NSURL *ssURL;
 }
 
 - (void)updateProxyMode {
@@ -89,6 +90,27 @@ void polipo_exit();
         
     return YES;
 }
+
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [self application:application openURL:url sourceApplication:nil annotation:nil];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    ssURL = url;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:_L(Use this server?) message:[url absoluteString] delegate:self cancelButtonTitle:_L(Cancel) otherButtonTitles:_L(OK), nil];
+    [alertView show];
+    return YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [ProxySettingsTableViewController openSSURL:ssURL];
+    } else {
+        // Do nothing
+    }
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

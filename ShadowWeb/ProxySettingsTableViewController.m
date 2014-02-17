@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 clowwindy. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "NSData+Base64.h"
 #import "ProxySettingsTableViewController.h"
 #import "SimpleTableViewSource.h"
 #import "local.h"
@@ -75,7 +75,57 @@
     }
 }
 
-- (void)saveConfigForKey:(NSString *)key value:(NSString *)value {
++ (void)openSSURL:(NSURL *)url {
+    if (!url.host) {
+        return;
+    }
+    NSString *urlString = [url absoluteString];
+    int i = 0;
+    NSString *errorReason = nil;
+    while(i < 2) {
+        if (i == 1) {
+            NSData *data = [[NSData alloc] initWithBase64Encoding:url.host];
+            NSString *decodedString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            urlString = decodedString;
+        }
+        i++;
+        urlString = [urlString stringByReplacingOccurrencesOfString:@"ss://" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, urlString.length)];
+        NSRange firstColonRange = [urlString rangeOfString:@":"];
+        NSRange lastColonRange = [urlString rangeOfString:@":" options:NSBackwardsSearch];
+        NSRange lastAtRange = [urlString rangeOfString:@"@" options:NSBackwardsSearch];
+        if (firstColonRange.length == 0) {
+            errorReason = @"colon not found";
+            continue;
+        }
+        if (firstColonRange.location == lastColonRange.location) {
+            errorReason = @"only one colon";
+            continue;
+        }
+        if (lastAtRange.length == 0) {
+            errorReason = @"at not found";
+            continue;
+        }
+        if (!((firstColonRange.location < lastAtRange.location) && (lastAtRange.location < lastColonRange.location))) {
+            errorReason = @"wrong position";
+            continue;
+        }
+        NSString *method = [urlString substringWithRange:NSMakeRange(0, firstColonRange.location)];
+        NSString *password = [urlString substringWithRange:NSMakeRange(firstColonRange.location + 1, lastAtRange.location - firstColonRange.location - 1)];
+        NSString *IP = [urlString substringWithRange:NSMakeRange(lastAtRange.location + 1, lastColonRange.location - lastAtRange.location - 1)];
+        NSString *port = [urlString substringWithRange:NSMakeRange(lastColonRange.location + 1, urlString.length - lastColonRange.location - 1)];
+        [ProxySettingsTableViewController saveConfigForKey:kIPKey value:IP];
+        [ProxySettingsTableViewController saveConfigForKey:kPortKey value:port];
+        [ProxySettingsTableViewController saveConfigForKey:kPasswordKey value:password];
+        [ProxySettingsTableViewController saveConfigForKey:kEncryptionKey value:method];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kUsePublicServer];
+        [ProxySettingsTableViewController reloadConfig];
+        return;
+    }
+
+    NSLog(@"%@", errorReason);
+}
+
++ (void)saveConfigForKey:(NSString *)key value:(NSString *)value {
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
 }
 
@@ -146,9 +196,9 @@
     if (passwordField.text == nil) {
         passwordField.text = @"";
     }
-    [self saveConfigForKey:kIPKey value:ipField.text];
-    [self saveConfigForKey:kPortKey value:portField.text];
-    [self saveConfigForKey:kPasswordKey value:passwordField.text];
+    [ProxySettingsTableViewController saveConfigForKey:kIPKey value:ipField.text];
+    [ProxySettingsTableViewController saveConfigForKey:kPortKey value:portField.text];
+    [ProxySettingsTableViewController saveConfigForKey:kPasswordKey value:passwordField.text];
 
     [ProxySettingsTableViewController reloadConfig];
 

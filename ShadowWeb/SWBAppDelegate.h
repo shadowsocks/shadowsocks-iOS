@@ -14,7 +14,7 @@
 
 @class SWBViewController;
 
-@interface SWBAppDelegate : UIResponder <UIApplicationDelegate>
+@interface SWBAppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

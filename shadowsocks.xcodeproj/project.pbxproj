@@ -43,6 +43,7 @@
 		623A7EC91795B0D300DF11DF /* local.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F016DA2816008B1A26 /* local.m */; };
 		623A7ECC1795B15500DF11DF /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
 		623A7ECF1795B1D800DF11DF /* libshadowsocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 623A7EBA1795AE8000DF11DF /* libshadowsocks.a */; };
+		626C4ADB18B1E352003DBE33 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 626C4ADA18B1E352003DBE33 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		628693E116DA2578008B1A26 /* AppProxyCap.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693E016DA2578008B1A26 /* AppProxyCap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		628693E716DA2584008B1A26 /* interpose.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693E416DA2584008B1A26 /* interpose.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */; };
@@ -168,6 +169,8 @@
 		621FCC081760400800411E5F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		623A7EBA1795AE8000DF11DF /* libshadowsocks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libshadowsocks.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		62597BD2175FA1D00090E8A6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "OpenSSL-for-iPhone/lib/libssl.a"; sourceTree = "<group>"; };
+		626C4AD918B1E352003DBE33 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "NSData-Base64/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
+		626C4ADA18B1E352003DBE33 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "NSData-Base64/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
 		628693DF16DA2578008B1A26 /* AppProxyCap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppProxyCap.h; path = AppProxyCap/lib/AppProxyCap.h; sourceTree = SOURCE_ROOT; };
 		628693E016DA2578008B1A26 /* AppProxyCap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppProxyCap.m; path = AppProxyCap/lib/AppProxyCap.m; sourceTree = SOURCE_ROOT; };
 		628693E416DA2584008B1A26 /* interpose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = interpose.c; path = AppProxyCap/lib/inject_and_interpose/interpose.c; sourceTree = SOURCE_ROOT; };
@@ -346,6 +349,7 @@
 		621571AE16CF6BCB003D96B4 /* ShadowWeb */ = {
 			isa = PBXGroup;
 			children = (
+				626C4AD818B1E338003DBE33 /* base64 */,
 				62D85969176DA63C00FE5575 /* polipo */,
 				621FCBF817603FD600411E5F /* GCDWebServer */,
 				628693FA16DA2823008B1A26 /* Shadowsocks */,
@@ -464,6 +468,15 @@
 				621FCC0117603FFA00411E5F /* GCDWebServerResponse.m */,
 			);
 			name = GCDWebServer;
+			sourceTree = "<group>";
+		};
+		626C4AD818B1E338003DBE33 /* base64 */ = {
+			isa = PBXGroup;
+			children = (
+				626C4AD918B1E352003DBE33 /* NSData+Base64.h */,
+				626C4ADA18B1E352003DBE33 /* NSData+Base64.m */,
+			);
+			name = base64;
 			sourceTree = "<group>";
 		};
 		628693DE16DA2564008B1A26 /* AppProxyCap */ = {
@@ -735,6 +748,7 @@
 				62D85A9D176DA6FC00FE5575 /* http_parse.c in Sources */,
 				62D85A9F176DA6FC00FE5575 /* io.c in Sources */,
 				62D85AA0176DA6FC00FE5575 /* local.c in Sources */,
+				626C4ADB18B1E352003DBE33 /* NSData+Base64.m in Sources */,
 				62D85AA2176DA6FC00FE5575 /* log.c in Sources */,
 				62D85AA3176DA6FC00FE5575 /* main.c in Sources */,
 				62D85AA4176DA6FC00FE5575 /* Makefile in Sources */,
@@ -902,8 +916,7 @@
 					"\"$(SRCROOT)/OpenSSL-for-iPhone/lib\"",
 				);
 				PRODUCT_NAME = shadowsocks;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "10B86086-082B-4967-8900-EDF458793F84";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
