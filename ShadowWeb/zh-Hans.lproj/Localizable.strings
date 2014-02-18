@@ -36,3 +36,5 @@
 "Server" = "服务器";
 "Public" = "热心网友提供";
 "Custom" = "自定义";
+"Config via QRCode" = "用二维码配置";
+"Use this server?" = "使用这个服务器？";
