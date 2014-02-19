@@ -49,11 +49,30 @@
 		6274847218B1FD6F00A9CDF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6274847118B1FD6F00A9CDF0 /* QuartzCore.framework */; };
 		6274847418B1FD7900A9CDF0 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6274847318B1FD7900A9CDF0 /* ImageIO.framework */; };
 		6274847518B1FD9B00A9CDF0 /* libZXingObjC-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6274846218B1FD4200A9CDF0 /* libZXingObjC-iOS.a */; };
+		627A6DF918B47E9300493BBC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627A6DF818B47E9300493BBC /* Cocoa.framework */; };
+		627A6E0318B47E9300493BBC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 627A6E0118B47E9300493BBC /* InfoPlist.strings */; };
+		627A6E0518B47E9300493BBC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 627A6E0418B47E9300493BBC /* main.m */; };
+		627A6E0C18B47E9300493BBC /* SWBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 627A6E0B18B47E9300493BBC /* SWBAppDelegate.m */; };
+		627A6E1118B47E9300493BBC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 627A6E1018B47E9300493BBC /* Images.xcassets */; };
+		627A6E3F18B47F5400493BBC /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 627A6E3E18B47F5400493BBC /* libcrypto.dylib */; };
+		627A6E4118B47FAE00493BBC /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693EE16DA2815008B1A26 /* encrypt.c */; };
+		627A6E4218B47FAE00493BBC /* table.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CD119B175E3E17008C4D0C /* table.m */; };
+		627A6E4318B47FAE00493BBC /* local.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F016DA2816008B1A26 /* local.m */; };
+		627A6E4418B47FAE00493BBC /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
 		628693E116DA2578008B1A26 /* AppProxyCap.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693E016DA2578008B1A26 /* AppProxyCap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		628693E716DA2584008B1A26 /* interpose.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693E416DA2584008B1A26 /* interpose.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */; };
 		628693F816DA2817008B1A26 /* ProxySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */; };
 		628C3DDF18AD5AFA0090632A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 628C3DE118AD5AFA0090632A /* Localizable.strings */; };
+		629AC93118B4924B001D2771 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 629AC93018B4924B001D2771 /* lock.png */; };
+		629AC93318B49341001D2771 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = 629AC93218B49341001D2771 /* Application.xib */; };
+		629AC93418B49676001D2771 /* GCDWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFA17603FFA00411E5F /* GCDWebServer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFC17603FFA00411E5F /* GCDWebServerConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		629AC93618B49676001D2771 /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFF17603FFA00411E5F /* GCDWebServerRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		629AC93718B49676001D2771 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCC0117603FFA00411E5F /* GCDWebServerResponse.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		629AC93818B497C0001D2771 /* proxy.pac in Resources */ = {isa = PBXBuildFile; fileRef = 621FCBF617603E5100411E5F /* proxy.pac */; };
+		629AC93E18B49B97001D2771 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629AC93D18B49B97001D2771 /* Security.framework */; };
+		629AC94018B49C33001D2771 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629AC93F18B49C33001D2771 /* SystemConfiguration.framework */; };
 		62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
 		62CD9190178977B500B2CB55 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD918F178977B500B2CB55 /* MessageUI.framework */; };
 		62D85A8D176DA6FC00FE5575 /* atom.c in Sources */ = {isa = PBXBuildFile; fileRef = 62D85A4E176DA6FB00FE5575 /* atom.c */; };
@@ -225,6 +244,26 @@
 		6274846F18B1FD6500A9CDF0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		6274847118B1FD6F00A9CDF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6274847318B1FD7900A9CDF0 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		627A6DF718B47E9300493BBC /* ShadowsocksX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowsocksX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		627A6DF818B47E9300493BBC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		627A6DFB18B47E9300493BBC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		627A6DFC18B47E9300493BBC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		627A6DFD18B47E9300493BBC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		627A6E0018B47E9300493BBC /* ShadowsocksX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShadowsocksX-Info.plist"; sourceTree = "<group>"; };
+		627A6E0218B47E9300493BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		627A6E0418B47E9300493BBC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		627A6E0618B47E9300493BBC /* ShadowsocksX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShadowsocksX-Prefix.pch"; sourceTree = "<group>"; };
+		627A6E0818B47E9300493BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		627A6E0A18B47E9300493BBC /* SWBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWBAppDelegate.h; sourceTree = "<group>"; };
+		627A6E0B18B47E9300493BBC /* SWBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWBAppDelegate.m; sourceTree = "<group>"; };
+		627A6E1018B47E9300493BBC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		627A6E1718B47E9300493BBC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		627A6E1E18B47E9300493BBC /* ShadowsocksXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShadowsocksXTests-Info.plist"; sourceTree = "<group>"; };
+		627A6E2018B47E9300493BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		627A6E2218B47E9300493BBC /* ShadowsocksXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShadowsocksXTests.m; sourceTree = "<group>"; };
+		627A6E3C18B47F4700493BBC /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libssl.dylib; sourceTree = DEVELOPER_DIR; };
+		627A6E3E18B47F5400493BBC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libcrypto.dylib; sourceTree = DEVELOPER_DIR; };
+		627A6E5618B4887000493BBC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		628693DF16DA2578008B1A26 /* AppProxyCap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppProxyCap.h; path = AppProxyCap/lib/AppProxyCap.h; sourceTree = SOURCE_ROOT; };
 		628693E016DA2578008B1A26 /* AppProxyCap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppProxyCap.m; path = AppProxyCap/lib/AppProxyCap.m; sourceTree = SOURCE_ROOT; };
 		628693E416DA2584008B1A26 /* interpose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = interpose.c; path = AppProxyCap/lib/inject_and_interpose/interpose.c; sourceTree = SOURCE_ROOT; };
@@ -240,6 +279,12 @@
 		628693FD16DA2983008B1A26 /* ev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ev.c; path = libev/ev.c; sourceTree = "<group>"; };
 		628C3DE218AD5B100090632A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		628C3DE318AD5B700090632A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		629AC93018B4924B001D2771 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		629AC93218B49341001D2771 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
+		629AC93918B49B56001D2771 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		629AC93B18B49B69001D2771 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		629AC93D18B49B97001D2771 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		629AC93F18B49C33001D2771 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		62CD1199175E3BD7008C4D0C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "OpenSSL-for-iPhone/lib/libcrypto.a"; sourceTree = "<group>"; };
 		62CD119B175E3E17008C4D0C /* table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = table.m; sourceTree = "<group>"; };
 		62CD119D175E3E23008C4D0C /* table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = table.h; sourceTree = "<group>"; };
@@ -364,6 +409,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		627A6DF418B47E9300493BBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				629AC94018B49C33001D2771 /* SystemConfiguration.framework in Frameworks */,
+				629AC93E18B49B97001D2771 /* Security.framework in Frameworks */,
+				627A6E3F18B47F5400493BBC /* libcrypto.dylib in Frameworks */,
+				627A6DF918B47E9300493BBC /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -375,6 +431,8 @@
 				62DAB9D51779DAAF003DFFDE /* icon114.png */,
 				62DAB9D31779DAAD003DFFDE /* icon57.png */,
 				621571AE16CF6BCB003D96B4 /* ShadowWeb */,
+				627A6DFE18B47E9300493BBC /* ShadowsocksX */,
+				627A6E1C18B47E9300493BBC /* ShadowsocksXTests */,
 				621571A716CF6BCB003D96B4 /* Frameworks */,
 				621571A616CF6BCB003D96B4 /* Products */,
 				EB1891FD08E70E9E9DC84AFD /* about.txt */,
@@ -386,6 +444,7 @@
 			children = (
 				621571A516CF6BCB003D96B4 /* shadowsocks.app */,
 				623A7EBA1795AE8000DF11DF /* libshadowsocks.a */,
+				627A6DF718B47E9300493BBC /* ShadowsocksX.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -393,6 +452,13 @@
 		621571A716CF6BCB003D96B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				629AC93F18B49C33001D2771 /* SystemConfiguration.framework */,
+				629AC93D18B49B97001D2771 /* Security.framework */,
+				629AC93B18B49B69001D2771 /* AppKit.framework */,
+				629AC93918B49B56001D2771 /* Cocoa.framework */,
+				627A6E5618B4887000493BBC /* WebKit.framework */,
+				627A6E3E18B47F5400493BBC /* libcrypto.dylib */,
+				627A6E3C18B47F4700493BBC /* libssl.dylib */,
 				6274847318B1FD7900A9CDF0 /* ImageIO.framework */,
 				6274847118B1FD6F00A9CDF0 /* QuartzCore.framework */,
 				6274846F18B1FD6500A9CDF0 /* CoreMedia.framework */,
@@ -408,6 +474,9 @@
 				621571A816CF6BCB003D96B4 /* UIKit.framework */,
 				621571AA16CF6BCB003D96B4 /* Foundation.framework */,
 				621571AC16CF6BCB003D96B4 /* CoreGraphics.framework */,
+				627A6DF818B47E9300493BBC /* Cocoa.framework */,
+				627A6E1718B47E9300493BBC /* XCTest.framework */,
+				627A6DFA18B47E9300493BBC /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -557,6 +626,59 @@
 				6274846A18B1FD4200A9CDF0 /* ZXingObjC.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		627A6DFA18B47E9300493BBC /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				627A6DFB18B47E9300493BBC /* AppKit.framework */,
+				627A6DFC18B47E9300493BBC /* CoreData.framework */,
+				627A6DFD18B47E9300493BBC /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		627A6DFE18B47E9300493BBC /* ShadowsocksX */ = {
+			isa = PBXGroup;
+			children = (
+				627A6E0A18B47E9300493BBC /* SWBAppDelegate.h */,
+				627A6E0B18B47E9300493BBC /* SWBAppDelegate.m */,
+				627A6E1018B47E9300493BBC /* Images.xcassets */,
+				627A6DFF18B47E9300493BBC /* Supporting Files */,
+			);
+			path = ShadowsocksX;
+			sourceTree = "<group>";
+		};
+		627A6DFF18B47E9300493BBC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				629AC93218B49341001D2771 /* Application.xib */,
+				629AC93018B4924B001D2771 /* lock.png */,
+				627A6E0018B47E9300493BBC /* ShadowsocksX-Info.plist */,
+				627A6E0118B47E9300493BBC /* InfoPlist.strings */,
+				627A6E0418B47E9300493BBC /* main.m */,
+				627A6E0618B47E9300493BBC /* ShadowsocksX-Prefix.pch */,
+				627A6E0718B47E9300493BBC /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		627A6E1C18B47E9300493BBC /* ShadowsocksXTests */ = {
+			isa = PBXGroup;
+			children = (
+				627A6E2218B47E9300493BBC /* ShadowsocksXTests.m */,
+				627A6E1D18B47E9300493BBC /* Supporting Files */,
+			);
+			path = ShadowsocksXTests;
+			sourceTree = "<group>";
+		};
+		627A6E1D18B47E9300493BBC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				627A6E1E18B47E9300493BBC /* ShadowsocksXTests-Info.plist */,
+				627A6E1F18B47E9300493BBC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		628693DE16DA2564008B1A26 /* AppProxyCap */ = {
@@ -717,6 +839,23 @@
 			productReference = 623A7EBA1795AE8000DF11DF /* libshadowsocks.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		627A6DF618B47E9300493BBC /* ShadowsocksX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 627A6E2C18B47E9300493BBC /* Build configuration list for PBXNativeTarget "ShadowsocksX" */;
+			buildPhases = (
+				627A6DF318B47E9300493BBC /* Sources */,
+				627A6DF418B47E9300493BBC /* Frameworks */,
+				627A6DF518B47E9300493BBC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShadowsocksX;
+			productName = ShadowsocksX;
+			productReference = 627A6DF718B47E9300493BBC /* ShadowsocksX.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -734,6 +873,7 @@
 			knownRegions = (
 				en,
 				"zh-Hans",
+				Base,
 			);
 			mainGroup = 6215719C16CF6BCA003D96B4;
 			productRefGroup = 621571A616CF6BCB003D96B4 /* Products */;
@@ -748,6 +888,7 @@
 			targets = (
 				621571A416CF6BCB003D96B4 /* shadowsocks */,
 				623A7EB91795AE8000DF11DF /* libshadowsocks */,
+				627A6DF618B47E9300493BBC /* ShadowsocksX */,
 			);
 		};
 /* End PBXProject section */
@@ -812,6 +953,18 @@
 				62DAB9D81779DAB5003DFFDE /* icon72.png in Resources */,
 				62DAB9DA1779DAB8003DFFDE /* icon144.png in Resources */,
 				EB189E8C8B1866196A4DA43B /* about.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		627A6DF518B47E9300493BBC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				629AC93818B497C0001D2771 /* proxy.pac in Resources */,
+				629AC93118B4924B001D2771 /* lock.png in Resources */,
+				629AC93318B49341001D2771 /* Application.xib in Resources */,
+				627A6E0318B47E9300493BBC /* InfoPlist.strings in Resources */,
+				627A6E1118B47E9300493BBC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,6 +1057,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		627A6DF318B47E9300493BBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				629AC93418B49676001D2771 /* GCDWebServer.m in Sources */,
+				629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */,
+				629AC93618B49676001D2771 /* GCDWebServerRequest.m in Sources */,
+				629AC93718B49676001D2771 /* GCDWebServerResponse.m in Sources */,
+				627A6E4118B47FAE00493BBC /* encrypt.c in Sources */,
+				627A6E4218B47FAE00493BBC /* table.m in Sources */,
+				627A6E4318B47FAE00493BBC /* local.m in Sources */,
+				627A6E4418B47FAE00493BBC /* ev.c in Sources */,
+				627A6E0518B47E9300493BBC /* main.m in Sources */,
+				627A6E0C18B47E9300493BBC /* SWBAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -924,6 +1094,30 @@
 			isa = PBXVariantGroup;
 			children = (
 				621571B216CF6BCB003D96B4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		627A6E0118B47E9300493BBC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				627A6E0218B47E9300493BBC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		627A6E0718B47E9300493BBC /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				627A6E0818B47E9300493BBC /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		627A6E1F18B47E9300493BBC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				627A6E2018B47E9300493BBC /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1105,6 +1299,68 @@
 			};
 			name = Release;
 		};
+		627A6E2418B47E9300493BBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShadowsocksX/ShadowsocksX-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "ShadowsocksX/ShadowsocksX-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		627A6E2518B47E9300493BBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShadowsocksX/ShadowsocksX-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "ShadowsocksX/ShadowsocksX-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1131,6 +1387,15 @@
 			buildConfigurations = (
 				623A7EC31795AE8000DF11DF /* Debug */,
 				623A7EC41795AE8000DF11DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		627A6E2C18B47E9300493BBC /* Build configuration list for PBXNativeTarget "ShadowsocksX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				627A6E2418B47E9300493BBC /* Debug */,
+				627A6E2518B47E9300493BBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
