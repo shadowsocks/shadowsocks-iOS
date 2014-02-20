@@ -36,7 +36,7 @@
 
     self.item = [[NSStatusBar systemStatusBar] statusItemWithLength:20];
     self.item.image = [NSImage imageNamed:@"lock"];
-    self.item.toolTip = @"Mouse Gesture";
+    self.item.toolTip = @"Shadowsocks";
     self.item.highlightMode = YES;
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Shadowsocks"];
     [menu addItemWithTitle:@"Exit" action:@selector(exit) keyEquivalent:@""];
@@ -105,7 +105,7 @@ static AuthorizationFlags authFlags;
         NSLog(@"%@", hardware);
         if ([hardware isEqualToString:@"AirPort"] || [hardware isEqualToString:@"Wi-Fi"] || [hardware isEqualToString:@"Ethernet"]) {
             if (useProxy) {
-                [proxies setObject:@"http://localhost:8090/proxy.pac" forKey:(NSString *)kCFNetworkProxiesProxyAutoConfigURLString];
+                [proxies setObject:@"http://127.0.0.1:8090/proxy.pac" forKey:(NSString *)kCFNetworkProxiesProxyAutoConfigURLString];
             }
             [proxies setObject:[NSNumber numberWithInt:useProxy] forKey:(NSString *)kCFNetworkProxiesProxyAutoConfigEnable];
             SCPreferencesPathSetValue(prefRef, (__bridge CFStringRef)[self proxiesPathOfDevice:key], (__bridge CFDictionaryRef)proxies);
