@@ -35,14 +35,12 @@
     [webServer startWithPort:8090 bonjourName:@"webserver"];
 
     self.item = [[NSStatusBar systemStatusBar] statusItemWithLength:20];
-    self.item.image = [NSImage imageNamed:@"lock"];
+    self.item.image = [NSImage imageNamed:@"menu_icon"];
     self.item.toolTip = @"Shadowsocks";
     self.item.highlightMode = YES;
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Shadowsocks"];
     [menu addItemWithTitle:@"Exit" action:@selector(exit) keyEquivalent:@""];
     self.item.menu = menu;
-//    [self.item setTarget:self];
-//    [self.item setAction:@selector(openTheDoor)];
     [SWBAppDelegate initializeProxy];
 
 }

@@ -37,6 +37,8 @@
 		621FCC071760400400411E5F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621FCC061760400400411E5F /* MobileCoreServices.framework */; };
 		621FCC091760400800411E5F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621FCC081760400800411E5F /* CFNetwork.framework */; };
 		622BE4E318B6FBD700F22683 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 627A6E1018B47E9300493BBC /* Images.xcassets */; };
+		622BE4E618B7307200F22683 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 622BE4E418B7307200F22683 /* menu_icon@2x.png */; };
+		622BE4E718B7307200F22683 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 622BE4E518B7307200F22683 /* menu_icon.png */; };
 		623A7EBB1795AE8000DF11DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		623A7EC61795AF1000DF11DF /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
 		623A7EC71795B0C700DF11DF /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693EE16DA2815008B1A26 /* encrypt.c */; };
@@ -65,7 +67,6 @@
 		628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */; };
 		628693F816DA2817008B1A26 /* ProxySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */; };
 		628C3DDF18AD5AFA0090632A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 628C3DE118AD5AFA0090632A /* Localizable.strings */; };
-		629AC93118B4924B001D2771 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 629AC93018B4924B001D2771 /* lock.png */; };
 		629AC93318B49341001D2771 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = 629AC93218B49341001D2771 /* Application.xib */; };
 		629AC93418B49676001D2771 /* GCDWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFA17603FFA00411E5F /* GCDWebServer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFC17603FFA00411E5F /* GCDWebServerConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -232,6 +233,8 @@
 		621FCC0117603FFA00411E5F /* GCDWebServerResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerResponse.m; path = GCDWebServer/CGDWebServer/GCDWebServerResponse.m; sourceTree = SOURCE_ROOT; };
 		621FCC061760400400411E5F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		621FCC081760400800411E5F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		622BE4E418B7307200F22683 /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
+		622BE4E518B7307200F22683 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		623A7EBA1795AE8000DF11DF /* libshadowsocks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libshadowsocks.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		62597BD2175FA1D00090E8A6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "OpenSSL-for-iPhone/lib/libssl.a"; sourceTree = "<group>"; };
 		626C4AD918B1E352003DBE33 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "NSData-Base64/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
@@ -276,7 +279,6 @@
 		628693FD16DA2983008B1A26 /* ev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ev.c; path = libev/ev.c; sourceTree = "<group>"; };
 		628C3DE218AD5B100090632A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		628C3DE318AD5B700090632A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		629AC93018B4924B001D2771 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		629AC93218B49341001D2771 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
 		629AC93918B49B56001D2771 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		629AC93B18B49B69001D2771 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -641,8 +643,9 @@
 		627A6DFF18B47E9300493BBC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				622BE4E418B7307200F22683 /* menu_icon@2x.png */,
+				622BE4E518B7307200F22683 /* menu_icon.png */,
 				629AC93218B49341001D2771 /* Application.xib */,
-				629AC93018B4924B001D2771 /* lock.png */,
 				627A6E0018B47E9300493BBC /* ShadowsocksX-Info.plist */,
 				627A6E0118B47E9300493BBC /* InfoPlist.strings */,
 				627A6E0418B47E9300493BBC /* main.m */,
@@ -947,10 +950,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				629AC93818B497C0001D2771 /* proxy.pac in Resources */,
-				629AC93118B4924B001D2771 /* lock.png in Resources */,
 				629AC93318B49341001D2771 /* Application.xib in Resources */,
 				627A6E0318B47E9300493BBC /* InfoPlist.strings in Resources */,
+				622BE4E618B7307200F22683 /* menu_icon@2x.png in Resources */,
 				627A6E1118B47E9300493BBC /* Images.xcassets in Resources */,
+				622BE4E718B7307200F22683 /* menu_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
