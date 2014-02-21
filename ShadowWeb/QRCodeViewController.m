@@ -59,6 +59,7 @@
 }
 
 - (void)cancel {
+    [capture stop];
     [self dismissModalViewControllerAnimated:YES];
 }
 
