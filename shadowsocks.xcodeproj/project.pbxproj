@@ -36,6 +36,7 @@
 		621FCC0517603FFA00411E5F /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCC0117603FFA00411E5F /* GCDWebServerResponse.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		621FCC071760400400411E5F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621FCC061760400400411E5F /* MobileCoreServices.framework */; };
 		621FCC091760400800411E5F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621FCC081760400800411E5F /* CFNetwork.framework */; };
+		622BE4E318B6FBD700F22683 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 627A6E1018B47E9300493BBC /* Images.xcassets */; };
 		623A7EBB1795AE8000DF11DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		623A7EC61795AF1000DF11DF /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
 		623A7EC71795B0C700DF11DF /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693EE16DA2815008B1A26 /* encrypt.c */; };
@@ -103,10 +104,6 @@
 		62D85AB1176DA6FC00FE5575 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 62D85A8B176DA6FB00FE5575 /* util.c */; };
 		62D85AB4176DAA7200FE5575 /* polipo.config in Resources */ = {isa = PBXBuildFile; fileRef = 62D85AB2176DAA7200FE5575 /* polipo.config */; };
 		62D85AB5176DAA7200FE5575 /* silence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 62D85AB3176DAA7200FE5575 /* silence.wav */; };
-		62DAB9D41779DAAD003DFFDE /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DAB9D31779DAAD003DFFDE /* icon57.png */; };
-		62DAB9D61779DAAF003DFFDE /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DAB9D51779DAAF003DFFDE /* icon114.png */; };
-		62DAB9D81779DAB5003DFFDE /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DAB9D71779DAB5003DFFDE /* icon72.png */; };
-		62DAB9DA1779DAB8003DFFDE /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DAB9D91779DAB8003DFFDE /* icon144.png */; };
 		62DAB9E0177A11D7003DFFDE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DAB9DF177A11D7003DFFDE /* Crashlytics.framework */; };
 		62DE796018B2140D00277174 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DE795F18B2140D00277174 /* cancel.png */; };
 		96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D80C04176CE1D7006C8078 /* AVFoundation.framework */; };
@@ -354,10 +351,6 @@
 		62D85A8C176DA6FC00FE5575 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		62D85AB2176DAA7200FE5575 /* polipo.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = polipo.config; sourceTree = "<group>"; };
 		62D85AB3176DAA7200FE5575 /* silence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = silence.wav; sourceTree = "<group>"; };
-		62DAB9D31779DAAD003DFFDE /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
-		62DAB9D51779DAAF003DFFDE /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
-		62DAB9D71779DAB5003DFFDE /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
-		62DAB9D91779DAB8003DFFDE /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		62DAB9DF177A11D7003DFFDE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		62DE795F18B2140D00277174 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -426,10 +419,6 @@
 		6215719C16CF6BCA003D96B4 = {
 			isa = PBXGroup;
 			children = (
-				62DAB9D91779DAB8003DFFDE /* icon144.png */,
-				62DAB9D71779DAB5003DFFDE /* icon72.png */,
-				62DAB9D51779DAAF003DFFDE /* icon114.png */,
-				62DAB9D31779DAAD003DFFDE /* icon57.png */,
 				621571AE16CF6BCB003D96B4 /* ShadowWeb */,
 				627A6DFE18B47E9300493BBC /* ShadowsocksX */,
 				627A6E1C18B47E9300493BBC /* ShadowsocksXTests */,
@@ -936,6 +925,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				622BE4E318B6FBD700F22683 /* Images.xcassets in Resources */,
 				621571B316CF6BCB003D96B4 /* InfoPlist.strings in Resources */,
 				621571BB16CF6BCB003D96B4 /* Default.png in Resources */,
 				628C3DDF18AD5AFA0090632A /* Localizable.strings in Resources */,
@@ -948,10 +938,6 @@
 				62D85AB5176DAA7200FE5575 /* silence.wav in Resources */,
 				EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */,
 				EB1890D6331E61914013309F /* polipo_disable.config in Resources */,
-				62DAB9D41779DAAD003DFFDE /* icon57.png in Resources */,
-				62DAB9D61779DAAF003DFFDE /* icon114.png in Resources */,
-				62DAB9D81779DAB5003DFFDE /* icon72.png in Resources */,
-				62DAB9DA1779DAB8003DFFDE /* icon144.png in Resources */,
 				EB189E8C8B1866196A4DA43B /* about.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1203,6 +1189,8 @@
 		621571CC16CF6BCB003D96B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1232,6 +1220,8 @@
 		621571CD16CF6BCB003D96B4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
