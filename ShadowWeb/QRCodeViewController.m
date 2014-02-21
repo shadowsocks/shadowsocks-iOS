@@ -52,7 +52,7 @@
     }
 #endif
     
-    cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(320 - 44 - 10, 20, 44, 44)];
+    cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 44 - 10, 20, 44, 44)];
     [cancelButton setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelButton];

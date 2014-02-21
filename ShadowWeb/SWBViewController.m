@@ -18,6 +18,7 @@
 @interface SWBViewController () {
     AVAudioPlayer *player;
     UIPopoverController *settingsPC;
+    UIBarButtonItem *actionBarButton;
 }
 
 @end
@@ -84,6 +85,7 @@
     _cancelButton.width = kCancelButtonWidth;
     UIBarButtonItem *_actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(addrBarViewMoreDidClick)];
     _actionButton.width = kActionButtonWidth;
+    actionBarButton = _actionButton;
     
     self.addrItemsInactive = [NSMutableArray arrayWithObjects:
                             [[UIBarButtonItem alloc] initWithCustomView:_urlField],
@@ -331,7 +333,8 @@
         CGRect newTabRect = [self.tabBar aNewTabButton].frame;
         newTabRect.size.width = newTabRect.size.height;
         CGRect rect = [self.tabBar convertRect:newTabRect toView:self.view];
-        [settingsPC presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//        [settingsPC presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [settingsPC presentPopoverFromBarButtonItem:actionBarButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else {
         [self presentModalViewController:nav animated:YES];
     }
@@ -349,7 +352,8 @@
         CGRect newTabRect = [self.tabBar aNewTabButton].frame;
         newTabRect.size.width = newTabRect.size.height;
         CGRect rect = [self.tabBar convertRect:newTabRect toView:self.view];
-        [settingsPC presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//        [settingsPC presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [settingsPC presentPopoverFromBarButtonItem:actionBarButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else {
         [self presentModalViewController:nav animated:YES];
     }
@@ -392,7 +396,8 @@
         CGRect newTabRect = [self.tabBar aNewTabButton].frame;
         newTabRect.size.width = newTabRect.size.height;
         CGRect rect = [self.tabBar convertRect:newTabRect toView:self.view];
-        [self.actionSheet showFromRect:rect inView:self.view animated:YES];
+//        [self.actionSheet showFromRect:rect inView:self.view animated:YES];
+        [self.actionSheet showFromBarButtonItem:actionBarButton animated:YES];
     } else {
         [self.actionSheet showInView:self.view];
     }
