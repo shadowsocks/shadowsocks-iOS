@@ -7,13 +7,15 @@
 //
 
 #import <SystemConfiguration/SystemConfiguration.h>
-#import "../ShadowWeb/local.h"
-#import "encrypt.h"
+#import "SWBConfigWindowController.h"
 #import "SWBAppDelegate.h"
 #import "GCDWebServer.h"
 #import "ShadowsocksRunner.h"
 
 @implementation SWBAppDelegate
+{
+    SWBConfigWindowController *configWindowController;
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -37,13 +39,21 @@
     self.item.toolTip = @"Shadowsocks";
     self.item.highlightMode = YES;
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Shadowsocks"];
+    [menu addItemWithTitle:@"Configure" action:@selector(showConfigWindow) keyEquivalent:@""];
     [menu addItemWithTitle:@"Exit" action:@selector(exit) keyEquivalent:@""];
     self.item.menu = menu;
     [SWBAppDelegate initializeProxy];
 
+    configWindowController = [[SWBConfigWindowController alloc] initWithWindowNibName:@"ConfigWindow"];
 }
 
--(void)applicationWillTerminate:(NSNotification *)notification {
+- (void)showConfigWindow {
+    [configWindowController showWindow:self];
+    [NSApp activateIgnoringOtherApps:YES];
+    [configWindowController.window makeKeyAndOrderFront:nil];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification {
     NSLog(@"terminating");
     [SWBAppDelegate toggleSystemProxy:NO];
 }

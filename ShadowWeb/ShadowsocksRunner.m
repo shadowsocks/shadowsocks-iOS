@@ -102,6 +102,9 @@
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
 }
 
++ (NSString *)configForKey:(NSString *)key {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+}
 
 + (void)setUsingPublicServer:(BOOL)use {
     [[NSUserDefaults standardUserDefaults] setBool:use forKey:kShadowsocksUsePublicServer];

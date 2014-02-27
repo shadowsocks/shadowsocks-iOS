@@ -20,6 +20,7 @@
 + (BOOL)runProxy;
 + (void)reloadConfig;
 + (void)openSSURL:(NSURL *)url;
++ (NSString *)configForKey:(NSString *)key;
 + (void)saveConfigForKey:(NSString *)key value:(NSString *)value;
 + (void)setUsingPublicServer:(BOOL)use;
 + (BOOL)isUsingPublicServer;
