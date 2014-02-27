@@ -9,8 +9,8 @@
 #import "NSData+Base64.h"
 #import "ProxySettingsTableViewController.h"
 #import "SimpleTableViewSource.h"
-#import "local.h"
 #import "SWBAppDelegate.h"
+#import "ShadowsocksRunner.h"
 
 // rows
 
@@ -19,13 +19,6 @@
 #define kPasswordRow 2
 
 // config keys
-
-#define kIPKey @"proxy ip"
-#define kPortKey @"proxy port"
-#define kPasswordKey @"proxy password"
-#define kEncryptionKey @"proxy encryption"
-#define kProxyModeKey @"proxy mode"
-#define kUsePublicServer @"public server"
 
 
 @interface ProxySettingsTableViewController () {
@@ -38,112 +31,12 @@
 
 @implementation ProxySettingsTableViewController
 
-+ (BOOL)settingsAreNotComplete {
-    if ((![ProxySettingsTableViewController isUsingPublicServer]) && ([[NSUserDefaults standardUserDefaults] stringForKey:kIPKey] == nil ||
-            [[NSUserDefaults standardUserDefaults] stringForKey:kPortKey] == nil ||
-            [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey] == nil)) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-+ (BOOL)runProxy {
-    if (![ProxySettingsTableViewController settingsAreNotComplete]) {
-        local_main();
-        return YES;
-    } else {
-#ifdef DEBUG
-        NSLog(@"warning: settings are not complete");
-#endif
-        return NO;
-    }
-}
-
-+ (void)reloadConfig {
-    if (![ProxySettingsTableViewController settingsAreNotComplete]) {
-        if ([ProxySettingsTableViewController isUsingPublicServer]) {
-            set_config("106.186.124.182", "8910", "Shadowsocks", "aes-128-cfb");
-            memcpy(shadowsocks_key, "\x45\xd1\xd9\x9e\xbd\xf5\x8c\x85\x34\x55\xdd\x65\x46\xcd\x06\xd3", 16);
-        } else {
-            NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kEncryptionKey];
-            if (!v) {
-                v = @"aes-256-cfb";
-            }
-            set_config([[[NSUserDefaults standardUserDefaults] stringForKey:kIPKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kPortKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding], [v cStringUsingEncoding:NSUTF8StringEncoding]);
-        }
-    }
-}
-
-+ (void)openSSURL:(NSURL *)url {
-    if (!url.host) {
-        return;
-    }
-    NSString *urlString = [url absoluteString];
-    int i = 0;
-    NSString *errorReason = nil;
-    while(i < 2) {
-        if (i == 1) {
-            NSData *data = [[NSData alloc] initWithBase64Encoding:url.host];
-            NSString *decodedString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            urlString = decodedString;
-        }
-        i++;
-        urlString = [urlString stringByReplacingOccurrencesOfString:@"ss://" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, urlString.length)];
-        NSRange firstColonRange = [urlString rangeOfString:@":"];
-        NSRange lastColonRange = [urlString rangeOfString:@":" options:NSBackwardsSearch];
-        NSRange lastAtRange = [urlString rangeOfString:@"@" options:NSBackwardsSearch];
-        if (firstColonRange.length == 0) {
-            errorReason = @"colon not found";
-            continue;
-        }
-        if (firstColonRange.location == lastColonRange.location) {
-            errorReason = @"only one colon";
-            continue;
-        }
-        if (lastAtRange.length == 0) {
-            errorReason = @"at not found";
-            continue;
-        }
-        if (!((firstColonRange.location < lastAtRange.location) && (lastAtRange.location < lastColonRange.location))) {
-            errorReason = @"wrong position";
-            continue;
-        }
-        NSString *method = [urlString substringWithRange:NSMakeRange(0, firstColonRange.location)];
-        NSString *password = [urlString substringWithRange:NSMakeRange(firstColonRange.location + 1, lastAtRange.location - firstColonRange.location - 1)];
-        NSString *IP = [urlString substringWithRange:NSMakeRange(lastAtRange.location + 1, lastColonRange.location - lastAtRange.location - 1)];
-        NSString *port = [urlString substringWithRange:NSMakeRange(lastColonRange.location + 1, urlString.length - lastColonRange.location - 1)];
-        [ProxySettingsTableViewController saveConfigForKey:kIPKey value:IP];
-        [ProxySettingsTableViewController saveConfigForKey:kPortKey value:port];
-        [ProxySettingsTableViewController saveConfigForKey:kPasswordKey value:password];
-        [ProxySettingsTableViewController saveConfigForKey:kEncryptionKey value:method];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kUsePublicServer];
-        [ProxySettingsTableViewController reloadConfig];
-        return;
-    }
-
-    NSLog(@"%@", errorReason);
-}
-
-+ (void)saveConfigForKey:(NSString *)key value:(NSString *)value {
-    [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
-}
-
-+ (BOOL)isUsingPublicServer {
-    NSNumber *usePublicServer = [[NSUserDefaults standardUserDefaults] objectForKey:kUsePublicServer];
-    if (usePublicServer != nil) {
-        return [usePublicServer boolValue];
-    } else {
-        return YES;
-    }
-}
-
 - (void)changePublicServer:(UISegmentedControl *)segmentedControl {
     BOOL result = NO;
     if (segmentedControl.selectedSegmentIndex == 0) {
         result = YES;
     }
-    [[NSUserDefaults standardUserDefaults] setBool:result forKey:kUsePublicServer];
+    [ShadowsocksRunner setUsingPublicServer:result];
     if ((self.tableView.numberOfSections == 1) && !result) {
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
     } else if ((self.tableView.numberOfSections == 2) && result) {
@@ -196,11 +89,11 @@
     if (passwordField.text == nil) {
         passwordField.text = @"";
     }
-    [ProxySettingsTableViewController saveConfigForKey:kIPKey value:ipField.text];
-    [ProxySettingsTableViewController saveConfigForKey:kPortKey value:portField.text];
-    [ProxySettingsTableViewController saveConfigForKey:kPasswordKey value:passwordField.text];
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksIPKey value:ipField.text];
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:portField.text];
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:passwordField.text];
 
-    [ProxySettingsTableViewController reloadConfig];
+    [ShadowsocksRunner reloadConfig];
 
     [self dismissModalViewControllerAnimated:YES];
     if (self->_myPopoverController) {
@@ -217,7 +110,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    if ([ProxySettingsTableViewController isUsingPublicServer]) {
+    if ([ShadowsocksRunner isUsingPublicServer]) {
         return 1;
     }
     return 2;
@@ -245,7 +138,7 @@
         UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_L(Public), _L(Custom)]];
         [cell.contentView addSubview:segmentedControl];
         segmentedControl.center = CGPointMake(320 * 0.5f, cell.bounds.size.height * 0.5f);
-        if ([ProxySettingsTableViewController isUsingPublicServer]) {
+        if ([ShadowsocksRunner isUsingPublicServer]) {
             segmentedControl.selectedSegmentIndex = 0;
         } else {
             segmentedControl.selectedSegmentIndex = 1;
@@ -285,21 +178,21 @@
                 cell.textLabel.text = _L(IP);
                 textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
                 textField.secureTextEntry = NO;
-                textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kIPKey];
+                textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksIPKey];
                 ipField = textField;
                 break;
             case kPortRow:
                 cell.textLabel.text = _L(Port);
                 textField.keyboardType = UIKeyboardTypeNumberPad;
                 textField.secureTextEntry = NO;
-                textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPortKey];
+                textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksPortKey];
                 portField = textField;
                 break;
             case kPasswordRow:
                 cell.textLabel.text = _L(Password);
                 textField.keyboardType = UIKeyboardTypeDefault;
                 textField.secureTextEntry = YES;
-                textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey];
+                textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksPasswordKey];
                 passwordField = textField;
                 break;
             default:
@@ -324,7 +217,7 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     if (indexPath.row == 3) {
-        NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kEncryptionKey];
+        NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kShadowsocksEncryptionKey];
         if (!v) {
             v = @"aes-256-cfb";
         }
@@ -359,7 +252,7 @@
                                                                                                    @"seed-cfb",
                                                                                                    nil]
                                                             initialValue:v selectionBlock:^(NSObject *value) {
-                    [[NSUserDefaults standardUserDefaults] setObject:value forKey:kEncryptionKey];
+                    [[NSUserDefaults standardUserDefaults] setObject:value forKey:kShadowsocksEncryptionKey];
                 }];
         UIViewController *controller = [[UIViewController alloc] init];
         controller.contentSizeForViewInPopover = self.contentSizeForViewInPopover;
@@ -370,14 +263,14 @@
         controller.view = tableView1;
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 4) {
-        NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kProxyModeKey];
+        NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kShadowsocksProxyModeKey];
         if (!v) {
             v = @"pac";
         }
         modeSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:_L(PAC), _L(Global), _L(Off), nil]
                                                             values:[NSArray arrayWithObjects:@"pac", @"global", @"off", nil]
                                                       initialValue:v selectionBlock:^(NSObject *value) {
-                    [[NSUserDefaults standardUserDefaults] setObject:value forKey:kProxyModeKey];
+                    [[NSUserDefaults standardUserDefaults] setObject:value forKey:kShadowsocksProxyModeKey];
                     SWBAppDelegate *appDelegate = (SWBAppDelegate *) [UIApplication sharedApplication].delegate;
                     [appDelegate updateProxyMode];
                 }];

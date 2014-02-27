@@ -11,6 +11,7 @@
 #import "encrypt.h"
 #import "SWBAppDelegate.h"
 #import "GCDWebServer.h"
+#import "ShadowsocksRunner.h"
 
 @implementation SWBAppDelegate
 
@@ -19,16 +20,13 @@
     // Insert code here to initialize your application
     dispatch_queue_t proxy = dispatch_queue_create("proxy", NULL);
     dispatch_async(proxy, ^{
-        set_config("106.186.124.182", "8910", "Shadowsocks", "aes-128-cfb");
-        memcpy(shadowsocks_key, "\x45\xd1\xd9\x9e\xbd\xf5\x8c\x85\x34\x55\xdd\x65\x46\xcd\x06\xd3", 16);
-        local_main();
+        [self runProxy];
     });
 
     NSData *pacData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac"]];
     GCDWebServer *webServer = [[GCDWebServer alloc] init];
     [webServer addHandlerForMethod:@"GET" path:@"/proxy.pac" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
         return [GCDWebServerDataResponse responseWithData:pacData contentType:@"application/x-ns-proxy-autoconfig"];
-
     }
     ];
 
@@ -48,6 +46,17 @@
 -(void)applicationWillTerminate:(NSNotification *)notification {
     NSLog(@"terminating");
     [SWBAppDelegate toggleSystemProxy:NO];
+}
+
+- (void)runProxy {
+    [ShadowsocksRunner reloadConfig];
+    for (; ;) {
+        if ([ShadowsocksRunner runProxy]) {
+            sleep(1);
+        } else {
+            sleep(2);
+        }
+    }
 }
 
 - (void)exit {

@@ -9,6 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "QRCodeViewController.h"
 #import "SWBViewController.h"
+#import "ShadowsocksRunner.h"
 #import "ProxySettingsTableViewController.h"
 #import "SWBAboutController.h"
 
@@ -151,7 +152,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if ([ProxySettingsTableViewController settingsAreNotComplete]) {
+    if ([ShadowsocksRunner settingsAreNotComplete]) {
         [self showSettings];
     }
 }

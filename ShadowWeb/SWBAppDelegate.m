@@ -12,7 +12,7 @@
 
 #import "GCDWebServer.h"
 #import "SWBViewController.h"
-#import "ProxySettingsTableViewController.h"
+#import "ShadowsocksRunner.h"
 
 #define kProxyModeKey @"proxy mode"
 
@@ -105,7 +105,7 @@ void polipo_exit();
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        [ProxySettingsTableViewController openSSURL:ssURL];
+        [ShadowsocksRunner openSSURL:ssURL];
     } else {
         // Do nothing
     }
@@ -139,9 +139,9 @@ void polipo_exit();
 #pragma mark - Run proxy
 
 - (void)runProxy {
-    [ProxySettingsTableViewController reloadConfig];
+    [ShadowsocksRunner reloadConfig];
     for (; ;) {
-        if ([ProxySettingsTableViewController runProxy]) {
+        if ([ShadowsocksRunner runProxy]) {
             sleep(1);
         } else {
             sleep(2);
