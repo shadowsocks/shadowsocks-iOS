@@ -51,7 +51,7 @@
     [menu addItem:statusMenuItem];
     [menu addItem:enableMenuItem];
     [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItemWithTitle:@"Configure..." action:@selector(showConfigWindow) keyEquivalent:@""];
+    [menu addItemWithTitle:@"Open Server Preferences..." action:@selector(showConfigWindow) keyEquivalent:@""];
     [menu addItemWithTitle:@"Show Logs..." action:@selector(showLogs) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(exit) keyEquivalent:@""];
