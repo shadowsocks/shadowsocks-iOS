@@ -39,7 +39,6 @@
 
     self.item = [[NSStatusBar systemStatusBar] statusItemWithLength:20];
     self.item.image = [NSImage imageNamed:@"menu_icon"];
-    self.item.toolTip = @"Shadowsocks";
     self.item.highlightMode = YES;
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Shadowsocks"];
     [menu setMinimumWidth:200];
@@ -51,6 +50,7 @@
     [menu addItem:enableMenuItem];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Configure..." action:@selector(showConfigWindow) keyEquivalent:@""];
+    [menu addItemWithTitle:@"Show Logs..." action:@selector(showLogs) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(exit) keyEquivalent:@""];
     self.item.menu = menu;
@@ -72,6 +72,10 @@
         self.item.image = [NSImage imageNamed:@"menu_icon_disabled"];
 //        [enableMenuItem setState:0];
     }
+}
+
+- (void)showLogs {
+    [[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/Utilities/Console.app"];
 }
 
 - (void)showConfigWindow {
@@ -147,7 +151,7 @@ static AuthorizationFlags authFlags;
     for (NSString *key in [sets allKeys]) {
         NSMutableDictionary *dict = [sets objectForKey:key];
         NSString *hardware = [dict valueForKeyPath:@"Interface.Hardware"];
-        NSLog(@"%@", hardware);
+//        NSLog(@"%@", hardware);
         if ([hardware isEqualToString:@"AirPort"] || [hardware isEqualToString:@"Wi-Fi"] || [hardware isEqualToString:@"Ethernet"]) {
             if (useProxy) {
                 [proxies setObject:@"http://127.0.0.1:8090/proxy.pac" forKey:(NSString *)kCFNetworkProxiesProxyAutoConfigURLString];
