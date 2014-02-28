@@ -188,7 +188,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 inet_ntop(AF_INET, server->buf + 4, addr_str, ADDR_STR_LEN);
 
 #if !TARGET_OS_IPHONE
-                NSLog(@"Connecting an IPv4 address, please configure your browser to use hostnames instead: https://github.com/clowwindy/shadowsocks/wiki/Troubleshooting");
+                NSLog(@"Connecting an IPv4 address, please configure your browser to use hostname instead: https://github.com/clowwindy/shadowsocks/wiki/Troubleshooting");
 #endif
 			} else if (request->atyp == SOCKS_DOMAIN) {
                 // Domain name
