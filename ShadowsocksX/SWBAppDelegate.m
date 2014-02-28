@@ -174,9 +174,16 @@ static AuthorizationFlags authFlags;
     [alert addButtonWithTitle:@"OK"];
     [alert addButtonWithTitle:@"Cancel"];
     [alert setMessageText:[NSString stringWithFormat:@"Do you want to use this server?\n%@", url]];
-    [alert setAlertStyle:NSWarningAlertStyle];
+    [alert setAlertStyle:NSInformationalAlertStyle];
     if ([alert runModal] == NSAlertFirstButtonReturn) {
-        [ShadowsocksRunner openSSURL:[NSURL URLWithString:url]];
+        BOOL result = [ShadowsocksRunner openSSURL:[NSURL URLWithString:url]];
+        if (!result) {
+            alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setMessageText:@"Bad Shadowsocks URL"];
+            [alert setAlertStyle:NSCriticalAlertStyle];
+            [alert runModal];
+        }
     }
 }
 

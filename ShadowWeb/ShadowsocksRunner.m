@@ -48,9 +48,9 @@
     }
 }
 
-+ (void)openSSURL:(NSURL *)url {
++ (BOOL)openSSURL:(NSURL *)url {
     if (!url.host) {
-        return;
+        return NO;
     }
     NSString *urlString = [url absoluteString];
     int i = 0;
@@ -92,10 +92,11 @@
         [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:method];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
         [ShadowsocksRunner reloadConfig];
-        return;
+        return YES;
     }
 
     NSLog(@"%@", errorReason);
+    return NO;
 }
 
 + (void)saveConfigForKey:(NSString *)key value:(NSString *)value {
