@@ -187,7 +187,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 // now get it back and print it
                 inet_ntop(AF_INET, server->buf + 4, addr_str, ADDR_STR_LEN);
 
-#if TARGET_API_MAC_OSX
+#if !TARGET_OS_IPHONE
                 NSLog(@"Connecting an IPv4 address");
 #endif
 			} else if (request->atyp == SOCKS_DOMAIN) {
@@ -204,7 +204,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 addr_to_send[addr_len++] = *(unsigned char *)(server->buf + 4 + 1 + name_len + 1); 
 //                addr_to_send[addr_len] = 0;
 
-#if TARGET_API_MAC_OSX
+#if !TARGET_OS_IPHONE
                 char temp[256];
                 memcpy(temp, server->buf + 4 + 1, name_len);
                 temp[name_len + 1] = '\0';
