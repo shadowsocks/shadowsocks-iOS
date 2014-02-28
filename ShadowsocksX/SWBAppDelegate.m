@@ -22,6 +22,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(handleURLEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+
     // Insert code here to initialize your application
     dispatch_queue_t proxy = dispatch_queue_create("proxy", NULL);
     dispatch_async(proxy, ^{
@@ -166,6 +168,17 @@ static AuthorizationFlags authFlags;
     SCPreferencesSynchronize(prefRef);
 }
 
+- (void)handleURLEvent:(NSAppleEventDescriptor*)event withReplyEvent:(NSAppleEventDescriptor*)replyEvent {
+    NSString* url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert addButtonWithTitle:@"Cancel"];
+    [alert setMessageText:[NSString stringWithFormat:@"Do you want to use this server?\n%@", url]];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        [ShadowsocksRunner openSSURL:[NSURL URLWithString:url]];
+    }
+}
 
 
 @end
