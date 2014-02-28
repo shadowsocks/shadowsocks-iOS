@@ -39,6 +39,8 @@
 		622BE4E318B6FBD700F22683 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 627A6E1018B47E9300493BBC /* Images.xcassets */; };
 		622BE4E618B7307200F22683 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 622BE4E418B7307200F22683 /* menu_icon@2x.png */; };
 		622BE4E718B7307200F22683 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 622BE4E518B7307200F22683 /* menu_icon.png */; };
+		6232047118C0719D001A30B9 /* menu_icon_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 6232046F18C0719D001A30B9 /* menu_icon_disabled.png */; };
+		6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6232047018C0719D001A30B9 /* menu_icon_disabled@2x.png */; };
 		623A7EBB1795AE8000DF11DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		623A7EC61795AF1000DF11DF /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
 		623A7EC71795B0C700DF11DF /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693EE16DA2815008B1A26 /* encrypt.c */; };
@@ -239,6 +241,8 @@
 		621FCC081760400800411E5F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		622BE4E418B7307200F22683 /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
 		622BE4E518B7307200F22683 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
+		6232046F18C0719D001A30B9 /* menu_icon_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_disabled.png; sourceTree = "<group>"; };
+		6232047018C0719D001A30B9 /* menu_icon_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon_disabled@2x.png"; sourceTree = "<group>"; };
 		623A7EBA1795AE8000DF11DF /* libshadowsocks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libshadowsocks.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		62597BD2175FA1D00090E8A6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "OpenSSL-for-iPhone/lib/libssl.a"; sourceTree = "<group>"; };
 		626C4AD918B1E352003DBE33 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "NSData-Base64/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
@@ -656,6 +660,8 @@
 			children = (
 				622BE4E418B7307200F22683 /* menu_icon@2x.png */,
 				622BE4E518B7307200F22683 /* menu_icon.png */,
+				6232046F18C0719D001A30B9 /* menu_icon_disabled.png */,
+				6232047018C0719D001A30B9 /* menu_icon_disabled@2x.png */,
 				629AC93218B49341001D2771 /* Application.xib */,
 				627A6E0018B47E9300493BBC /* ShadowsocksX-Info.plist */,
 				627A6E0118B47E9300493BBC /* InfoPlist.strings */,
@@ -965,9 +971,11 @@
 			files = (
 				629AC93818B497C0001D2771 /* proxy.pac in Resources */,
 				629AC93318B49341001D2771 /* Application.xib in Resources */,
+				6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */,
 				627A6E0318B47E9300493BBC /* InfoPlist.strings in Resources */,
 				62F47B8D18BDED61007B223A /* ConfigWindow.xib in Resources */,
 				622BE4E618B7307200F22683 /* menu_icon@2x.png in Resources */,
+				6232047118C0719D001A30B9 /* menu_icon_disabled.png in Resources */,
 				627A6E1118B47E9300493BBC /* Images.xcassets in Resources */,
 				622BE4E718B7307200F22683 /* menu_icon.png in Resources */,
 			);

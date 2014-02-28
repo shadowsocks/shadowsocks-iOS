@@ -15,6 +15,9 @@
 @implementation SWBAppDelegate
 {
     SWBConfigWindowController *configWindowController;
+    NSMenuItem *statusMenuItem;
+    NSMenuItem *enableMenuItem;
+    BOOL isRunning;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -39,12 +42,36 @@
     self.item.toolTip = @"Shadowsocks";
     self.item.highlightMode = YES;
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Shadowsocks"];
-    [menu addItemWithTitle:@"Configure" action:@selector(showConfigWindow) keyEquivalent:@""];
-    [menu addItemWithTitle:@"Exit" action:@selector(exit) keyEquivalent:@""];
+    [menu setMinimumWidth:200];
+    statusMenuItem = [[NSMenuItem alloc] initWithTitle:@"Shadowsocks: On" action:nil keyEquivalent:@""];
+//    [statusMenuItem setEnabled:NO];
+    enableMenuItem = [[NSMenuItem alloc] initWithTitle:@"Turn Shadowsocks Off" action:@selector(toggleRunning) keyEquivalent:@""];
+//    [enableMenuItem setState:1];
+    [menu addItem:statusMenuItem];
+    [menu addItem:enableMenuItem];
+    [menu addItem:[NSMenuItem separatorItem]];
+    [menu addItemWithTitle:@"Configure..." action:@selector(showConfigWindow) keyEquivalent:@""];
+    [menu addItem:[NSMenuItem separatorItem]];
+    [menu addItemWithTitle:@"Quit" action:@selector(exit) keyEquivalent:@""];
     self.item.menu = menu;
-    [SWBAppDelegate initializeProxy];
+    [self initializeProxy];
 
     configWindowController = [[SWBConfigWindowController alloc] initWithWindowNibName:@"ConfigWindow"];
+}
+
+- (void)toggleRunning {
+    [self toggleSystemProxy:!isRunning];
+    if (isRunning) {
+        statusMenuItem.title = @"Shadowsocks: On";
+        enableMenuItem.title = @"Turn Shadowsocks Off";
+        self.item.image = [NSImage imageNamed:@"menu_icon"];
+//        [enableMenuItem setState:1];
+    } else {
+        statusMenuItem.title = @"Shadowsocks: Off";
+        enableMenuItem.title = @"Turn Shadowsocks On";
+        self.item.image = [NSImage imageNamed:@"menu_icon_disabled"];
+//        [enableMenuItem setState:0];
+    }
 }
 
 - (void)showConfigWindow {
@@ -55,7 +82,7 @@
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
     NSLog(@"terminating");
-    [SWBAppDelegate toggleSystemProxy:NO];
+    [self toggleSystemProxy:NO];
 }
 
 - (void)runProxy {
@@ -81,7 +108,7 @@ static NSMutableDictionary *sharedContainer = nil;
 static AuthorizationRef authRef;
 static AuthorizationFlags authFlags;
 
-+ (void)initializeProxy {
+- (void)initializeProxy {
     authFlags = kAuthorizationFlagDefaults
             | kAuthorizationFlagExtendRights
             | kAuthorizationFlagInteractionAllowed
@@ -90,16 +117,17 @@ static AuthorizationFlags authFlags;
     if (authErr != noErr) {
         authRef = nil;
     } else {
-        [SWBAppDelegate toggleSystemProxy:YES];
+        [self toggleSystemProxy:YES];
     }
 }
 
-+ (NSString *)proxiesPathOfDevice:(NSString *)devId {
+- (NSString *)proxiesPathOfDevice:(NSString *)devId {
     NSString *path = [NSString stringWithFormat:@"/%@/%@/%@", kSCPrefNetworkServices, devId, kSCEntNetProxies];
     return path;
 }
 
-+ (void)toggleSystemProxy:(BOOL)useProxy {
+- (void)toggleSystemProxy:(BOOL)useProxy {
+    isRunning = useProxy;
     if (authRef == NULL) {
         NSLog(@"No authorization has been granted to modify network configuration");
         return;

@@ -21,7 +21,7 @@ int encryption_iv_len[] = {
         16
 };
 
-static const char *encryption_names[] = {
+const char *shadowsocks_encryption_names[] = {
         "table",
         "aes-256-cfb",
         "aes-192-cfb",
@@ -50,8 +50,8 @@ void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len
 
 int encryption_method_from_string(const char *name) {
     // TODO use an O(1) way
-    for (int i = 0; i < TOTAL_METHODS; i++) {
-        if (strcasecmp(name, encryption_names[i]) == 0) {
+    for (int i = 0; i < kShadowsocksMethods; i++) {
+        if (strcasecmp(name, shadowsocks_encryption_names[i]) == 0) {
             return i;
         }
     }
@@ -161,7 +161,7 @@ void config_encryption(const char *password, const char *method) {
     SSLeay_add_all_algorithms();
     _method = encryption_method_from_string(method);
     if (_method != ENCRYPTION_TABLE) {
-        const char *name = encryption_names[_method];
+        const char *name = shadowsocks_encryption_names[_method];
         _cipher = EVP_get_cipherbyname(name);
         if (_cipher == NULL) {
 //            assert(0);

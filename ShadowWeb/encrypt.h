@@ -12,7 +12,9 @@ struct encryption_ctx {
 #define STATUS_INIT 1
 #define STATUS_DESTORYED 2
 
-#define TOTAL_METHODS 14
+#define kShadowsocksMethods 14
+
+const char *shadowsocks_encryption_names[];
 
 void encrypt_buf(struct encryption_ctx* ctx, char *buf, int *len);
 void decrypt_buf(struct encryption_ctx* ctx, char *buf, int *len);

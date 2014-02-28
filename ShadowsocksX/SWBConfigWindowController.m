@@ -3,8 +3,10 @@
 // Copyright (c) 2014 clowwindy. All rights reserved.
 //
 
+#import <openssl/evp.h>
 #import "SWBConfigWindowController.h"
 #import "ShadowsocksRunner.h"
+#import "encrypt.h"
 
 
 @implementation SWBConfigWindowController {
@@ -14,7 +16,14 @@
 
 - (void)windowWillLoad {
     [super windowWillLoad];
-    [self loadSettings];
+}
+
+- (void)addMethods {
+    for (int i = 0; i < kShadowsocksMethods; i++) {
+        const char* method_name = shadowsocks_encryption_names[i];
+        NSString *methodName = [[NSString alloc] initWithBytes:method_name length:strlen(method_name) encoding:NSUTF8StringEncoding];
+        [_methodBox addItemWithObjectValue:methodName];
+    }
 }
 
 - (void)loadSettings {
@@ -23,10 +32,22 @@
     } else {
         [_publicMatrix selectCellAtRow:0 column:1];
     }
-    [_serverField setStringValue:[ShadowsocksRunner configForKey:kShadowsocksIPKey]];
-    [_portField setStringValue:[ShadowsocksRunner configForKey:kShadowsocksPortKey]];
-    [_passwordField setStringValue:[ShadowsocksRunner configForKey:kShadowsocksPasswordKey]];
-    [_methodBox setStringValue:[ShadowsocksRunner configForKey:kShadowsocksEncryptionKey]];
+    if ([ShadowsocksRunner configForKey:kShadowsocksIPKey]) {
+        [_serverField setStringValue:[ShadowsocksRunner configForKey:kShadowsocksIPKey]];
+    }
+    if ([ShadowsocksRunner configForKey:kShadowsocksPortKey]) {
+        [_portField setStringValue:[ShadowsocksRunner configForKey:kShadowsocksPortKey]];
+    } else {
+        [_portField setStringValue:@"8388"];
+    }
+    if ([ShadowsocksRunner configForKey:kShadowsocksPasswordKey]) {
+        [_passwordField setStringValue:[ShadowsocksRunner configForKey:kShadowsocksPasswordKey]];
+    }
+    if ([ShadowsocksRunner configForKey:kShadowsocksEncryptionKey]) {
+        [_methodBox setStringValue:[ShadowsocksRunner configForKey:kShadowsocksEncryptionKey]];
+    } else {
+        [_methodBox setStringValue:@"aes-256-cfb"];
+    }
 }
 
 - (void)saveSettings {
@@ -42,6 +63,9 @@
 }
 
 - (void)windowDidLoad {
+    [super windowDidLoad];
+    [self addMethods];
+    [self loadSettings];
     [self updateSettingsBoxVisible:self];
 }
 
