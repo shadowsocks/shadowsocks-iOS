@@ -41,6 +41,7 @@
 		622BE4E718B7307200F22683 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 622BE4E518B7307200F22683 /* menu_icon.png */; };
 		6232047118C0719D001A30B9 /* menu_icon_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 6232046F18C0719D001A30B9 /* menu_icon_disabled.png */; };
 		6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6232047018C0719D001A30B9 /* menu_icon_disabled@2x.png */; };
+		6232047718C08C6C001A30B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 628C3DE118AD5AFA0090632A /* Localizable.strings */; };
 		623A7EBB1795AE8000DF11DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		623A7EC61795AF1000DF11DF /* ev.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693FD16DA2983008B1A26 /* ev.c */; };
 		623A7EC71795B0C700DF11DF /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693EE16DA2815008B1A26 /* encrypt.c */; };
@@ -969,6 +970,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6232047718C08C6C001A30B9 /* Localizable.strings in Resources */,
 				629AC93818B497C0001D2771 /* proxy.pac in Resources */,
 				629AC93318B49341001D2771 /* Application.xib in Resources */,
 				6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */,

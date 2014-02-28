@@ -18,6 +18,8 @@
 "incorrect URL" = "错误的 URL";
 "OK" = "确定";
 "Cancel" = "取消";
+"Yes" = "是";
+"No" = "否";
 "New Tab" = "新标签页";
 "Close" = "关闭";
 "Back" = "后退";
@@ -38,3 +40,11 @@
 "Custom" = "自定义";
 "Config via QRCode" = "用二维码配置";
 "Use this server?" = "使用这个服务器？";
+"Invalid Shadowsocks URL" = "无效的 Shadowsocks URL";
+"Shadowsocks: On" = "Shadowsocks: 打开";
+"Shadowsocks: Off" = "Shadowsocks: 关闭";
+"Turn Shadowsocks On" = "打开 Shadowsocks";
+"Turn Shadowsocks Off" = "关闭 Shadowsocks";
+"Open Server Preferences..." = "打开服务器设定...";
+"Show Logs..." = "显示日志..";
+"Quit" = "退出";

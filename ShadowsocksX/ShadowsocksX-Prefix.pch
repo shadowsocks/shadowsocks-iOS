@@ -7,3 +7,5 @@
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
 #endif
+
+#define _L(s) NSLocalizedString(@#s, nil)
