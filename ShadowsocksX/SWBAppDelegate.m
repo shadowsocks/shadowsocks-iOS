@@ -173,7 +173,8 @@ static AuthorizationFlags authFlags;
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert addButtonWithTitle:@"Cancel"];
-    [alert setMessageText:[NSString stringWithFormat:@"Do you want to use this server?\n%@", url]];
+    [alert setMessageText:@"Do you want to use this server?"];
+    [alert setInformativeText:url];
     [alert setAlertStyle:NSInformationalAlertStyle];
     if ([alert runModal] == NSAlertFirstButtonReturn) {
         BOOL result = [ShadowsocksRunner openSSURL:[NSURL URLWithString:url]];
