@@ -126,6 +126,7 @@
 		EB189DBA13C945ADF838DF2C /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1892CE8806A5E5632B5714 /* QRCodeViewController.m */; };
 		EB189E4CAA0DEF020070DC84 /* SWBAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB189EE1CF6E8C6C431B87BA /* SWBAboutController.m */; };
 		EB189E8C8B1866196A4DA43B /* about.txt in Resources */ = {isa = PBXBuildFile; fileRef = EB1891FD08E70E9E9DC84AFD /* about.txt */; };
+		EB189FE30A2E13F4D10D59ED /* SWBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = EB189ABF1BF9729F1E0E8F72 /* SWBApplication.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -387,6 +388,8 @@
 		EB1897A89055A4C2CFD81AF8 /* ShadowsocksRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowsocksRunner.m; sourceTree = "<group>"; };
 		EB1897A8F80969EC7477F89D /* 3gnet_enable.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file.mobileconfig; path = 3gnet_enable.mobileconfig; sourceTree = "<group>"; };
 		EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file.mobileconfig; path = 3gnet_disable.mobileconfig; sourceTree = "<group>"; };
+		EB189A194D9EB70D1C8E7123 /* SWBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWBApplication.h; sourceTree = "<group>"; };
+		EB189ABF1BF9729F1E0E8F72 /* SWBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBApplication.m; sourceTree = "<group>"; };
 		EB189E412781A71BA967EECE /* ShadowsocksRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowsocksRunner.h; sourceTree = "<group>"; };
 		EB189EE1CF6E8C6C431B87BA /* SWBAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBAboutController.m; sourceTree = "<group>"; };
 		EB189F12BEB086705288D293 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -665,6 +668,8 @@
 				627A6DFF18B47E9300493BBC /* Supporting Files */,
 				EB1895348E32ABA4F4F86742 /* SWBConfigWindowController.m */,
 				EB189F33A120A109D84FF977 /* SWBConfigWindowController.h */,
+				EB189ABF1BF9729F1E0E8F72 /* SWBApplication.m */,
+				EB189A194D9EB70D1C8E7123 /* SWBApplication.h */,
 			);
 			path = ShadowsocksX;
 			sourceTree = "<group>";
@@ -1114,6 +1119,7 @@
 				627A6E0C18B47E9300493BBC /* SWBAppDelegate.m in Sources */,
 				EB1897A04CF0382A754FE700 /* SWBConfigWindowController.m in Sources */,
 				EB18906527B59E4F6A70A14A /* ShadowsocksRunner.m in Sources */,
+				EB189FE30A2E13F4D10D59ED /* SWBApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
