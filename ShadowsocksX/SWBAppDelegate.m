@@ -13,6 +13,8 @@
 #import "GCDWebServer.h"
 #import "ShadowsocksRunner.h"
 
+#define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
+
 @implementation SWBAppDelegate
 {
     SWBConfigWindowController *configWindowController;
@@ -60,11 +62,18 @@
     [self initializeProxy];
 
     configWindowController = [[SWBConfigWindowController alloc] initWithWindowNibName:@"ConfigWindow"];
+
+    [self updateMenu];
 }
 
 - (void)toggleRunning {
     [self toggleSystemProxy:!isRunning];
-    if (isRunning) {
+    [[NSUserDefaults standardUserDefaults] setBool:isRunning forKey:kShadowsocksIsRunningKey];
+    [self updateMenu];
+}
+
+- (void)updateMenu {
+     if (isRunning) {
         statusMenuItem.title = _L(Shadowsocks: On);
         enableMenuItem.title = _L(Turn Shadowsocks Off);
         self.item.image = [NSImage imageNamed:@"menu_icon"];
@@ -124,7 +133,10 @@ static AuthorizationFlags authFlags;
     if (authErr != noErr) {
         authRef = nil;
     } else {
-        [self toggleSystemProxy:YES];
+        id isRunningObject = [[NSUserDefaults standardUserDefaults] objectForKey:kShadowsocksIsRunningKey];
+        if ((isRunningObject == nil) || [isRunningObject boolValue]) {
+            [self toggleSystemProxy:YES];
+        }
     }
 }
 
