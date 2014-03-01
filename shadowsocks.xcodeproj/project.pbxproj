@@ -29,7 +29,6 @@
 		621571F616CF7FA7003D96B4 /* SWBPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571F116CF7FA6003D96B4 /* SWBPage.m */; };
 		621571F716CF7FA7003D96B4 /* SWBPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571F316CF7FA6003D96B4 /* SWBPageManager.m */; };
 		621571FC16CF7FE6003D96B4 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 621571FB16CF7FE6003D96B4 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		621FCBF717603E5100411E5F /* proxy.pac in Resources */ = {isa = PBXBuildFile; fileRef = 621FCBF617603E5100411E5F /* proxy.pac */; };
 		621FCC0217603FFA00411E5F /* GCDWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFA17603FFA00411E5F /* GCDWebServer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		621FCC0317603FFA00411E5F /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFC17603FFA00411E5F /* GCDWebServerConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		621FCC0417603FFA00411E5F /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFF17603FFA00411E5F /* GCDWebServerRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -76,7 +75,6 @@
 		629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFC17603FFA00411E5F /* GCDWebServerConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		629AC93618B49676001D2771 /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFF17603FFA00411E5F /* GCDWebServerRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		629AC93718B49676001D2771 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCC0117603FFA00411E5F /* GCDWebServerResponse.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		629AC93818B497C0001D2771 /* proxy.pac in Resources */ = {isa = PBXBuildFile; fileRef = 621FCBF617603E5100411E5F /* proxy.pac */; };
 		629AC93E18B49B97001D2771 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629AC93D18B49B97001D2771 /* Security.framework */; };
 		629AC94018B49C33001D2771 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629AC93F18B49C33001D2771 /* SystemConfiguration.framework */; };
 		62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
@@ -111,6 +109,8 @@
 		62D85AB5176DAA7200FE5575 /* silence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 62D85AB3176DAA7200FE5575 /* silence.wav */; };
 		62DAB9E0177A11D7003DFFDE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DAB9DF177A11D7003DFFDE /* Crashlytics.framework */; };
 		62DE796018B2140D00277174 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DE795F18B2140D00277174 /* cancel.png */; };
+		62E27E5118C1CE590086033D /* proxy.pac in Resources */ = {isa = PBXBuildFile; fileRef = 62E27E5018C1CE590086033D /* proxy.pac */; };
+		62E27E5218C1CE590086033D /* proxy.pac in Resources */ = {isa = PBXBuildFile; fileRef = 62E27E5018C1CE590086033D /* proxy.pac */; };
 		96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D80C04176CE1D7006C8078 /* AVFoundation.framework */; };
 		EB18906527B59E4F6A70A14A /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1897A89055A4C2CFD81AF8 /* ShadowsocksRunner.m */; };
 		EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */; };
@@ -228,7 +228,6 @@
 		621571F316CF7FA6003D96B4 /* SWBPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBPageManager.m; sourceTree = "<group>"; };
 		621571FA16CF7FE6003D96B4 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		621571FB16CF7FE6003D96B4 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		621FCBF617603E5100411E5F /* proxy.pac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = proxy.pac; sourceTree = "<group>"; };
 		621FCBF917603FFA00411E5F /* GCDWebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServer.h; path = GCDWebServer/CGDWebServer/GCDWebServer.h; sourceTree = SOURCE_ROOT; };
 		621FCBFA17603FFA00411E5F /* GCDWebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServer.m; path = GCDWebServer/CGDWebServer/GCDWebServer.m; sourceTree = SOURCE_ROOT; };
 		621FCBFB17603FFA00411E5F /* GCDWebServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerConnection.h; path = GCDWebServer/CGDWebServer/GCDWebServerConnection.h; sourceTree = SOURCE_ROOT; };
@@ -244,8 +243,8 @@
 		622BE4E518B7307200F22683 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		6232046F18C0719D001A30B9 /* menu_icon_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_disabled.png; sourceTree = "<group>"; };
 		6232047018C0719D001A30B9 /* menu_icon_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon_disabled@2x.png"; sourceTree = "<group>"; };
-		6232047918C08E2A001A30B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/ConfigWindow.xib; sourceTree = "<group>"; };
-		6232047B18C08E3A001A30B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/ConfigWindow.xib"; sourceTree = "<group>"; };
+		6232047918C08E2A001A30B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ConfigWindow.xib; sourceTree = "<group>"; };
+		6232047B18C08E3A001A30B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ConfigWindow.xib"; sourceTree = "<group>"; };
 		623A7EBA1795AE8000DF11DF /* libshadowsocks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libshadowsocks.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		62597BD2175FA1D00090E8A6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "OpenSSL-for-iPhone/lib/libssl.a"; sourceTree = "<group>"; };
 		626C4AD918B1E352003DBE33 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "NSData-Base64/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
@@ -366,6 +365,7 @@
 		62D85AB3176DAA7200FE5575 /* silence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = silence.wav; sourceTree = "<group>"; };
 		62DAB9DF177A11D7003DFFDE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		62DE795F18B2140D00277174 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		62E27E5018C1CE590086033D /* proxy.pac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = proxy.pac; sourceTree = "<group>"; };
 		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB189069EF341E65B5414D00 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		EB1891B68FCBD841C5E461B6 /* About.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; path = About.md; sourceTree = SOURCE_ROOT; };
@@ -526,7 +526,6 @@
 				621571BA16CF6BCB003D96B4 /* Default.png */,
 				621571BC16CF6BCB003D96B4 /* Default@2x.png */,
 				621571BE16CF6BCB003D96B4 /* Default-568h@2x.png */,
-				621FCBF617603E5100411E5F /* proxy.pac */,
 				EB1897A8F80969EC7477F89D /* 3gnet_enable.mobileconfig */,
 				EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */,
 				EB189F29205BA2AB998B867D /* polipo_disable.config */,
@@ -660,6 +659,7 @@
 		627A6DFF18B47E9300493BBC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				62E27E5018C1CE590086033D /* proxy.pac */,
 				622BE4E418B7307200F22683 /* menu_icon@2x.png */,
 				622BE4E518B7307200F22683 /* menu_icon.png */,
 				6232046F18C0719D001A30B9 /* menu_icon_disabled.png */,
@@ -956,10 +956,10 @@
 				628C3DDF18AD5AFA0090632A /* Localizable.strings in Resources */,
 				621571BD16CF6BCB003D96B4 /* Default@2x.png in Resources */,
 				621571BF16CF6BCB003D96B4 /* Default-568h@2x.png in Resources */,
-				621FCBF717603E5100411E5F /* proxy.pac in Resources */,
 				EB189A01F66776EC1714F32D /* 3gnet_enable.mobileconfig in Resources */,
 				62DE796018B2140D00277174 /* cancel.png in Resources */,
 				62D85AB4176DAA7200FE5575 /* polipo.config in Resources */,
+				62E27E5118C1CE590086033D /* proxy.pac in Resources */,
 				62D85AB5176DAA7200FE5575 /* silence.wav in Resources */,
 				EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */,
 				EB1890D6331E61914013309F /* polipo_disable.config in Resources */,
@@ -972,13 +972,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6232047718C08C6C001A30B9 /* Localizable.strings in Resources */,
-				629AC93818B497C0001D2771 /* proxy.pac in Resources */,
 				629AC93318B49341001D2771 /* Application.xib in Resources */,
 				6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */,
 				627A6E0318B47E9300493BBC /* InfoPlist.strings in Resources */,
 				6232047818C08E2A001A30B9 /* ConfigWindow.xib in Resources */,
 				622BE4E618B7307200F22683 /* menu_icon@2x.png in Resources */,
 				6232047118C0719D001A30B9 /* menu_icon_disabled.png in Resources */,
+				62E27E5218C1CE590086033D /* proxy.pac in Resources */,
 				627A6E1118B47E9300493BBC /* Images.xcassets in Resources */,
 				622BE4E718B7307200F22683 /* menu_icon.png in Resources */,
 			);
