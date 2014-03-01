@@ -115,6 +115,7 @@
 		62E27E5A18C1D0CF0086033D /* GZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E27E5818C1D0CF0086033D /* GZIP.m */; };
 		62E27E5C18C1D0F90086033D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E27E5B18C1D0F80086033D /* libz.dylib */; };
 		62E27E5E18C1D1000086033D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E27E5D18C1D1000086033D /* libz.dylib */; };
+		62E27E6418C1F1E30086033D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EB1896EFEA137F75386005D4 /* LICENSE */; };
 		96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D80C04176CE1D7006C8078 /* AVFoundation.framework */; };
 		EB18906527B59E4F6A70A14A /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1897A89055A4C2CFD81AF8 /* ShadowsocksRunner.m */; };
 		EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */; };
@@ -998,6 +999,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62E27E6418C1F1E30086033D /* LICENSE in Resources */,
 				6232047718C08C6C001A30B9 /* Localizable.strings in Resources */,
 				629AC93318B49341001D2771 /* Application.xib in Resources */,
 				6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */,
