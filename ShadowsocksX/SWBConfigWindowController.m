@@ -77,10 +77,34 @@
     }
 }
 
+- (BOOL)validateSettings {
+    if ([[_serverField stringValue] isEqualToString:@""]) {
+        return NO;
+    }
+    if ([_portField integerValue] == 0) {
+        return NO;
+    }
+    if ([[_methodBox stringValue] isEqualToString:@""]) {
+        return NO;
+    }
+    if ([[_passwordField stringValue] isEqualToString:@""]) {
+        return NO;
+    }
+    return YES;
+}
+
 - (IBAction)OK:(id)sender {
-    [self saveSettings];
-    [ShadowsocksRunner reloadConfig];
-    [self.window performClose:self];
+    if ([self validateSettings]) {
+        [self saveSettings];
+        [ShadowsocksRunner reloadConfig];
+        [self.window performClose:self];
+    } else {
+            NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:_L(OK)];
+        [alert setMessageText:_L(Please fill in the blanks.)];
+        [alert setAlertStyle:NSCriticalAlertStyle];
+        [alert beginSheetModalForWindow:self.window modalDelegate:self didEndSelector:nil contextInfo:nil];
+    }
 }
 
 - (IBAction)cancel:(id)sender {

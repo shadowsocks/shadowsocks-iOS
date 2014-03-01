@@ -46,5 +46,6 @@
 "Turn Shadowsocks On" = "打开 Shadowsocks";
 "Turn Shadowsocks Off" = "关闭 Shadowsocks";
 "Open Server Preferences..." = "打开服务器设定...";
+"Please fill in the blanks." = "请填写以下内容。";
 "Show Logs..." = "显示日志..";
 "Quit" = "退出";
