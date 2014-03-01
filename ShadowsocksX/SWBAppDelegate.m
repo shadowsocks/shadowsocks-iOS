@@ -56,6 +56,7 @@
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:_L(Open Server Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Show Logs...) action:@selector(showLogs) keyEquivalent:@""];
+    [menu addItemWithTitle:_L(Help) action:@selector(showHelp) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:_L(Quit) action:@selector(exit) keyEquivalent:@""];
     self.item.menu = menu;
@@ -88,6 +89,10 @@
 
 - (void)showLogs {
     [[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/Utilities/Console.app"];
+}
+
+- (void)showHelp {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:NSLocalizedString(@"https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help", nil)]];
 }
 
 - (void)showConfigWindow {
