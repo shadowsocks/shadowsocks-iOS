@@ -109,8 +109,12 @@
 		62D85AB5176DAA7200FE5575 /* silence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 62D85AB3176DAA7200FE5575 /* silence.wav */; };
 		62DAB9E0177A11D7003DFFDE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DAB9DF177A11D7003DFFDE /* Crashlytics.framework */; };
 		62DE796018B2140D00277174 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DE795F18B2140D00277174 /* cancel.png */; };
-		62E27E5118C1CE590086033D /* proxy.pac in Resources */ = {isa = PBXBuildFile; fileRef = 62E27E5018C1CE590086033D /* proxy.pac */; };
-		62E27E5218C1CE590086033D /* proxy.pac in Resources */ = {isa = PBXBuildFile; fileRef = 62E27E5018C1CE590086033D /* proxy.pac */; };
+		62E27E5418C1D03D0086033D /* proxy.pac.gz in Resources */ = {isa = PBXBuildFile; fileRef = 62E27E5318C1D03D0086033D /* proxy.pac.gz */; };
+		62E27E5518C1D03D0086033D /* proxy.pac.gz in Resources */ = {isa = PBXBuildFile; fileRef = 62E27E5318C1D03D0086033D /* proxy.pac.gz */; };
+		62E27E5918C1D0CF0086033D /* GZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E27E5818C1D0CF0086033D /* GZIP.m */; };
+		62E27E5A18C1D0CF0086033D /* GZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E27E5818C1D0CF0086033D /* GZIP.m */; };
+		62E27E5C18C1D0F90086033D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E27E5B18C1D0F80086033D /* libz.dylib */; };
+		62E27E5E18C1D1000086033D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E27E5D18C1D1000086033D /* libz.dylib */; };
 		96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D80C04176CE1D7006C8078 /* AVFoundation.framework */; };
 		EB18906527B59E4F6A70A14A /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1897A89055A4C2CFD81AF8 /* ShadowsocksRunner.m */; };
 		EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */; };
@@ -365,7 +369,11 @@
 		62D85AB3176DAA7200FE5575 /* silence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = silence.wav; sourceTree = "<group>"; };
 		62DAB9DF177A11D7003DFFDE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		62DE795F18B2140D00277174 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
-		62E27E5018C1CE590086033D /* proxy.pac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = proxy.pac; sourceTree = "<group>"; };
+		62E27E5318C1D03D0086033D /* proxy.pac.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = proxy.pac.gz; sourceTree = SOURCE_ROOT; };
+		62E27E5718C1D0CF0086033D /* GZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GZIP.h; path = GZIP/GZIP/GZIP.h; sourceTree = SOURCE_ROOT; };
+		62E27E5818C1D0CF0086033D /* GZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GZIP.m; path = GZIP/GZIP/GZIP.m; sourceTree = SOURCE_ROOT; };
+		62E27E5B18C1D0F80086033D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		62E27E5D18C1D1000086033D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB189069EF341E65B5414D00 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		EB1891B68FCBD841C5E461B6 /* About.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; path = About.md; sourceTree = SOURCE_ROOT; };
@@ -391,6 +399,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62E27E5C18C1D0F90086033D /* libz.dylib in Frameworks */,
 				6274847518B1FD9B00A9CDF0 /* libZXingObjC-iOS.a in Frameworks */,
 				6274847418B1FD7900A9CDF0 /* ImageIO.framework in Frameworks */,
 				6274847218B1FD6F00A9CDF0 /* QuartzCore.framework in Frameworks */,
@@ -423,6 +432,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62E27E5E18C1D1000086033D /* libz.dylib in Frameworks */,
 				629AC94018B49C33001D2771 /* SystemConfiguration.framework in Frameworks */,
 				629AC93E18B49B97001D2771 /* Security.framework in Frameworks */,
 				627A6E3F18B47F5400493BBC /* libcrypto.dylib in Frameworks */,
@@ -458,6 +468,8 @@
 		621571A716CF6BCB003D96B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				62E27E5D18C1D1000086033D /* libz.dylib */,
+				62E27E5B18C1D0F80086033D /* libz.dylib */,
 				629AC93F18B49C33001D2771 /* SystemConfiguration.framework */,
 				629AC93D18B49B97001D2771 /* Security.framework */,
 				629AC93B18B49B69001D2771 /* AppKit.framework */,
@@ -490,6 +502,7 @@
 		621571AE16CF6BCB003D96B4 /* ShadowWeb */ = {
 			isa = PBXGroup;
 			children = (
+				62E27E5618C1D0C00086033D /* gzip */,
 				6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */,
 				626C4AD818B1E338003DBE33 /* base64 */,
 				62D85969176DA63C00FE5575 /* polipo */,
@@ -659,7 +672,7 @@
 		627A6DFF18B47E9300493BBC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				62E27E5018C1CE590086033D /* proxy.pac */,
+				62E27E5318C1D03D0086033D /* proxy.pac.gz */,
 				622BE4E418B7307200F22683 /* menu_icon@2x.png */,
 				622BE4E518B7307200F22683 /* menu_icon.png */,
 				6232046F18C0719D001A30B9 /* menu_icon_disabled.png */,
@@ -813,6 +826,15 @@
 			path = "iProxy/Frameworks/polipo-20091115";
 			sourceTree = SOURCE_ROOT;
 		};
+		62E27E5618C1D0C00086033D /* gzip */ = {
+			isa = PBXGroup;
+			children = (
+				62E27E5718C1D0CF0086033D /* GZIP.h */,
+				62E27E5818C1D0CF0086033D /* GZIP.m */,
+			);
+			name = gzip;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -951,6 +973,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				622BE4E318B6FBD700F22683 /* Images.xcassets in Resources */,
+				62E27E5418C1D03D0086033D /* proxy.pac.gz in Resources */,
 				621571B316CF6BCB003D96B4 /* InfoPlist.strings in Resources */,
 				621571BB16CF6BCB003D96B4 /* Default.png in Resources */,
 				628C3DDF18AD5AFA0090632A /* Localizable.strings in Resources */,
@@ -959,7 +982,6 @@
 				EB189A01F66776EC1714F32D /* 3gnet_enable.mobileconfig in Resources */,
 				62DE796018B2140D00277174 /* cancel.png in Resources */,
 				62D85AB4176DAA7200FE5575 /* polipo.config in Resources */,
-				62E27E5118C1CE590086033D /* proxy.pac in Resources */,
 				62D85AB5176DAA7200FE5575 /* silence.wav in Resources */,
 				EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */,
 				EB1890D6331E61914013309F /* polipo_disable.config in Resources */,
@@ -976,9 +998,9 @@
 				6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */,
 				627A6E0318B47E9300493BBC /* InfoPlist.strings in Resources */,
 				6232047818C08E2A001A30B9 /* ConfigWindow.xib in Resources */,
+				62E27E5518C1D03D0086033D /* proxy.pac.gz in Resources */,
 				622BE4E618B7307200F22683 /* menu_icon@2x.png in Resources */,
 				6232047118C0719D001A30B9 /* menu_icon_disabled.png in Resources */,
-				62E27E5218C1CE590086033D /* proxy.pac in Resources */,
 				627A6E1118B47E9300493BBC /* Images.xcassets in Resources */,
 				622BE4E718B7307200F22683 /* menu_icon.png in Resources */,
 			);
@@ -1044,6 +1066,7 @@
 				62D85A9C176DA6FC00FE5575 /* http.c in Sources */,
 				62D85A9D176DA6FC00FE5575 /* http_parse.c in Sources */,
 				62D85A9F176DA6FC00FE5575 /* io.c in Sources */,
+				62E27E5918C1D0CF0086033D /* GZIP.m in Sources */,
 				62D85AA0176DA6FC00FE5575 /* local.c in Sources */,
 				626C4ADB18B1E352003DBE33 /* NSData+Base64.m in Sources */,
 				62D85AA2176DA6FC00FE5575 /* log.c in Sources */,
@@ -1078,6 +1101,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62E27E5A18C1D0CF0086033D /* GZIP.m in Sources */,
 				629AC93418B49676001D2771 /* GCDWebServer.m in Sources */,
 				629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */,
 				629AC93618B49676001D2771 /* GCDWebServerRequest.m in Sources */,

@@ -13,3 +13,6 @@
 [submodule "NSData-Base64"]
 	path = NSData-Base64
 	url = https://github.com/l4u/NSData-Base64.git
+[submodule "GZIP"]
+	path = GZIP
+	url = https://github.com/nicklockwood/GZIP.git

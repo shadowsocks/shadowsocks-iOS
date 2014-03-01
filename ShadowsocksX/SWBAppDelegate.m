@@ -7,6 +7,7 @@
 //
 
 #import <SystemConfiguration/SystemConfiguration.h>
+#import "GZIP.h"
 #import "SWBConfigWindowController.h"
 #import "SWBAppDelegate.h"
 #import "GCDWebServer.h"
@@ -30,7 +31,7 @@
         [self runProxy];
     });
 
-    NSData *pacData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac"]];
+    NSData *pacData = [[NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac.gz"]] gunzippedData];
     GCDWebServer *webServer = [[GCDWebServer alloc] init];
     [webServer addHandlerForMethod:@"GET" path:@"/proxy.pac" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
         return [GCDWebServerDataResponse responseWithData:pacData contentType:@"application/x-ns-proxy-autoconfig"];
