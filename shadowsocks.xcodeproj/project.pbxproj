@@ -894,6 +894,11 @@
 				CLASSPREFIX = SWB;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = clowwindy;
+				TargetAttributes = {
+					627A6DF618B47E9300493BBC = {
+						DevelopmentTeam = LND7PS23X9;
+					};
+				};
 			};
 			buildConfigurationList = 621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "shadowsocks" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1360,7 +1365,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1392,7 +1397,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;

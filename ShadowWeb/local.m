@@ -78,176 +78,173 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
         return;
     }
 
+    char *buf = remote->buf;
+    size_t *buf_len = &remote->buf_len;
+    if (server->stage != 5) {
+        buf = server->buf;
+        buf_len = &server->buf_len;
+    }
 
-	while (1) {
-        char *buf = remote->buf;
-        size_t *buf_len = &remote->buf_len;
-        if (server->stage != 5) {
-            buf = server->buf;
-            buf_len = &server->buf_len;
+    ssize_t r = recv(server->fd, buf, BUF_SIZE, 0);
+
+    if (r == 0) {
+        // connection closed
+        *buf_len = 0;
+        close_and_free_server(EV_A_ server);
+        if (remote != NULL) {
+            ev_io_start(EV_A_ &remote->send_ctx->io);
         }
-        
-		ssize_t r = recv(server->fd, buf, BUF_SIZE, 0);
+        return;
+    } else if(r < 0) {
+        if (errno == EAGAIN || errno == EWOULDBLOCK) {
+            // no data
+            // continue to wait for recv
+            return;
+        } else {
+            perror("server recv");
+            close_and_free_server(EV_A_ server);
+            close_and_free_remote(EV_A_ remote);
+            return;
+        }
+    }
 
-		if (r == 0) {
-			// connection closed
-            *buf_len = 0;
-			close_and_free_server(EV_A_ server);
-			if (remote != NULL) {
-				ev_io_start(EV_A_ &remote->send_ctx->io);
-			}
-			return;
-		} else if(r < 0) {
-			if (errno == EAGAIN || errno == EWOULDBLOCK) {
-				// no data
-				// continue to wait for recv
-				break;
-			} else {
-                perror("server recv");
-				close_and_free_server(EV_A_ server);
-				close_and_free_remote(EV_A_ remote);
-				return;
-			}
-		}
-
-        // local socks5 server
-		if (server->stage == 5) {
-            encrypt_buf(&(remote->send_encryption_ctx), (unsigned char *)remote->buf, (size_t *)&r);
-			ssize_t w = send(remote->fd, remote->buf, (size_t)r, 0);
-			if(w == -1) {
-				if (errno == EAGAIN || errno == EWOULDBLOCK) {
-					// no data, wait for send
-					ev_io_stop(EV_A_ &server_recv_ctx->io);
-					ev_io_start(EV_A_ &remote->send_ctx->io);
-					break;
-				} else {
-                    perror("send");
-					close_and_free_server(EV_A_ server);
-					close_and_free_remote(EV_A_ remote);
-					return;
-				}
-			} else if(w < r) {
-                char *pt = remote->buf;
-                char *et = pt + r;
-                while (pt + w < et) {
-                    *pt = *(pt + w);
-                    pt++;
-                }
-				remote->buf_len = (size_t)r - w;
-				ev_io_stop(EV_A_ &server_recv_ctx->io);
-				ev_io_start(EV_A_ &remote->send_ctx->io);
-				break;
-            }
-		} else if (server->stage == 0) {
-			struct method_select_response response;
-			response.ver = SOCKS_VERSION;
-			response.method = 0;
-			char *send_buf = (char *)&response;
-			send(server->fd, send_buf, sizeof(response), 0);
-			server->stage = 1;
-			return;
-		} else if (server->stage == 1) {
-			struct socks5_request *request = (struct socks5_request *)server->buf;
-
-			if (request->cmd != SOCKS_CMD_CONNECT) {
-				NSLog(@"unsupported cmd: %d\n", request->cmd);
-				struct socks5_response response;
-				response.ver = SOCKS_VERSION;
-				response.rep = SOCKS_CMD_NOT_SUPPORTED;
-				response.rsv = 0;
-				response.atyp = SOCKS_IPV4;
-				char *send_buf = (char *)&response;
-				send(server->fd, send_buf, 4, 0);
-				close_and_free_server(EV_A_ server);
+    // local socks5 server
+    if (server->stage == 5) {
+        encrypt_buf(&(remote->send_encryption_ctx), (unsigned char *)remote->buf, (size_t *)&r);
+        ssize_t w = send(remote->fd, remote->buf, (size_t)r, 0);
+        if(w == -1) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                remote->buf_len = (size_t)r;
+                // no data, wait for send
+                ev_io_stop(EV_A_ &server_recv_ctx->io);
+                ev_io_start(EV_A_ &remote->send_ctx->io);
+                return;
+            } else {
+                perror("send");
+                close_and_free_server(EV_A_ server);
                 close_and_free_remote(EV_A_ remote);
-				return;
-			}
-
-            char addr_to_send[ADDR_STR_LEN];
-            size_t addr_len = 0;
-            addr_to_send[addr_len++] = request->atyp;
-
-            
-            char addr_str[ADDR_STR_LEN];
-			// get remote addr and port
-			if (request->atyp == SOCKS_IPV4) {
-
-				// IP V4
-                size_t in_addr_len = sizeof(struct in_addr);
-                memcpy(addr_to_send + addr_len, server->buf + 4, in_addr_len + 2);
-                addr_len += in_addr_len + 2;
-//                addr_to_send[addr_len] = 0;
-                
-                // now get it back and print it
-                inet_ntop(AF_INET, server->buf + 4, addr_str, ADDR_STR_LEN);
-
-//#if !TARGET_OS_IPHONE
-                NSLog(@"Connecting an IPv4 address, please configure your browser to use hostname instead: https://github.com/clowwindy/shadowsocks/wiki/Troubleshooting");
-//#endif
-			} else if (request->atyp == SOCKS_DOMAIN) {
-                // Domain name
-				unsigned char name_len = *(unsigned char *)(server->buf + 4);
-                addr_to_send[addr_len++] = name_len;
-				memcpy(addr_to_send + addr_len, server->buf + 4 + 1, name_len);
-				memcpy(addr_str, server->buf + 4 + 1, name_len);
-                addr_str[name_len] = '\0';
-                addr_len += name_len;
-
-				// get port
-                addr_to_send[addr_len++] = *(unsigned char *)(server->buf + 4 + 1 + name_len); 
-                addr_to_send[addr_len++] = *(unsigned char *)(server->buf + 4 + 1 + name_len + 1); 
-//                addr_to_send[addr_len] = 0;
-
-//#if !TARGET_OS_IPHONE
-                char temp[256];
-                memcpy(temp, server->buf + 4 + 1, name_len);
-                temp[name_len] = '\0';
-                NSLog(@"Connecting %@", [NSString stringWithCString:addr_str encoding:NSUTF8StringEncoding]);
-//#endif
-			} else {
-				NSLog(@"unsupported addrtype: %d\n", request->atyp);
-				close_and_free_server(EV_A_ server);
-                close_and_free_remote(EV_A_ remote);
-				return;
-			}
-            
-            int n = send_encrypt(&(remote->send_encryption_ctx), remote->fd, (unsigned char *)addr_to_send, &addr_len, 0);
-            if (n != addr_len) {
-                NSLog(@"header not completely sent: n != addr_len: n==%d, addr_len==%d", n, (int)addr_len);
-				close_and_free_remote(EV_A_ remote);
-				close_and_free_server(EV_A_ server);
                 return;
             }
-
-			// Fake reply
-			struct socks5_response response;
-			response.ver = SOCKS_VERSION;
-			response.rep = 0;
-			response.rsv = 0;
-			response.atyp = SOCKS_IPV4;
-
-            struct in_addr sin_addr;
-            inet_aton("0.0.0.0", &sin_addr);
-
-			memcpy(server->buf, &response, 4);
-			memcpy(server->buf + 4, &sin_addr, sizeof(struct in_addr));
-			*((unsigned short *)(server->buf + 4 + sizeof(struct in_addr))) 
-                = (unsigned short) htons(atoi(_remote_port));
-
-            size_t reply_size = 4 + sizeof(struct in_addr) + sizeof(unsigned short);
-			ssize_t r = send(server->fd, server->buf, reply_size, 0);
-			if (r < reply_size) {
-				NSLog(@"header not complete sent\n");
-				close_and_free_remote(EV_A_ remote);
-				close_and_free_server(EV_A_ server);
-                return;
-			}
-            
-			ev_io_start(EV_A_ &remote->recv_ctx->io);
-            
-			server->stage = 5;
-
+        } else if(w < r) {
+            char *pt = remote->buf;
+            char *et = pt + r;
+            while (pt + w < et) {
+                *pt = *(pt + w);
+                pt++;
+            }
+            remote->buf_len = (size_t)r - w;
+            ev_io_stop(EV_A_ &server_recv_ctx->io);
+            ev_io_start(EV_A_ &remote->send_ctx->io);
+            return;
         }
+    } else if (server->stage == 0) {
+        struct method_select_response response;
+        response.ver = SOCKS_VERSION;
+        response.method = 0;
+        char *send_buf = (char *)&response;
+        send(server->fd, send_buf, sizeof(response), 0);
+        server->stage = 1;
+        return;
+    } else if (server->stage == 1) {
+        struct socks5_request *request = (struct socks5_request *)server->buf;
+
+        if (request->cmd != SOCKS_CMD_CONNECT) {
+            NSLog(@"unsupported cmd: %d\n", request->cmd);
+            struct socks5_response response;
+            response.ver = SOCKS_VERSION;
+            response.rep = SOCKS_CMD_NOT_SUPPORTED;
+            response.rsv = 0;
+            response.atyp = SOCKS_IPV4;
+            char *send_buf = (char *)&response;
+            send(server->fd, send_buf, 4, 0);
+            close_and_free_server(EV_A_ server);
+            close_and_free_remote(EV_A_ remote);
+            return;
+        }
+
+        char addr_to_send[ADDR_STR_LEN];
+        size_t addr_len = 0;
+        addr_to_send[addr_len++] = request->atyp;
+
+
+        char addr_str[ADDR_STR_LEN];
+        // get remote addr and port
+        if (request->atyp == SOCKS_IPV4) {
+
+            // IP V4
+            size_t in_addr_len = sizeof(struct in_addr);
+            memcpy(addr_to_send + addr_len, server->buf + 4, in_addr_len + 2);
+            addr_len += in_addr_len + 2;
+//                addr_to_send[addr_len] = 0;
+
+            // now get it back and print it
+            inet_ntop(AF_INET, server->buf + 4, addr_str, ADDR_STR_LEN);
+
+//#if !TARGET_OS_IPHONE
+            NSLog(@"Connecting an IPv4 address, please configure your browser to use hostname instead: https://github.com/clowwindy/shadowsocks/wiki/Troubleshooting");
+//#endif
+        } else if (request->atyp == SOCKS_DOMAIN) {
+            // Domain name
+            unsigned char name_len = *(unsigned char *)(server->buf + 4);
+            addr_to_send[addr_len++] = name_len;
+            memcpy(addr_to_send + addr_len, server->buf + 4 + 1, name_len);
+            memcpy(addr_str, server->buf + 4 + 1, name_len);
+            addr_str[name_len] = '\0';
+            addr_len += name_len;
+
+            // get port
+            addr_to_send[addr_len++] = *(unsigned char *)(server->buf + 4 + 1 + name_len);
+            addr_to_send[addr_len++] = *(unsigned char *)(server->buf + 4 + 1 + name_len + 1);
+//                addr_to_send[addr_len] = 0;
+
+//#if !TARGET_OS_IPHONE
+            char temp[256];
+            memcpy(temp, server->buf + 4 + 1, name_len);
+            temp[name_len] = '\0';
+            NSLog(@"Connecting %@", [NSString stringWithCString:addr_str encoding:NSUTF8StringEncoding]);
+//#endif
+        } else {
+            NSLog(@"unsupported addrtype: %d\n", request->atyp);
+            close_and_free_server(EV_A_ server);
+            close_and_free_remote(EV_A_ remote);
+            return;
+        }
+
+        int n = send_encrypt(&(remote->send_encryption_ctx), remote->fd, (unsigned char *)addr_to_send, &addr_len, 0);
+        if (n != addr_len) {
+            NSLog(@"header not completely sent: n != addr_len: n==%d, addr_len==%d", n, (int)addr_len);
+            close_and_free_remote(EV_A_ remote);
+            close_and_free_server(EV_A_ server);
+            return;
+        }
+
+        // Fake reply
+        struct socks5_response response;
+        response.ver = SOCKS_VERSION;
+        response.rep = 0;
+        response.rsv = 0;
+        response.atyp = SOCKS_IPV4;
+
+        struct in_addr sin_addr;
+        inet_aton("0.0.0.0", &sin_addr);
+
+        memcpy(server->buf, &response, 4);
+        memcpy(server->buf + 4, &sin_addr, sizeof(struct in_addr));
+        *((unsigned short *)(server->buf + 4 + sizeof(struct in_addr)))
+            = (unsigned short) htons(atoi(_remote_port));
+
+        size_t reply_size = 4 + sizeof(struct in_addr) + sizeof(unsigned short);
+        ssize_t r = send(server->fd, server->buf, reply_size, 0);
+        if (r < reply_size) {
+            NSLog(@"header not complete sent\n");
+            close_and_free_remote(EV_A_ remote);
+            close_and_free_server(EV_A_ server);
+            return;
+        }
+
+        ev_io_start(EV_A_ &remote->recv_ctx->io);
+
+        server->stage = 5;
 	}
 }
 
@@ -285,6 +282,7 @@ static void server_send_cb (EV_P_ ev_io *w, int revents) {
 			return;
 		} else {
 			// all sent out, wait for reading
+            server->buf_len = 0;
 			ev_io_stop(EV_A_ &server_send_ctx->io);
 			if (remote != NULL) {
 				ev_io_start(EV_A_ &remote->recv_ctx->io);
@@ -306,56 +304,55 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 		close_and_free_remote(EV_A_ remote);
 		return;
 	}
-	while (1) {
-		ssize_t r = recv(remote->fd, server->buf, BUF_SIZE, 0);
+    ssize_t r = recv(remote->fd, server->buf, BUF_SIZE, 0);
 
-		if (r == 0) {
-			// connection closed
-			server->buf_len = 0;
-			close_and_free_remote(EV_A_ remote);
-			if (server != NULL) {
-				ev_io_start(EV_A_ &server->send_ctx->io);
-			}
-			return;
-		} else if(r < 0) {
-			if (errno == EAGAIN || errno == EWOULDBLOCK) {
-				// no data
-				// continue to wait for recv
-				break;
-			} else {
-                perror("remote recv");
-				close_and_free_server(EV_A_ server);
-				close_and_free_remote(EV_A_ remote);
-				return;
-			}
-		}
-		decrypt_buf(&(remote->recv_encryption_ctx), (unsigned char *)server->buf, (size_t*)&r);
-		size_t w = send(server->fd, server->buf, (size_t)r, 0);
-		if(w == -1) {
-			if (errno == EAGAIN || errno == EWOULDBLOCK) {
-				// no data, wait for send
-				ev_io_stop(EV_A_ &remote_recv_ctx->io);
-				ev_io_start(EV_A_ &server->send_ctx->io);
-				break;
-			} else {
-                perror("send");
-				close_and_free_server(EV_A_ server);
-				close_and_free_remote(EV_A_ remote);
-				return;
-			}
-		} else if(w < r) {
-			char *pt = server->buf;
-            char *et = pt + r;
-            while (pt + w < et) {
-				*pt = *(pt + w);
-                pt++;
-			}
-			server->buf_len = (size_t)r - w;
-			ev_io_stop(EV_A_ &remote_recv_ctx->io);
-			ev_io_start(EV_A_ &server->send_ctx->io);
-			break;
-		}
-	}
+    if (r == 0) {
+        // connection closed
+        server->buf_len = 0;
+        close_and_free_remote(EV_A_ remote);
+        if (server != NULL) {
+            ev_io_start(EV_A_ &server->send_ctx->io);
+        }
+        return;
+    } else if(r < 0) {
+        if (errno == EAGAIN || errno == EWOULDBLOCK) {
+            // no data
+            // continue to wait for recv
+            return;
+        } else {
+            perror("remote recv");
+            close_and_free_server(EV_A_ server);
+            close_and_free_remote(EV_A_ remote);
+            return;
+        }
+    }
+    decrypt_buf(&(remote->recv_encryption_ctx), (unsigned char *)server->buf, (size_t*)&r);
+    ssize_t s = send(server->fd, server->buf, (size_t)r, 0);
+    if(s == -1) {
+        if (errno == EAGAIN || errno == EWOULDBLOCK) {
+            server->buf_len = (size_t)r;
+            // no data, wait for send
+            ev_io_stop(EV_A_ &remote_recv_ctx->io);
+            ev_io_start(EV_A_ &server->send_ctx->io);
+            return;
+        } else {
+            perror("send");
+            close_and_free_server(EV_A_ server);
+            close_and_free_remote(EV_A_ remote);
+            return;
+        }
+    } else if(s < r) {
+        char *pt = server->buf;
+        char *et = pt + r;
+        while (pt + s < et) {
+            *pt = *(pt + s);
+            pt++;
+        }
+        server->buf_len = (size_t)r - s;
+        ev_io_stop(EV_A_ &remote_recv_ctx->io);
+        ev_io_start(EV_A_ &server->send_ctx->io);
+        return;
+    }
 }
 
 static void remote_send_cb (EV_P_ ev_io *w, int revents) {
