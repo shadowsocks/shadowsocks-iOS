@@ -98,7 +98,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 			}
 			return;
 		} else if(r < 0) {
-			if (errno == EAGAIN) {
+			if (errno == EAGAIN || errno == EWOULDBLOCK) {
 				// no data
 				// continue to wait for recv
 				break;
@@ -115,7 +115,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
             encrypt_buf(&(remote->send_encryption_ctx), (unsigned char *)remote->buf, (size_t *)&r);
 			ssize_t w = send(remote->fd, remote->buf, (size_t)r, 0);
 			if(w == -1) {
-				if (errno == EAGAIN) {
+				if (errno == EAGAIN || errno == EWOULDBLOCK) {
 					// no data, wait for send
 					ev_io_stop(EV_A_ &server_recv_ctx->io);
 					ev_io_start(EV_A_ &remote->send_ctx->io);
@@ -265,7 +265,7 @@ static void server_send_cb (EV_P_ ev_io *w, int revents) {
 		ssize_t r = send(server->fd, server->buf,
 				server->buf_len, 0);
 		if (r < 0) {
-			if (errno != EAGAIN) {
+			if (errno != EAGAIN && errno != EWOULDBLOCK) {
                 perror("send");
 				close_and_free_server(EV_A_ server);
 				close_and_free_remote(EV_A_ remote);
@@ -318,7 +318,7 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 			}
 			return;
 		} else if(r < 0) {
-			if (errno == EAGAIN) {
+			if (errno == EAGAIN || errno == EWOULDBLOCK) {
 				// no data
 				// continue to wait for recv
 				break;
@@ -332,7 +332,7 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 		decrypt_buf(&(remote->recv_encryption_ctx), (unsigned char *)server->buf, (size_t*)&r);
 		size_t w = send(server->fd, server->buf, (size_t)r, 0);
 		if(w == -1) {
-			if (errno == EAGAIN) {
+			if (errno == EAGAIN || errno == EWOULDBLOCK) {
 				// no data, wait for send
 				ev_io_stop(EV_A_ &remote_recv_ctx->io);
 				ev_io_start(EV_A_ &server->send_ctx->io);
@@ -391,7 +391,7 @@ static void remote_send_cb (EV_P_ ev_io *w, int revents) {
 			ssize_t r = send(remote->fd, remote->buf,
 					remote->buf_len, 0);
 			if (r < 0) {
-				if (errno != EAGAIN) {
+				if (errno != EAGAIN && errno != EWOULDBLOCK) {
                     perror("send");
 					// close and free
 					close_and_free_remote(EV_A_ remote);
@@ -506,7 +506,7 @@ static void accept_cb (EV_P_ ev_io *w, int revents)
 	while (1) {
 		serverfd = accept(listener->fd, NULL, NULL);
 		if (serverfd == -1) {
-            if (errno != EAGAIN) {
+            if (errno != EAGAIN && errno != EWOULDBLOCK) {
                 perror("accept");
             }
 			break;
