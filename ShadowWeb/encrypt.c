@@ -4,7 +4,7 @@
 #include "table.h"
 #include "encrypt.h"
 
-int encryption_iv_len[] = {
+size_t encryption_iv_len[] = {
         0,
         16,
         16,
@@ -46,7 +46,7 @@ static const EVP_CIPHER *_cipher;
 static char _key[EVP_MAX_KEY_LENGTH];
 char *shadowsocks_key;
 
-void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len, int is_cipher);
+void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, size_t iv_len, int is_cipher);
 
 int encryption_method_from_string(const char *name) {
     // TODO use an O(1) way
@@ -58,27 +58,27 @@ int encryption_method_from_string(const char *name) {
     return 0;
 }
 
-void encrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
+void encrypt_buf(struct encryption_ctx *ctx, unsigned char *buf, size_t *len) {
     if (_method == ENCRYPTION_TABLE) {
         table_encrypt(buf, *len);
     } else {
         if (ctx->status == STATUS_EMPTY) {
-            int iv_len = encryption_iv_len[_method];
+            size_t iv_len = encryption_iv_len[_method];
             unsigned char iv[EVP_MAX_IV_LENGTH];
             memset(iv, 0, iv_len);
             RAND_bytes(iv, iv_len);
             init_cipher(ctx, iv, iv_len, 1);
-            int out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
+            size_t out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
             unsigned char *cipher_text = malloc(out_len);
-            EVP_CipherUpdate(ctx->ctx, cipher_text, &out_len, buf, *len);
+            EVP_CipherUpdate(ctx->ctx, cipher_text, (int *)&out_len, buf, *len);
             memcpy(buf, iv, iv_len);
             memcpy(buf + iv_len, cipher_text, out_len);
             *len = iv_len + out_len;
             free(cipher_text);
         } else {
-            int out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
+            size_t out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
             unsigned char *cipher_text = malloc(out_len);
-            EVP_CipherUpdate(ctx->ctx, cipher_text, &out_len, buf, *len);
+            EVP_CipherUpdate(ctx->ctx, cipher_text, (int *)&out_len, buf, *len);
             memcpy(buf, cipher_text, out_len);
             *len = out_len;
             free(cipher_text);
@@ -86,24 +86,24 @@ void encrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
     }
 }
 
-void decrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
+void decrypt_buf(struct encryption_ctx *ctx, unsigned char *buf, size_t *len) {
     if (_method == ENCRYPTION_TABLE) {
         table_decrypt(buf, *len);
     } else {
         if (ctx->status == STATUS_EMPTY) {
-            int iv_len = encryption_iv_len[_method];
+            size_t iv_len = encryption_iv_len[_method];
             init_cipher(ctx, buf, iv_len, 0);
-            int out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
+            size_t out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
             out_len -= iv_len;
             unsigned char *cipher_text = malloc(out_len);
-            EVP_CipherUpdate(ctx->ctx, cipher_text, &out_len, buf + iv_len, *len - iv_len);
+            EVP_CipherUpdate(ctx->ctx, cipher_text, (int *)&out_len, buf + iv_len, *len - iv_len);
             memcpy(buf, cipher_text, out_len);
             *len = out_len;
             free(cipher_text);
         } else {
-            int out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
+            size_t out_len = *len + EVP_CIPHER_CTX_block_size(ctx->ctx);
             unsigned char *cipher_text = malloc(out_len);
-            EVP_CipherUpdate(ctx->ctx, cipher_text, &out_len, buf, *len);
+            EVP_CipherUpdate(ctx->ctx, cipher_text, (int *)&out_len, buf, *len);
             memcpy(buf, cipher_text, out_len);
             *len = out_len;
             free(cipher_text);
@@ -111,14 +111,14 @@ void decrypt_buf(struct encryption_ctx *ctx, char *buf, int *len) {
     }
 }
 
-int send_encrypt(struct encryption_ctx *ctx, int sock, char *buf, int *len, int flags) {
-    char mybuf[4096];
+int send_encrypt(struct encryption_ctx *ctx, int sock, unsigned char *buf, size_t *len, int flags) {
+    unsigned char mybuf[4096];
     memcpy(mybuf, buf, *len);
     encrypt_buf(ctx, mybuf, len);
     return send(sock, mybuf, *len, flags);
 }
 
-int recv_decrypt(struct encryption_ctx *ctx, int sock, char *buf, int *len, int flags) {
+int recv_decrypt(struct encryption_ctx *ctx, int sock, unsigned char *buf, size_t *len, int flags) {
     char mybuf[4096];
     int result = recv(sock, mybuf, *len, flags);
     memcpy(buf, mybuf, *len);
@@ -126,7 +126,7 @@ int recv_decrypt(struct encryption_ctx *ctx, int sock, char *buf, int *len, int 
     return result;
 }
 
-void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len, int is_cipher) {
+void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, size_t iv_len, int is_cipher) {
     ctx->status = STATUS_INIT;
     if (_method != ENCRYPTION_TABLE) {
         EVP_CIPHER_CTX_init(ctx->ctx);
@@ -140,7 +140,7 @@ void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, int iv_len
         }
         EVP_CIPHER_CTX_set_padding(ctx->ctx, 1);
 
-        EVP_CipherInit_ex(ctx->ctx, NULL, NULL, _key, iv, is_cipher);
+        EVP_CipherInit_ex(ctx->ctx, NULL, NULL, (unsigned char *)_key, iv, is_cipher);
 
     }
 }
@@ -168,11 +168,11 @@ void config_encryption(const char *password, const char *method) {
             // TODO
         }
         unsigned char tmp[EVP_MAX_IV_LENGTH];
-        _key_len = EVP_BytesToKey(_cipher, EVP_md5(), NULL, password,
-                strlen(password), 1, _key, tmp);
+        _key_len = EVP_BytesToKey(_cipher, EVP_md5(), NULL, (unsigned char *)password,
+                strlen(password), 1, (unsigned char *)_key, tmp);
         shadowsocks_key = _key;
 //        printf("%d\n", _key_len);
     } else {
-        get_table(password);
+        get_table((unsigned char *)password);
     }
 }

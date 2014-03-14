@@ -16,11 +16,11 @@ struct encryption_ctx {
 
 const char *shadowsocks_encryption_names[];
 
-void encrypt_buf(struct encryption_ctx* ctx, char *buf, int *len);
-void decrypt_buf(struct encryption_ctx* ctx, char *buf, int *len);
+void encrypt_buf(struct encryption_ctx* ctx, unsigned char *buf, size_t *len);
+void decrypt_buf(struct encryption_ctx* ctx, unsigned char *buf, size_t *len);
 
-int send_encrypt(struct encryption_ctx* ctx, int sock, char *buf, int *len, int flags);
-int recv_decrypt(struct encryption_ctx* ctx, int sock, char *buf, int *len, int flags);
+int send_encrypt(struct encryption_ctx* ctx, int sock, unsigned char *buf, size_t *len, int flags);
+int recv_decrypt(struct encryption_ctx* ctx, int sock, unsigned char *buf, size_t *len, int flags);
 
 void init_encryption(struct encryption_ctx* ctx);
 void cleanup_encryption(struct encryption_ctx* ctx);

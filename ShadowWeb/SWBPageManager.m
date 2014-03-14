@@ -7,7 +7,6 @@
 //
 
 #import "SWBPageManager.h"
-#import "JSONKit.h"
 //#import "AquaWebAppDelegate.h"
 
 #define pageSavingDirectory [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] 
@@ -68,9 +67,9 @@
         [dict setObject:page.selected forKey:@"selected"];
         [data addObject:dict];
     }
-    NSString *content = [data JSONString];
     NSError *error = nil;
-    [content writeToFile:pageFilename atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    NSData *content = [NSJSONSerialization dataWithJSONObject:data options:0 error:&error];
+    [content writeToFile:pageFilename atomically:YES];
     if (error != NULL) {
         NSLog(@"%@", error);
     }
@@ -81,9 +80,9 @@
     NSMutableArray *oldpages = [[NSMutableArray alloc] init];
     
     NSError *error = nil;
-    NSString *content = [NSString stringWithContentsOfFile:pageFilename encoding:NSUTF8StringEncoding error:&error];
+    NSData *content = [NSData dataWithContentsOfFile:pageFilename];
     if (error == NULL) {
-        NSArray *data = [content objectFromJSONString];
+        NSArray *data = [NSJSONSerialization JSONObjectWithData:content options:NSJSONReadingMutableContainers error:&error];
         for (NSDictionary *dict in data) {
             SWBPage *page = [[SWBPage alloc] init];
             page.title = [dict objectForKey:@"title"];

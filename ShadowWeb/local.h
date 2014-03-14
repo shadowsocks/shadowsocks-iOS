@@ -16,7 +16,7 @@ struct server {
 	int fd;
 	char buf[BUF_SIZE + EVP_MAX_IV_LENGTH + EVP_MAX_BLOCK_LENGTH]; // server send from, remote recv into
     char stage;
-	int buf_len;
+	size_t buf_len;
 	struct server_ctx *recv_ctx;
 	struct server_ctx *send_ctx;
 	struct remote *remote;
@@ -29,7 +29,7 @@ struct server_ctx {
 struct remote {
 	int fd;
 	char buf[BUF_SIZE + EVP_MAX_IV_LENGTH + EVP_MAX_BLOCK_LENGTH]; // remote send from, server recv into
-	int buf_len;
+	size_t buf_len;
 	struct remote_ctx *recv_ctx;
 	struct remote_ctx *send_ctx;
 	struct server *server;

@@ -99,7 +99,7 @@ static void merge_sort(uint8_t array[], int length)
 		return;
     
 	/* Let integer division truncate the value. */
-	middle = length / 2;
+	middle = (uint8_t)length / 2;
     
 	llength = length - middle;
     
@@ -114,30 +114,30 @@ static void merge_sort(uint8_t array[], int length)
 	merge(left, llength, right, middle);
 }
 
-void table_encrypt(char *buf, int len) {
-    char *end = buf + len;
+void table_encrypt(unsigned char *buf, size_t len) {
+    unsigned char *end = buf + len;
     while (buf < end) {
-        *buf = (char)encrypt_table[(unsigned char)*buf];
+        *buf = encrypt_table[*buf];
         buf++;
     }
 }
 
-void table_decrypt(char *buf, int len) {
-    char *end = buf + len;
+void table_decrypt(unsigned char *buf, size_t len) {
+    unsigned char *end = buf + len;
     while (buf < end) {
-        *buf = (char)decrypt_table[(unsigned char)*buf];
+        *buf = decrypt_table[*buf];
         buf++;
     }
 }
 
-void get_table(const char* key) {
+void get_table(const unsigned char* key) {
     unsigned char *table = encrypt_table;
     unsigned char tmp_hash[16];
     //    tmp_hash = MD5((const unsigned char*)key, strlen(key), NULL);
-    MD5((const unsigned char*)key, strlen(key), tmp_hash);
+    MD5(key, strlen((const char *)key), tmp_hash);
     _a = *(unsigned long long *)tmp_hash;
     _a = *(uint64_t *)tmp_hash;
-    uint32_t i;
+    unsigned char i;
     
     for(i = 0; i < 256; ++i) {
         table[i] = i;

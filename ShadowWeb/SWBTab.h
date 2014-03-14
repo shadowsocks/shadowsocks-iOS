@@ -16,6 +16,6 @@
 - (id)initWithTag:(NSInteger)aTag;
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, readonly) int tag;
+@property (nonatomic, readonly) NSInteger tag;
 
 @end

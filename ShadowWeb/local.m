@@ -5,7 +5,6 @@
 
 #include "local.h"
 #include "socks5.h"
-#include "table.h"
 
 #define ADDR_STR_LEN 512
 
@@ -15,11 +14,6 @@ char _server[SAVED_STR_LEN];
 char _remote_port[SAVED_STR_LEN];
 char _method[SAVED_STR_LEN];
 char _password[SAVED_STR_LEN];
-
-struct client_ctx {
-    ev_io io;
-    int fd;
-};
 
 int setnonblocking(int fd) {
     int flags;
@@ -31,7 +25,7 @@ int setnonblocking(int fd) {
 int create_and_bind(const char *port) {
     struct addrinfo hints;
     struct addrinfo *result, *rp;
-    int s, listen_sock;
+    int s, listen_sock = 0;
 
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_UNSPEC; /* Return IPv4 and IPv6 choices */
@@ -87,13 +81,13 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 
 	while (1) {
         char *buf = remote->buf;
-        int *buf_len = &remote->buf_len;
+        size_t *buf_len = &remote->buf_len;
         if (server->stage != 5) {
             buf = server->buf;
             buf_len = &server->buf_len;
         }
         
-		int r = recv(server->fd, buf, BUF_SIZE, 0);
+		ssize_t r = recv(server->fd, buf, BUF_SIZE, 0);
 
 		if (r == 0) {
 			// connection closed
@@ -118,8 +112,8 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 
         // local socks5 server
 		if (server->stage == 5) {
-            encrypt_buf(&(remote->send_encryption_ctx), remote->buf, &r);
-			int w = send(remote->fd, remote->buf, r, 0);
+            encrypt_buf(&(remote->send_encryption_ctx), (unsigned char *)remote->buf, (size_t *)&r);
+			ssize_t w = send(remote->fd, remote->buf, (size_t)r, 0);
 			if(w == -1) {
 				if (errno == EAGAIN) {
 					// no data, wait for send
@@ -139,7 +133,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                     *pt = *(pt + w);
                     pt++;
                 }
-				remote->buf_len = r - w;
+				remote->buf_len = (size_t)r - w;
 				ev_io_stop(EV_A_ &server_recv_ctx->io);
 				ev_io_start(EV_A_ &remote->send_ctx->io);
 				break;
@@ -170,7 +164,7 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 			}
 
             char addr_to_send[ADDR_STR_LEN];
-            int addr_len = 0;
+            size_t addr_len = 0;
             addr_to_send[addr_len++] = request->atyp;
 
             
@@ -187,9 +181,9 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 // now get it back and print it
                 inet_ntop(AF_INET, server->buf + 4, addr_str, ADDR_STR_LEN);
 
-#if !TARGET_OS_IPHONE
+//#if !TARGET_OS_IPHONE
                 NSLog(@"Connecting an IPv4 address, please configure your browser to use hostname instead: https://github.com/clowwindy/shadowsocks/wiki/Troubleshooting");
-#endif
+//#endif
 			} else if (request->atyp == SOCKS_DOMAIN) {
                 // Domain name
 				unsigned char name_len = *(unsigned char *)(server->buf + 4);
@@ -204,12 +198,12 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
                 addr_to_send[addr_len++] = *(unsigned char *)(server->buf + 4 + 1 + name_len + 1); 
 //                addr_to_send[addr_len] = 0;
 
-#if !TARGET_OS_IPHONE
+//#if !TARGET_OS_IPHONE
                 char temp[256];
                 memcpy(temp, server->buf + 4 + 1, name_len);
-                temp[name_len + 1] = '\0';
-                NSLog(@"Connecting %@", [NSString stringWithCString:temp encoding:NSUTF8StringEncoding]);
-#endif
+                temp[name_len] = '\0';
+                NSLog(@"Connecting %@", [NSString stringWithCString:addr_str encoding:NSUTF8StringEncoding]);
+//#endif
 			} else {
 				NSLog(@"unsupported addrtype: %d\n", request->atyp);
 				close_and_free_server(EV_A_ server);
@@ -217,9 +211,9 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 				return;
 			}
             
-            int n = send_encrypt(&(remote->send_encryption_ctx), remote->fd, addr_to_send, &addr_len, 0);
+            int n = send_encrypt(&(remote->send_encryption_ctx), remote->fd, (unsigned char *)addr_to_send, &addr_len, 0);
             if (n != addr_len) {
-                NSLog(@"header not completely sent: n != addr_len: n==%d, addr_len==%d", n, addr_len);
+                NSLog(@"header not completely sent: n != addr_len: n==%d, addr_len==%d", n, (int)addr_len);
 				close_and_free_remote(EV_A_ remote);
 				close_and_free_server(EV_A_ server);
                 return;
@@ -240,8 +234,8 @@ static void server_recv_cb (EV_P_ ev_io *w, int revents) {
 			*((unsigned short *)(server->buf + 4 + sizeof(struct in_addr))) 
                 = (unsigned short) htons(atoi(_remote_port));
 
-            int reply_size = 4 + sizeof(struct in_addr) + sizeof(unsigned short);
-			int r = send(server->fd, server->buf, reply_size, 0);
+            size_t reply_size = 4 + sizeof(struct in_addr) + sizeof(unsigned short);
+			ssize_t r = send(server->fd, server->buf, reply_size, 0);
 			if (r < reply_size) {
 				NSLog(@"header not complete sent\n");
 				close_and_free_remote(EV_A_ remote);
@@ -313,7 +307,7 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 		return;
 	}
 	while (1) {
-		int r = recv(remote->fd, server->buf, BUF_SIZE, 0);
+		ssize_t r = recv(remote->fd, server->buf, BUF_SIZE, 0);
 
 		if (r == 0) {
 			// connection closed
@@ -335,8 +329,8 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 				return;
 			}
 		}
-		decrypt_buf(&(remote->recv_encryption_ctx), server->buf, &r);
-		int w = send(server->fd, server->buf, r, 0);
+		decrypt_buf(&(remote->recv_encryption_ctx), (unsigned char *)server->buf, (size_t*)&r);
+		size_t w = send(server->fd, server->buf, (size_t)r, 0);
 		if(w == -1) {
 			if (errno == EAGAIN) {
 				// no data, wait for send
@@ -356,7 +350,7 @@ static void remote_recv_cb (EV_P_ ev_io *w, int revents) {
 				*pt = *(pt + w);
                 pt++;
 			}
-			server->buf_len = r - w;
+			server->buf_len = (size_t)r - w;
 			ev_io_stop(EV_A_ &remote_recv_ctx->io);
 			ev_io_start(EV_A_ &server->send_ctx->io);
 			break;
