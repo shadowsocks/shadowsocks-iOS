@@ -11,6 +11,7 @@
 		6205309918D4443E00887D3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6205309818D4443E00887D3E /* main.m */; };
 		620530A518D4444E00887D3E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629AC93F18B49C33001D2771 /* SystemConfiguration.framework */; };
 		620530BA18D44A2700887D3E /* shadowsocks_sysconf in Resources */ = {isa = PBXBuildFile; fileRef = 6205309518D4443E00887D3E /* shadowsocks_sysconf */; };
+		620530BE18D44FB600887D3E /* install_helper.sh in Resources */ = {isa = PBXBuildFile; fileRef = 620530BD18D44FB600887D3E /* install_helper.sh */; };
 		621571A916CF6BCB003D96B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571A816CF6BCB003D96B4 /* UIKit.framework */; };
 		621571AB16CF6BCB003D96B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		621571AD16CF6BCB003D96B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AC16CF6BCB003D96B4 /* CoreGraphics.framework */; };
@@ -78,8 +79,6 @@
 		629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFC17603FFA00411E5F /* GCDWebServerConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		629AC93618B49676001D2771 /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFF17603FFA00411E5F /* GCDWebServerRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		629AC93718B49676001D2771 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCC0117603FFA00411E5F /* GCDWebServerResponse.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		629AC93E18B49B97001D2771 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629AC93D18B49B97001D2771 /* Security.framework */; };
-		629AC94018B49C33001D2771 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629AC93F18B49C33001D2771 /* SystemConfiguration.framework */; };
 		62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
 		62CD9190178977B500B2CB55 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD918F178977B500B2CB55 /* MessageUI.framework */; };
 		62D85A8D176DA6FC00FE5575 /* atom.c in Sources */ = {isa = PBXBuildFile; fileRef = 62D85A4E176DA6FB00FE5575 /* atom.c */; };
@@ -208,6 +207,7 @@
 		6205309518D4443E00887D3E /* shadowsocks_sysconf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = shadowsocks_sysconf; sourceTree = BUILT_PRODUCTS_DIR; };
 		6205309818D4443E00887D3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6205309B18D4443E00887D3E /* shadowsocks_sysconf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shadowsocks_sysconf-Prefix.pch"; sourceTree = "<group>"; };
+		620530BD18D44FB600887D3E /* install_helper.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_helper.sh; sourceTree = "<group>"; };
 		621571A516CF6BCB003D96B4 /* shadowsocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shadowsocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		621571A816CF6BCB003D96B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		621571AA16CF6BCB003D96B4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -457,8 +457,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				62E27E5E18C1D1000086033D /* libz.dylib in Frameworks */,
-				629AC94018B49C33001D2771 /* SystemConfiguration.framework in Frameworks */,
-				629AC93E18B49B97001D2771 /* Security.framework in Frameworks */,
 				627A6E3F18B47F5400493BBC /* libcrypto.dylib in Frameworks */,
 				627A6DF918B47E9300493BBC /* Cocoa.framework in Frameworks */,
 			);
@@ -719,6 +717,7 @@
 				627A6E0618B47E9300493BBC /* ShadowsocksX-Prefix.pch */,
 				627A6E0718B47E9300493BBC /* Credits.rtf */,
 				6232047A18C08E2A001A30B9 /* ConfigWindow.xib */,
+				620530BD18D44FB600887D3E /* install_helper.sh */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1055,6 +1054,7 @@
 				62E27E6418C1F1E30086033D /* LICENSE in Resources */,
 				6232047718C08C6C001A30B9 /* Localizable.strings in Resources */,
 				629AC93318B49341001D2771 /* Application.xib in Resources */,
+				620530BE18D44FB600887D3E /* install_helper.sh in Resources */,
 				6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */,
 				627A6E0318B47E9300493BBC /* InfoPlist.strings in Resources */,
 				6232047818C08E2A001A30B9 /* ConfigWindow.xib in Resources */,

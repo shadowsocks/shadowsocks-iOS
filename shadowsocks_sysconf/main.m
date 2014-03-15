@@ -11,15 +11,15 @@
 
 int main(int argc, const char * argv[])
 {
-    if (argc == 0) {
+    if (argc != 2) {
         printf("usage: shadowsocks_sysconf on/off\n");
         return 1;
     }
     @autoreleasepool {
         BOOL on;
-        if (strcmp(argv[0], "on")) {
+        if (strcmp(argv[1], "on") == 0) {
             on = YES;
-        } else if (strcmp(argv[0], "off")) {
+        } else if (strcmp(argv[1], "off") == 0) {
             on = NO;
         } else {
             printf("usage: shadowsocks_sysconf on/off\n");
@@ -69,7 +69,13 @@ int main(int argc, const char * argv[])
             SCPreferencesSynchronize(prefRef);
             
         }
-        
+            if (on) {
+                printf("pac proxy set to on\n");
+            } else {
+                printf("pac proxy set to off\n");
+            }
+
     }
+
     return 0;
 }
