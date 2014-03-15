@@ -45,21 +45,15 @@
     self.item.highlightMode = YES;
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Shadowsocks"];
     [menu setMinimumWidth:200];
-    statusMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Shadowsocks:
-    On)                                         action:nil keyEquivalent:@""];
+    statusMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Shadowsocks: On) action:nil keyEquivalent:@""];
 //    [statusMenuItem setEnabled:NO];
-    enableMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Turn
-    Shadowsocks
-    Off)                                        action:@selector(toggleRunning) keyEquivalent:@""];
+    enableMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Turn Shadowsocks Off) action:@selector(toggleRunning) keyEquivalent:@""];
 //    [enableMenuItem setState:1];
     [menu addItem:statusMenuItem];
     [menu addItem:enableMenuItem];
     [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItemWithTitle:_L(Open
-    Server
-    Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
-    [menu addItemWithTitle:_L(Show
-    Logs...)        action:@selector(showLogs) keyEquivalent:@""];
+    [menu addItemWithTitle:_L(Open Server Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
+    [menu addItemWithTitle:_L(Show Logs...) action:@selector(showLogs) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Help) action:@selector(showHelp) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:_L(Quit) action:@selector(exit) keyEquivalent:@""];
@@ -80,19 +74,13 @@
 
 - (void)updateMenu {
     if (isRunning) {
-        statusMenuItem.title = _L(Shadowsocks:
-        On);
-        enableMenuItem.title = _L(Turn
-        Shadowsocks
-        Off);
+        statusMenuItem.title = _L(Shadowsocks: On);
+        enableMenuItem.title = _L(Turn Shadowsocks Off);
         self.item.image = [NSImage imageNamed:@"menu_icon"];
 //        [enableMenuItem setState:1];
     } else {
-        statusMenuItem.title = _L(Shadowsocks:
-        Off);
-        enableMenuItem.title = _L(Turn
-        Shadowsocks
-        On);
+        statusMenuItem.title = _L(Shadowsocks: Off);
+        enableMenuItem.title = _L(Turn Shadowsocks On);
         self.item.image = [NSImage imageNamed:@"menu_icon_disabled"];
 //        [enableMenuItem setState:0];
     }
@@ -208,9 +196,7 @@
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:_L(OK)];
     [alert addButtonWithTitle:_L(Cancel)];
-    [alert setMessageText:_L(Use
-    this
-    server ?)];
+    [alert setMessageText:_L(Use this server?)];
     [alert setInformativeText:url];
     [alert setAlertStyle:NSInformationalAlertStyle];
     if ([alert runModal] == NSAlertFirstButtonReturn) {
