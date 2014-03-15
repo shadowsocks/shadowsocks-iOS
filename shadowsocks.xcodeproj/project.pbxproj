@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6205309618D4443E00887D3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
+		6205309918D4443E00887D3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6205309818D4443E00887D3E /* main.m */; };
+		620530A518D4444E00887D3E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629AC93F18B49C33001D2771 /* SystemConfiguration.framework */; };
+		620530BA18D44A2700887D3E /* shadowsocks_sysconf in Resources */ = {isa = PBXBuildFile; fileRef = 6205309518D4443E00887D3E /* shadowsocks_sysconf */; };
 		621571A916CF6BCB003D96B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571A816CF6BCB003D96B4 /* UIKit.framework */; };
 		621571AB16CF6BCB003D96B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		621571AD16CF6BCB003D96B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AC16CF6BCB003D96B4 /* CoreGraphics.framework */; };
@@ -130,6 +134,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		620530BB18D44A4000887D3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6215719D16CF6BCA003D96B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6205309418D4443E00887D3E;
+			remoteInfo = shadowsocks_sysconf;
+		};
 		623A7ECD1795B1C200DF11DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6215719D16CF6BCA003D96B4 /* Project object */;
@@ -194,6 +205,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6205309518D4443E00887D3E /* shadowsocks_sysconf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = shadowsocks_sysconf; sourceTree = BUILT_PRODUCTS_DIR; };
+		6205309818D4443E00887D3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6205309B18D4443E00887D3E /* shadowsocks_sysconf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shadowsocks_sysconf-Prefix.pch"; sourceTree = "<group>"; };
 		621571A516CF6BCB003D96B4 /* shadowsocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shadowsocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		621571A816CF6BCB003D96B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		621571AA16CF6BCB003D96B4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -396,6 +410,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6205309218D4443E00887D3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				620530A518D4444E00887D3E /* SystemConfiguration.framework in Frameworks */,
+				6205309618D4443E00887D3E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		621571A216CF6BCB003D96B4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -444,12 +467,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6205309718D4443E00887D3E /* shadowsocks_sysconf */ = {
+			isa = PBXGroup;
+			children = (
+				6205309818D4443E00887D3E /* main.m */,
+				6205309A18D4443E00887D3E /* Supporting Files */,
+			);
+			path = shadowsocks_sysconf;
+			sourceTree = "<group>";
+		};
+		6205309A18D4443E00887D3E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6205309B18D4443E00887D3E /* shadowsocks_sysconf-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		6215719C16CF6BCA003D96B4 = {
 			isa = PBXGroup;
 			children = (
 				621571AE16CF6BCB003D96B4 /* ShadowWeb */,
 				627A6DFE18B47E9300493BBC /* ShadowsocksX */,
 				627A6E1C18B47E9300493BBC /* ShadowsocksXTests */,
+				6205309718D4443E00887D3E /* shadowsocks_sysconf */,
 				621571A716CF6BCB003D96B4 /* Frameworks */,
 				621571A616CF6BCB003D96B4 /* Products */,
 				EB1891FD08E70E9E9DC84AFD /* about.txt */,
@@ -462,6 +503,7 @@
 				621571A516CF6BCB003D96B4 /* shadowsocks.app */,
 				623A7EBA1795AE8000DF11DF /* libshadowsocks.a */,
 				627A6DF718B47E9300493BBC /* ShadowsocksX.app */,
+				6205309518D4443E00887D3E /* shadowsocks_sysconf */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -831,6 +873,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6205309418D4443E00887D3E /* shadowsocks_sysconf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 620530A418D4443E00887D3E /* Build configuration list for PBXNativeTarget "shadowsocks_sysconf" */;
+			buildPhases = (
+				6205309118D4443E00887D3E /* Sources */,
+				6205309218D4443E00887D3E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = shadowsocks_sysconf;
+			productName = shadowsocks_sysconf;
+			productReference = 6205309518D4443E00887D3E /* shadowsocks_sysconf */;
+			productType = "com.apple.product-type.tool";
+		};
 		621571A416CF6BCB003D96B4 /* shadowsocks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 621571CB16CF6BCB003D96B4 /* Build configuration list for PBXNativeTarget "shadowsocks" */;
@@ -879,6 +937,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				620530BC18D44A4000887D3E /* PBXTargetDependency */,
 			);
 			name = ShadowsocksX;
 			productName = ShadowsocksX;
@@ -923,6 +982,7 @@
 				621571A416CF6BCB003D96B4 /* shadowsocks */,
 				623A7EB91795AE8000DF11DF /* libshadowsocks */,
 				627A6DF618B47E9300493BBC /* ShadowsocksX */,
+				6205309418D4443E00887D3E /* shadowsocks_sysconf */,
 			);
 		};
 /* End PBXProject section */
@@ -991,6 +1051,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				620530BA18D44A2700887D3E /* shadowsocks_sysconf in Resources */,
 				62E27E6418C1F1E30086033D /* LICENSE in Resources */,
 				6232047718C08C6C001A30B9 /* Localizable.strings in Resources */,
 				629AC93318B49341001D2771 /* Application.xib in Resources */,
@@ -1024,6 +1085,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6205309118D4443E00887D3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6205309918D4443E00887D3E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		621571A116CF6BCB003D96B4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1119,6 +1188,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		620530BC18D44A4000887D3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6205309418D4443E00887D3E /* shadowsocks_sysconf */;
+			targetProxy = 620530BB18D44A4000887D3E /* PBXContainerItemProxy */;
+		};
 		623A7ECE1795B1C200DF11DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 623A7EB91795AE8000DF11DF /* libshadowsocks */;
@@ -1185,6 +1259,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6205309E18D4443E00887D3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "shadowsocks_sysconf/shadowsocks_sysconf-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6205309F18D4443E00887D3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "shadowsocks_sysconf/shadowsocks_sysconf-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		621571C916CF6BCB003D96B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1365,7 +1491,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1397,7 +1523,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1423,6 +1549,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		620530A418D4443E00887D3E /* Build configuration list for PBXNativeTarget "shadowsocks_sysconf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6205309E18D4443E00887D3E /* Debug */,
+				6205309F18D4443E00887D3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "shadowsocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
