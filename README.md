@@ -5,12 +5,12 @@ Shadowsocks for iOS and OSX
 
 iOS
 -----
-![iOS Icon](https://raw.github.com/shadowsocks/shadowsocks-iOS/master/ios_128.png)
+[![iOS Icon](https://raw.github.com/shadowsocks/shadowsocks-iOS/master/ios_128.png)](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help)  
 [iOS Version](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help)
 
 OSX
 -----
-![OSX Icon](https://raw.github.com/shadowsocks/shadowsocks-iOS/master/osx_128.png)
+[![OSX Icon](https://raw.github.com/shadowsocks/shadowsocks-iOS/master/osx_128.png)](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help)  
 [OSX Version](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help)
 
 License
