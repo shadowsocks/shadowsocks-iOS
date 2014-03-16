@@ -81,7 +81,7 @@ static void merge(uint8_t *left, int llength, uint8_t *right, int rlength)
 	free(rtmp);
 }
 
-static void merge_sort(uint8_t array[], int length)
+static void merge_sort(uint8_t array[], uint32_t length)
 {
 	/* This is the middle index and also the length of the right array. */
 	uint8_t middle;
@@ -93,13 +93,13 @@ static void merge_sort(uint8_t array[], int length)
 	uint8_t *left, *right;
     
 	/* Length of the left segment of the array to be merged. */
-	int llength;
+	uint32_t llength;
     
 	if (length <= 1)
 		return;
     
 	/* Let integer division truncate the value. */
-	middle = (uint8_t)length / 2;
+	middle = (uint8_t)(length / 2);
     
 	llength = length - middle;
     
@@ -137,10 +137,10 @@ void get_table(const unsigned char* key) {
     MD5(key, strlen((const char *)key), tmp_hash);
     _a = *(unsigned long long *)tmp_hash;
     _a = *(uint64_t *)tmp_hash;
-    unsigned char i;
+    uint32_t i;
     
     for(i = 0; i < 256; ++i) {
-        table[i] = i;
+        table[i] = (unsigned char)i;
     }
     for(i = 1; i < 1024; ++i) {
         _i = i;
@@ -148,6 +148,6 @@ void get_table(const unsigned char* key) {
     }
     for(i = 0; i < 256; ++i) {
         // gen decrypt table from encrypt table
-        decrypt_table[encrypt_table[i]] = i;
+        decrypt_table[encrypt_table[i]] = (unsigned char)i;
     }
 }

@@ -78,6 +78,9 @@
 }
 
 - (BOOL)validateSettings {
+    if (_publicMatrix.selectedColumn == 0) {
+        return YES;
+    }
     if ([[_serverField stringValue] isEqualToString:@""]) {
         return NO;
     }
@@ -99,7 +102,7 @@
         [ShadowsocksRunner reloadConfig];
         [self.window performClose:self];
     } else {
-            NSAlert *alert = [[NSAlert alloc] init];
+        NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:_L(OK)];
         [alert setMessageText:_L(Please fill in the blanks.)];
         [alert setAlertStyle:NSCriticalAlertStyle];
