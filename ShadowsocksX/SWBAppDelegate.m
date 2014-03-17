@@ -102,7 +102,9 @@
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
     NSLog(@"terminating");
-    [self toggleSystemProxy:NO];
+    if (isRunning) {
+        [self toggleSystemProxy:NO];
+    }
 }
 
 - (void)runProxy {
