@@ -1556,6 +1556,7 @@
 				6205309F18D4443E00887D3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "shadowsocks" */ = {
 			isa = XCConfigurationList;
