@@ -1,3 +1,8 @@
+1.0.5
+------
+- Update PAC file
+- Add code sign
+
 1.0.4
 ------
 - Fix system proxy settings cleared when exiting with pac turned off
