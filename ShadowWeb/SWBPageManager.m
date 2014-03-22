@@ -81,7 +81,7 @@
     
     NSError *error = nil;
     NSData *content = [NSData dataWithContentsOfFile:pageFilename];
-    if (error == NULL) {
+    if (error == NULL && content != nil) {
         NSArray *data = [NSJSONSerialization JSONObjectWithData:content options:NSJSONReadingMutableContainers error:&error];
         for (NSDictionary *dict in data) {
             SWBPage *page = [[SWBPage alloc] init];
