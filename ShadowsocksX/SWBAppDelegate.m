@@ -20,7 +20,13 @@
     NSMenuItem *statusMenuItem;
     NSMenuItem *enableMenuItem;
     BOOL isRunning;
+    NSData *originalPACData;
+    FSEventStreamRef fsEventStream;
+    NSString *configPath;
+    NSString *PACPath;
 }
+
+static SWBAppDelegate *appDelegate;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(handleURLEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
@@ -31,10 +37,10 @@
         [self runProxy];
     });
 
-    NSData *pacData = [[NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac.gz"]] gunzippedData];
+    originalPACData = [[NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac.gz"]] gunzippedData];
     GCDWebServer *webServer = [[GCDWebServer alloc] init];
     [webServer addHandlerForMethod:@"GET" path:@"/proxy.pac" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
-        return [GCDWebServerDataResponse responseWithData:pacData contentType:@"application/x-ns-proxy-autoconfig"];
+        return [GCDWebServerDataResponse responseWithData:[self PACData] contentType:@"application/x-ns-proxy-autoconfig"];
     }
     ];
 
@@ -53,6 +59,7 @@
     [menu addItem:enableMenuItem];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:_L(Open Server Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
+    [menu addItemWithTitle:_L(Edit PAC...) action:@selector(editPAC) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Show Logs...) action:@selector(showLogs) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Help) action:@selector(showHelp) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
@@ -64,6 +71,19 @@
     configWindowController = [[SWBConfigWindowController alloc] initWithWindowNibName:@"ConfigWindow"];
 
     [self updateMenu];
+
+    configPath = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".ShadowsocksX"];
+    PACPath = [NSString stringWithFormat:@"%@/%@", configPath, @"gfwlist.js"];
+    [self monitorPAC:configPath];
+    appDelegate = self;
+}
+
+- (NSData *)PACData {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:PACPath]) {
+        return [NSData dataWithContentsOfFile:PACPath];
+    } else {
+        return originalPACData;
+    }
 }
 
 - (void)toggleRunning {
@@ -85,6 +105,60 @@
 //        [enableMenuItem setState:0];
     }
 }
+
+void onPACChange(
+                ConstFSEventStreamRef streamRef,
+                void *clientCallBackInfo,
+                size_t numEvents,
+                void *eventPaths,
+                const FSEventStreamEventFlags eventFlags[],
+                const FSEventStreamEventId eventIds[])
+{
+    [appDelegate reloadPAC];
+}
+
+- (void)reloadPAC {
+    if (isRunning) {
+        [self toggleSystemProxy:NO];
+        [self toggleSystemProxy:YES];
+    }
+}
+
+- (void)monitorPAC:(NSString *)pacPath {
+    if (fsEventStream) {
+        return;
+    }
+    CFStringRef mypath = (__bridge CFStringRef)(pacPath);
+    CFArrayRef pathsToWatch = CFArrayCreate(NULL, (const void **)&mypath, 1, NULL);
+    void *callbackInfo = NULL; // could put stream-specific data here.
+    CFAbsoluteTime latency = 3.0; /* Latency in seconds */
+
+    /* Create the stream, passing in a callback */
+    fsEventStream = FSEventStreamCreate(NULL,
+            &onPACChange,
+            callbackInfo,
+            pathsToWatch,
+            kFSEventStreamEventIdSinceNow, /* Or a previous event ID */
+            latency,
+            kFSEventStreamCreateFlagNone /* Flags explained in reference */
+    );
+    FSEventStreamScheduleWithRunLoop(fsEventStream, [[NSRunLoop mainRunLoop] getCFRunLoop], (__bridge CFStringRef)NSDefaultRunLoopMode);
+    FSEventStreamStart(fsEventStream);
+}
+
+- (void)editPAC {
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:PACPath]) {
+        NSError *error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:configPath withIntermediateDirectories:NO attributes:nil error:&error];
+        // TODO check error
+        [originalPACData writeToFile:PACPath atomically:YES];
+    }
+    [self monitorPAC:configPath];
+    
+    NSArray *fileURLs = @[[NSURL fileURLWithPath:PACPath]];
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:fileURLs];
+} 
 
 - (void)showLogs {
     [[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/Utilities/Console.app"];
