@@ -1,6 +1,6 @@
 Shadowsocks for iOS and OSX
 ===========================
-[![Build Status](https://travis-ci.org/shadowsocks/shadowsocks-iOS.png?branch=master)](https://travis-ci.org/shadowsocks/shadowsocks-iOS)
+[![Build Status](https://travis-ci.org/shadowsocks/shadowsocks-iOS.svg?branch=master)](https://travis-ci.org/shadowsocks/shadowsocks-iOS)
 
 
 iOS
