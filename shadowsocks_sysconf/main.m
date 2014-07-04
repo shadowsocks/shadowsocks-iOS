@@ -12,10 +12,12 @@
 int main(int argc, const char * argv[])
 {
     if (argc != 2) {
-        printf("usage: shadowsocks_sysconf on/off\n");
+        printf("usage: shadowsocks_sysconf off/auto/global\n");
         return 1;
     }
     @autoreleasepool {
+        NSString *on = [NSString stringWithUTF8String:argv[1]];
+        /*
         BOOL on;
         if (strcmp(argv[1], "on") == 0) {
             on = YES;
@@ -24,7 +26,7 @@ int main(int argc, const char * argv[])
         } else {
             printf("usage: shadowsocks_sysconf on/off\n");
             return 1;
-        }
+        }*/
         static AuthorizationRef authRef;
         static AuthorizationFlags authFlags;
         authFlags = kAuthorizationFlagDefaults
@@ -56,10 +58,24 @@ int main(int argc, const char * argv[])
                 NSString *hardware = [dict valueForKeyPath:@"Interface.Hardware"];
                 //        NSLog(@"%@", hardware);
                 if ([hardware isEqualToString:@"AirPort"] || [hardware isEqualToString:@"Wi-Fi"] || [hardware isEqualToString:@"Ethernet"]) {
-                    if (on) {
+                    
+                    if ([on isEqualToString:@"auto"]) {
+
                         [proxies setObject:@"http://127.0.0.1:8090/proxy.pac" forKey:(NSString *)kCFNetworkProxiesProxyAutoConfigURLString];
+                        [proxies setObject:[NSNumber numberWithInt:1] forKey:(NSString *)kCFNetworkProxiesProxyAutoConfigEnable];
+                        
+                    } else if ([on isEqualToString:@"global"]) {
+                        
+                        
+                        [proxies setObject:@"127.0.0.1" forKey:(NSString *)
+                         kCFNetworkProxiesSOCKSProxy];
+                        [proxies setObject:[NSNumber numberWithInteger:1080] forKey:(NSString*)
+                         kCFNetworkProxiesSOCKSPort];
+                        [proxies setObject:[NSNumber numberWithInt:1] forKey:(NSString*)
+                         kCFNetworkProxiesSOCKSEnable];
+                        
                     }
-                    [proxies setObject:[NSNumber numberWithInteger:(NSInteger)on] forKey:(NSString *)kCFNetworkProxiesProxyAutoConfigEnable];
+                    
                     SCPreferencesPathSetValue(prefRef, (__bridge CFStringRef)[NSString stringWithFormat:@"/%@/%@/%@", kSCPrefNetworkServices, key, kSCEntNetProxies], (__bridge CFDictionaryRef)proxies);
                 }
             }
@@ -69,12 +85,14 @@ int main(int argc, const char * argv[])
             SCPreferencesSynchronize(prefRef);
             
         }
+        /*
             if (on) {
                 printf("pac proxy set to on\n");
             } else {
                 printf("pac proxy set to off\n");
             }
-
+         */
+        printf("pac proxy set to %s", [on UTF8String]);
     }
 
     return 0;
