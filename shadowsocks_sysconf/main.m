@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 
+#define VERSION @"1.0.0"
+
 int main(int argc, const char * argv[])
 {
     if (argc != 2) {
@@ -16,7 +18,18 @@ int main(int argc, const char * argv[])
         return 1;
     }
     @autoreleasepool {
-        NSString *on = [NSString stringWithUTF8String:argv[1]];
+        NSString *mode = [NSString stringWithUTF8String:argv[1]];
+        
+        NSSet *support_args = [NSSet setWithObjects:@"off", @"auto", @"global", @"-v", nil];
+        if (![support_args containsObject:mode]) {
+            printf("usage: shadowsocks_sysconf off/auto/global\n");
+            return 1;
+        }
+        
+        if ([mode isEqualToString:@"-v"]) {
+            printf("%s", [VERSION UTF8String]);
+            return 0;
+        }
         /*
         BOOL on;
         if (strcmp(argv[1], "on") == 0) {
@@ -59,12 +72,12 @@ int main(int argc, const char * argv[])
                 //        NSLog(@"%@", hardware);
                 if ([hardware isEqualToString:@"AirPort"] || [hardware isEqualToString:@"Wi-Fi"] || [hardware isEqualToString:@"Ethernet"]) {
                     
-                    if ([on isEqualToString:@"auto"]) {
+                    if ([mode isEqualToString:@"auto"]) {
 
                         [proxies setObject:@"http://127.0.0.1:8090/proxy.pac" forKey:(NSString *)kCFNetworkProxiesProxyAutoConfigURLString];
                         [proxies setObject:[NSNumber numberWithInt:1] forKey:(NSString *)kCFNetworkProxiesProxyAutoConfigEnable];
                         
-                    } else if ([on isEqualToString:@"global"]) {
+                    } else if ([mode isEqualToString:@"global"]) {
                         
                         
                         [proxies setObject:@"127.0.0.1" forKey:(NSString *)
@@ -92,7 +105,7 @@ int main(int argc, const char * argv[])
                 printf("pac proxy set to off\n");
             }
          */
-        printf("pac proxy set to %s", [on UTF8String]);
+        printf("pac proxy set to %s", [mode UTF8String]);
     }
 
     return 0;
