@@ -14,6 +14,7 @@
 
 #define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
 #define kShadowsocksHelper @"/Library/Application Support/ShadowsocksX/shadowsocks_sysconf"
+#define kSysconfVersion @"1.0.0"
 
 @implementation SWBAppDelegate {
     SWBConfigWindowController *configWindowController;
@@ -237,7 +238,7 @@ void onPACChange(
 
 - (void)installHelper {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:kShadowsocksHelper]) {
+    if (![fileManager fileExistsAtPath:kShadowsocksHelper] || ![self isSysconfVersionOK]) {
         NSString *helperPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"install_helper.sh"];
         NSLog(@"run install script: %@", helperPath);
         NSDictionary *error;
@@ -249,6 +250,40 @@ void onPACChange(
             NSLog(@"installation failure");
         }
     }
+}
+
+- (BOOL)isSysconfVersionOK {
+    NSTask *task;
+    task = [[NSTask alloc] init];
+    [task setLaunchPath:kShadowsocksHelper];
+    
+    NSArray *args;
+    args = [NSArray arrayWithObjects:@"-v", nil];
+    [task setArguments: args];
+    
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    [task setStandardOutput:pipe];
+    
+    NSFileHandle *fd;
+    fd = [pipe fileHandleForReading];
+    
+    [task launch];
+    
+    NSData *data;
+    data = [fd readDataToEndOfFile];
+    
+    NSString *str;
+    str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    if (![str isEqualToString:kSysconfVersion]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"shadowsocks helper need to be updated"];
+        [alert runModal];
+        return NO;
+    }
+    return YES;
 }
 
 - (void)initializeProxy {
@@ -275,7 +310,7 @@ void onPACChange(
     }*/
 
     NSArray *arguments;
-    NSLog(@"run shadowsocks helper: %@", kShadowsocksHelper);
+    //NSLog(@"run shadowsocks helper: %@", kShadowsocksHelper);
     arguments = [NSArray arrayWithObjects:mode, nil];
     [task setArguments:arguments];
 
