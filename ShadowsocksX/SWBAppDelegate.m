@@ -19,8 +19,8 @@
 @implementation SWBAppDelegate {
     SWBConfigWindowController *configWindowController;
     NSMenuItem *statusMenuItem;
-    NSMenuItem *disableMenuItem;
     NSMenuItem *enableMenuItem;
+    NSMenuItem *autoMenuItem;
     NSMenuItem *globalMenuItem;
     BOOL isRunning;
     NSString *runningMode;
@@ -58,17 +58,17 @@ static SWBAppDelegate *appDelegate;
     
     statusMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Shadowsocks Off) action:nil keyEquivalent:@""];
     
-    disableMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Turn Shadowsocks Off) action:@selector(disableProxy) keyEquivalent:@""];
+    enableMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Turn Shadowsocks Off) action:@selector(enableProxy) keyEquivalent:@""];
 //    [statusMenuItem setEnabled:NO];
-    enableMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Use Shadowsocks Auto Proxy Mode) action:@selector(enableAutoProxy) keyEquivalent:@""];
+    autoMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Use Shadowsocks Auto Proxy Mode) action:@selector(enableAutoProxy) keyEquivalent:@""];
 //    [enableMenuItem setState:1];
     globalMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Use Shadowsocks Global Mode) action:@selector(enableGlobal)
         keyEquivalent:@""];
     
     [menu addItem:statusMenuItem];
-    [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItem:disableMenuItem];
     [menu addItem:enableMenuItem];
+    [menu addItem:[NSMenuItem separatorItem]];
+    [menu addItem:autoMenuItem];
     [menu addItem:globalMenuItem];
     
     [menu addItem:[NSMenuItem separatorItem]];
@@ -100,6 +100,19 @@ static SWBAppDelegate *appDelegate;
     }
 }
 
+- (void)enableProxy {
+    if (isRunning) {
+        runningMode = @"off";
+    } else {
+        runningMode = @"auto";
+    }
+    isRunning = !isRunning;
+    
+    [self toggleSystemProxy:runningMode];
+    [[NSUserDefaults standardUserDefaults] setObject:runningMode forKey:kShadowsocksIsRunningKey];
+    [self updateMenu];
+}
+
 - (void)enableAutoProxy {
     isRunning = YES;
     runningMode = @"auto";
@@ -116,34 +129,29 @@ static SWBAppDelegate *appDelegate;
     [self updateMenu];
 }
 
-- (void)disableProxy {
-    isRunning = NO;
-    runningMode = @"off";
-    [self toggleSystemProxy:@"off"];
-    [[NSUserDefaults standardUserDefaults] setObject:runningMode forKey:kShadowsocksIsRunningKey];
-    [self updateMenu];
-}
-
 - (void)updateMenu {
-    statusMenuItem.title = [NSString stringWithFormat:@"Shadowsocks: %@", [runningMode capitalizedString]];
-    if (!isRunning) {
-        self.item.image = [NSImage imageNamed:@"menu_icon_disabled"];
-    } else {
-        self.item.image = [NSImage imageNamed:@"menu_icon"];
-    }
-    /*
-    if (!isRunning) {
+    
+    if (isRunning) {
         statusMenuItem.title = _L(Shadowsocks: On);
         enableMenuItem.title = _L(Turn Shadowsocks Off);
-        self.item.image = [NSImage imageNamed:@"menu_icon"];
-//        [enableMenuItem setState:1];
+        
+        if ([runningMode isEqualToString:@"auto"]) {
+            self.item.image = [NSImage imageNamed:@"menu_icon"];
+            [autoMenuItem setState:1];
+            [globalMenuItem setState:0];
+        } else {
+            self.item.image = [NSImage imageNamed:@"menu_icon_global"];
+            [autoMenuItem setState:0];
+            [globalMenuItem setState:1];
+        }
+        
     } else {
         statusMenuItem.title = _L(Shadowsocks: Off);
         enableMenuItem.title = _L(Turn Shadowsocks On);
         self.item.image = [NSImage imageNamed:@"menu_icon_disabled"];
 //        [enableMenuItem setState:0];
     }
-     */
+    
 }
 
 void onPACChange(
@@ -292,7 +300,9 @@ void onPACChange(
     if ((isRunningObject == nil) || [isRunningObject boolValue]) {
         [self enableAutoProxy];
     }*/
+    isRunning = YES;
     [self enableAutoProxy];
+    [self updateMenu];
 }
 
 - (void)toggleSystemProxy:(NSString*)mode {
