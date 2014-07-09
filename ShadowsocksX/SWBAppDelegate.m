@@ -148,6 +148,8 @@ static SWBAppDelegate *appDelegate;
     } else {
         statusMenuItem.title = _L(Shadowsocks: Off);
         enableMenuItem.title = _L(Turn Shadowsocks On);
+        [autoMenuItem setState: 0];
+        [globalMenuItem setState: 0];
         self.item.image = [NSImage imageNamed:@"menu_icon_disabled"];
 //        [enableMenuItem setState:0];
     }
