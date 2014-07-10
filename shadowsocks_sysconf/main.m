@@ -30,16 +30,7 @@ int main(int argc, const char * argv[])
             printf("%s", [VERSION UTF8String]);
             return 0;
         }
-        /*
-        BOOL on;
-        if (strcmp(argv[1], "on") == 0) {
-            on = YES;
-        } else if (strcmp(argv[1], "off") == 0) {
-            on = NO;
-        } else {
-            printf("usage: shadowsocks_sysconf on/off\n");
-            return 1;
-        }*/
+
         static AuthorizationRef authRef;
         static AuthorizationFlags authFlags;
         authFlags = kAuthorizationFlagDefaults
@@ -98,13 +89,7 @@ int main(int argc, const char * argv[])
             SCPreferencesSynchronize(prefRef);
             
         }
-        /*
-            if (on) {
-                printf("pac proxy set to on\n");
-            } else {
-                printf("pac proxy set to off\n");
-            }
-         */
+
         printf("pac proxy set to %s", [mode UTF8String]);
     }
 

@@ -45,9 +45,11 @@
 "Shadowsocks: Off" = "Shadowsocks: 关闭";
 "Turn Shadowsocks On" = "打开 Shadowsocks";
 "Turn Shadowsocks Off" = "关闭 Shadowsocks";
+"Auto Proxy Mode" = "自动代理模式";
+"Global Mode" = "全局模式";
 "Open Server Preferences..." = "打开服务器设定...";
 "Please fill in the blanks." = "请填写以下内容。";
 "Show Logs..." = "显示日志...";
-"Edit PAC..." = "编辑 PAC...";
+"Edit PAC for Auto Proxy Mode..." = "编辑自动模式的 PAC...";
 "Quit" = "退出";
 "https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help" = "https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-%E5%B8%AE%E5%8A%A9";
