@@ -273,13 +273,11 @@ void onPACChange(
 }
 
 - (void)initializeProxy {
-    /*
+    runningMode = [self runningMode];
     id isRunningObject = [[NSUserDefaults standardUserDefaults] objectForKey:kShadowsocksIsRunningKey];
     if ((isRunningObject == nil) || [isRunningObject boolValue]) {
-        [self enableAutoProxy];
-    }*/
-    isRunning = YES;
-    [self enableAutoProxy];
+        [self toggleSystemProxy:YES];
+    }
     [self updateMenu];
 }
 
