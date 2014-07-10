@@ -13,9 +13,11 @@
 #import "ShadowsocksRunner.h"
 
 #define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
-#define kShadowsocksRunningModeKey @"ShadowsocksMode"
 #define kShadowsocksHelper @"/Library/Application Support/ShadowsocksX/shadowsocks_sysconf"
 #define kSysconfVersion @"1.0.0"
+#define kRunningModeOff @"off"
+#define kRunningModeAuto @"auto"
+#define kRunningModeGlobal @"global"
 
 @implementation SWBAppDelegate {
     SWBConfigWindowController *configWindowController;
@@ -59,11 +61,11 @@ static SWBAppDelegate *appDelegate;
     
     statusMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Shadowsocks Off) action:nil keyEquivalent:@""];
     
-    enableMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Turn Shadowsocks Off) action:@selector(toggleRunning) keyEquivalent:@""];
+    enableMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Turn Shadowsocks Off) action:@selector(enableProxy) keyEquivalent:@""];
 //    [statusMenuItem setEnabled:NO];
-    autoMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Auto Proxy Mode) action:@selector(enableAutoProxy) keyEquivalent:@""];
+    autoMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Use Shadowsocks Auto Proxy Mode) action:@selector(enableAutoProxy) keyEquivalent:@""];
 //    [enableMenuItem setState:1];
-    globalMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Global Mode) action:@selector(enableGlobal)
+    globalMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Use Shadowsocks Global Mode) action:@selector(enableGlobal)
         keyEquivalent:@""];
     
     [menu addItem:statusMenuItem];
@@ -74,14 +76,13 @@ static SWBAppDelegate *appDelegate;
     
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:_L(Open Server Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
-    [menu addItemWithTitle:_L(Edit PAC for Auto Proxy Mode...) action:@selector(editPAC) keyEquivalent:@""];
+    [menu addItemWithTitle:_L(Edit PAC...) action:@selector(editPAC) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Show Logs...) action:@selector(showLogs) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Help) action:@selector(showHelp) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:_L(Quit) action:@selector(exit) keyEquivalent:@""];
     self.item.menu = menu;
     [self installHelper];
-    [self initializeProxy];
 
     configWindowController = [[SWBConfigWindowController alloc] initWithWindowNibName:@"ConfigWindow"];
 
@@ -91,6 +92,8 @@ static SWBAppDelegate *appDelegate;
     PACPath = [NSString stringWithFormat:@"%@/%@", configPath, @"gfwlist.js"];
     [self monitorPAC:configPath];
     appDelegate = self;
+    
+    [self initializeProxy];
 }
 
 - (NSData *)PACData {
@@ -101,39 +104,60 @@ static SWBAppDelegate *appDelegate;
     }
 }
 
-- (void)enableAutoProxy {
-    runningMode = @"auto";
-    [[NSUserDefaults standardUserDefaults] setValue:runningMode forKey:kShadowsocksRunningModeKey];
+- (void)enableProxy {
+    if (isRunning) {
+        runningMode = kRunningModeOff;
+    } else {
+        runningMode = kRunningModeAuto;
+    }
+    isRunning = !isRunning;
+    
+    [self toggleSystemProxy:runningMode];
+    [[NSUserDefaults standardUserDefaults] setObject:runningMode forKey:kShadowsocksIsRunningKey];
     [self updateMenu];
-    [self reloadSystemProxy];
+}
+
+- (void)enableAutoProxy {
+    isRunning = YES;
+    runningMode = kRunningModeAuto;
+    [self toggleSystemProxy:kRunningModeAuto];
+    [[NSUserDefaults standardUserDefaults] setValue:runningMode forKey:kShadowsocksIsRunningKey];
+    [self updateMenu];
 }
 
 - (void)enableGlobal {
-    runningMode = @"global";
-    [[NSUserDefaults standardUserDefaults] setValue:runningMode forKey:kShadowsocksRunningModeKey];
+    isRunning = YES;
+    runningMode = kRunningModeGlobal;
+    [self toggleSystemProxy:kRunningModeGlobal];
+    [[NSUserDefaults standardUserDefaults] setValue:runningMode forKey:kShadowsocksIsRunningKey];
     [self updateMenu];
-    [self reloadSystemProxy];
 }
 
 - (void)updateMenu {
+    
     if (isRunning) {
         statusMenuItem.title = _L(Shadowsocks: On);
         enableMenuItem.title = _L(Turn Shadowsocks Off);
-        self.item.image = [NSImage imageNamed:@"menu_icon"];
+        
+        if ([runningMode isEqualToString:kRunningModeAuto]) {
+            self.item.image = [NSImage imageNamed:@"menu_icon"];
+            [autoMenuItem setState:1];
+            [globalMenuItem setState:0];
+        } else {
+            self.item.image = [NSImage imageNamed:@"menu_icon_global"];
+            [autoMenuItem setState:0];
+            [globalMenuItem setState:1];
+        }
+        
     } else {
         statusMenuItem.title = _L(Shadowsocks: Off);
         enableMenuItem.title = _L(Turn Shadowsocks On);
+        [autoMenuItem setState: 0];
+        [globalMenuItem setState: 0];
         self.item.image = [NSImage imageNamed:@"menu_icon_disabled"];
+//        [enableMenuItem setState:0];
     }
     
-    if ([runningMode isEqualToString:@"auto"]) {
-        [autoMenuItem setState:1];
-        [globalMenuItem setState:0];
-    } else if([runningMode isEqualToString:@"global"]) {
-        [autoMenuItem setState:0];
-        [globalMenuItem setState:1];
-    }
-
 }
 
 void onPACChange(
@@ -144,13 +168,13 @@ void onPACChange(
                 const FSEventStreamEventFlags eventFlags[],
                 const FSEventStreamEventId eventIds[])
 {
-    [appDelegate reloadSystemProxy];
+    [appDelegate reloadPAC];
 }
 
-- (void)reloadSystemProxy {
+- (void)reloadPAC {
     if (isRunning) {
-        [self toggleSystemProxy:NO];
-        [self toggleSystemProxy:YES];
+        [self toggleSystemProxy:kRunningModeOff];
+        [self toggleSystemProxy:runningMode];
     }
 }
 
@@ -207,7 +231,7 @@ void onPACChange(
 - (void)applicationWillTerminate:(NSNotification *)notification {
     NSLog(@"terminating");
     if (isRunning) {
-        [self toggleSystemProxy:NO];
+        [self toggleSystemProxy:kRunningModeOff];
     }
 }
 
@@ -267,54 +291,63 @@ void onPACChange(
     str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     if (![str isEqualToString:kSysconfVersion]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"shadowsocks helper need to be updated"];
+        [alert runModal];
         return NO;
     }
     return YES;
 }
 
 - (void)initializeProxy {
-    /*
-    id isRunningObject = [[NSUserDefaults standardUserDefaults] objectForKey:kShadowsocksIsRunningKey];
-    if ((isRunningObject == nil) || [isRunningObject boolValue]) {
-        [self enableAutoProxy];
-    }*/
-    isRunning = YES;
-    [self enableAutoProxy];
-    [self updateMenu];
-}
-
-- (void)toggleRunning {
-    [self toggleSystemProxy:!isRunning];
-    [[NSUserDefaults standardUserDefaults] setBool:isRunning forKey:kShadowsocksIsRunningKey];
-    [self updateMenu];
-}
-
-- (NSString *)runningMode {
-    NSString *mode = [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksRunningModeKey];
-    if (mode) {
-        return mode;
+    
+    NSString *isRunningObject = [[NSUserDefaults standardUserDefaults] objectForKey:kShadowsocksIsRunningKey];
+    
+    if([isRunningObject isEqualToString:kRunningModeOff])
+    {
+        isRunning = YES;
+        [self enableProxy];
     }
-    return @"auto";
+    else if([isRunningObject isEqualToString:kRunningModeAuto])
+    {
+        [self enableAutoProxy];
+    }
+    else if([isRunningObject isEqualToString:kRunningModeGlobal])
+    {
+        [self enableGlobal];
+    }
+    else
+    {
+        NSLog(@"initializeProxy error isRunningObject [%@],we just default auto model",isRunningObject);
+        [self enableProxy];
+    }
+    
+//    if ((isRunningObject == nil) || [isRunningObject boolValue]) {
+//        [self enableAutoProxy];
+//    }
+//    isRunning = YES;
+//    [self enableAutoProxy];
+//    [self updateMenu];
 }
 
-- (void)toggleSystemProxy:(BOOL)useProxy {
-    isRunning = useProxy;
+- (void)toggleSystemProxy:(NSString*)mode {
+    isRunning = ([mode isEqualToString:kRunningModeAuto] || [mode isEqualToString:kRunningModeGlobal]);
     
     NSTask *task;
     task = [[NSTask alloc] init];
     [task setLaunchPath:kShadowsocksHelper];
-
+    /*
     NSString *param;
     if (useProxy) {
-        param = [self runningMode];
+        param = @"on";
     } else {
-        param = @"off";
-    }
+        param = kRunningModeOff;
+    }*/
 
-    // this log is very important
-    NSLog(@"run shadowsocks helper: %@", kShadowsocksHelper);
     NSArray *arguments;
-    arguments = [NSArray arrayWithObjects:param, nil];
+    //NSLog(@"run shadowsocks helper: %@", kShadowsocksHelper);
+    arguments = [NSArray arrayWithObjects:mode, nil];
     [task setArguments:arguments];
 
     NSPipe *stdoutpipe;
