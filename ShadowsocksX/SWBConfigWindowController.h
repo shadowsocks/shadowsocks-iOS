@@ -5,6 +5,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol SWBConfigWindowControllerDelegate <NSObject>
+
+@optional
+- (void)configurationDidChange;
+
+@end
 
 @interface SWBConfigWindowController : NSWindowController
 
@@ -16,6 +22,7 @@
 @property (nonatomic, strong) IBOutlet NSButton *okButton;
 @property (nonatomic, strong) IBOutlet NSButton *cancelButton;
 @property (nonatomic, strong) IBOutlet NSBox *settingsBox;
+@property (nonatomic, weak) id<SWBConfigWindowControllerDelegate> delegate;
 
 - (IBAction)OK:(id)sender;
 - (IBAction)cancel:(id)sender;

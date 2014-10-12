@@ -25,6 +25,7 @@
     NSMenuItem *enableMenuItem;
     NSMenuItem *autoMenuItem;
     NSMenuItem *globalMenuItem;
+    NSMenuItem *qrCodeMenuItem;
     BOOL isRunning;
     NSString *runningMode;
     NSData *originalPACData;
@@ -77,7 +78,8 @@ static SWBAppDelegate *appDelegate;
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:_L(Open Server Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Edit PAC for Auto Proxy Mode...) action:@selector(editPAC) keyEquivalent:@""];
-    [menu addItemWithTitle:_L(Show QR Code...) action:@selector(showQRCode) keyEquivalent:@""];
+    qrCodeMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Show QR Code...) action:@selector(showQRCode) keyEquivalent:@""];
+    [menu addItem:qrCodeMenuItem];
     [menu addItemWithTitle:_L(Show Logs...) action:@selector(showLogs) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Help) action:@selector(showHelp) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
@@ -87,6 +89,7 @@ static SWBAppDelegate *appDelegate;
     [self initializeProxy];
 
     configWindowController = [[SWBConfigWindowController alloc] initWithWindowNibName:@"ConfigWindow"];
+    configWindowController.delegate = self;
 
     [self updateMenu];
 
@@ -135,6 +138,13 @@ static SWBAppDelegate *appDelegate;
     } else if([runningMode isEqualToString:@"global"]) {
         [autoMenuItem setState:0];
         [globalMenuItem setState:1];
+    }
+    if ([ShadowsocksRunner isUsingPublicServer]) {
+        [qrCodeMenuItem setTarget:nil];
+        [qrCodeMenuItem setAction:NULL];
+    } else {
+        [qrCodeMenuItem setTarget:self];
+        [qrCodeMenuItem setAction:@selector(showQRCode)];
     }
 
 }
@@ -225,6 +235,10 @@ void onPACChange(
     if (isRunning) {
         [self toggleSystemProxy:NO];
     }
+}
+
+- (void)configurationDidChange {
+    [self updateMenu];
 }
 
 - (void)runProxy {

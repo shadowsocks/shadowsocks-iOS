@@ -60,6 +60,11 @@
         [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:[_passwordField stringValue]];
         [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:[_methodBox stringValue]];
     }
+    if (self.delegate != nil) {
+        if ([self.delegate respondsToSelector:@selector(configurationDidChange)]) {
+            [self.delegate configurationDidChange];
+        }
+    }
 }
 
 - (void)windowDidLoad {
