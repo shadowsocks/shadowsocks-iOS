@@ -99,6 +99,22 @@
     return NO;
 }
 
++(NSURL *)generateSSURL {
+    if ([ShadowsocksRunner isUsingPublicServer]) {
+        return nil;
+    }
+    NSString *parts = [NSString stringWithFormat:@"%@:%@@%@:%@",
+                       [ShadowsocksRunner configForKey:kShadowsocksEncryptionKey],
+                       [ShadowsocksRunner configForKey:kShadowsocksPasswordKey],
+                       [ShadowsocksRunner configForKey:kShadowsocksIPKey],
+                       [ShadowsocksRunner configForKey:kShadowsocksPortKey]];
+    
+    NSData *base64Data = [[parts dataUsingEncoding:NSUTF8StringEncoding] base64EncodedDataWithOptions:0];
+    NSString *base64String = [[NSString alloc] initWithData:base64Data encoding:NSUTF8StringEncoding];
+    NSString *urlString = [NSString stringWithFormat:@"ss://%@", base64String];
+    return [NSURL URLWithString:urlString];
+}
+
 + (void)saveConfigForKey:(NSString *)key value:(NSString *)value {
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
 }

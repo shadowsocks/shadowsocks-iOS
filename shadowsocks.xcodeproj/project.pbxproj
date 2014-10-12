@@ -53,6 +53,12 @@
 		623A7EC91795B0D300DF11DF /* local.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F016DA2816008B1A26 /* local.m */; };
 		623A7ECC1795B15500DF11DF /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
 		623A7ECF1795B1D800DF11DF /* libshadowsocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 623A7EBA1795AE8000DF11DF /* libshadowsocks.a */; };
+		625E5BBA19EA350F007A5124 /* QRCodeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 625E5BB919EA350F007A5124 /* QRCodeWindow.xib */; };
+		625E5BBD19EA36D2007A5124 /* SWBQRCodeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 625E5BBC19EA36D2007A5124 /* SWBQRCodeWindowController.m */; };
+		625E5BBE19EA3855007A5124 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627A6E5618B4887000493BBC /* WebKit.framework */; };
+		625E5BC119EA3A43007A5124 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 625E5BBF19EA3A43007A5124 /* jquery.min.js */; };
+		625E5BC219EA3A43007A5124 /* qrcode.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 625E5BC019EA3A43007A5124 /* qrcode.min.js */; };
+		625E5BC519EA3A6B007A5124 /* qrcode.htm in Resources */ = {isa = PBXBuildFile; fileRef = 625E5BC319EA3A6B007A5124 /* qrcode.htm */; };
 		626C4ADB18B1E352003DBE33 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 626C4ADA18B1E352003DBE33 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6274846E18B1FD5C00A9CDF0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6274846D18B1FD5C00A9CDF0 /* CoreVideo.framework */; };
 		6274847018B1FD6500A9CDF0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6274846F18B1FD6500A9CDF0 /* CoreMedia.framework */; };
@@ -264,6 +270,12 @@
 		6232047B18C08E3A001A30B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ConfigWindow.xib"; sourceTree = "<group>"; };
 		623A7EBA1795AE8000DF11DF /* libshadowsocks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libshadowsocks.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		62597BD2175FA1D00090E8A6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "OpenSSL-for-iPhone/lib/libssl.a"; sourceTree = "<group>"; };
+		625E5BB919EA350F007A5124 /* QRCodeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCodeWindow.xib; sourceTree = "<group>"; };
+		625E5BBB19EA36D2007A5124 /* SWBQRCodeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWBQRCodeWindowController.h; sourceTree = "<group>"; };
+		625E5BBC19EA36D2007A5124 /* SWBQRCodeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBQRCodeWindowController.m; sourceTree = "<group>"; };
+		625E5BBF19EA3A43007A5124 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
+		625E5BC019EA3A43007A5124 /* qrcode.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = qrcode.min.js; sourceTree = "<group>"; };
+		625E5BC319EA3A6B007A5124 /* qrcode.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = qrcode.htm; sourceTree = "<group>"; };
 		626C4AD918B1E352003DBE33 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "NSData-Base64/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
 		626C4ADA18B1E352003DBE33 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "NSData-Base64/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
 		6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingObjC.xcodeproj; path = "zxing-objc/ZXingObjC.xcodeproj"; sourceTree = SOURCE_ROOT; };
@@ -459,6 +471,7 @@
 				62E27E5E18C1D1000086033D /* libz.dylib in Frameworks */,
 				627A6E3F18B47F5400493BBC /* libcrypto.dylib in Frameworks */,
 				627A6DF918B47E9300493BBC /* Cocoa.framework in Frameworks */,
+				625E5BBE19EA3855007A5124 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +711,8 @@
 				EB189F33A120A109D84FF977 /* SWBConfigWindowController.h */,
 				EB189ABF1BF9729F1E0E8F72 /* SWBApplication.m */,
 				EB189A194D9EB70D1C8E7123 /* SWBApplication.h */,
+				625E5BBB19EA36D2007A5124 /* SWBQRCodeWindowController.h */,
+				625E5BBC19EA36D2007A5124 /* SWBQRCodeWindowController.m */,
 			);
 			path = ShadowsocksX;
 			sourceTree = "<group>";
@@ -705,6 +720,8 @@
 		627A6DFF18B47E9300493BBC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				625E5BBF19EA3A43007A5124 /* jquery.min.js */,
+				625E5BC019EA3A43007A5124 /* qrcode.min.js */,
 				62E27E5318C1D03D0086033D /* proxy.pac.gz */,
 				622BE4E418B7307200F22683 /* menu_icon@2x.png */,
 				622BE4E518B7307200F22683 /* menu_icon.png */,
@@ -718,6 +735,8 @@
 				627A6E0718B47E9300493BBC /* Credits.rtf */,
 				6232047A18C08E2A001A30B9 /* ConfigWindow.xib */,
 				620530BD18D44FB600887D3E /* install_helper.sh */,
+				625E5BB919EA350F007A5124 /* QRCodeWindow.xib */,
+				625E5BC319EA3A6B007A5124 /* qrcode.htm */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -952,11 +971,6 @@
 				CLASSPREFIX = SWB;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = clowwindy;
-				TargetAttributes = {
-					627A6DF618B47E9300493BBC = {
-						DevelopmentTeam = LND7PS23X9;
-					};
-				};
 			};
 			buildConfigurationList = 621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "shadowsocks" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1053,9 +1067,13 @@
 				620530BA18D44A2700887D3E /* shadowsocks_sysconf in Resources */,
 				62E27E6418C1F1E30086033D /* LICENSE in Resources */,
 				6232047718C08C6C001A30B9 /* Localizable.strings in Resources */,
+				625E5BBA19EA350F007A5124 /* QRCodeWindow.xib in Resources */,
 				629AC93318B49341001D2771 /* Application.xib in Resources */,
 				620530BE18D44FB600887D3E /* install_helper.sh in Resources */,
 				6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */,
+				625E5BC119EA3A43007A5124 /* jquery.min.js in Resources */,
+				625E5BC519EA3A6B007A5124 /* qrcode.htm in Resources */,
+				625E5BC219EA3A43007A5124 /* qrcode.min.js in Resources */,
 				627A6E0318B47E9300493BBC /* InfoPlist.strings in Resources */,
 				6232047818C08E2A001A30B9 /* ConfigWindow.xib in Resources */,
 				62E27E5518C1D03D0086033D /* proxy.pac.gz in Resources */,
@@ -1181,6 +1199,7 @@
 				627A6E0C18B47E9300493BBC /* SWBAppDelegate.m in Sources */,
 				EB1897A04CF0382A754FE700 /* SWBConfigWindowController.m in Sources */,
 				EB18906527B59E4F6A70A14A /* ShadowsocksRunner.m in Sources */,
+				625E5BBD19EA36D2007A5124 /* SWBQRCodeWindowController.m in Sources */,
 				EB189FE30A2E13F4D10D59ED /* SWBApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

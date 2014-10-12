@@ -8,6 +8,7 @@
 
 #import "GZIP.h"
 #import "SWBConfigWindowController.h"
+#import "SWBQRCodeWindowController.h"
 #import "SWBAppDelegate.h"
 #import "GCDWebServer.h"
 #import "ShadowsocksRunner.h"
@@ -19,6 +20,7 @@
 
 @implementation SWBAppDelegate {
     SWBConfigWindowController *configWindowController;
+    SWBQRCodeWindowController *qrCodeWindowController;
     NSMenuItem *statusMenuItem;
     NSMenuItem *enableMenuItem;
     NSMenuItem *autoMenuItem;
@@ -75,6 +77,7 @@ static SWBAppDelegate *appDelegate;
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:_L(Open Server Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Edit PAC for Auto Proxy Mode...) action:@selector(editPAC) keyEquivalent:@""];
+    [menu addItemWithTitle:_L(Show QR Code...) action:@selector(showQRCode) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Show Logs...) action:@selector(showLogs) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Help) action:@selector(showHelp) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
@@ -188,7 +191,20 @@ void onPACChange(
     
     NSArray *fileURLs = @[[NSURL fileURLWithPath:PACPath]];
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:fileURLs];
-} 
+}
+
+- (void)showQRCode {
+    NSURL *qrCodeURL = [ShadowsocksRunner generateSSURL];
+    if (qrCodeURL) {
+        qrCodeWindowController = [[SWBQRCodeWindowController alloc] initWithWindowNibName:@"QRCodeWindow"];
+        qrCodeWindowController.qrCode = [qrCodeURL absoluteString];
+        [qrCodeWindowController showWindow:self];
+        [NSApp activateIgnoringOtherApps:YES];
+        [qrCodeWindowController.window makeKeyAndOrderFront:nil];
+    } else {
+        // TODO
+    }
+}
 
 - (void)showLogs {
     [[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/Utilities/Console.app"];
