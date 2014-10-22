@@ -55,8 +55,11 @@ static SWBAppDelegate *appDelegate;
     [webServer startWithPort:8090 bonjourName:@"webserver"];
 
     self.item = [[NSStatusBar systemStatusBar] statusItemWithLength:20];
-    self.item.image = [NSImage imageNamed:@"menu_icon"];
+    NSImage *image = [NSImage imageNamed:@"menu_icon"];
+    [image setTemplate:YES];
+    self.item.image = image;
     self.item.highlightMode = YES;
+    
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Shadowsocks"];
     [menu setMinimumWidth:200];
     
