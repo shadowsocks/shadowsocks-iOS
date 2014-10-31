@@ -166,11 +166,16 @@ void config_encryption(const char *password, const char *method) {
         if (_cipher == NULL) {
 //            assert(0);
             // TODO
+            printf("_cipher is nil! \r\nThe %s doesn't supported!\r\n please chose anthor!",name);
         }
-        unsigned char tmp[EVP_MAX_IV_LENGTH];
-        _key_len = EVP_BytesToKey(_cipher, EVP_md5(), NULL, (unsigned char *)password,
-                strlen(password), 1, (unsigned char *)_key, tmp);
-        shadowsocks_key = _key;
+        else
+        {
+            unsigned char tmp[EVP_MAX_IV_LENGTH];
+            _key_len = EVP_BytesToKey(_cipher, EVP_md5(), NULL, (unsigned char *)password,
+                                      strlen(password), 1, (unsigned char *)_key, tmp);
+            shadowsocks_key = _key;
+        }
+
 //        printf("%d\n", _key_len);
     } else {
         get_table((unsigned char *)password);
