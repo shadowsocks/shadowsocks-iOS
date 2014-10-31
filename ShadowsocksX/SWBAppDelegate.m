@@ -128,11 +128,15 @@ static SWBAppDelegate *appDelegate;
     if (isRunning) {
         statusMenuItem.title = _L(Shadowsocks: On);
         enableMenuItem.title = _L(Turn Shadowsocks Off);
-        self.item.image = [NSImage imageNamed:@"menu_icon"];
+        NSImage *image = [NSImage imageNamed:@"menu_icon"];
+        [image setTemplate:YES];
+        self.item.image = image;
     } else {
         statusMenuItem.title = _L(Shadowsocks: Off);
         enableMenuItem.title = _L(Turn Shadowsocks On);
-        self.item.image = [NSImage imageNamed:@"menu_icon_disabled"];
+        NSImage *image = [NSImage imageNamed:@"menu_icon_disabled"];
+        [image setTemplate:YES];
+        self.item.image = image;
     }
     
     if ([runningMode isEqualToString:@"auto"]) {
