@@ -58,16 +58,14 @@
         return YES;
     }
     if (row >= 0 && row < configuration.profiles.count) {
-        return [self validateCurrentProfile];
+        if ([self validateCurrentProfile]) {
+            [self saveCurrentProfile];
+        } else {
+            return NO;
+        }
     }
     // always allow selection to no selection
     return YES;
-}
-
-- (void)tableViewSelectionIsChanging:(NSNotification *)notification {
-    if (self.tableView.selectedRow >= 0) {
-        [self saveCurrentProfile];
-    }
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
@@ -116,9 +114,14 @@
         [((NSMutableArray *) configuration.profiles) removeObjectAtIndex:selection];
         [self.tableView reloadData];
         [self updateSettingsBoxVisible:self];
-    }
-    if (configuration.profiles.count > 0) {
-        [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(configuration.profiles.count - 1)] byExtendingSelection:NO];
+        if (configuration.profiles.count > 0) {
+            [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(configuration.profiles.count - 1)] byExtendingSelection:NO];
+        }
+        [self loadCurrentProfile];
+        if (configuration.current > selection) {
+            // select the original profile
+            configuration.current = configuration.current - 1;
+        }
     }
 }
 
@@ -196,6 +199,7 @@
     if ([self saveCurrentProfile]) {
         [self saveSettings];
         [ShadowsocksRunner reloadConfig];
+        [self.delegate configurationDidChange];
         [self.window performClose:self];
     } else {
         [self shakeWindow];

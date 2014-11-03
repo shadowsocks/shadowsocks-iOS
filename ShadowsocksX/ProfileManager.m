@@ -45,6 +45,12 @@
 }
 
 + (void)saveConfiguration:(Configuration *)configuration {
+    if (configuration.profiles.count == 0) {
+        configuration.current = -1;
+    }
+    if (configuration.current != -1 && configuration.current >= configuration.profiles.count) {
+        configuration.current = 0;
+    }
     [[NSUserDefaults standardUserDefaults] setObject:[configuration JSONData] forKey:CONFIG_DATA_KEY];
     [ProfileManager reloadShadowsocksRunner];
 }
