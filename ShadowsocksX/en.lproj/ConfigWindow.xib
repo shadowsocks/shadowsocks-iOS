@@ -153,7 +153,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="3Bj-j8-0me">
+                                        <tableColumn width="144" minWidth="10" maxWidth="3.4028234663852886e+38" id="3Bj-j8-0me">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
