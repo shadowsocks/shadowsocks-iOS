@@ -12,6 +12,7 @@
 #import "SWBAppDelegate.h"
 #import "GCDWebServer.h"
 #import "ShadowsocksRunner.h"
+#import "ProfileManager.h"
 
 #define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
 #define kShadowsocksRunningModeKey @"ShadowsocksMode"
@@ -26,6 +27,7 @@
     NSMenuItem *autoMenuItem;
     NSMenuItem *globalMenuItem;
     NSMenuItem *qrCodeMenuItem;
+    NSMenu *serversMenu;
     BOOL isRunning;
     NSString *runningMode;
     NSData *originalPACData;
@@ -79,7 +81,14 @@ static SWBAppDelegate *appDelegate;
     [menu addItem:globalMenuItem];
     
     [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItemWithTitle:_L(Open Server Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
+
+    serversMenu = [[NSMenu alloc] init];
+    NSMenuItem *serversItem = [[NSMenuItem alloc] init];
+    [serversItem setTitle:@"Servers"];
+    [serversItem setSubmenu:serversMenu];
+    [menu addItem:serversItem];
+
+    [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:_L(Edit PAC for Auto Proxy Mode...) action:@selector(editPAC) keyEquivalent:@""];
     qrCodeMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Show QR Code...) action:@selector(showQRCode) keyEquivalent:@""];
     [menu addItem:qrCodeMenuItem];
@@ -122,6 +131,39 @@ static SWBAppDelegate *appDelegate;
     [self reloadSystemProxy];
 }
 
+- (void)chooseServer:(id)sender {
+    NSInteger tag = [sender tag];
+    Configuration *configuration = [ProfileManager configuration];
+    if (tag == -1 || tag < configuration.profiles.count) {
+        configuration.current = tag;
+    }
+    [ProfileManager saveConfiguration:configuration];
+    [self updateServersMenu];
+}
+
+- (void)updateServersMenu {
+    Configuration *configuration = [ProfileManager configuration];
+    [serversMenu removeAllItems];
+    int i = 0;
+    NSMenuItem *publicItem = [[NSMenuItem alloc] initWithTitle:_L(Public Server) action:@selector(chooseServer:) keyEquivalent:@""];
+    publicItem.tag = -1;
+    if (-1 == configuration.current) {
+        [publicItem setState:1];
+    }
+    [serversMenu addItem:publicItem];
+    for (Profile *profile in configuration.profiles) {
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:profile.server action:@selector(chooseServer:) keyEquivalent:@""];
+        item.tag = i;
+        if (i == configuration.current) {
+            [item setState:1];
+        }
+        [serversMenu addItem:item];
+        i++;
+    }
+    [serversMenu addItem:[NSMenuItem separatorItem]];
+    [serversMenu addItemWithTitle:_L(Open Server Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
+}
+
 - (void)updateMenu {
     if (isRunning) {
         statusMenuItem.title = _L(Shadowsocks: On);
@@ -151,7 +193,7 @@ static SWBAppDelegate *appDelegate;
         [qrCodeMenuItem setTarget:self];
         [qrCodeMenuItem setAction:@selector(showQRCode)];
     }
-
+    [self updateServersMenu];
 }
 
 void onPACChange(

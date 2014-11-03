@@ -32,12 +32,14 @@
 
 + (void)saveConfiguration:(Configuration *)configuration {
     [[NSUserDefaults standardUserDefaults] setObject:[configuration JSONData] forKey:CONFIG_DATA_KEY];
+    [ProfileManager reloadShadowsocksRunner];
 }
 
 + (void)reloadShadowsocksRunner {
     Configuration *configuration = [ProfileManager configuration];
     if (configuration.current == -1) {
         [ShadowsocksRunner setUsingPublicServer:YES];
+        [ShadowsocksRunner reloadConfig];
     } else {
         Profile *profile = configuration.profiles[configuration.current];
         [ShadowsocksRunner setUsingPublicServer:NO];
@@ -45,6 +47,7 @@
         [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
         [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:profile.password];
         [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:profile.method];
+        [ShadowsocksRunner reloadConfig];
     }
 }
 
