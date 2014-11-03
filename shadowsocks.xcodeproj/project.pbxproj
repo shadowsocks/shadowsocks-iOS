@@ -80,6 +80,8 @@
 		628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */; };
 		628693F816DA2817008B1A26 /* ProxySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F416DA2817008B1A26 /* ProxySettingsTableViewController.m */; };
 		628C3DDF18AD5AFA0090632A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 628C3DE118AD5AFA0090632A /* Localizable.strings */; };
+		628C91BD1A07AA5800BA1566 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 628C91BC1A07AA5800BA1566 /* Profile.m */; };
+		628C91C41A07AB4500BA1566 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 628C91C31A07AB4500BA1566 /* Configuration.m */; };
 		629AC93318B49341001D2771 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = 629AC93218B49341001D2771 /* Application.xib */; };
 		629AC93418B49676001D2771 /* GCDWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFA17603FFA00411E5F /* GCDWebServer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFC17603FFA00411E5F /* GCDWebServerConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -131,6 +133,7 @@
 		EB1891FD5CE9480608918422 /* SimpleTableViewSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1897832237B71EF50B3DF4 /* SimpleTableViewSource.m */; };
 		EB1896F6F5F2468484F67FAD /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1897A89055A4C2CFD81AF8 /* ShadowsocksRunner.m */; };
 		EB1897A04CF0382A754FE700 /* SWBConfigWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1895348E32ABA4F4F86742 /* SWBConfigWindowController.m */; };
+		EB1899E6974F61B38B2FFD2C /* ProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1892B5027A6B1F1E2CDC12 /* ProfileManager.m */; };
 		EB189A01F66776EC1714F32D /* 3gnet_enable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897A8F80969EC7477F89D /* 3gnet_enable.mobileconfig */; };
 		EB189DBA13C945ADF838DF2C /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1892CE8806A5E5632B5714 /* QRCodeViewController.m */; };
 		EB189E4CAA0DEF020070DC84 /* SWBAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB189EE1CF6E8C6C431B87BA /* SWBAboutController.m */; };
@@ -318,6 +321,10 @@
 		628693FD16DA2983008B1A26 /* ev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ev.c; path = libev/ev.c; sourceTree = "<group>"; };
 		628C3DE218AD5B100090632A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		628C3DE318AD5B700090632A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		628C91BB1A07AA5800BA1566 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		628C91BC1A07AA5800BA1566 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		628C91C21A07AB4500BA1566 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
+		628C91C31A07AB4500BA1566 /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
 		629AC93218B49341001D2771 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
 		629AC93918B49B56001D2771 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		629AC93B18B49B69001D2771 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -401,8 +408,10 @@
 		62E27E5D18C1D1000086033D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB189069EF341E65B5414D00 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
+		EB189071407B3A2A9B4C83CB /* ProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileManager.h; sourceTree = "<group>"; };
 		EB1891B68FCBD841C5E461B6 /* About.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; path = About.md; sourceTree = SOURCE_ROOT; };
 		EB1891FD08E70E9E9DC84AFD /* about.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = about.txt; sourceTree = "<group>"; };
+		EB1892B5027A6B1F1E2CDC12 /* ProfileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileManager.m; sourceTree = "<group>"; };
 		EB1892CE8806A5E5632B5714 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
 		EB18942F05960F64CC059413 /* SimpleTableViewSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableViewSource.h; sourceTree = "<group>"; };
 		EB1895348E32ABA4F4F86742 /* SWBConfigWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBConfigWindowController.m; sourceTree = "<group>"; };
@@ -713,6 +722,12 @@
 				EB189A194D9EB70D1C8E7123 /* SWBApplication.h */,
 				625E5BBB19EA36D2007A5124 /* SWBQRCodeWindowController.h */,
 				625E5BBC19EA36D2007A5124 /* SWBQRCodeWindowController.m */,
+				628C91BB1A07AA5800BA1566 /* Profile.h */,
+				628C91BC1A07AA5800BA1566 /* Profile.m */,
+				628C91C21A07AB4500BA1566 /* Configuration.h */,
+				628C91C31A07AB4500BA1566 /* Configuration.m */,
+				EB1892B5027A6B1F1E2CDC12 /* ProfileManager.m */,
+				EB189071407B3A2A9B4C83CB /* ProfileManager.h */,
 			);
 			path = ShadowsocksX;
 			sourceTree = "<group>";
@@ -1188,6 +1203,7 @@
 			files = (
 				62E27E5A18C1D0CF0086033D /* GZIP.m in Sources */,
 				629AC93418B49676001D2771 /* GCDWebServer.m in Sources */,
+				628C91BD1A07AA5800BA1566 /* Profile.m in Sources */,
 				629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */,
 				629AC93618B49676001D2771 /* GCDWebServerRequest.m in Sources */,
 				629AC93718B49676001D2771 /* GCDWebServerResponse.m in Sources */,
@@ -1195,12 +1211,14 @@
 				627A6E4218B47FAE00493BBC /* table.m in Sources */,
 				627A6E4318B47FAE00493BBC /* local.m in Sources */,
 				627A6E4418B47FAE00493BBC /* ev.c in Sources */,
+				628C91C41A07AB4500BA1566 /* Configuration.m in Sources */,
 				627A6E0518B47E9300493BBC /* main.m in Sources */,
 				627A6E0C18B47E9300493BBC /* SWBAppDelegate.m in Sources */,
 				EB1897A04CF0382A754FE700 /* SWBConfigWindowController.m in Sources */,
 				EB18906527B59E4F6A70A14A /* ShadowsocksRunner.m in Sources */,
 				625E5BBD19EA36D2007A5124 /* SWBQRCodeWindowController.m in Sources */,
 				EB189FE30A2E13F4D10D59ED /* SWBApplication.m in Sources */,
+				EB1899E6974F61B38B2FFD2C /* ProfileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
