@@ -138,8 +138,10 @@
 - (IBAction)updateSettingsBoxVisible:(id)sender {
     if (configuration.profiles.count == 0) {
         [_settingsBox setHidden:YES];
+        [_placeholderLabel setHidden:NO];
     } else {
         [_settingsBox setHidden:NO];
+        [_placeholderLabel setHidden:YES];
     }
 }
 

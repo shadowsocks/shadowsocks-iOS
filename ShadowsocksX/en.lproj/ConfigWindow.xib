@@ -11,6 +11,7 @@
                 <outlet property="methodBox" destination="BON-H1-lGZ" id="PW7-P3-YAW"/>
                 <outlet property="okButton" destination="HTJ-tt-Aqd" id="H13-v7-bhb"/>
                 <outlet property="passwordField" destination="WEx-Nh-Ean" id="vyD-rv-wHr"/>
+                <outlet property="placeholderLabel" destination="s5M-uC-d3f" id="GcM-8b-j5A"/>
                 <outlet property="portField" destination="xMg-kR-Jg1" id="mc5-54-XQH"/>
                 <outlet property="serverField" destination="Yqv-0U-e9E" id="Riv-aO-31l"/>
                 <outlet property="settingsBox" destination="SFP-YW-lUM" id="w0P-cm-P8k"/>
@@ -28,6 +29,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="516" height="303"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="s5M-uC-d3f">
+                        <rect key="frame" x="250" y="170" width="179" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Click + to add a server" id="iFD-U8-2aW">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <box autoresizesSubviews="NO" title="Server" borderType="line" titlePosition="noTitle" id="SFP-YW-lUM">
                         <rect key="frame" x="179" y="57" width="320" height="228"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
