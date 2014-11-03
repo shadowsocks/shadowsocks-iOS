@@ -53,9 +53,14 @@
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
-    if (row >= 0) {
+    if (self.tableView.selectedRow < 0) {
+        // always allow no selection to selection
+        return YES;
+    }
+    if (row >= 0 && row < configuration.profiles.count) {
         return [self validateCurrentProfile];
     }
+    // always allow selection to no selection
     return YES;
 }
 
@@ -140,17 +145,13 @@
 
 - (void)loadCurrentProfile {
     if (configuration.profiles.count > 0) {
-        if (self.tableView.selectedRow < 0) {
-            [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+        if (self.tableView.selectedRow >= 0 && self.tableView.selectedRow < configuration.profiles.count) {
+            Profile *profile = configuration.profiles[self.tableView.selectedRow];
+            [_serverField setStringValue:profile.server];
+            [_portField setStringValue:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
+            [_methodBox setStringValue:profile.method];
+            [_passwordField setStringValue:profile.password];
         }
-        if (self.tableView.selectedRow < 0) {
-            return;
-        }
-        Profile *profile = configuration.profiles[self.tableView.selectedRow];
-        [_serverField setStringValue:profile.server];
-        [_portField setStringValue:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
-        [_methodBox setStringValue:profile.method];
-        [_passwordField setStringValue:profile.password];
     }
 }
 
@@ -158,14 +159,13 @@
     if (![self validateCurrentProfile]) {
         return NO;
     }
-    if (self.tableView.selectedRow < 0) {
-        return NO;
+    if (self.tableView.selectedRow >= 0 && self.tableView.selectedRow < configuration.profiles.count) {
+        Profile *profile = configuration.profiles[self.tableView.selectedRow];
+        profile.server = [_serverField stringValue];
+        profile.serverPort = [_portField integerValue];
+        profile.method = [_methodBox stringValue];
+        profile.password = [_passwordField stringValue];
     }
-    Profile *profile = configuration.profiles[self.tableView.selectedRow];
-    profile.server = [_serverField stringValue];
-    profile.serverPort = [_portField integerValue];
-    profile.method = [_methodBox stringValue];
-    profile.password = [_passwordField stringValue];
 
     return YES;
 }
