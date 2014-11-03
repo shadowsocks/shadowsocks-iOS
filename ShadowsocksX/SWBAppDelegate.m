@@ -230,6 +230,9 @@ void onPACChange(
 }
 
 - (void)showConfigWindow {
+    if (configWindowController) {
+        [configWindowController close];
+    }
     configWindowController = [[SWBConfigWindowController alloc] initWithWindowNibName:@"ConfigWindow"];
     configWindowController.delegate = self;
     [configWindowController showWindow:self];
