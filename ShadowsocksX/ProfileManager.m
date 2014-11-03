@@ -14,10 +14,24 @@
 
 + (Configuration *)configuration {
     NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:CONFIG_DATA_KEY];
-    if (data == nil) {
-        // TODO load data from old version
-    }
     Configuration *configuration;
+    if (data == nil) {
+        // upgrade data from old version
+        configuration = [[Configuration alloc] init];
+        configuration.profiles = [[NSMutableArray alloc] initWithCapacity:16];
+        if ([ShadowsocksRunner isUsingPublicServer]) {
+            configuration.current = -1;
+        } else {
+            configuration.current = 0;
+            Profile *profile = [[Profile alloc] init];
+            profile.server = [ShadowsocksRunner configForKey:kShadowsocksIPKey];
+            profile.serverPort = [[ShadowsocksRunner configForKey:kShadowsocksPortKey] integerValue];
+            profile.password = [ShadowsocksRunner configForKey:kShadowsocksPasswordKey];
+            profile.method = [ShadowsocksRunner configForKey:kShadowsocksEncryptionKey];
+            [((NSMutableArray *)configuration.profiles) addObject:profile];
+        }
+        return configuration;
+    }
     if (data == nil) {
         // load default configuration
         configuration = [[Configuration alloc] init];
