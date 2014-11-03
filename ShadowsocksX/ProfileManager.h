@@ -10,5 +10,6 @@
 
 + (Configuration *)configuration;
 + (void)saveConfiguration:(Configuration *)configuration;
++ (void)reloadShadowsocksRunner;
 
 @end

@@ -16,10 +16,10 @@
  
         self.current = (dictionary[@"current"] != [NSNull null]) ? [dictionary[@"current"] integerValue] : 0;
   
-        self.servers = [[NSMutableArray alloc] initWithCapacity:16];
-        for (NSDictionary *_ in dictionary[@"servers"]) {
+        self.profiles = [[NSMutableArray alloc] initWithCapacity:16];
+        for (NSDictionary *_ in dictionary[@"profiles"]) {
             
-                [((NSMutableArray *)self.servers) addObject:[[Profile alloc] initWithJSONDictionary:_]];
+                [((NSMutableArray *)self.profiles) addObject:[[Profile alloc] initWithJSONDictionary:_]];
             
         }
  
@@ -50,9 +50,9 @@
   
     {
         NSMutableArray *_ = [[NSMutableArray alloc] init];
-        dictionary[@"servers"] = _;
+        dictionary[@"profiles"] = _;
         
-        for (Profile *__ in self.servers) {
+        for (Profile *__ in self.profiles) {
             
                 [_ addObject:[__ JSONDictionary]];
             

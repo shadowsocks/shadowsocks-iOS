@@ -91,8 +91,6 @@ static SWBAppDelegate *appDelegate;
     [self installHelper];
     [self initializeProxy];
 
-    configWindowController = [[SWBConfigWindowController alloc] initWithWindowNibName:@"ConfigWindow"];
-    configWindowController.delegate = self;
 
     [self updateMenu];
 
@@ -232,6 +230,8 @@ void onPACChange(
 }
 
 - (void)showConfigWindow {
+    configWindowController = [[SWBConfigWindowController alloc] initWithWindowNibName:@"ConfigWindow"];
+    configWindowController.delegate = self;
     [configWindowController showWindow:self];
     [NSApp activateIgnoringOtherApps:YES];
     [configWindowController.window makeKeyAndOrderFront:nil];

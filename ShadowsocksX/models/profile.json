@@ -1,7 +1,7 @@
 {
     "__class__": "Configuration",
     "current": 0,
-    "servers": [{
+    "profiles": [{
         "__class__": "Profile",
         "server":"1.2.3.4",
         "server_port":8388,

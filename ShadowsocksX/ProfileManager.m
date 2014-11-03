@@ -4,6 +4,7 @@
 //
 
 #import "ProfileManager.h"
+#import "ShadowsocksRunner.h"
 
 #define CONFIG_DATA_KEY @"config"
 
@@ -22,6 +23,7 @@
         configuration = [[Configuration alloc] init];
         // public server
         configuration.current = -1;
+        configuration.profiles = [[NSMutableArray alloc] initWithCapacity:16];
     } else {
         configuration = [[Configuration alloc] initWithJSONData:data];
     }
@@ -30,6 +32,20 @@
 
 + (void)saveConfiguration:(Configuration *)configuration {
     [[NSUserDefaults standardUserDefaults] setObject:[configuration JSONData] forKey:CONFIG_DATA_KEY];
+}
+
++ (void)reloadShadowsocksRunner {
+    Configuration *configuration = [ProfileManager configuration];
+    if (configuration.current == -1) {
+        [ShadowsocksRunner setUsingPublicServer:YES];
+    } else {
+        Profile *profile = configuration.profiles[configuration.current];
+        [ShadowsocksRunner setUsingPublicServer:NO];
+        [ShadowsocksRunner saveConfigForKey:kShadowsocksIPKey value:profile.server];
+        [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
+        [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:profile.password];
+        [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:profile.method];
+    }
 }
 
 @end

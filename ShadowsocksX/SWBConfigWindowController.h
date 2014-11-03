@@ -12,9 +12,9 @@
 
 @end
 
-@interface SWBConfigWindowController : NSWindowController
+@interface SWBConfigWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
-@property (nonatomic, strong) IBOutlet NSMatrix *publicMatrix;
+@property (nonatomic, strong) IBOutlet NSTableView *tableView;
 @property (nonatomic, strong) IBOutlet NSTextField *serverField;
 @property (nonatomic, strong) IBOutlet NSTextField *portField;
 @property (nonatomic, strong) IBOutlet NSComboBox *methodBox;
@@ -26,6 +26,7 @@
 
 - (IBAction)OK:(id)sender;
 - (IBAction)cancel:(id)sender;
-- (IBAction)updateSettingsBoxVisible:(id)sender;
+
+- (IBAction)sectionClick:(id)sender;
 
 @end

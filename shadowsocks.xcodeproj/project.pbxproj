@@ -82,6 +82,7 @@
 		628C3DDF18AD5AFA0090632A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 628C3DE118AD5AFA0090632A /* Localizable.strings */; };
 		628C91BD1A07AA5800BA1566 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 628C91BC1A07AA5800BA1566 /* Profile.m */; };
 		628C91C41A07AB4500BA1566 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 628C91C31A07AB4500BA1566 /* Configuration.m */; };
+		628C91C61A07B6C800BA1566 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628C91C51A07B6C800BA1566 /* QuartzCore.framework */; };
 		629AC93318B49341001D2771 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = 629AC93218B49341001D2771 /* Application.xib */; };
 		629AC93418B49676001D2771 /* GCDWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFA17603FFA00411E5F /* GCDWebServer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFC17603FFA00411E5F /* GCDWebServerConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -325,6 +326,7 @@
 		628C91BC1A07AA5800BA1566 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		628C91C21A07AB4500BA1566 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		628C91C31A07AB4500BA1566 /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
+		628C91C51A07B6C800BA1566 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		629AC93218B49341001D2771 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
 		629AC93918B49B56001D2771 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		629AC93B18B49B69001D2771 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -477,6 +479,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				628C91C61A07B6C800BA1566 /* QuartzCore.framework in Frameworks */,
 				62E27E5E18C1D1000086033D /* libz.dylib in Frameworks */,
 				627A6E3F18B47F5400493BBC /* libcrypto.dylib in Frameworks */,
 				627A6DF918B47E9300493BBC /* Cocoa.framework in Frameworks */,
@@ -531,6 +534,7 @@
 		621571A716CF6BCB003D96B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				628C91C51A07B6C800BA1566 /* QuartzCore.framework */,
 				62E27E5D18C1D1000086033D /* libz.dylib */,
 				62E27E5B18C1D0F80086033D /* libz.dylib */,
 				629AC93F18B49C33001D2771 /* SystemConfiguration.framework */,

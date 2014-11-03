@@ -14,7 +14,7 @@
 
 @property (nonatomic, assign) NSInteger current;
 
-@property (nonatomic, strong) NSArray * servers;
+@property (nonatomic, strong) NSArray * profiles;
 
 
 @end
