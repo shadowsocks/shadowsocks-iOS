@@ -11,6 +11,7 @@
                 <outlet property="methodBox" destination="BON-H1-lGZ" id="PW7-P3-YAW"/>
                 <outlet property="okButton" destination="HTJ-tt-Aqd" id="H13-v7-bhb"/>
                 <outlet property="passwordField" destination="WEx-Nh-Ean" id="vyD-rv-wHr"/>
+                <outlet property="placeholderLabel" destination="hCQ-AN-0rQ" id="kUo-39-RhV"/>
                 <outlet property="portField" destination="xMg-kR-Jg1" id="mc5-54-XQH"/>
                 <outlet property="serverField" destination="Yqv-0U-e9E" id="Riv-aO-31l"/>
                 <outlet property="settingsBox" destination="SFP-YW-lUM" id="w0P-cm-P8k"/>
