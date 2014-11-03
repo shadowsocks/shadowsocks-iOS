@@ -84,7 +84,7 @@ static SWBAppDelegate *appDelegate;
 
     serversMenu = [[NSMenu alloc] init];
     NSMenuItem *serversItem = [[NSMenuItem alloc] init];
-    [serversItem setTitle:@"Servers"];
+    [serversItem setTitle:_L(Servers)];
     [serversItem setSubmenu:serversMenu];
     [menu addItem:serversItem];
 
