@@ -9,8 +9,8 @@
         margin: 0;
     }
     #qrcode {
-        width:300px;
-        height:300px;
+        width:230px;
+        height:230px;
     }
 </style>
 <div id="qrcode"></div>
@@ -18,8 +18,8 @@
     function genCode(code) {
         new QRCode("qrcode", {
                    text: code,
-                   width: 300,
-                   height: 300,
+                   width: 230,
+                   height: 230,
                    colorDark : "#000000",
                    colorLight : "#ffffff",
                    correctLevel : QRCode.CorrectLevel.H

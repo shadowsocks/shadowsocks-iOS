@@ -109,8 +109,7 @@
                        [ShadowsocksRunner configForKey:kShadowsocksIPKey],
                        [ShadowsocksRunner configForKey:kShadowsocksPortKey]];
     
-    NSData *base64Data = [[parts dataUsingEncoding:NSUTF8StringEncoding] base64EncodedDataWithOptions:0];
-    NSString *base64String = [[NSString alloc] initWithData:base64Data encoding:NSUTF8StringEncoding];
+    NSString *base64String = [[parts dataUsingEncoding:NSUTF8StringEncoding] base64Encoding];
     NSString *urlString = [NSString stringWithFormat:@"ss://%@", base64String];
     return [NSURL URLWithString:urlString];
 }
