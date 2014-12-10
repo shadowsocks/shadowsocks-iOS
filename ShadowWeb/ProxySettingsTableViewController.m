@@ -267,8 +267,8 @@
         if (!v) {
             v = @"pac";
         }
-        modeSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:_L(PAC), _L(Global), _L(Off), nil]
-                                                            values:[NSArray arrayWithObjects:@"pac", @"global", @"off", nil]
+        modeSource = [[SimpleTableViewSource alloc] initWithLabels:[NSArray arrayWithObjects:_L(PAC), _L(Global), nil]
+                                                            values:[NSArray arrayWithObjects:@"pac", @"global", nil]
                                                       initialValue:v selectionBlock:^(NSObject *value) {
                     [[NSUserDefaults standardUserDefaults] setObject:value forKey:kShadowsocksProxyModeKey];
                     SWBAppDelegate *appDelegate = (SWBAppDelegate *) [UIApplication sharedApplication].delegate;
