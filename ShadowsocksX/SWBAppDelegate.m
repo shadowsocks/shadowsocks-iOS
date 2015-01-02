@@ -152,7 +152,13 @@ static SWBAppDelegate *appDelegate;
     }
     [serversMenu addItem:publicItem];
     for (Profile *profile in configuration.profiles) {
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:profile.server action:@selector(chooseServer:) keyEquivalent:@""];
+        NSString *title;
+        if (profile.remarks.length) {
+            title = [NSString stringWithFormat:@"%@ (%@:%d)", profile.remarks, profile.server, (int)profile.serverPort];
+        } else {
+            title = [NSString stringWithFormat:@"%@:%d", profile.server, (int)profile.serverPort];
+        }
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:@selector(chooseServer:) keyEquivalent:@""];
         item.tag = i;
         if (i == configuration.current) {
             [item setState:1];

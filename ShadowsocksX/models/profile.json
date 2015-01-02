@@ -6,6 +6,7 @@
         "server":"1.2.3.4",
         "server_port":8388,
         "password":"barfoo!",
-        "method":"aes-256-cfb"
+        "method":"aes-256-cfb",
+        "remarks":"test"
     }]
 }

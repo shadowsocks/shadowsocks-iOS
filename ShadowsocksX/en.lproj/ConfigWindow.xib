@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SWBConfigWindowController">
@@ -13,6 +13,7 @@
                 <outlet property="passwordField" destination="WEx-Nh-Ean" id="vyD-rv-wHr"/>
                 <outlet property="placeholderLabel" destination="s5M-uC-d3f" id="GcM-8b-j5A"/>
                 <outlet property="portField" destination="xMg-kR-Jg1" id="mc5-54-XQH"/>
+                <outlet property="remarksField" destination="JcQ-nW-FrV" id="65V-wP-ih0"/>
                 <outlet property="serverField" destination="Yqv-0U-e9E" id="Riv-aO-31l"/>
                 <outlet property="settingsBox" destination="SFP-YW-lUM" id="w0P-cm-P8k"/>
                 <outlet property="tableView" destination="C4C-Gc-oaC" id="tu7-kw-FzP"/>
@@ -121,6 +122,24 @@
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="KeP-SW-f2a">
+                                    <rect key="frame" x="42" y="71" width="66" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Remarks:" id="cSX-Za-2Kb">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" id="JcQ-nW-FrV">
+                                    <rect key="frame" x="112" y="68" width="188" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="3Lm-yY-rdN">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
                             </subviews>

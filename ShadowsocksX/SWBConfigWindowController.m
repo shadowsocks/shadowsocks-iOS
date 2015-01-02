@@ -156,6 +156,11 @@
             [_portField setStringValue:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
             [_methodBox setStringValue:profile.method];
             [_passwordField setStringValue:profile.password];
+            if (profile.remarks) {
+                [_remarksField setStringValue:profile.remarks];
+            } else {
+                [_remarksField setStringValue:@""];
+            }
         }
     }
 }
@@ -170,6 +175,7 @@
         profile.serverPort = [_portField integerValue];
         profile.method = [_methodBox stringValue];
         profile.password = [_passwordField stringValue];
+        profile.remarks = [_remarksField stringValue];
     }
 
     return YES;

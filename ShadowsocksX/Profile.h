@@ -11,13 +11,15 @@
 - (NSData *)JSONData;
 
 
-@property (nonatomic, copy) NSString * method;
-
-@property (nonatomic, copy) NSString * password;
+@property (nonatomic, copy) NSString * server;
 
 @property (nonatomic, assign) NSInteger serverPort;
 
-@property (nonatomic, copy) NSString * server;
+@property (nonatomic, copy) NSString * remarks;
+
+@property (nonatomic, copy) NSString * password;
+
+@property (nonatomic, copy) NSString * method;
 
 
 @end

@@ -14,13 +14,15 @@
 
     if (self) {
  
-        self.method = (dictionary[@"method"] != [NSNull null]) ? dictionary[@"method"] : nil;
-  
-        self.password = (dictionary[@"password"] != [NSNull null]) ? dictionary[@"password"] : nil;
+        self.server = (dictionary[@"server"] != [NSNull null]) ? dictionary[@"server"] : nil;
   
         self.serverPort = (dictionary[@"server_port"] != [NSNull null]) ? [dictionary[@"server_port"] integerValue] : 0;
   
-        self.server = (dictionary[@"server"] != [NSNull null]) ? dictionary[@"server"] : nil;
+        self.remarks = (dictionary[@"remarks"] != [NSNull null]) ? dictionary[@"remarks"] : nil;
+  
+        self.password = (dictionary[@"password"] != [NSNull null]) ? dictionary[@"password"] : nil;
+  
+        self.method = (dictionary[@"method"] != [NSNull null]) ? dictionary[@"method"] : nil;
  
     }
     return self;
@@ -45,13 +47,15 @@
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
 
  
-    dictionary[@"method"] = (self.method != nil) ? self.method : [NSNull null];
-  
-    dictionary[@"password"] = (self.password != nil) ? self.password : [NSNull null];
+    dictionary[@"server"] = (self.server != nil) ? self.server : [NSNull null];
   
     dictionary[@"server_port"] = @(self.serverPort);
   
-    dictionary[@"server"] = (self.server != nil) ? self.server : [NSNull null];
+    dictionary[@"remarks"] = (self.remarks != nil) ? self.remarks : [NSNull null];
+  
+    dictionary[@"password"] = (self.password != nil) ? self.password : [NSNull null];
+  
+    dictionary[@"method"] = (self.method != nil) ? self.method : [NSNull null];
  
     return dictionary;
 }
