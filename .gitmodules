@@ -19,3 +19,6 @@
 [submodule "Masonry"]
 	path = Masonry
 	url = git@github.com:Masonry/Masonry.git
+[submodule "AFNetworking"]
+	path = AFNetworking
+	url = git@github.com:AFNetworking/AFNetworking.git
