@@ -4271,7 +4271,7 @@
 			name = "ZXingObjCTests-iOS";
 			productName = ZXingObjCTests;
 			productReference = 25403CC4166A96FA00E13304 /* ZXingObjCTests-iOS.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		25404165166AADAC00E13304 /* ZXingObjC-osx */ = {
 			isa = PBXNativeTarget;
@@ -4307,7 +4307,7 @@
 			name = "ZXingObjCTests-osx";
 			productName = ZXingObjCTests;
 			productReference = 25404178166AADAC00E13304 /* ZXingObjCTests-osx.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		2540439D166ABA0A00E13304 /* OS X Framework */ = {
 			isa = PBXNativeTarget;
@@ -4333,6 +4333,7 @@
 		25403CAA166A96F900E13304 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastTestingUpgradeCheck = 0610;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = zxing;
 			};
