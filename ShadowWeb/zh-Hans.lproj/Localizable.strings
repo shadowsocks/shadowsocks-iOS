@@ -53,6 +53,7 @@
 "Please fill in the blanks." = "请填写以下内容。";
 "Show Logs..." = "显示日志...";
 "Edit PAC for Auto Proxy Mode..." = "编辑自动模式的 PAC...";
+"Edit User Rule for GFWList..." = "编辑 GFWList 的用户规则...";
 "Quit" = "退出";
 "https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help" = "https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-%E5%B8%AE%E5%8A%A9";
 "Show QR Code..." = "显示二维码...";
