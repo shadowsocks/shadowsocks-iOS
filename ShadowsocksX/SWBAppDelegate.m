@@ -35,6 +35,7 @@
     FSEventStreamRef fsEventStream;
     NSString *configPath;
     NSString *PACPath;
+    NSString *userRulePath;
     AFHTTPRequestOperationManager *manager;
 }
 
@@ -111,6 +112,7 @@ static SWBAppDelegate *appDelegate;
 
     configPath = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".ShadowsocksX"];
     PACPath = [NSString stringWithFormat:@"%@/%@", configPath, @"gfwlist.js"];
+    userRulePath = [NSString stringWithFormat:@"%@/%@", configPath, @"user-rule.txt"];
     [self monitorPAC:configPath];
     appDelegate = self;
 }
@@ -452,6 +454,13 @@ void onPACChange(
         // Objective-C is bullshit
         NSString *str2 = [[NSString alloc] initWithData:data2 encoding:NSUTF8StringEncoding];
         NSArray *lines = [str2 componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        
+        NSString *str3 = [[NSString alloc] initWithContentsOfFile:userRulePath encoding:NSUTF8StringEncoding error:nil];
+        if (str3) {
+            NSArray *rules = [str3 componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+            lines = [lines arrayByAddingObjectsFromArray:rules];
+        }
+        
         NSMutableArray *filtered = [[NSMutableArray alloc] init];
         for (NSString *line in lines) {
             if ([line length] > 0) {
