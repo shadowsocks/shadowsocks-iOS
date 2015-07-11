@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23CF5E3E6EA9EEBFD4369BBD /* libPods-libshadowsocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBD2BA57C5840000686F4A2 /* libPods-libshadowsocks.a */; };
 		6205309618D4443E00887D3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		6205309918D4443E00887D3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6205309818D4443E00887D3E /* main.m */; };
 		620530A518D4444E00887D3E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629AC93F18B49C33001D2771 /* SystemConfiguration.framework */; };
@@ -64,7 +65,6 @@
 		6274847018B1FD6500A9CDF0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6274846F18B1FD6500A9CDF0 /* CoreMedia.framework */; };
 		6274847218B1FD6F00A9CDF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6274847118B1FD6F00A9CDF0 /* QuartzCore.framework */; };
 		6274847418B1FD7900A9CDF0 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6274847318B1FD7900A9CDF0 /* ImageIO.framework */; };
-		6274847518B1FD9B00A9CDF0 /* libZXingObjC-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6274846218B1FD4200A9CDF0 /* libZXingObjC-iOS.a */; };
 		627A6DF918B47E9300493BBC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627A6DF818B47E9300493BBC /* Cocoa.framework */; };
 		627A6E0318B47E9300493BBC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 627A6E0118B47E9300493BBC /* InfoPlist.strings */; };
 		627A6E0518B47E9300493BBC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 627A6E0418B47E9300493BBC /* main.m */; };
@@ -127,15 +127,6 @@
 		62E27E5C18C1D0F90086033D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E27E5B18C1D0F80086033D /* libz.dylib */; };
 		62E27E5E18C1D1000086033D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E27E5D18C1D1000086033D /* libz.dylib */; };
 		62E27E6418C1F1E30086033D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EB1896EFEA137F75386005D4 /* LICENSE */; };
-		62E2E18F1A5AB1E600C9A2E1 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E2E17D1A5AB1E600C9A2E1 /* AFHTTPRequestOperation.m */; };
-		62E2E1901A5AB1E600C9A2E1 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E2E17F1A5AB1E600C9A2E1 /* AFHTTPRequestOperationManager.m */; };
-		62E2E1911A5AB1E600C9A2E1 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E2E1811A5AB1E600C9A2E1 /* AFHTTPSessionManager.m */; };
-		62E2E1921A5AB1E600C9A2E1 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E2E1841A5AB1E600C9A2E1 /* AFNetworkReachabilityManager.m */; };
-		62E2E1931A5AB1E600C9A2E1 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E2E1861A5AB1E600C9A2E1 /* AFSecurityPolicy.m */; };
-		62E2E1941A5AB1E600C9A2E1 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E2E1881A5AB1E600C9A2E1 /* AFURLConnectionOperation.m */; };
-		62E2E1951A5AB1E600C9A2E1 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E2E18A1A5AB1E600C9A2E1 /* AFURLRequestSerialization.m */; };
-		62E2E1961A5AB1E600C9A2E1 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E2E18C1A5AB1E600C9A2E1 /* AFURLResponseSerialization.m */; };
-		62E2E1971A5AB1E600C9A2E1 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E2E18E1A5AB1E600C9A2E1 /* AFURLSessionManager.m */; };
 		62E2E1991A5AB21E00C9A2E1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E2E1981A5AB21E00C9A2E1 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		62E2E19B1A5AB23700C9A2E1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E2E19A1A5AB23700C9A2E1 /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		62E2E19D1A5ABE5C00C9A2E1 /* abp.js in Resources */ = {isa = PBXBuildFile; fileRef = 62E2E19C1A5ABE5C00C9A2E1 /* abp.js */; };
@@ -152,6 +143,7 @@
 		EB189E4CAA0DEF020070DC84 /* SWBAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB189EE1CF6E8C6C431B87BA /* SWBAboutController.m */; };
 		EB189E8C8B1866196A4DA43B /* about.txt in Resources */ = {isa = PBXBuildFile; fileRef = EB1891FD08E70E9E9DC84AFD /* about.txt */; };
 		EB189FE30A2E13F4D10D59ED /* SWBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = EB189ABF1BF9729F1E0E8F72 /* SWBApplication.m */; };
+		F8A2CE8AF3C763083FEA2BBE /* libPods-ShadowsocksX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1096E69011F2538585193F8 /* libPods-ShadowsocksX.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,48 +161,6 @@
 			remoteGlobalIDString = 623A7EB91795AE8000DF11DF;
 			remoteInfo = libshadowsocks;
 		};
-		6274846118B1FD4200A9CDF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 25403CB3166A96FA00E13304;
-			remoteInfo = "ZXingObjC-iOS";
-		};
-		6274846318B1FD4200A9CDF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 25403CC4166A96FA00E13304;
-			remoteInfo = "ZXingObjCTests-iOS";
-		};
-		6274846518B1FD4200A9CDF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 25404166166AADAC00E13304;
-			remoteInfo = "ZXingObjC-osx";
-		};
-		6274846718B1FD4200A9CDF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 25404178166AADAC00E13304;
-			remoteInfo = "ZXingObjCTests-osx";
-		};
-		6274846918B1FD4200A9CDF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2540439E166ABA0A00E13304;
-			remoteInfo = "OS X Framework";
-		};
-		6274846B18B1FD4A00A9CDF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 25403CB2166A96FA00E13304;
-			remoteInfo = "ZXingObjC-iOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -226,6 +176,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5BBD2BA57C5840000686F4A2 /* libPods-libshadowsocks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-libshadowsocks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6205309518D4443E00887D3E /* shadowsocks_sysconf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = shadowsocks_sysconf; sourceTree = BUILT_PRODUCTS_DIR; };
 		6205309818D4443E00887D3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6205309B18D4443E00887D3E /* shadowsocks_sysconf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shadowsocks_sysconf-Prefix.pch"; sourceTree = "<group>"; };
@@ -294,7 +245,6 @@
 		625E5BC319EA3A6B007A5124 /* qrcode.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = qrcode.htm; sourceTree = "<group>"; };
 		626C4AD918B1E352003DBE33 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "NSData-Base64/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
 		626C4ADA18B1E352003DBE33 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "NSData-Base64/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
-		6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingObjC.xcodeproj; path = "zxing-objc/ZXingObjC.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		6274846D18B1FD5C00A9CDF0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		6274846F18B1FD6500A9CDF0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		6274847118B1FD6F00A9CDF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -420,29 +370,15 @@
 		62E27E5818C1D0CF0086033D /* GZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GZIP.m; path = GZIP/GZIP/GZIP.m; sourceTree = SOURCE_ROOT; };
 		62E27E5B18C1D0F80086033D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		62E27E5D18C1D1000086033D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
-		62E2E17C1A5AB1E600C9A2E1 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
-		62E2E17D1A5AB1E600C9A2E1 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
-		62E2E17E1A5AB1E600C9A2E1 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
-		62E2E17F1A5AB1E600C9A2E1 /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
-		62E2E1801A5AB1E600C9A2E1 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		62E2E1811A5AB1E600C9A2E1 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		62E2E1821A5AB1E600C9A2E1 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		62E2E1831A5AB1E600C9A2E1 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		62E2E1841A5AB1E600C9A2E1 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		62E2E1851A5AB1E600C9A2E1 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
-		62E2E1861A5AB1E600C9A2E1 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
-		62E2E1871A5AB1E600C9A2E1 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
-		62E2E1881A5AB1E600C9A2E1 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
-		62E2E1891A5AB1E600C9A2E1 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		62E2E18A1A5AB1E600C9A2E1 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		62E2E18B1A5AB1E600C9A2E1 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		62E2E18C1A5AB1E600C9A2E1 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		62E2E18D1A5AB1E600C9A2E1 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
-		62E2E18E1A5AB1E600C9A2E1 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		62E2E1981A5AB21E00C9A2E1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		62E2E19A1A5AB23700C9A2E1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		62E2E19C1A5ABE5C00C9A2E1 /* abp.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = abp.js; sourceTree = "<group>"; };
+		718EAE25C882C91F1B7B377E /* Pods-libshadowsocks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-libshadowsocks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-libshadowsocks/Pods-libshadowsocks.debug.xcconfig"; sourceTree = "<group>"; };
 		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A1096E69011F2538585193F8 /* libPods-ShadowsocksX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShadowsocksX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A31ED3134C687ABF5AF38E16 /* Pods-ShadowsocksX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX/Pods-ShadowsocksX.release.xcconfig"; sourceTree = "<group>"; };
+		A900E97F651F0B834B21D5B3 /* Pods-libshadowsocks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-libshadowsocks.release.xcconfig"; path = "Pods/Target Support Files/Pods-libshadowsocks/Pods-libshadowsocks.release.xcconfig"; sourceTree = "<group>"; };
+		E3A85F267D10561110935E35 /* Pods-ShadowsocksX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX/Pods-ShadowsocksX.debug.xcconfig"; sourceTree = "<group>"; };
 		EB189069EF341E65B5414D00 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		EB189071407B3A2A9B4C83CB /* ProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileManager.h; sourceTree = "<group>"; };
 		EB1891B68FCBD841C5E461B6 /* About.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; path = About.md; sourceTree = SOURCE_ROOT; };
@@ -481,7 +417,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				62E27E5C18C1D0F90086033D /* libz.dylib in Frameworks */,
-				6274847518B1FD9B00A9CDF0 /* libZXingObjC-iOS.a in Frameworks */,
 				6274847418B1FD7900A9CDF0 /* ImageIO.framework in Frameworks */,
 				6274847218B1FD6F00A9CDF0 /* QuartzCore.framework in Frameworks */,
 				6274847018B1FD6500A9CDF0 /* CoreMedia.framework in Frameworks */,
@@ -506,6 +441,7 @@
 			files = (
 				623A7EBB1795AE8000DF11DF /* Foundation.framework in Frameworks */,
 				623A7ECC1795B15500DF11DF /* libcrypto.a in Frameworks */,
+				23CF5E3E6EA9EEBFD4369BBD /* libPods-libshadowsocks.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +456,7 @@
 				625E5BBE19EA3855007A5124 /* WebKit.framework in Frameworks */,
 				62E2E19B1A5AB23700C9A2E1 /* Security.framework in Frameworks */,
 				62E2E1991A5AB21E00C9A2E1 /* SystemConfiguration.framework in Frameworks */,
+				F8A2CE8AF3C763083FEA2BBE /* libPods-ShadowsocksX.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +490,7 @@
 				621571A716CF6BCB003D96B4 /* Frameworks */,
 				621571A616CF6BCB003D96B4 /* Products */,
 				EB1891FD08E70E9E9DC84AFD /* about.txt */,
+				ECBBF504B05E0E1AAEC5EBEE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -600,6 +538,8 @@
 				627A6DF818B47E9300493BBC /* Cocoa.framework */,
 				627A6E1718B47E9300493BBC /* XCTest.framework */,
 				627A6DFA18B47E9300493BBC /* Other Frameworks */,
+				5BBD2BA57C5840000686F4A2 /* libPods-libshadowsocks.a */,
+				A1096E69011F2538585193F8 /* libPods-ShadowsocksX.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -608,7 +548,6 @@
 			isa = PBXGroup;
 			children = (
 				62E27E5618C1D0C00086033D /* gzip */,
-				6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */,
 				626C4AD818B1E338003DBE33 /* base64 */,
 				62D85969176DA63C00FE5575 /* polipo */,
 				621FCBF817603FD600411E5F /* GCDWebServer */,
@@ -729,18 +668,6 @@
 			name = base64;
 			sourceTree = "<group>";
 		};
-		6274845A18B1FD4000A9CDF0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6274846218B1FD4200A9CDF0 /* libZXingObjC-iOS.a */,
-				6274846418B1FD4200A9CDF0 /* ZXingObjCTests-iOS.octest */,
-				6274846618B1FD4200A9CDF0 /* libZXingObjC-osx.a */,
-				6274846818B1FD4200A9CDF0 /* ZXingObjCTests-osx.octest */,
-				6274846A18B1FD4200A9CDF0 /* ZXingObjC.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		627A6DFA18B47E9300493BBC /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -754,7 +681,6 @@
 		627A6DFE18B47E9300493BBC /* ShadowsocksX */ = {
 			isa = PBXGroup;
 			children = (
-				62E2E17B1A5AB1E600C9A2E1 /* AFNetworking */,
 				627A6E0A18B47E9300493BBC /* SWBAppDelegate.h */,
 				627A6E0B18B47E9300493BBC /* SWBAppDelegate.m */,
 				627A6E1018B47E9300493BBC /* Images.xcassets */,
@@ -947,32 +873,16 @@
 			name = gzip;
 			sourceTree = "<group>";
 		};
-		62E2E17B1A5AB1E600C9A2E1 /* AFNetworking */ = {
+		ECBBF504B05E0E1AAEC5EBEE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				62E2E17C1A5AB1E600C9A2E1 /* AFHTTPRequestOperation.h */,
-				62E2E17D1A5AB1E600C9A2E1 /* AFHTTPRequestOperation.m */,
-				62E2E17E1A5AB1E600C9A2E1 /* AFHTTPRequestOperationManager.h */,
-				62E2E17F1A5AB1E600C9A2E1 /* AFHTTPRequestOperationManager.m */,
-				62E2E1801A5AB1E600C9A2E1 /* AFHTTPSessionManager.h */,
-				62E2E1811A5AB1E600C9A2E1 /* AFHTTPSessionManager.m */,
-				62E2E1821A5AB1E600C9A2E1 /* AFNetworking.h */,
-				62E2E1831A5AB1E600C9A2E1 /* AFNetworkReachabilityManager.h */,
-				62E2E1841A5AB1E600C9A2E1 /* AFNetworkReachabilityManager.m */,
-				62E2E1851A5AB1E600C9A2E1 /* AFSecurityPolicy.h */,
-				62E2E1861A5AB1E600C9A2E1 /* AFSecurityPolicy.m */,
-				62E2E1871A5AB1E600C9A2E1 /* AFURLConnectionOperation.h */,
-				62E2E1881A5AB1E600C9A2E1 /* AFURLConnectionOperation.m */,
-				62E2E1891A5AB1E600C9A2E1 /* AFURLRequestSerialization.h */,
-				62E2E18A1A5AB1E600C9A2E1 /* AFURLRequestSerialization.m */,
-				62E2E18B1A5AB1E600C9A2E1 /* AFURLResponseSerialization.h */,
-				62E2E18C1A5AB1E600C9A2E1 /* AFURLResponseSerialization.m */,
-				62E2E18D1A5AB1E600C9A2E1 /* AFURLSessionManager.h */,
-				62E2E18E1A5AB1E600C9A2E1 /* AFURLSessionManager.m */,
+				718EAE25C882C91F1B7B377E /* Pods-libshadowsocks.debug.xcconfig */,
+				A900E97F651F0B834B21D5B3 /* Pods-libshadowsocks.release.xcconfig */,
+				E3A85F267D10561110935E35 /* Pods-ShadowsocksX.debug.xcconfig */,
+				A31ED3134C687ABF5AF38E16 /* Pods-ShadowsocksX.release.xcconfig */,
 			);
-			name = AFNetworking;
-			path = AFNetworking/AFNetworking;
-			sourceTree = SOURCE_ROOT;
+			name = Pods;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -1005,7 +915,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				6274846C18B1FD4A00A9CDF0 /* PBXTargetDependency */,
 				623A7ECE1795B1C200DF11DF /* PBXTargetDependency */,
 			);
 			name = shadowsocks;
@@ -1017,9 +926,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 623A7EC51795AE8000DF11DF /* Build configuration list for PBXNativeTarget "libshadowsocks" */;
 			buildPhases = (
+				51E54C57ACABAAFCF55A4B47 /* Check Pods Manifest.lock */,
 				623A7EB61795AE8000DF11DF /* Sources */,
 				623A7EB71795AE8000DF11DF /* Frameworks */,
 				623A7EB81795AE8000DF11DF /* CopyFiles */,
+				E5964E1CE9C00F675FE8C49B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1034,9 +945,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 627A6E2C18B47E9300493BBC /* Build configuration list for PBXNativeTarget "ShadowsocksX" */;
 			buildPhases = (
+				51320F99693212A606FAAAB8 /* Check Pods Manifest.lock */,
 				627A6DF318B47E9300493BBC /* Sources */,
 				627A6DF418B47E9300493BBC /* Frameworks */,
 				627A6DF518B47E9300493BBC /* Resources */,
+				9D47918E5076A4AC379BA0C5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1070,12 +983,6 @@
 			mainGroup = 6215719C16CF6BCA003D96B4;
 			productRefGroup = 621571A616CF6BCB003D96B4 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 6274845A18B1FD4000A9CDF0 /* Products */;
-					ProjectRef = 6274845918B1FD4000A9CDF0 /* ZXingObjC.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				621571A416CF6BCB003D96B4 /* shadowsocks */,
@@ -1085,44 +992,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		6274846218B1FD4200A9CDF0 /* libZXingObjC-iOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libZXingObjC-iOS.a";
-			remoteRef = 6274846118B1FD4200A9CDF0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6274846418B1FD4200A9CDF0 /* ZXingObjCTests-iOS.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "ZXingObjCTests-iOS.octest";
-			remoteRef = 6274846318B1FD4200A9CDF0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6274846618B1FD4200A9CDF0 /* libZXingObjC-osx.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libZXingObjC-osx.a";
-			remoteRef = 6274846518B1FD4200A9CDF0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6274846818B1FD4200A9CDF0 /* ZXingObjCTests-osx.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "ZXingObjCTests-osx.octest";
-			remoteRef = 6274846718B1FD4200A9CDF0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6274846A18B1FD4200A9CDF0 /* ZXingObjC.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ZXingObjC.framework;
-			remoteRef = 6274846918B1FD4200A9CDF0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		621571A316CF6BCB003D96B4 /* Resources */ = {
@@ -1174,6 +1043,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		51320F99693212A606FAAAB8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		51E54C57ACABAAFCF55A4B47 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		62DAB9DE177A11AD003DFFDE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1186,6 +1085,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Crashlytics.framework/run fa65e4ab45ef1c9c69682529bee0751cd22d5d80";
+		};
+		9D47918E5076A4AC379BA0C5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksX/Pods-ShadowsocksX-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5964E1CE9C00F675FE8C49B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-libshadowsocks/Pods-libshadowsocks-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1277,23 +1206,14 @@
 				629AC93418B49676001D2771 /* GCDWebServer.m in Sources */,
 				628C91BD1A07AA5800BA1566 /* Profile.m in Sources */,
 				629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */,
-				62E2E1941A5AB1E600C9A2E1 /* AFURLConnectionOperation.m in Sources */,
-				62E2E1931A5AB1E600C9A2E1 /* AFSecurityPolicy.m in Sources */,
 				629AC93618B49676001D2771 /* GCDWebServerRequest.m in Sources */,
-				62E2E1911A5AB1E600C9A2E1 /* AFHTTPSessionManager.m in Sources */,
 				629AC93718B49676001D2771 /* GCDWebServerResponse.m in Sources */,
 				627A6E4118B47FAE00493BBC /* encrypt.c in Sources */,
 				627A6E4218B47FAE00493BBC /* table.m in Sources */,
 				627A6E4318B47FAE00493BBC /* local.m in Sources */,
 				627A6E4418B47FAE00493BBC /* ev.c in Sources */,
-				62E2E1901A5AB1E600C9A2E1 /* AFHTTPRequestOperationManager.m in Sources */,
 				628C91C41A07AB4500BA1566 /* Configuration.m in Sources */,
-				62E2E18F1A5AB1E600C9A2E1 /* AFHTTPRequestOperation.m in Sources */,
-				62E2E1971A5AB1E600C9A2E1 /* AFURLSessionManager.m in Sources */,
 				627A6E0518B47E9300493BBC /* main.m in Sources */,
-				62E2E1921A5AB1E600C9A2E1 /* AFNetworkReachabilityManager.m in Sources */,
-				62E2E1961A5AB1E600C9A2E1 /* AFURLResponseSerialization.m in Sources */,
-				62E2E1951A5AB1E600C9A2E1 /* AFURLRequestSerialization.m in Sources */,
 				627A6E0C18B47E9300493BBC /* SWBAppDelegate.m in Sources */,
 				EB1897A04CF0382A754FE700 /* SWBConfigWindowController.m in Sources */,
 				EB18906527B59E4F6A70A14A /* ShadowsocksRunner.m in Sources */,
@@ -1315,11 +1235,6 @@
 			isa = PBXTargetDependency;
 			target = 623A7EB91795AE8000DF11DF /* libshadowsocks */;
 			targetProxy = 623A7ECD1795B1C200DF11DF /* PBXContainerItemProxy */;
-		};
-		6274846C18B1FD4A00A9CDF0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ZXingObjC-iOS";
-			targetProxy = 6274846B18B1FD4A00A9CDF0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1515,7 +1430,7 @@
 					"./zxing-objc/**",
 				);
 				INFOPLIST_FILE = "ShadowWeb/shadowsocks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OpenSSL-for-iPhone/lib\"",
@@ -1547,7 +1462,7 @@
 					"./zxing-objc/**",
 				);
 				INFOPLIST_FILE = "ShadowWeb/shadowsocks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OpenSSL-for-iPhone/lib\"",
@@ -1560,6 +1475,7 @@
 		};
 		623A7EC31795AE8000DF11DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 718EAE25C882C91F1B7B377E /* Pods-libshadowsocks.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libshadowsocks.dst;
@@ -1582,6 +1498,7 @@
 		};
 		623A7EC41795AE8000DF11DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A900E97F651F0B834B21D5B3 /* Pods-libshadowsocks.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libshadowsocks.dst;
@@ -1604,6 +1521,7 @@
 		};
 		627A6E2418B47E9300493BBC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3A85F267D10561110935E35 /* Pods-ShadowsocksX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1627,7 +1545,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "ShadowsocksX/ShadowsocksX-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -1636,6 +1554,7 @@
 		};
 		627A6E2518B47E9300493BBC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A31ED3134C687ABF5AF38E16 /* Pods-ShadowsocksX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1657,7 +1576,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "ShadowsocksX/ShadowsocksX-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
