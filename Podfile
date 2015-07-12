@@ -2,12 +2,13 @@
 # platform :ios, '6.0'
 
 target 'shadowsocks' do
+pod 'ZXingObjC', '~> 3.0'
+pod 'libsodium', '~> 1.0.3'
 
 end
 
 target 'libshadowsocks' do
-pod 'libsodium', '~> 1.0.3'
-pod 'ZXingObjC', '~> 3.0'
+pod 'OpenSSL-Static', '1.0.2.c'
 
 end
 

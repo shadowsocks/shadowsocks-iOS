@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EF12E499F4D33A3C7BE1E60 /* libPods-shadowsocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDE51B5EA8033EEF0CB4766 /* libPods-shadowsocks.a */; };
 		23CF5E3E6EA9EEBFD4369BBD /* libPods-libshadowsocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBD2BA57C5840000686F4A2 /* libPods-libshadowsocks.a */; };
 		6205309618D4443E00887D3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		6205309918D4443E00887D3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6205309818D4443E00887D3E /* main.m */; };
@@ -52,7 +53,6 @@
 		623A7EC71795B0C700DF11DF /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 628693EE16DA2815008B1A26 /* encrypt.c */; };
 		623A7EC81795B0C900DF11DF /* table.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CD119B175E3E17008C4D0C /* table.m */; };
 		623A7EC91795B0D300DF11DF /* local.m in Sources */ = {isa = PBXBuildFile; fileRef = 628693F016DA2816008B1A26 /* local.m */; };
-		623A7ECC1795B15500DF11DF /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
 		623A7ECF1795B1D800DF11DF /* libshadowsocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 623A7EBA1795AE8000DF11DF /* libshadowsocks.a */; };
 		625E5BBA19EA350F007A5124 /* QRCodeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 625E5BB919EA350F007A5124 /* QRCodeWindow.xib */; };
 		625E5BBD19EA36D2007A5124 /* SWBQRCodeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 625E5BBC19EA36D2007A5124 /* SWBQRCodeWindowController.m */; };
@@ -88,7 +88,6 @@
 		629AC93518B49676001D2771 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFC17603FFA00411E5F /* GCDWebServerConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		629AC93618B49676001D2771 /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCBFF17603FFA00411E5F /* GCDWebServerRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		629AC93718B49676001D2771 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 621FCC0117603FFA00411E5F /* GCDWebServerResponse.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD1199175E3BD7008C4D0C /* libcrypto.a */; };
 		62CD9190178977B500B2CB55 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CD918F178977B500B2CB55 /* MessageUI.framework */; };
 		62D85A8D176DA6FC00FE5575 /* atom.c in Sources */ = {isa = PBXBuildFile; fileRef = 62D85A4E176DA6FB00FE5575 /* atom.c */; };
 		62D85A8E176DA6FC00FE5575 /* auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 62D85A50176DA6FB00FE5575 /* auth.c */; };
@@ -132,6 +131,7 @@
 		62E2E19D1A5ABE5C00C9A2E1 /* abp.js in Resources */ = {isa = PBXBuildFile; fileRef = 62E2E19C1A5ABE5C00C9A2E1 /* abp.js */; };
 		96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D80C04176CE1D7006C8078 /* AVFoundation.framework */; };
 		9B5B40E21B51558F00AC37CA /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5B40E11B51558F00AC37CA /* LaunchAtLoginController.m */; };
+		9BF38C291B524CAE00333D53 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF38C281B524CAE00333D53 /* libcrypto.a */; };
 		EB18906527B59E4F6A70A14A /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1897A89055A4C2CFD81AF8 /* ShadowsocksRunner.m */; };
 		EB189096BC8B91FA0F60A34C /* 3gnet_disable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = EB1897AD03717EB5E44BA24B /* 3gnet_disable.mobileconfig */; };
 		EB1890D6331E61914013309F /* polipo_disable.config in Resources */ = {isa = PBXBuildFile; fileRef = EB189F29205BA2AB998B867D /* polipo_disable.config */; };
@@ -177,6 +177,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3EDE51B5EA8033EEF0CB4766 /* libPods-shadowsocks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-shadowsocks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBD2BA57C5840000686F4A2 /* libPods-libshadowsocks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-libshadowsocks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6205309518D4443E00887D3E /* shadowsocks_sysconf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = shadowsocks_sysconf; sourceTree = BUILT_PRODUCTS_DIR; };
 		6205309818D4443E00887D3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -375,12 +376,15 @@
 		62E2E19A1A5AB23700C9A2E1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		62E2E19C1A5ABE5C00C9A2E1 /* abp.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = abp.js; sourceTree = "<group>"; };
 		718EAE25C882C91F1B7B377E /* Pods-libshadowsocks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-libshadowsocks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-libshadowsocks/Pods-libshadowsocks.debug.xcconfig"; sourceTree = "<group>"; };
+		7CCE49990A7DFBB3408B8600 /* Pods-shadowsocks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shadowsocks.release.xcconfig"; path = "Pods/Target Support Files/Pods-shadowsocks/Pods-shadowsocks.release.xcconfig"; sourceTree = "<group>"; };
 		96D80C04176CE1D7006C8078 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9B5B40E01B51558F00AC37CA /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		9B5B40E11B51558F00AC37CA /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
+		9BF38C281B524CAE00333D53 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "Pods/OpenSSL-Static/lib-ios/libcrypto.a"; sourceTree = "<group>"; };
 		A1096E69011F2538585193F8 /* libPods-ShadowsocksX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShadowsocksX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A31ED3134C687ABF5AF38E16 /* Pods-ShadowsocksX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX/Pods-ShadowsocksX.release.xcconfig"; sourceTree = "<group>"; };
 		A900E97F651F0B834B21D5B3 /* Pods-libshadowsocks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-libshadowsocks.release.xcconfig"; path = "Pods/Target Support Files/Pods-libshadowsocks/Pods-libshadowsocks.release.xcconfig"; sourceTree = "<group>"; };
+		D8367D06E1736A5DCE4454AA /* Pods-shadowsocks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shadowsocks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shadowsocks/Pods-shadowsocks.debug.xcconfig"; sourceTree = "<group>"; };
 		E3A85F267D10561110935E35 /* Pods-ShadowsocksX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX/Pods-ShadowsocksX.debug.xcconfig"; sourceTree = "<group>"; };
 		EB189069EF341E65B5414D00 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		EB189071407B3A2A9B4C83CB /* ProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileManager.h; sourceTree = "<group>"; };
@@ -419,6 +423,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF38C291B524CAE00333D53 /* libcrypto.a in Frameworks */,
 				62E27E5C18C1D0F90086033D /* libz.dylib in Frameworks */,
 				6274847418B1FD7900A9CDF0 /* ImageIO.framework in Frameworks */,
 				6274847218B1FD6F00A9CDF0 /* QuartzCore.framework in Frameworks */,
@@ -429,12 +434,12 @@
 				621FCC091760400800411E5F /* CFNetwork.framework in Frameworks */,
 				621FCC071760400400411E5F /* MobileCoreServices.framework in Frameworks */,
 				96D80C05176CE1D7006C8078 /* AVFoundation.framework in Frameworks */,
-				62CD119A175E3BD7008C4D0C /* libcrypto.a in Frameworks */,
 				628693EC16DA2706008B1A26 /* SystemConfiguration.framework in Frameworks */,
 				621571A916CF6BCB003D96B4 /* UIKit.framework in Frameworks */,
 				621571AB16CF6BCB003D96B4 /* Foundation.framework in Frameworks */,
 				621571AD16CF6BCB003D96B4 /* CoreGraphics.framework in Frameworks */,
 				62DAB9E0177A11D7003DFFDE /* Crashlytics.framework in Frameworks */,
+				0EF12E499F4D33A3C7BE1E60 /* libPods-shadowsocks.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +448,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				623A7EBB1795AE8000DF11DF /* Foundation.framework in Frameworks */,
-				623A7ECC1795B15500DF11DF /* libcrypto.a in Frameworks */,
 				23CF5E3E6EA9EEBFD4369BBD /* libPods-libshadowsocks.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +515,7 @@
 		621571A716CF6BCB003D96B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BF38C281B524CAE00333D53 /* libcrypto.a */,
 				62E2E19A1A5AB23700C9A2E1 /* Security.framework */,
 				62E2E1981A5AB21E00C9A2E1 /* SystemConfiguration.framework */,
 				628C91C51A07B6C800BA1566 /* QuartzCore.framework */,
@@ -543,6 +548,7 @@
 				627A6DFA18B47E9300493BBC /* Other Frameworks */,
 				5BBD2BA57C5840000686F4A2 /* libPods-libshadowsocks.a */,
 				A1096E69011F2538585193F8 /* libPods-ShadowsocksX.a */,
+				3EDE51B5EA8033EEF0CB4766 /* libPods-shadowsocks.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -885,6 +891,8 @@
 				A900E97F651F0B834B21D5B3 /* Pods-libshadowsocks.release.xcconfig */,
 				E3A85F267D10561110935E35 /* Pods-ShadowsocksX.debug.xcconfig */,
 				A31ED3134C687ABF5AF38E16 /* Pods-ShadowsocksX.release.xcconfig */,
+				D8367D06E1736A5DCE4454AA /* Pods-shadowsocks.debug.xcconfig */,
+				7CCE49990A7DFBB3408B8600 /* Pods-shadowsocks.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -912,10 +920,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 621571CB16CF6BCB003D96B4 /* Build configuration list for PBXNativeTarget "shadowsocks" */;
 			buildPhases = (
+				308006601C4814151E89A559 /* Check Pods Manifest.lock */,
 				621571A116CF6BCB003D96B4 /* Sources */,
 				621571A216CF6BCB003D96B4 /* Frameworks */,
 				621571A316CF6BCB003D96B4 /* Resources */,
 				62DAB9DE177A11AD003DFFDE /* ShellScript */,
+				39491D4189AC026BD15A8D2D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1048,6 +1058,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		308006601C4814151E89A559 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		39491D4189AC026BD15A8D2D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shadowsocks/Pods-shadowsocks-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		51320F99693212A606FAAAB8 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1376,7 +1416,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "OpenSSL-for-iPhone/include/";
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
@@ -1405,7 +1445,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "OpenSSL-for-iPhone/include/";
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
@@ -1418,6 +1458,7 @@
 		};
 		621571CC16CF6BCB003D96B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8367D06E1736A5DCE4454AA /* Pods-shadowsocks.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
@@ -1439,7 +1480,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/OpenSSL-for-iPhone/lib\"",
+					"$(PROJECT_DIR)/Pods/OpenSSL-Static/lib-ios",
 				);
 				PRODUCT_NAME = shadowsocks;
 				PROVISIONING_PROFILE = "";
@@ -1450,6 +1491,7 @@
 		};
 		621571CD16CF6BCB003D96B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CCE49990A7DFBB3408B8600 /* Pods-shadowsocks.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
@@ -1471,7 +1513,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/OpenSSL-for-iPhone/lib\"",
+					"$(PROJECT_DIR)/Pods/OpenSSL-Static/lib-ios",
 				);
 				PRODUCT_NAME = shadowsocks;
 				PROVISIONING_PROFILE = "10B86086-082B-4967-8900-EDF458793F84";
