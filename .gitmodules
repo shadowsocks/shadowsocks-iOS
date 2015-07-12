@@ -13,6 +13,3 @@
 [submodule "GZIP"]
 	path = GZIP
 	url = https://github.com/nicklockwood/GZIP.git
-[submodule "Masonry"]
-	path = Masonry
-	url = git@github.com:Masonry/Masonry.git
