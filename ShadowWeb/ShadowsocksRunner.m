@@ -5,6 +5,7 @@
 
 #import "ShadowsocksRunner.h"
 #import "local.h"
+#import "ProfileManager.h"
 
 
 @implementation ShadowsocksRunner {
@@ -86,12 +87,17 @@
         NSString *password = [urlString substringWithRange:NSMakeRange(firstColonRange.location + 1, lastAtRange.location - firstColonRange.location - 1)];
         NSString *IP = [urlString substringWithRange:NSMakeRange(lastAtRange.location + 1, lastColonRange.location - lastAtRange.location - 1)];
         NSString *port = [urlString substringWithRange:NSMakeRange(lastColonRange.location + 1, urlString.length - lastColonRange.location - 1)];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksIPKey value:IP];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:port];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:password];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:method];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
-        [ShadowsocksRunner reloadConfig];
+        
+        // Add to server list in profile.
+        Configuration* conf = [ProfileManager configuration];
+        Profile *profile = [[Profile alloc] init];
+        profile.server = IP;
+        profile.serverPort = [port integerValue];
+        profile.method = method;
+        profile.password = password;
+        [((NSMutableArray *) conf.profiles) addObject:profile];
+        [ProfileManager saveConfiguration:conf];
+        
         return YES;
     }
 
