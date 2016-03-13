@@ -43,28 +43,35 @@ crypto_sign_verify_detached(const unsigned char *sig, const unsigned char *m,
     ge_double_scalarmult_vartime(&R, h, &A, sig + 32);
     ge_tobytes(rcheck, &R);
 
-    return crypto_verify_32(rcheck, sig) | (-(rcheck - sig == 0)) |
+    return crypto_verify_32(rcheck, sig) | (-(rcheck == sig)) |
            sodium_memcmp(sig, rcheck, 32);
 }
 
 int
-crypto_sign_open(unsigned char *m, unsigned long long *mlen,
+crypto_sign_open(unsigned char *m, unsigned long long *mlen_p,
                  const unsigned char *sm, unsigned long long smlen,
                  const unsigned char *pk)
 {
+    unsigned long long mlen;
+
     if (smlen < 64 || smlen > SIZE_MAX) {
         goto badsig;
     }
-    if (crypto_sign_verify_detached(sm, sm + 64, smlen - 64, pk) != 0) {
-        memset(m, 0, smlen - 64);
+    mlen = smlen - 64;
+    if (crypto_sign_verify_detached(sm, sm + 64, mlen, pk) != 0) {
+        memset(m, 0, mlen);
         goto badsig;
     }
-    *mlen = smlen - 64;
-    memmove(m, sm + 64, *mlen);
+    if (mlen_p != NULL) {
+        *mlen_p = mlen;
+    }
+    memmove(m, sm + 64, mlen);
 
     return 0;
 
 badsig:
-    *mlen = 0;
+    if (mlen_p != NULL) {
+        *mlen_p = 0;
+    }
     return -1;
 }

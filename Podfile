@@ -1,2 +1,2 @@
-platform :ios, '8.1'
-pod 'libsodium', '~> 1.0.1'
+platform :ios, '9.2'
+pod 'libsodium', '~> 1.0.3'

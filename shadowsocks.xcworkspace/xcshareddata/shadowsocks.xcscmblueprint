@@ -1,0 +1,72 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "47B28B5207C05DF6BD98596A65434B6D5978C4BA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D13D26D55186243D670B587A687BD8154BF7E34D" : 0,
+    "8092C8C7FB5C3FF769ACA4A4D09F354B1F39375F" : 0,
+    "CF7A89EA97096B2ABF1C411375A43655D55CF356" : 0,
+    "F6F96CA34C5878B0A9123C7C37855491A5E599DA" : 0,
+    "47B28B5207C05DF6BD98596A65434B6D5978C4BA" : 0,
+    "423DC45DFFDDC223DDAAA21CECBECC0E9E51BD53" : 0,
+    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : 0,
+    "6ACBD9B75A9AF01FED3B43D5A1DC054996850174" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8439CB72-E71C-46F9-BE52-5AE7A9D3B6D5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D13D26D55186243D670B587A687BD8154BF7E34D" : "shadowsocks-iOSNSData-Base64",
+    "8092C8C7FB5C3FF769ACA4A4D09F354B1F39375F" : "shadowsocks-iOSOpenSSL-for-iPhone",
+    "CF7A89EA97096B2ABF1C411375A43655D55CF356" : "shadowsocks-iOSAppProxyCap",
+    "F6F96CA34C5878B0A9123C7C37855491A5E599DA" : "shadowsocks-iOSGCDWebServer",
+    "47B28B5207C05DF6BD98596A65434B6D5978C4BA" : "shadowsocks-iOS",
+    "423DC45DFFDDC223DDAAA21CECBECC0E9E51BD53" : "shadowsocks-iOSiProxy",
+    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : "shadowsocks-iOSAFNetworking",
+    "6ACBD9B75A9AF01FED3B43D5A1DC054996850174" : "shadowsocks-iOSGZIP"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "shadowsocks",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "shadowsocks.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/clowwindy\/iProxy.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "423DC45DFFDDC223DDAAA21CECBECC0E9E51BD53"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/binss\/shadowsocks-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "47B28B5207C05DF6BD98596A65434B6D5978C4BA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nicklockwood\/GZIP.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6ACBD9B75A9AF01FED3B43D5A1DC054996850174"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/clowwindy\/OpenSSL-for-iPhone.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8092C8C7FB5C3FF769ACA4A4D09F354B1F39375F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/freewizard\/AppProxyCap.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CF7A89EA97096B2ABF1C411375A43655D55CF356"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/l4u\/NSData-Base64.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D13D26D55186243D670B587A687BD8154BF7E34D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AFNetworking\/AFNetworking.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/swisspol\/GCDWebServer",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F6F96CA34C5878B0A9123C7C37855491A5E599DA"
+    }
+  ]
+}
