@@ -94,7 +94,7 @@
         [ShadowsocksRunner reloadConfig];
         return YES;
     }
-
+    
     NSLog(@"%@", errorReason);
     return NO;
 }
