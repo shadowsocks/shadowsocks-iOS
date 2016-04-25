@@ -240,4 +240,26 @@
     [[self.window animator] setFrameOrigin:[self.window frame].origin];
 }
 
+- (IBAction)copyURL2Clipboard:(id)sender {
+    [self saveCurrentProfile];
+    
+    // Generate url
+    Profile *profile = configuration.profiles[self.tableView.selectedRow];
+    
+    NSString *parts = [NSString stringWithFormat:@"%@:%@@%@:%ld",
+                       profile.method,
+                       profile.password,
+                       profile.server,
+                       (long)profile.serverPort];
+    
+    NSString *base64String = [[parts dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+    NSString *urlString = [NSString stringWithFormat:@"ss://%@", base64String];
+    NSURL* url = [NSURL URLWithString:urlString];
+    
+    // Then copy url to pasteboard
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
+    [pboard clearContents];
+    [pboard writeObjects:@[url]];
+}
+
 @end

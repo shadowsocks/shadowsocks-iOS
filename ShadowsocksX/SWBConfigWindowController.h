@@ -31,4 +31,6 @@
 
 - (IBAction)sectionClick:(id)sender;
 
+- (IBAction)copyURL2Clipboard:(id)sender;
+
 @end
