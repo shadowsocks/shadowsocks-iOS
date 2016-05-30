@@ -5,6 +5,7 @@
 
 #import "ShadowsocksRunner.h"
 #import "local.h"
+#import "ProfileManager.h"
 
 
 @implementation ShadowsocksRunner {
@@ -57,7 +58,16 @@
     NSString *errorReason = nil;
     while(i < 2) {
         if (i == 1) {
-            NSData *data = [[NSData alloc] initWithBase64Encoding:url.host];
+            NSString* host = url.host;
+            if ([host length]%4!=0) {
+                int n = 4 - [host length]%4;
+                if (1==n) {
+                    host = [host stringByAppendingString:@"="];
+                } else if (2==n) {
+                    host = [host stringByAppendingString:@"=="];
+                }
+            }
+            NSData *data = [[NSData alloc] initWithBase64Encoding:host];
             NSString *decodedString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             urlString = decodedString;
         }
@@ -86,12 +96,17 @@
         NSString *password = [urlString substringWithRange:NSMakeRange(firstColonRange.location + 1, lastAtRange.location - firstColonRange.location - 1)];
         NSString *IP = [urlString substringWithRange:NSMakeRange(lastAtRange.location + 1, lastColonRange.location - lastAtRange.location - 1)];
         NSString *port = [urlString substringWithRange:NSMakeRange(lastColonRange.location + 1, urlString.length - lastColonRange.location - 1)];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksIPKey value:IP];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:port];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:password];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:method];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
-        [ShadowsocksRunner reloadConfig];
+        
+        // Add to server list in profile.
+        Configuration* conf = [ProfileManager configuration];
+        Profile *profile = [[Profile alloc] init];
+        profile.server = IP;
+        profile.serverPort = [port integerValue];
+        profile.method = method;
+        profile.password = password;
+        [((NSMutableArray *) conf.profiles) addObject:profile];
+        [ProfileManager saveConfiguration:conf];
+        
         return YES;
     }
 
@@ -109,7 +124,8 @@
                        [ShadowsocksRunner configForKey:kShadowsocksIPKey],
                        [ShadowsocksRunner configForKey:kShadowsocksPortKey]];
     
-    NSString *base64String = [[parts dataUsingEncoding:NSUTF8StringEncoding] base64Encoding];
+    NSString *base64String = [[parts dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+    base64String = [base64String stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString: @"="]];
     NSString *urlString = [NSString stringWithFormat:@"ss://%@", base64String];
     return [NSURL URLWithString:urlString];
 }

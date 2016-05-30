@@ -2,5 +2,7 @@ build
 .idea/
 shadowsocks.xcodeproj/project.xcworkspace/
 shadowsocks.xcodeproj/xcuserdata/
+shadowsocks.xcworkspace/xcshareddata/
 .DS_STORE
 *.dmg
+Pods

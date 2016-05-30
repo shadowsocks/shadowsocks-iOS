@@ -15,6 +15,9 @@
 #import "ProfileManager.h"
 #import "AFNetworking.h"
 
+#import "LaunchAtLoginController.h"
+#import <CoreImage/CoreImage.h>
+
 #define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
 #define kShadowsocksRunningModeKey @"ShadowsocksMode"
 #define kShadowsocksHelper @"/Library/Application Support/ShadowsocksX/shadowsocks_sysconf"
@@ -23,11 +26,13 @@
 @implementation SWBAppDelegate {
     SWBConfigWindowController *configWindowController;
     SWBQRCodeWindowController *qrCodeWindowController;
+    LaunchAtLoginController     *launchAtLoginController;
     NSMenuItem *statusMenuItem;
     NSMenuItem *enableMenuItem;
     NSMenuItem *autoMenuItem;
     NSMenuItem *globalMenuItem;
     NSMenuItem *qrCodeMenuItem;
+    NSMenuItem *lauchAtLoginItem;
     NSMenu *serversMenu;
     BOOL isRunning;
     NSString *runningMode;
@@ -43,6 +48,8 @@ static SWBAppDelegate *appDelegate;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(handleURLEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+    
+    launchAtLoginController = [[LaunchAtLoginController alloc]init];
 
     // Insert code here to initialize your application
     dispatch_queue_t proxy = dispatch_queue_create("proxy", NULL);
@@ -80,6 +87,8 @@ static SWBAppDelegate *appDelegate;
     globalMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Global Mode) action:@selector(enableGlobal)
         keyEquivalent:@""];
     
+    lauchAtLoginItem = [[NSMenuItem alloc] initWithTitle:_L(Launch At Login) action:@selector(toggleLaunchAtLogin) keyEquivalent:@""];
+    
     [menu addItem:statusMenuItem];
     [menu addItem:enableMenuItem];
     [menu addItem:[NSMenuItem separatorItem]];
@@ -102,6 +111,8 @@ static SWBAppDelegate *appDelegate;
     qrCodeMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Generate QR Code...) action:@selector(showQRCode) keyEquivalent:@""];
     [menu addItem:qrCodeMenuItem];
     [menu addItem:[[NSMenuItem alloc] initWithTitle:_L(Scan QR Code from Screen...) action:@selector(scanQRCode) keyEquivalent:@""]];
+    [menu addItem:[NSMenuItem separatorItem]];
+    [menu addItem:lauchAtLoginItem];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:_L(Show Logs...) action:@selector(showLogs) keyEquivalent:@""];
     [menu addItemWithTitle:_L(Help) action:@selector(showHelp) keyEquivalent:@""];
@@ -127,6 +138,11 @@ static SWBAppDelegate *appDelegate;
     } else {
         return originalPACData;
     }
+}
+
+- (void)toggleLaunchAtLogin {
+    launchAtLoginController.launchAtLogin = !launchAtLoginController.launchAtLogin;
+    [self updateMenu];
 }
 
 - (void)enableAutoProxy {
@@ -212,6 +228,8 @@ static SWBAppDelegate *appDelegate;
         [qrCodeMenuItem setAction:@selector(showQRCode)];
     }
     [self updateServersMenu];
+    
+    [lauchAtLoginItem setState:launchAtLoginController.launchAtLogin?1:0];
 }
 
 void onPACChange(
@@ -292,6 +310,70 @@ void onPACChange(
         [qrCodeWindowController.window makeKeyAndOrderFront:nil];
     } else {
         // TODO
+    }
+}
+
+- (void)scanQRCode {
+    {
+        /* displays[] Quartz display ID's */
+        CGDirectDisplayID   *displays = nil;
+        
+        CGError             err = CGDisplayNoErr;
+        CGDisplayCount      dspCount = 0;
+        
+        /* How many active displays do we have? */
+        err = CGGetActiveDisplayList(0, NULL, &dspCount);
+        
+        /* If we are getting an error here then their won't be much to display. */
+        if(err != CGDisplayNoErr)
+        {
+            NSLog(@"Could not get active display count (%d)\n", err);
+            return;
+        }
+        
+        /* Allocate enough memory to hold all the display IDs we have. */
+        displays = calloc((size_t)dspCount, sizeof(CGDirectDisplayID));
+        
+        // Get the list of active displays
+        err = CGGetActiveDisplayList(dspCount,
+                                     displays,
+                                     &dspCount);
+        
+        /* More error-checking here. */
+        if(err != CGDisplayNoErr)
+        {
+            NSLog(@"Could not get active display list (%d)\n", err);
+            return;
+        }
+        
+        NSMutableArray* foundSSUrls = [NSMutableArray array];
+        
+        CIDetector *detector = [CIDetector detectorOfType:@"CIDetectorTypeQRCode"
+                                                  context:nil
+                                                  options:@{ CIDetectorAccuracy:CIDetectorAccuracyHigh }];
+        
+        for (unsigned int displaysIndex = 0; displaysIndex < dspCount; displaysIndex++)
+        {
+            /* Make a snapshot image of the current display. */
+            CGImageRef image = CGDisplayCreateImage(displays[displaysIndex]);
+            NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image]];
+            for (CIQRCodeFeature *feature in features) {
+                NSLog(@"%@", feature.messageString);
+                if ( [feature.messageString hasPrefix:@"ss://"] )
+                {
+                    [foundSSUrls addObject:[NSURL URLWithString:feature.messageString]];
+                }
+            }
+        }
+        
+        free(displays);
+        
+        // Add urls in foundSSUrls to settings.
+        for (NSURL* url in foundSSUrls) {
+            [ShadowsocksRunner openSSURL:url];
+        }
+        
+        [self updateServersMenu];
     }
 }
 
@@ -460,7 +542,7 @@ void onPACChange(
 }
 
 - (void)updatePACFromGFWList {
-    [manager GET:@"https://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // Objective-C is bullshit
         NSData *data = responseObject;
         NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

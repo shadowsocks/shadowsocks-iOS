@@ -1,0 +1,35 @@
+PODS:
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - libsodium (1.0.3)
+  - OpenSSL-Universal (1.0.1.l)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.5)
+  - libsodium (~> 1.0.3)
+  - OpenSSL-Universal (= 1.0.1.l)
+
+SPEC CHECKSUMS:
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  libsodium: be547e31dc75725629acc5717dc0a40fc05ef243
+  OpenSSL-Universal: eeb215fff0c6b65b6ba8f4262ef52d3baf2df2d7
+
+PODFILE CHECKSUM: fafab451b10970c839c2a25134f1566639e61266
+
+COCOAPODS: 1.0.0
