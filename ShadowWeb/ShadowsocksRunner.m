@@ -59,14 +59,13 @@
     while(i < 2) {
         if (i == 1) {
             NSString* host = url.host;
-            if ([host length]%3!=0) {
-                int n = 3 - [host length]%3;
+            if ([host length]%4!=0) {
+                int n = 4 - [host length]%4;
                 if (1==n) {
                     host = [host stringByAppendingString:@"="];
                 } else if (2==n) {
                     host = [host stringByAppendingString:@"=="];
                 }
-                
             }
             NSData *data = [[NSData alloc] initWithBase64Encoding:host];
             NSString *decodedString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
