@@ -69,7 +69,7 @@ const long RFC2445_DURATION_FIELD_UNITS[RFC2445_DURATION_FIELD_UNITS_LEN] = {
     _location = location;
     _organizer = organizer;
     _attendees = attendees;
-    _description = description;
+    _description_t = description;
     _latitude = latitude;
     _longitude = longitude;
   }

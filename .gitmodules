@@ -3,7 +3,7 @@
 	url = https://github.com/freewizard/AppProxyCap.git
 [submodule "OpenSSL-for-iPhone"]
 	path = OpenSSL-for-iPhone
-	url = git://github.com/clowwindy/OpenSSL-for-iPhone.git
+	url = https://github.com/clowwindy/OpenSSL-for-iPhone.git
 [submodule "GCDWebServer"]
 	path = GCDWebServer
 	url = https://github.com/swisspol/GCDWebServer
@@ -18,7 +18,7 @@
 	url = https://github.com/nicklockwood/GZIP.git
 [submodule "Masonry"]
 	path = Masonry
-	url = git@github.com:Masonry/Masonry.git
+	url = https://github.com/Masonry/Masonry.git
 [submodule "AFNetworking"]
 	path = AFNetworking
-	url = git@github.com:AFNetworking/AFNetworking.git
+	url = https://github.com/AFNetworking/AFNetworking.git
